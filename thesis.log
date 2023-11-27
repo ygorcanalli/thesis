@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2023.11.20)  20 NOV 2023 11:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2023.11.20)  26 NOV 2023 18:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -419,7 +419,7 @@ LaTeX Info: Redefining \nameref on input line 36.
 Package hyperref Info: Option `breaklinks' set `true' on input line 56.
 Package hyperref Info: Option `raiselinks' set `true' on input line 56.
 Package hyperref Info: Option `pageanchor' set `true' on input line 56.
-<coppe-logo.pdf, id=40, 177.463pt x 76.285pt>
+<coppe-logo.pdf, id=124, 177.463pt x 76.285pt>
 File: coppe-logo.pdf Graphic file (type pdf)
 <use coppe-logo.pdf>
 Package pdftex.def Info: coppe-logo.pdf  used on input line 56.
@@ -456,30 +456,26 @@ Underfull \hbox (badness 7081) in paragraph at lines 57--57
 
 ] [7
 
-] (/home/canalli/git/thesis/thesis.toc)
+] (/home/canalli/git/thesis/thesis.toc [8
+
+])
 \tf@toc=\write6
 \openout6 = `thesis.toc'.
 
- [8
-
-] (/home/canalli/git/thesis/thesis.lof)
+ [9] (/home/canalli/git/thesis/thesis.lof)
 \tf@lof=\write7
 \openout7 = `thesis.lof'.
 
- [9
+ [10
 
-] (/home/canalli/git/thesis/thesis.lot
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 6.
- (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-))
+] (/home/canalli/git/thesis/thesis.lot)
 \tf@lot=\write8
 \openout8 = `thesis.lot'.
 
 
 No file thesis.los.
 No file thesis.lab.
-[10
+[11
 
 ]
 Cap\'{\i }tulo 1.
@@ -502,37 +498,49 @@ Cap\'{\i }tulo 4.
 Cap\'{\i }tulo 5.
 [5
 
-] (/home/canalli/git/thesis/thesis.bbl) [6
+]
+Cap\'{\i }tulo 6.
+[6
+
+]
+Cap\'{\i }tulo 7.
+[7
+
+] (/home/canalli/git/thesis/thesis.bbl
+
+LaTeX Warning: Empty `thebibliography' environment on input line 9.
+
+) [8
 
 
 ]
 Ap\^endice A.
 
 AED: lastpage setting LastPage
-[7
+[9
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 160.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 160.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 124.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 124.
  (/home/canalli/git/thesis/thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 160.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 160.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 124.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 124.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: C94B8496CEA99975078F62CA75E693D6;510.
+(rerunfilecheck)             Checksum: 4858C52F3572C06A9F1B854F115F87B1;2282.
  ) 
 Here is how much of TeX's memory you used:
- 8802 strings out of 483163
- 126317 string characters out of 5965510
- 410497 words of memory out of 5000000
- 23577 multiletter control sequences out of 15000+600000
- 545291 words of font info for 60 fonts, out of 8000000 for 9000
+ 8773 strings out of 483163
+ 125149 string characters out of 5965510
+ 411996 words of memory out of 5000000
+ 23542 multiletter control sequences out of 15000+600000
+ 542298 words of font info for 49 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 39i,11n,34p,850b,357s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/canalli/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </home/canalli/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> </home/canalli/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/canalli/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/canalli/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </home/canalli/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/canalli/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </home/canalli/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/canalli/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /home/canalli/git/thesis/thesis.pdf (17 pages, 195407 bytes).
+ 39i,11n,34p,850b,499s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/canalli/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/canalli/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/canalli/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </home/canalli/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/canalli/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
+Output written on /home/canalli/git/thesis/thesis.pdf (20 pages, 165714 bytes).
 PDF statistics:
- 554 PDF objects out of 1000 (max. 8388607)
- 204 compressed objects within 3 object streams
- 39 named destinations out of 1000 (max. 500000)
- 78 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 544 PDF objects out of 1000 (max. 8388607)
+ 267 compressed objects within 3 object streams
+ 53 named destinations out of 1000 (max. 500000)
+ 246 words of extra memory for PDF output out of 10000 (max. 10000000)
 

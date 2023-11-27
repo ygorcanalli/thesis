@@ -1,9 +1,30 @@
 \BOOKMARK [0][-]{chapter*.3}{Lista de Figuras}{}% 1
 \BOOKMARK [0][-]{chapter*.4}{Lista de Tabelas}{}% 2
 \BOOKMARK [0][-]{chapter.1}{Introdu\347\343o}{}% 3
-\BOOKMARK [0][-]{chapter.2}{Revis\343o Bibliogr\341fica}{}% 4
-\BOOKMARK [0][-]{chapter.3}{M\351todo Proposto}{}% 5
-\BOOKMARK [0][-]{chapter.4}{Resultados e Discuss\365es}{}% 6
-\BOOKMARK [0][-]{chapter.5}{Conclus\365es}{}% 7
-\BOOKMARK [0][-]{chapter*.5}{Refer\352ncias Bibliogr\341ficas}{}% 8
-\BOOKMARK [0][-]{appendix.A}{Algumas Demonstra\347\365es}{}% 9
+\BOOKMARK [0][-]{chapter.2}{Justi\347a em aprendizado de m\341quina}{}% 4
+\BOOKMARK [1][-]{section.2.1}{Justi\347a, transpar\352ncia, auditabilidade e privacidade}{chapter.2}% 5
+\BOOKMARK [1][-]{section.2.2}{Fontes de injusti\347a}{chapter.2}% 6
+\BOOKMARK [1][-]{section.2.3}{Defini\347\365es e m\351tricas}{chapter.2}% 7
+\BOOKMARK [1][-]{section.2.4}{Regulamenta\347\343o}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.5}{Conjuntos de dados}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.6}{Abordagens para classifica\347\343o justa}{chapter.2}% 10
+\BOOKMARK [1][-]{section.2.7}{Otimiza\347\343o multiobjetivo}{chapter.2}% 11
+\BOOKMARK [0][-]{chapter.3}{Ru\355do em aprendizado de m\341quina}{}% 12
+\BOOKMARK [1][-]{section.3.1}{Defini\347\365es e taxonomia de ru\355do}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.2}{Classifica\347\343o na presen\347a de ru\355do de classe}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.3}{Fatora\347\343o e corre\347\343o de fun\347\365es de custo}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.4}{Estimadores da matriz de transi\347\343o}{chapter.3}% 16
+\BOOKMARK [0][-]{chapter.4}{Proposta}{}% 17
+\BOOKMARK [1][-]{section.4.1}{Ru\355do e Injusti\347a}{chapter.4}% 18
+\BOOKMARK [1][-]{section.4.2}{Fun\347\343o de custo de transi\347\343o para aprendizado justo}{chapter.4}% 19
+\BOOKMARK [1][-]{section.4.3}{Correla\347\343o e preditores indiretos}{chapter.4}% 20
+\BOOKMARK [1][-]{section.4.4}{Regulariza\347\343o}{chapter.4}% 21
+\BOOKMARK [1][-]{section.4.5}{Ajuste de hiperpar\342metros e matrizes de transi\347\343o}{chapter.4}% 22
+\BOOKMARK [0][-]{chapter.5}{Resultados e discuss\343o}{}% 23
+\BOOKMARK [1][-]{section.5.1}{Signific\342ncia para redes profundas}{chapter.5}% 24
+\BOOKMARK [1][-]{section.5.2}{Estudo comparativo da fun\347\343o de custo de transi\347\343o}{chapter.5}% 25
+\BOOKMARK [1][-]{section.5.3}{Estudo comparativo com regulariza\347\343o}{chapter.5}% 26
+\BOOKMARK [0][-]{chapter.6}{Conclus\365es}{}% 27
+\BOOKMARK [0][-]{chapter.7}{Conclus\365es}{}% 28
+\BOOKMARK [0][-]{chapter*.5}{Refer\352ncias Bibliogr\341ficas}{}% 29
+\BOOKMARK [0][-]{appendix.A}{Algumas Demonstra\347\365es}{}% 30
