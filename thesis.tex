@@ -29,6 +29,20 @@
 \documentclass[dsc,numbers]{coppe}
 \usepackage{amsmath,amssymb}
 \usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{booktabs} 
+\usepackage{subcaption}
+\usepackage{amsthm}
+\usepackage{url}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\FTL}{FTL}
+
+
 
 \makelosymbols
 \makeloabbreviations
@@ -80,23 +94,14 @@
   \printloabbreviations
 
   \mainmatter
-  \chapter{Introdução}
+  
+  \include{chapter1}
+  \include{chapter2}
+  \include{chapter3}
+  \include{chapter4}
+  \include{chapter5}
 
-  \chapter{Justiça em aprendizado de máquina}
-  \section{Justiça, transparência, auditabilidade e privacidade}
-  \section{Fontes de injustiça}
-  \section{Definições e métricas}
-  \section{Regulamentação}
-  \section{Conjuntos de dados}
-  \section{Abordagens para classificação justa}
-  \section{Otimização multiobjetivo}
-
-  \chapter{Ruído em aprendizado de máquina}
-  \section{Definições e taxonomia de ruído}
-  \section{Classificação na presença de ruído de classe}
-  \section{Fatoração e correção de funções de custo}
-  \section{Estimadores da matriz de transição}
-
+ 
   \chapter{Proposta}
   \section{Ruído e Injustiça}
   \section{Função de custo de transição para aprendizado justo}
@@ -120,7 +125,7 @@
   \bibliography{thesis}
 
   \appendix
-  \chapter{Algumas Demonstra{\c c}\~oes}
+  \include{appendix}
 \end{document}
 %% 
 %%
