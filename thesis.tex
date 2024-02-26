@@ -27,6 +27,7 @@
 %%   Right brace   \}     Tilde         \~}
 %%
 \documentclass[dsc,numbers]{coppe}
+\usepackage{natbib}
 \usepackage{amsmath,amssymb}
 \usepackage{hyperref}
 \usepackage{amssymb}
@@ -37,6 +38,7 @@
 \usepackage{subcaption}
 \usepackage{amsthm}
 \usepackage{url}
+\usepackage[english,brazil]{babel}
 \newtheorem{definition}{Definition}
 \newtheorem{theorem}{Theorem}
 \DeclareMathOperator*{\argmin}{arg\,min}
@@ -48,7 +50,7 @@
 \makeloabbreviations
 
 \begin{document}
-  \title{Técnicas de Ruído de Classe para Aprendizado de Máquina Justo}
+  \title{Label noise techniques to fairness in machine learning}
   \foreigntitle{Thesis Title}
   \author{Ygor}{de Mello Canalli}
   \advisor{Prof.}{Geraldo}{Zimbrão da Silva}{D.Sc.}
@@ -60,7 +62,7 @@
   \examiner{Prof.}{Nome do Quarto Examinador Sobrenome}{Ph.D.}
   \examiner{Prof.}{Nome do Quinto Examinador Sobrenome}{Ph.D.}
   \department{PESC}
-  \date{02}{2011}
+  \date{05}{2024}
 
   \keyword{Aprendizado de Máquina Justo}
   \keyword{Ruído em Aprendizado de Máquina}
@@ -102,23 +104,23 @@
   \include{chapter5}
 
  
-  \chapter{Proposta}
-  \section{Ruído e Injustiça}
-  \section{Função de custo de transição para aprendizado justo}
-  \section{Correlação e preditores indiretos}
-  \section{Regularização}
-  \section{Ajuste de hiperparâmetros e matrizes de transição}
+  %\chapter{Proposta}
+  %\section{Ruído e Injustiça}
+  %\section{Função de custo de transição para aprendizado justo}
+  %\section{Correlação e preditores indiretos}
+  %\section{Regularização}
+  %\section{Ajuste de hiperparâmetros e matrizes de transição}
 
-  \chapter{Resultados e discussão}
-  \section{Significância para redes profundas}
-  \section{Estudo comparativo da função de custo de transição}
-  \section{Estudo comparativo com regularização}
+  %\chapter{Resultados e discussão}
+  %\section{Significância para redes profundas}
+  %\section{Estudo comparativo da função de custo de transição}
+  %\section{Estudo comparativo com regularização}
 
-  \chapter{Conclusões}
+  %\chapter{Conclusões}
   
 
 
-  \chapter{Conclusões}
+  %\chapter{Conclusões}
 
   \backmatter
   \bibliographystyle{coppe-unsrt}

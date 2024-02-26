@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.18)  18 FEB 2024 18:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.25)  25 FEB 2024 23:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -33,7 +33,7 @@ LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count194
 ) (/usr/share/texlive/texmf-dist/tex/latex/hyphenat/hyphenat.sty
 Package: hyphenat 2009/09/02 v2.3c hyphenation utilities
-\langwohyphens=\language3
+\langwohyphens=\language86
 LaTeX Info: Redefining \_ on input line 43.
 ) (/usr/share/texlive/texmf-dist/tex/latex/lastpage/lastpage.sty
 Package: lastpage 2023/03/07 v2.0a lastpage: 2.09 or 2e? (HMM)
@@ -103,18 +103,6 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 ) (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
-
-/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty:112: Font T1/cmr/m/n/12=ecrm1200 at 12.0pt not loadable: Metric (TFM) file not found.
-<to be read again> 
-                   relax 
-l.112 ...\familydefault\seriesdefault\shapedefault
-                                                  
-I wasn't able to read the size data for this font,
-so I will ignore the font specification.
-[Wizards can fix TFM files using TFtoPL/PLtoTF.]
-You might try inserting a different font spec;
-e.g., type `I\font<same font id>=<substitute font name>'.
-
 ) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
@@ -138,45 +126,27 @@ Package: iftex 2022/02/03 v1.0f TeX engine tests
 Package: babel 2023/02/13 3.86 The Babel package
 \babel@savecnt=\count266
 \U@D=\dimen158
-\l@unhyphenated=\language4
+\l@unhyphenated=\language87
  (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
 \bbl@dirlevel=\count267
-
-
-/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty:4373: Package babel Error: Unknown option 'english'. Either you misspelled it
-(babel)                or the language definition file english.ldf was not found.
-
-See the babel package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4373 \ProcessOptions*
-                       
-Valid options are, among others: shorthands=, KeepShorthandsActive,
-activeacute, activegrave, noconfigs, safe=, main=, math=
-headfoot=, strings=, config=, hyphenmap=, or a language name.
-
-
-/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty:4373: Package babel Error: Unknown option 'brazil'. Either you misspelled it
-(babel)                or the language definition file brazil.ldf was not found.
-
-See the babel package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4373 \ProcessOptions*
-                       
-Valid options are, among others: shorthands=, KeepShorthandsActive,
-activeacute, activegrave, noconfigs, safe=, main=, math=
-headfoot=, strings=, config=, hyphenmap=, or a language name.
-
-Package babel Info: You haven't specified a language as a class or package
-(babel)             option. I'll load 'nil'. Reported on input line 4422.
-(/usr/share/texlive/texmf-dist/tex/generic/babel/nil.ldf
-Language: nil 2023/02/13 3.86 Nil language
-\l@nil=\language5
-))
+ (/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: Hyphen rules for 'canadian' set to \l@english
+(babel)             (\language0). Reported on input line 102.
+Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
+(babel)             (\language4). Reported on input line 105.
+Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
+(babel)             (\language4). Reported on input line 108.
+) (/usr/share/texlive/texmf-dist/tex/generic/babel-portuges/brazil.ldf
+Language: portuges 2021/07/09 v1.2t Portuguese support from the babel system
+Package babel Info: Hyphen rules for 'brazil' set to \l@portuguese
+(babel)             (\language3). Reported on input line 111.
+Package babel Info: Making " an active character on input line 143.
+)) (/usr/share/texlive/texmf-dist/tex/generic/babel/locale/en/babel-english.tex
+Package babel Info: Importing font and identification data for english
+(babel)             from babel-en.ini. Reported on input line 11.
+)
 \@advisor=\count268
 \@examiner=\count269
 \c@keywords=\count270
@@ -553,28 +523,404 @@ File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@expandcount=\count314
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)))
+))) (/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip62
+\multirow@cntb=\count315
+\multirow@dima=\skip63
+\bigstrutjot=\dimen279
+) (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen280
+\lightrulewidth=\dimen281
+\cmidrulewidth=\dimen282
+\belowrulesep=\dimen283
+\belowbottomsep=\dimen284
+\aboverulesep=\dimen285
+\abovetopsep=\dimen286
+\cmidrulesep=\dimen287
+\cmidrulekern=\dimen288
+\defaultaddspace=\dimen289
+\@cmidla=\count316
+\@cmidlb=\count317
+\@aboverulesep=\dimen290
+\@belowrulesep=\dimen291
+\@thisruleclass=\count318
+\@lastruleclass=\count319
+\@thisrulewidth=\dimen292
+) (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2023/02/19 v1.6 Sub-captions (AR)
+ (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/03/12 v3.6j Customizing captions (AR)
+ (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/03/12 v2.4 caption3 kernel (AR)
+\caption@tempdima=\dimen293
+\captionmargin=\dimen294
+\caption@leftmargin=\dimen295
+\caption@rightmargin=\dimen296
+\caption@width=\dimen297
+\caption@indent=\dimen298
+\caption@parindent=\dimen299
+\caption@hangindent=\dimen300
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count320
+\c@continuedfloat=\count321
+Package caption Info: hyperref package is loaded.
+)
+Package caption Info: New subtype `subfigure' on input line 239.
+\c@subfigure=\count322
+Package caption Info: New subtype `subtable' on input line 239.
+\c@subtable=\count323
+) (/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks38
+\thm@bodyfont=\toks39
+\thm@headfont=\toks40
+\thm@notefont=\toks41
+\thm@headpunct=\toks42
+\thm@preskip=\skip64
+\thm@postskip=\skip65
+\thm@headsep=\skip66
+\dth@everypar=\toks43
+)
+\c@definition=\count324
+\c@theorem=\count325
+\@losfile=\write4
+\openout4 = `thesis.syx'.
 
-! LaTeX Error: File `multirow.sty' not found.
 
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: sty)
+Writing index of symbols file thesis.syx
+\@labfile=\write5
+\openout5 = `thesis.abx'.
 
-Enter file name: 
-/home/canalli/git/thesis/thesis.tex:35: Emergency stop.
-<read *> 
-         
-l.35 \usepackage
-                {amsmath}^^M
-*** (cannot \read from terminal in nonstop modes)
+Writing index of abbreviations file thesis.abx
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count326
+\l__pdf_internal_box=\box68
+) (./thesis.aux (./chapter1.aux) (./chapter2.aux) (./chapter3.aux) (./chapter4.aux) (./chapter5.aux) (./appendix.aux))
+\openout1 = `thesis.aux'.
 
- 
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count327
+\scratchdimen=\dimen301
+\scratchbox=\box69
+\nofMPsegments=\count328
+\nofMParguments=\count329
+\everyMPshowfont=\toks44
+\MPscratchCnt=\count330
+\MPscratchDim=\dimen302
+\MPnumerator=\count331
+\makeMPintoPDFobject=\count332
+\everyMPtoPDFconversion=\toks45
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* vratio: 1:1
+* modes: 
+* h-part:(L,W,R)=(85.35826pt, 426.79135pt, 85.35826pt)
+* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=426.79135pt
+* \textheight=702.78308pt
+* \oddsidemargin=13.08827pt
+* \evensidemargin=13.08827pt
+* \topmargin=-33.0119pt
+* \headheight=12.0pt
+* \headsep=19.8738pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=38.0pt
+* \marginparsep=7.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package hyperref Info: Link coloring OFF on input line 52.
+(./thesis.out) (./thesis.out)
+\@outlinefile=\write6
+\openout6 = `thesis.out'.
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+Package hyperref Info: Option `breaklinks' set `true' on input line 72.
+Package hyperref Info: Option `raiselinks' set `true' on input line 72.
+Package hyperref Info: Option `pageanchor' set `true' on input line 72.
+<coppe-logo.pdf, id=71, 177.463pt x 76.285pt>
+File: coppe-logo.pdf Graphic file (type pdf)
+<use coppe-logo.pdf>
+Package pdftex.def Info: coppe-logo.pdf  used on input line 72.
+(pdftex.def)             Requested size: 177.46255pt x 76.2848pt.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 72.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 72.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
+
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc} <./coppe-logo.pdf>]
+Underfull \hbox (badness 1259) in paragraph at lines 73--73
+\T1/cmr/m/n/12 TESE SUB-ME-TIDA []AO CORPO DOCENTE DO INSTITUTO ALBERTO
+ []
+
+[2
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 73--73
+[]\T1/cmr/m/n/12 Label noise techniques to fairness in machine
+ []
+
+
+Underfull \hbox (badness 1442) in paragraph at lines 73--73
+\T1/cmr/m/n/12 learning/Ygor de Mello Canalli. -- Rio de Janeiro:
+ []
+
+
+Underfull \hbox (badness 7081) in paragraph at lines 73--73
+[]\T1/cmr/m/n/12 Tese (doutorado) -- UFRJ/COPPE/Programa de
+ []
+
+[3
+
+] [4
+
+] [5
+
+] [6
+
+] [7
+
+] (./thesis.toc)
+\tf@toc=\write7
+\openout7 = `thesis.toc'.
+
+ [8
+
+] (./thesis.lof)
+\tf@lof=\write8
+\openout8 = `thesis.lof'.
+
+ [9
+
+] (./thesis.lot)
+\tf@lot=\write9
+\openout9 = `thesis.lot'.
+
+
+No file thesis.los.
+No file thesis.lab.
+[10
+
+]
+\openout2 = `chapter1.aux'.
+
+ (./chapter1.tex
+Cap\'{\i }tulo 1.
+[1
+
+
+
+]
+
+LaTeX Warning: Reference `sec:related' on page 2 undefined on input line 11.
+
+) [2]
+\openout2 = `chapter2.aux'.
+
+ (./chapter2.tex
+Cap\'{\i }tulo 2.
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 25.
+
+[3
+
+
+
+
+] [4] [5] [6] [7] [8] [9]) [10]
+\openout2 = `chapter3.aux'.
+
+ (./chapter3.tex
+Cap\'{\i }tulo 3.
+[11
+
+
+
+
+] [12] [13]) [14]
+\openout2 = `chapter4.aux'.
+
+ (./chapter4.tex
+Cap\'{\i }tulo 4.
+[15
+
+
+
+
+]
+<images/fitness_sensibility.pdf, id=479, 867.24pt x 433.62pt>
+File: images/fitness_sensibility.pdf Graphic file (type pdf)
+<use images/fitness_sensibility.pdf>
+Package pdftex.def Info: images/fitness_sensibility.pdf  used on input line 39.
+(pdftex.def)             Requested size: 426.79135pt x 213.39536pt.
+ [16] [17 <./images/fitness_sensibility.pdf>] [18] [19]
+Overfull \vbox (9.93167pt too high) detected at line 144
+ []
+
+[20] [21]
+<images/boxplot_mcc_parity.pdf, id=595, 289.08pt x 578.16pt>
+File: images/boxplot_mcc_parity.pdf Graphic file (type pdf)
+<use images/boxplot_mcc_parity.pdf>
+Package pdftex.def Info: images/boxplot_mcc_parity.pdf  used on input line 169.
+(pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
+<images/boxplot_mcc_opportunity.pdf, id=596, 289.08pt x 578.16pt>
+File: images/boxplot_mcc_opportunity.pdf Graphic file (type pdf)
+<use images/boxplot_mcc_opportunity.pdf>
+Package pdftex.def Info: images/boxplot_mcc_opportunity.pdf  used on input line 174.
+(pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
+<images/boxplot_mcc_odds.pdf, id=597, 289.08pt x 578.16pt>
+File: images/boxplot_mcc_odds.pdf Graphic file (type pdf)
+<use images/boxplot_mcc_odds.pdf>
+Package pdftex.def Info: images/boxplot_mcc_odds.pdf  used on input line 179.
+(pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
+ [22 <./images/boxplot_mcc_parity.pdf> <./images/boxplot_mcc_opportunity.pdf> <./images/boxplot_mcc_odds.pdf>] [23]
+<images/boxplot_acc_parity.pdf, id=763, 289.08pt x 578.16pt>
+File: images/boxplot_acc_parity.pdf Graphic file (type pdf)
+<use images/boxplot_acc_parity.pdf>
+Package pdftex.def Info: images/boxplot_acc_parity.pdf  used on input line 203.
+(pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
+<images/boxplot_acc_opportunity.pdf, id=764, 289.08pt x 578.16pt>
+File: images/boxplot_acc_opportunity.pdf Graphic file (type pdf)
+<use images/boxplot_acc_opportunity.pdf>
+Package pdftex.def Info: images/boxplot_acc_opportunity.pdf  used on input line 208.
+(pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
+<images/boxplot_acc_odds.pdf, id=765, 289.08pt x 578.16pt>
+File: images/boxplot_acc_odds.pdf Graphic file (type pdf)
+<use images/boxplot_acc_odds.pdf>
+Package pdftex.def Info: images/boxplot_acc_odds.pdf  used on input line 213.
+(pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
+ [24 <./images/boxplot_acc_parity.pdf> <./images/boxplot_acc_opportunity.pdf> <./images/boxplot_acc_odds.pdf>]
+<images/ftl_sensibility_results.pdf, id=930, 859.98915pt x 681.55127pt>
+File: images/ftl_sensibility_results.pdf Graphic file (type pdf)
+<use images/ftl_sensibility_results.pdf>
+Package pdftex.def Info: images/ftl_sensibility_results.pdf  used on input line 225.
+(pdftex.def)             Requested size: 426.79135pt x 338.23727pt.
+ [25 <./images/ftl_sensibility_results.pdf>]) [26] [27] [28] [29] [30] [31]
+\openout2 = `chapter5.aux'.
+
+ (./chapter5.tex
+Cap\'{\i }tulo 5.
+[32
+
+
+
+
+]) [33] (./thesis.bbl
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 14.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+) [34
+
+
+
+
+]
+Underfull \hbox (badness 3954) in paragraph at lines 70--74
+[]\T1/cmr/m/n/12 CALDERS, T., VERWER, S.  ``Th-ree naive Bayes ap-pro-a-ches for
+ []
+
+[35] [36] [37] [38]
+Underfull \hbox (badness 1286) in paragraph at lines 271--274
+\T1/cmr/m/n/12 als with Da-ta-set Cons-traints''. In: Lee, D., Su-giyama, M., Lux-
+ []
+
+
+Underfull \hbox (badness 1939) in paragraph at lines 271--274
+\T1/cmr/m/n/12 burg, U., et al. (Eds.), \T1/cmr/m/it/12 Ad-van-ces in Neu-ral In-for-ma-tion Pro-ces-
+ []
+
+
+Underfull \hbox (badness 2012) in paragraph at lines 271--274
+\T1/cmr/m/it/12 sing Sys-tems\T1/cmr/m/n/12 , v. 29. Cur-ran As-so-ci-a-tes, Inc., 2016.  Dis-po-ní-vel
+ []
+
+[39] [40] [41] [42]
+Underfull \hbox (badness 1502) in paragraph at lines 411--414
+[]\T1/cmr/m/n/12 BERGSTRA, J., BAR-DE-NET, R., BEN-GIO, Y., et al.  ``Al-go-rithms
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 411--414
+\T1/cmr/m/n/12 Bar-tlett, P., et al. (Eds.), \T1/cmr/m/it/12 Ad-van-ces in Neu-ral In-for-ma-tion Pro-
+ []
+
+[43]) [44]
+\openout2 = `appendix.aux'.
+
+ (./appendix.tex) 
+enddocument/afterlastpage: lastpage setting LastPage.
+(./thesis.aux (./chapter1.aux) (./chapter2.aux) (./chapter3.aux) (./chapter4.aux) (./chapter5.aux) (./appendix.aux))
+
+LaTeX Warning: There were undefined references.
+
+Package rerunfilecheck Info: File `thesis.out' has not changed.
+(rerunfilecheck)             Checksum: 5E51F637351D11C739EB366559A77854;2587.
+ ) 
 Here is how much of TeX's memory you used:
- 21963 strings out of 478087
- 401979 string characters out of 5842650
- 1849388 words of memory out of 6000000
- 41719 multiletter control sequences out of 15000+600000
- 512585 words of font info for 33 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
- 84i,0n,89p,433b,70s stack positions out of 10000i,1000n,20000p,200000b,200000s
-/home/canalli/git/thesis/thesis.tex:35:  ==> Fatal error occurred, no output PDF file produced!
+ 25374 strings out of 476034
+ 468425 string characters out of 5792864
+ 1908388 words of memory out of 6000000
+ 45135 multiletter control sequences out of 15000+600000
+ 529640 words of font info for 73 fonts, out of 8000000 for 9000
+ 1137 hyphenation exceptions out of 8191
+ 84i,15n,89p,1505b,1003s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on thesis.pdf (54 pages, 725588 bytes).
+PDF statistics:
+ 1313 PDF objects out of 1440 (max. 8388607)
+ 828 compressed objects within 9 object streams
+ 187 named destinations out of 1000 (max. 500000)
+ 186 words of extra memory for PDF output out of 10000 (max. 10000000)
+

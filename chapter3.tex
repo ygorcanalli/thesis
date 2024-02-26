@@ -1,0 +1,83 @@
+\chapter{Proposal}
+
+\section{Fair Transition Loss} \label{sec:proposal}
+
+We propose a novel fair classification method inspired by techniques used for classification in the presence of label noise. By leveraging the features of certain label noise methods that redistribute probabilities for unbalanced noise across classes, our approach re-weights prediction probabilities to reduce disparities in favorable and unfavorable outcomes across social groups.
+
+Whereas forward loss correction~\citep{Patrini2017} uses a transition matrix with corruption probabilities for every label combination in the case of NAR, fair classification problems are more related to NNAR. While forward loss correction uses a transition matrix with corruption probabilities for each label combination, as in the case of NAR, fair classification problems align more with NNAR scenarios. In NNAR, the probability of corruption depends not only on the true class but also on features, analogous to how bias in fairness problems is directed against certain groups. Here our correction does not revert a random label corruption from the true class, but a potentially unfair prediction. While noise label techniques, like forward~\citep{Patrini2017}, aims to correct the prediction targeting a unknown true class using the available noisy label, analogously the proposed technique focus on correcting predictions chasing the unknown fair class using the available unfair label. Despite those are distinct phenomena, the corrections works the same way, adjusting the probabilities of predictions produced by a machine learning model during the training. 
+
+Thus, our proposal is a prediction probability loss reweighting technique that accounts different rates to each group of the sensitive feature, instead of using the same correction to every individual. A correction method that incorporates different probabilities for protected and unprotected groups could be more effective in mitigating bias during the learning phase. Specifically, we want a forward-based correction that takes into account not only one transition matrix, but a different matrix to each group of sensitive features. In this scenario, each group of sensitive feature have its own correction, with its own rates for each class combination. Ideally, if we can find an appropriate transition matrix that describes the bias to each group in a specific problem, we can apply a correction that attenuates those negative effects by reweighting model's predictions in the learning process. 
+
+Next, we formally present Fair Transition Loss. For purpose of clarity we follow the same structure available at \citep{Patrini2017}, with the pertinent changes to our scope. The Fairness Transition Matrix $T_a$ is defined with some abuse of notation to the group $A=a$ of the sensitive feature as 
+\begin{equation}
+    T_{a,i,j} = P(\tilde{Y} = y_j|Y = y_i, A=a),
+\end{equation}
+where label space $\mathcal{Y} = \{y_1, y_2, \ldots, y_c\}$, $c$ the number of classes, $Y=y_i$ is the unknown fair class and $\tilde{Y}=y_j$ is the available and 
+possibly unfair label. Here, $T_{a,i,j}$ is the probability of the fair class $Y=y_i$ being unfairly labeled as $\tilde{Y}=y_j$ to an individual of the group $A=a$ due negative social bias. Therefore, suppose that there is an inversible link function $\psi : \Delta^{c-1} \rightarrow \mathbb{R}^c$, where $\Delta^{c-1} \subset [0,1]^c$ is the $c$-simplex, the simplex in a $c$-dimensional space. Thus, a composite loss function, denoted by $\ell_{\psi} : \mathcal{Y} \times \mathbb{R}^c \rightarrow \mathbb{R}$ if it can be written as a decomposition of $\psi^{-1}$, that is,
+
+\begin{equation}
+    \ell_{\psi}(Y, h(X)) = \ell(Y, \psi^{-1}(h(X)), 
+\end{equation}
+where $h:\mathcal{X} \rightarrow \mathbb{R}^c$ is a standard artificial neural network with multiple layers using activation functions, and $h(X)$ is the output o this neural network to a given input $X$. For example, to cross entropy loss function the softmax is the inverse link function. Proper loss functions are those that can be directly used to estimate class probabilities. The minimizer of a proper composite loss has the particular form of the link function applied to the conditional class probabilities $P(Y|X)$. Adding a new conditioning to this formulation, to an individual from group $A=a$ we have
+
+\begin{equation} \label{eq:argmin_ftl}
+    \argmin\limits_{h}\mathbb{E}_{X,Y}\ell_{\psi}(Y, h(X|A=a)) = \psi(P(Y|X,A=a)).
+\end{equation}
+
+Fair Transition Loss consists in correcting model's predictions with the same technique as forward, but taking into account the sensitive attribute value when choosing the transition matrix. In Theorem~\ref{theorem:ftl} the Fair Transition Loss is formally defined, with a guarantee about its minimizers.
+
+\begin{theorem}\label{theorem:ftl}
+    Suppose that the Fairness Transition Matrix $T_a$ for a given sensitive attribute $A=a$ is non-singular. Given a proper composite loss $\ell_{\psi}$, define the Fair Transition Loss as
+    \[\FTL_{\psi}(h(X|A=a)) = \ell(T^{\top}_a \psi^{-1}(h(X|A=a))).\]
+    Then, the minimizer of the corrected loss under the unfair distribution is the same as the minimizer of the original loss under the fair distribution:
+    \[  \argmin\limits_{h}\mathbb{E}_{X,\tilde{Y}}\FTL{\psi}(Y, h(X|A=a)) = \argmin\limits_{h}\mathbb{E}_{X,Y}\ell_{\psi}(Y, h(X|A=a)).\]
+\end{theorem}
+\begin{proof}
+    First notice that:
+
+    \begin{align} \label{eq:proof_ftl}
+        \FTL_{\psi}(Y, h(X|A=a)) &= \ell(Y, T^{\top}_a \psi^{-1}(h(X|A=a))) \nonumber \\
+        &= \ell_{\phi}(Y, h(X|A=a)),
+    \end{align}
+    where we denote $\phi^{-1} = \psi^{-1} \circ T_a^{\top}$. Equivalently, $\phi = (T_a^{-1})^{\top} \circ \psi$ is invertible by composition of invertible functions, its domain is $\Delta^{c-1}$ as of $\psi$ and its codomain is $\mathbb{R}^{c}$. The last loss in Equation~\ref{eq:proof_ftl} is proper composite with link $\phi$. Finally, from Equation~\ref{eq:argmin_ftl}, the loss minimizer over the unfair distribution is
+    \begin{align}
+        \argmin\limits_{h}\mathbb{E}_{X,\tilde{Y}}\ell_{\phi}(Y, h(X|A=a)) &= \phi(P(\tilde{Y}|X,A=a)) \\
+        &= \psi((T_a^{-1})^{\top}) P(\tilde{Y}|X,A=a) \\
+        &= \psi(P(Y|X,A=a)),
+    \end{align}
+    that proves the Theorem by Equation~\ref{eq:argmin_ftl} once again.
+\end{proof}
+
+Considering a common scenario with only two groups in sensitive attributes (protected and privileged), we can correct the model's predictions using two different fair transition matrices. One with rates applied while learning instances from the protected group, and the other with rates applied while learning instances from the privileged group. Formally, to the sensitive feature $A \in \{0,1\}$, let $T_0$ the transition matrix associated with privileged/unprotected group ($A = 0$) and $T_1$ with the protected group ($A = 1$), $\FTL$ can be computed as
+%\begin{equation}
+%    \FTL(P(\tilde{Y}|X) = \left\{\begin{array}{ll}
+%        \ell(T^{\top}_0 P(\tilde{Y}|X)), & A = 0 \vspace{1ex}\\
+%        \ell(T^{\top}_1 P(\tilde{Y}|X)), & A = 1.\\
+%    \end{array}\right.
+%\end{equation}
+
+\begin{equation}
+    \FTL(P(\tilde{Y}|X)) = (1-A) \cdot \ell(T^{\top}_0 P(\tilde{Y}|X)) + A \cdot \ell(T^{\top}_1 P(\tilde{Y}|X)),
+\end{equation}
+which in a standard batch learning, consists in alternating the transition matrix applied according instance's sensitive attribute.
+
+Furthermore, to a common binary classification problem, where there is a positive (favorable) class and a negative (unfavorable) class, and two groups from sensitive feature (protected and privileged), we have two $2\times2$ transition matrices. Intuitively we are choosing rates to increase or decrease the probability of each group to be classified with the positive or negative prediction. We name those rates associated with increasing the probability to achieve the positive outcome as \textit{promotion} rate, and those associated with increasing the probability to receive the negative outcome as \textit{demotion} rate. As the transition matrix is row-stochastic, we can describe $T_0$ and $T_1$ as
+\begin{equation} \label{eq:transition_matrices}
+    T_0 = \left[\begin{array}{cc}
+        1-d_0 & d_0\\
+        p_0 & 1-p_0\\
+    \end{array}\right],\;
+    T_1 = \left[\begin{array}{cc}
+        1-d_1 & d_1\\
+        p_1 & 1-p_1\\
+    \end{array}\right],
+\end{equation}
+where $d_0$ is the privileged demotion rate, $p_0$ the privileged promotion rate, the $d_1$ protected demotion rate, and $p_1$ the protected promotion rate. With an appropriate combination of $d_0$, $p_0$, $d_1$, $p_1$ we can define a transition matrix pair that should be able to reweight model's predictions with $FTL$ to achieve fairer results with a reasonable model performance. The central problem in our methodology thus relies in choosing these rates, which can be seen as an hyperparameter optimization problem.
+
+Our hyperparameter optimization problem consists in finding an optimal trade-off between fairness and performance, which can be described as a MOO problem, as defined in Equation~\ref{def:moo}. Here, the hyperparameter configuration is $\lambda = (d_0, p_0, d_1, p_1)$. Since the transition matrix is row stochastic these parameters are sufficient to define $T_0$ and $T_1$. We want to maximize model performance $\rho(\lambda)$ and minimize fairness metric $\varphi(\lambda)$. 
+
+\begin{equation} \label{eq:obj_fn}
+    G(\lambda) = \rho(\lambda) - \varphi(\lambda).
+\end{equation}
+
+Following some MOO approaches to fair machine learning, we will use a linear scalarization setup to define the optimization metric~\citep{Schmucker2020,Petrovic2021}. As we yet have four hyperparameter to fine-tune, and in \cite{Cruz2021} the relative importance $\alpha$ is fixed at $0.5$, we choose a simple and intuitive objective function in Equation~\ref{eq:obj_fn} to maximize without the parameter $\alpha$, i.e., giving same importance to fairness and performance. In Equation~\ref{eq:obj_fn} we establish a simple objective to optimize, but one might need to consider a different formulation depending on the specific problem at hand.
