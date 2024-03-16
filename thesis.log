@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.25)  25 FEB 2024 23:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.25)  7 MAR 2024 16:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -684,7 +684,7 @@ Package caption Info: End \AtBeginDocument code.
 Package hyperref Info: Option `breaklinks' set `true' on input line 72.
 Package hyperref Info: Option `raiselinks' set `true' on input line 72.
 Package hyperref Info: Option `pageanchor' set `true' on input line 72.
-<coppe-logo.pdf, id=71, 177.463pt x 76.285pt>
+<coppe-logo.pdf, id=91, 177.463pt x 76.285pt>
 File: coppe-logo.pdf Graphic file (type pdf)
 <use coppe-logo.pdf>
 Package pdftex.def Info: coppe-logo.pdf  used on input line 72.
@@ -770,98 +770,94 @@ LaTeX Warning: Reference `sec:related' on page 2 undefined on input line 11.
 
  (./chapter2.tex
 Cap\'{\i }tulo 2.
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 25.
-
 [3
 
 
 
 
-] [4] [5] [6] [7] [8] [9]) [10]
+] [4] [5] [6] [7] [8] [9] [10] [11]) [12]
 \openout2 = `chapter3.aux'.
 
  (./chapter3.tex
 Cap\'{\i }tulo 3.
-[11
+[13
 
 
 
 
-] [12] [13]) [14]
+] [14] [15]) [16]
 \openout2 = `chapter4.aux'.
 
  (./chapter4.tex
 Cap\'{\i }tulo 4.
-[15
+[17
 
 
 
 
 ]
-<images/fitness_sensibility.pdf, id=479, 867.24pt x 433.62pt>
+<images/fitness_sensibility.pdf, id=512, 867.24pt x 433.62pt>
 File: images/fitness_sensibility.pdf Graphic file (type pdf)
 <use images/fitness_sensibility.pdf>
 Package pdftex.def Info: images/fitness_sensibility.pdf  used on input line 39.
 (pdftex.def)             Requested size: 426.79135pt x 213.39536pt.
- [16] [17 <./images/fitness_sensibility.pdf>] [18] [19]
+ [18] [19 <./images/fitness_sensibility.pdf>] [20] [21]
 Overfull \vbox (9.93167pt too high) detected at line 144
  []
 
-[20] [21]
-<images/boxplot_mcc_parity.pdf, id=595, 289.08pt x 578.16pt>
+[22] [23]
+<images/boxplot_mcc_parity.pdf, id=629, 289.08pt x 578.16pt>
 File: images/boxplot_mcc_parity.pdf Graphic file (type pdf)
 <use images/boxplot_mcc_parity.pdf>
 Package pdftex.def Info: images/boxplot_mcc_parity.pdf  used on input line 169.
 (pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
-<images/boxplot_mcc_opportunity.pdf, id=596, 289.08pt x 578.16pt>
+<images/boxplot_mcc_opportunity.pdf, id=630, 289.08pt x 578.16pt>
 File: images/boxplot_mcc_opportunity.pdf Graphic file (type pdf)
 <use images/boxplot_mcc_opportunity.pdf>
 Package pdftex.def Info: images/boxplot_mcc_opportunity.pdf  used on input line 174.
 (pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
-<images/boxplot_mcc_odds.pdf, id=597, 289.08pt x 578.16pt>
+<images/boxplot_mcc_odds.pdf, id=631, 289.08pt x 578.16pt>
 File: images/boxplot_mcc_odds.pdf Graphic file (type pdf)
 <use images/boxplot_mcc_odds.pdf>
 Package pdftex.def Info: images/boxplot_mcc_odds.pdf  used on input line 179.
 (pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
- [22 <./images/boxplot_mcc_parity.pdf> <./images/boxplot_mcc_opportunity.pdf> <./images/boxplot_mcc_odds.pdf>] [23]
-<images/boxplot_acc_parity.pdf, id=763, 289.08pt x 578.16pt>
+ [24 <./images/boxplot_mcc_parity.pdf> <./images/boxplot_mcc_opportunity.pdf> <./images/boxplot_mcc_odds.pdf>] [25]
+<images/boxplot_acc_parity.pdf, id=796, 289.08pt x 578.16pt>
 File: images/boxplot_acc_parity.pdf Graphic file (type pdf)
 <use images/boxplot_acc_parity.pdf>
 Package pdftex.def Info: images/boxplot_acc_parity.pdf  used on input line 203.
 (pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
-<images/boxplot_acc_opportunity.pdf, id=764, 289.08pt x 578.16pt>
+<images/boxplot_acc_opportunity.pdf, id=797, 289.08pt x 578.16pt>
 File: images/boxplot_acc_opportunity.pdf Graphic file (type pdf)
 <use images/boxplot_acc_opportunity.pdf>
 Package pdftex.def Info: images/boxplot_acc_opportunity.pdf  used on input line 208.
 (pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
-<images/boxplot_acc_odds.pdf, id=765, 289.08pt x 578.16pt>
+<images/boxplot_acc_odds.pdf, id=798, 289.08pt x 578.16pt>
 File: images/boxplot_acc_odds.pdf Graphic file (type pdf)
 <use images/boxplot_acc_odds.pdf>
 Package pdftex.def Info: images/boxplot_acc_odds.pdf  used on input line 213.
 (pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
- [24 <./images/boxplot_acc_parity.pdf> <./images/boxplot_acc_opportunity.pdf> <./images/boxplot_acc_odds.pdf>]
-<images/ftl_sensibility_results.pdf, id=930, 859.98915pt x 681.55127pt>
+ [26 <./images/boxplot_acc_parity.pdf> <./images/boxplot_acc_opportunity.pdf> <./images/boxplot_acc_odds.pdf>]
+<images/ftl_sensibility_results.pdf, id=963, 859.98915pt x 681.55127pt>
 File: images/ftl_sensibility_results.pdf Graphic file (type pdf)
 <use images/ftl_sensibility_results.pdf>
 Package pdftex.def Info: images/ftl_sensibility_results.pdf  used on input line 225.
 (pdftex.def)             Requested size: 426.79135pt x 338.23727pt.
- [25 <./images/ftl_sensibility_results.pdf>]) [26] [27] [28] [29] [30] [31]
+ [27 <./images/ftl_sensibility_results.pdf>]) [28] [29] [30] [31] [32] [33]
 \openout2 = `chapter5.aux'.
 
  (./chapter5.tex
 Cap\'{\i }tulo 5.
-[32
+[34
 
 
 
 
-]) [33] (./thesis.bbl
+]) [35] (./thesis.bbl
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 14.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
-) [34
+) [36
 
 
 
@@ -871,7 +867,7 @@ Underfull \hbox (badness 3954) in paragraph at lines 70--74
 []\T1/cmr/m/n/12 CALDERS, T., VERWER, S.  ``Th-ree naive Bayes ap-pro-a-ches for
  []
 
-[35] [36] [37] [38]
+[37] [38] [39] [40]
 Underfull \hbox (badness 1286) in paragraph at lines 271--274
 \T1/cmr/m/n/12 als with Da-ta-set Cons-traints''. In: Lee, D., Su-giyama, M., Lux-
  []
@@ -886,7 +882,7 @@ Underfull \hbox (badness 2012) in paragraph at lines 271--274
 \T1/cmr/m/it/12 sing Sys-tems\T1/cmr/m/n/12 , v. 29. Cur-ran As-so-ci-a-tes, Inc., 2016.  Dis-po-ní-vel
  []
 
-[39] [40] [41] [42]
+[41] [42] [43] [44]
 Underfull \hbox (badness 1502) in paragraph at lines 411--414
 []\T1/cmr/m/n/12 BERGSTRA, J., BAR-DE-NET, R., BEN-GIO, Y., et al.  ``Al-go-rithms
  []
@@ -896,7 +892,7 @@ Underfull \hbox (badness 1796) in paragraph at lines 411--414
 \T1/cmr/m/n/12 Bar-tlett, P., et al. (Eds.), \T1/cmr/m/it/12 Ad-van-ces in Neu-ral In-for-ma-tion Pro-
  []
 
-[43]) [44]
+[45]) [46]
 \openout2 = `appendix.aux'.
 
  (./appendix.tex) 
@@ -906,21 +902,21 @@ enddocument/afterlastpage: lastpage setting LastPage.
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 5E51F637351D11C739EB366559A77854;2587.
+(rerunfilecheck)             Checksum: 3260D95A6668B350FAE8C59AC7E860D1;3829.
  ) 
 Here is how much of TeX's memory you used:
- 25374 strings out of 476034
- 468425 string characters out of 5792864
+ 25393 strings out of 476034
+ 468685 string characters out of 5792864
  1908388 words of memory out of 6000000
- 45135 multiletter control sequences out of 15000+600000
+ 45147 multiletter control sequences out of 15000+600000
  529640 words of font info for 73 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
  84i,15n,89p,1505b,1003s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on thesis.pdf (54 pages, 725588 bytes).
+Output written on thesis.pdf (56 pages, 733003 bytes).
 PDF statistics:
- 1313 PDF objects out of 1440 (max. 8388607)
- 828 compressed objects within 9 object streams
- 187 named destinations out of 1000 (max. 500000)
- 186 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1348 PDF objects out of 1440 (max. 8388607)
+ 861 compressed objects within 9 object streams
+ 194 named destinations out of 1000 (max. 500000)
+ 226 words of extra memory for PDF output out of 10000 (max. 10000000)
 

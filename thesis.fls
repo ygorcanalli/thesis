@@ -1109,6 +1109,8 @@ INPUT ./chapter2.tex
 INPUT chapter2.tex
 INPUT ./chapter2.tex
 INPUT chapter2.tex
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1728.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1728.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1440.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1440.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm0800.tfm
@@ -1123,8 +1125,6 @@ INPUT ./chapter3.tex
 INPUT chapter3.tex
 INPUT ./chapter3.tex
 INPUT chapter3.tex
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1728.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1728.tfm
 INPUT ./chapter4.tex
 INPUT ./chapter4.tex
 INPUT ./chapter4.tex
