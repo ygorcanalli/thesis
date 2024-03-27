@@ -1,4 +1,4 @@
-\begin{thebibliography}{78}
+\begin{thebibliography}{79}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -43,6 +43,13 @@
 \newblock ISSN: 15728439.
 \newblock \doi{10.1007/S10676-022-09636-Z/TABLES/4}.
 \newblock Dispon{\' i}vel em: \textless\url{https://link.springer.com/article/10.1007/s10676-022-09636-z}\textgreater .
+
+\bibitem[\MakeUppercase{Alves}\emph{ et~al.}(2023)Alves, Bernier, Couceiro, Makhlouf, Palamidessi, e Zhioua]{Alves2023}
+\MakeUppercase{Alves, G., Bernier, F., Couceiro, M., \MakeLowercase{et~al.}}
+\newblock \coppeenquote{Survey on fairness notions and related tensions}, \emph{EURO Journal on Decision Processes}, v.~11, \penalty0 pp.~100033, 2023.
+\newblock ISSN: 2193-9438.
+\newblock \doi{https://doi.org/10.1016/j.ejdp.2023.100033}.
+\newblock Dispon{\' i}vel em: \textless\url{https://www.sciencedirect.com/science/article/pii/S2193943823000067}\textgreater .
 
 \bibitem[\MakeUppercase{Weinberg}(2022)Weinberg]{Weinberg2022}
 \MakeUppercase{Weinberg, L.}
