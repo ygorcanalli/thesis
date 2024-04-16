@@ -26,39 +26,168 @@ This section aims to present some widely used definitions and metrics of fairnes
 
 Even before this discussion, it's crucial to understand that no single fairness definition universally applies to all scenarios. The choice of a particular fairness definition and metric should be informed by ethical considerations grounded in the social context in which the model would be deployed~\citep{AlerTubella2022}. Selecting a fairness definition is not a purely technical matter, as it inevitably entails ethical and social considerations that should not be neglected~\citep{Alves2023}. Building fair machine learning models requires an interdisciplinary approach that engages all stakeholders, including specially those who are typically marginalized or underrepresented~\citep{Weinberg2022}.
 
-A prevalent classification within fairness literature differentiates fairness notions into group metrics and individual metrics. Group Fairness Metrics hinge on the principle that statistical measures — such as error rates, precision, and recall — ought to be equitably distributed across groups demarcated by sensitive attributes like race, gender, or age. The core premise of these metrics is that fairness is actualized when an algorithm exhibits consistent performance across diverse demographic segments.
+A prevalent taxonomy within fairness literature differentiates fairness notions into group metrics and individual metrics. Group Fairness Metrics hinge on the principle that statistical measures — such as error rates, precision, and recall — ought to be equitably distributed across groups demarcated by sensitive attributes like race, gender, or age. The core premise of these metrics is that fairness is actualized when an algorithm exhibits consistent performance across diverse demographic segments.
 
-Demographic Parity, for example, mandates uniformity in the rate of positive algorithmic outcomes across different groups, a standard that remains agnostic to the underlying base rates within each population segment. On the other hand, Equal Opportunity and Equalized Odds introduce a nuance to this conversation by tethering fairness to the true condition of outcomes. Specifically, Equal Opportunity seeks to harmonize the true positive rates across groups, while Equalized Odds extends this alignment to both true positive and false positive rates. This refinement underscores a crucial differentiation within fairness metrics: some are predicated solely on predicted values (such as Demographic Parity), while others derive from the comprehensive landscape of the confusion matrix, incorporating true conditions (as seen in Equal Opportunity and Equalized Odds).
+Demographic Parity, for example, mandates uniformity in the rate of positive algorithmic outcomes across different groups, a standard that remains agnostic to the underlying base rates within each population segment. On the other hand, Equal Opportunity and Equalized Odds introduce a nuance to this conversation by tethering fairness to the true condition of outcomes. This refinement underscores a crucial differentiation within fairness metrics: some are predicated solely on predicted values (such as Demographic Parity), while others derive from the comprehensive landscape of the confusion matrix (Table~\ref{tab:confusion_matrix_definition}), incorporating true conditions (as seen in Equal Opportunity and Equalized Odds).
 
 Individual Fairness Metrics, in contrast, introduce a more granular perspective to fairness, advocating that similar individuals should be treated similarly by the ML system. This approach diverges from group-level considerations, focusing instead on ensuring that the algorithm’s treatment is consistent for individuals who are alike in relevant aspects, barring their membership in different demographic categories. Individual fairness seeks to ensure a personalized sense of justice, where the algorithmic outcomes are solely reflective of pertinent attributes rather than biased by irrelevant factors associated with sensitive attributes. This concept champions the notion that fairness extends beyond group identities to recognize and respect the uniqueness of individual experiences and qualifications.
 
-One example of Individual Fairness Metric is the notion of Counterfactual Fairness, which introduce a causal reasoning framework into the fairness discourse. These metrics are based on the concept that a decision is fair towards an individual if the same decision would have been made in a counterfactual world where the individual belonged to a different demographic group but all other characteristics remained constant. This approach hinges on causal models that specify how sensitive attributes affect other features and the outcome. Counterfactual fairness aims to address the individual-level biases that group fairness metrics might overlook, providing a nuanced approach that considers the hypothetical scenarios of individuals belonging to different demographic categories. By employing counterfactual analysis, one can assess whether the disparities in ML predictions stem from legitimate factors or unjust biases.
+To establish the foundation for discussing fairness definitions and metrics, we commence with an examination of the confusion matrix. This matrix is an essential instrument in machine learning, utilized for assessing the efficacy of classification algorithms. It constitutes a tabular visualization that delineates the correspondence between the true labels and the predicted outcomes generated by a model. For binary classification tasks, the confusion matrix is structured into four principal components: True Positives (TP), True Negatives (TN), False Positives (FP), and False Negatives (FN), as outlined in Table~\ref{tab:confusion_matrix_definition}. These elements enable the computation of performance metrics that reflect the model's diagnostic ability and form the basis for evaluating fairness across distinct demographic groups. After describing the confusion matrix and it's terms, we describe some directly derived performance metrics to classification problems.
 
-These definitions include demographic parity, equal opportunity, predictive equality, and equalized odds. Demographic parity requires that the likelihood of a positive outcome is the same across different groups, irrespective of their sensitive attributes. Equal opportunity extends this concept to the true positive rate, ensuring that individuals from different groups have an equal chance of being correctly classified as positive. Predictive equality, on the other hand, focuses on the true negative rate, ensuring that individuals from different groups have an equal chance of being correctly classified as negative. Equalized odds combines the principles of equal opportunity and predictive equality, ensuring that both true positive and true negative rates are equal across different groups.
+True Positives and True Negatives represent the correctly predicted instances for the positive and negative classes, respectively, indicating the model's effectiveness in identifying each class. Conversely, False Positives occur when the model incorrectly predicts the positive class to an instance with a negative true class. Analogously, False Negatives occur when the model fails to detect the positive class, wrongly predicting as negative. By providing a clear breakdown of these outcomes, the confusion matrix allows to calculate many key performance metrics such as accuracy, precision, recall, and the F1 score, offering comprehensive insights into the strengths and weaknesses of the classification model.
+
+\begin{table}[h]
+    \centering
+    \caption{Confusion matrix of binary classification outcomes} \label{tab:confusion_matrix_definition}
+    \begin{tabular}{cc|c|c|}
+    \cline{3-4}
+     & & \multicolumn{2}{c|}{\textbf{Predicted}} \\ \cline{3-4}
+     & & Positive & Negative \\ \hline
+    \multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{Actual}}} & Positive & TP & FN \\ \cline{2-4}
+    \multicolumn{1}{|c|}{} & Negative & FP & TN \\ \hline
+    \end{tabular}
+\end{table}
 
 
+True Positives (TP) can be defined as the probability that the predictor correctly identifies a positive outcome when the true condition is positive. Using the conditional probability notation, it is expressed as $P(\hat{Y}=1|Y=1)$, indicating the probability that the predicted class $\hat{Y}$ is positive given that the actual class $Y$ is positive.
+
+False Positives (FP) represent the probability that the predictor incorrectly identifies a positive outcome when the true class is negative. It is denoted as $P(\hat{Y}=1|Y=0)$, reflecting the probability that the predicted class $\hat{Y}$ is positive when the actual class $Y$ is negative.
+
+False Negatives (FN) are defined as the probability that the predictor incorrectly identifies a negative outcome when the true class is positive. This is given by $P(\hat{Y}=0|Y=1)$, the probability that the predicted class $\hat{Y}$ is negative given that the actual class $Y$ is positive.
+
+True Negatives (TN) correspond to the probability that the predictor correctly identifies a negative outcome when the true condition is negative. In conditional probability terms, it is $P(\hat{Y}=0|Y=0)$, indicating the probability that the predicted class $\hat{Y}$ is negative given that the actual class $Y$ is negative.
+
+\begin{definition}[Positive Predictive Value (PPV)]\label{def:ppv}
+PPV, or precision, measures the proportion of correctly identified positive outcomes among all predicted positives. It is defined as the probability that the true condition is positive given the predicted condition is positive, $P(Y=1|\hat{Y}=1)$. In terms of the confusion matrix, PPV is calculated as $\frac{TP}{TP + FP}$, the ratio of true positives to the sum of true positives and false positives.
+\end{definition}
+
+\begin{definition}[False Discovery Rate (FDR)]\label{def:fdr}
+FDR quantifies the rate of incorrect positive predictions. It is the probability that the true condition is negative when the predicted condition is positive, $P(Y=0|\hat{Y}=1)$. From the confusion matrix, FDR is computed as $\frac{FP}{TP + FP}$, indicating the proportion of false positives out of all predicted positives.
+\end{definition}
+
+\begin{definition}[Negative Predictive Value (NPV)]\label{def:npv}
+NPV assesses the accuracy of negative predictions, representing the probability that the true condition is negative given the predicted condition is negative, $P(Y=0|\hat{Y}=0)$. NPV is derived from the confusion matrix as $\frac{TN}{TN + FN}$, the number of true negatives over the sum of true negatives and false negatives.
+\end{definition}
+
+\begin{definition}[False Omission Rate (FOR)]\label{def:for}
+FOR indicates the likelihood of a false negative prediction. It corresponds to the probability that the true condition is positive when the predicted condition is negative, $P(Y=1|\hat{Y}=0)$. In the confusion matrix context, FOR is $\frac{FN}{TN + FN}$, representing the number of false negatives relative to all predicted negatives.
+\end{definition}
+
+\begin{definition}[True Positive Rate (TPR)]\label{def:tpr}
+TPR, or recall, measures the proportion of actual positives that are correctly predicted. It is the probability that the predicted condition is positive given the true condition is positive, $P(\hat{Y}=1|Y=1)$. TPR is calculated as $\frac{TP}{TP + FN}$ in the confusion matrix, the ratio of true positives to the sum of true positives and false negatives.
+\end{definition}
+
+\begin{definition}[False Negative Rate (FNR)]\label{def:fnr}
+FNR quantifies the rate of missed positive predictions. It is defined as the probability that the predicted condition is negative when the true condition is positive, $P(\hat{Y}=0|Y=1)$. FNR is derived from the confusion matrix as $\frac{FN}{TP + FN}$, indicating the proportion of false negatives out of the actual positives.
+\end{definition}
+
+\begin{definition}[True Negative Rate (TNR)]\label{def:tnr}
+TNR, or specificity, indicates the accuracy of negative predictions, representing the probability that the predicted condition is negative given the true condition is negative, $P(\hat{Y}=0|Y=0)$. From the confusion matrix, TNR is computed as $\frac{TN}{TN + FP}$, the number of true negatives to the sum of true negatives and false positives.
+\end{definition}
+
+\begin{definition}[False Positive Rate (FPR)]\label{def:fpr}
+FPR assesses the likelihood of incorrect negative predictions, calculated as the probability that the predicted condition is positive when the true condition is negative, $P(\hat{Y}=1|Y=0)$. FPR is given by $\frac{FP}{TN + FP}$ in the confusion matrix, the ratio of false positives to the sum of true negatives and false positives.
+\end{definition}
+
+\begin{definition}[Accuracy (Acc.)]\label{def:acc}
+Probably the most widely usaed performence metric to classification problems, Accuracy is the proportion of true results, both true positives and true negatives, among the total number of cases examined. In terms of conditional probabilities, accuracy reflects the probability that the predicted condition is correct, both as a positive and negative outcome, given the actual conditions, and can be 
+expressed as 
+\begin{align*}
+    P(\hat{Y}=Y) &= P(\hat{Y}=1|Y=1) \cdot P(Y=1) \\
+    &+ P(\hat{Y}=0|Y=0) \cdot P(Y=0).
+\end{align*}
+Using the confusion matrix, accuracy is computed as $\frac{TP + TN}{TP + TN + FP + FN}$. 
+\end{definition}
+    
+\begin{definition}[Balanced Accuracy (Bal. Acc.)]\label{def:ba}
+Balanced accuracy is an average of the true positive rate (TPR) and the true negative rate (TNR), which compensates for class imbalance by treating both classes equally. Using conditional probabilities, it can be expressed as $\frac{1}{2}\left(P(\hat{Y}=1|Y=1) + P(\hat{Y}=0|Y=0)\right)$, where each term represents the conditional probability of correctly predicting the respective class. In terms of the confusion matrix, balanced accuracy is calculated as $\frac{1}{2}\left(\frac{TP}{TP + FN} + \frac{TN}{TN + FP}\right)$.
+\end{definition}
+    
+\begin{definition}[F1 Score]\label{def:f1}
+The F1 score is the harmonic mean of precision and recall, providing a balance between the PPV and TPR. It is calculated as $2 \cdot \frac{\text{PPV} \cdot \text{TPR}}{\text{PPV} + \text{TPR}}$. Using conditional probabilities and confusion matrix terms, the F1 score can be expressed as $$2 \cdot \frac{P(Y=1|\hat{Y}=1) \cdot P(\hat{Y}=1|Y=1)}{P(Y=1|\hat{Y}=1) + P(\hat{Y}=1|Y=1)},$$ or more concisely, $\frac{2 \cdot TP}{2 \cdot TP + FP + FN}$.
+\end{definition}
+
+\begin{definition}[Matthews Correlation Coefficient (MCC)]\label{def:mcc}
+MCC is a measure of the quality of binary classifications, producing a value between -1 and 1 where 1 is a perfect prediction, 0 no better than random prediction, and -1 indicates total disagreement between prediction and observation. The MCC is defined as $$\frac{TP \cdot TN - FP \cdot FN}{\sqrt{(TP+FP) \cdot (TP+FN) \cdot (TN+FP) \cdot (TN+FN)}}.$$ In terms of conditional probabilities, MCC considers all four quadrants of the confusion matrix, correlating the true and predicted conditions. It can be seen as a correlation coefficient between the observed and predicted binary classifications, providing a more informative measure than simple accuracy in the presence of class imbalance.
+\end{definition}
+    
+Now we describe the most widely used group fairness definitions definitions include statistical parity, equal opportunity, predictive equality, and equalized odds. Demographic parity requires that the likelihood of a positive outcome is the same across different groups, irrespective of their sensitive attributes. Equal opportunity extends this concept to the true positive rate, ensuring that individuals from different groups have an equal chance of being correctly classified as positive. Predictive equality, on the other hand, focuses on the true negative rate, ensuring that individuals from different groups have an equal chance of being correctly classified as negative. Equalized odds combines the principles of equal opportunity and predictive equality, ensuring that both true positive and true negative rates are equal across different groups.
 
 \begin{definition}[Statistical Parity]\label{def:demo_parity}
 The likelihood of a positive, i.e. favorable, outcome should be the same in every group of the sensitive attribute~\citep{Dwork2011,Kusner2018}. A binary predictor $\hat{Y}$ satisfies Statistical Parity (a.k.a. Demographic Parity) if $P(\hat{Y}|A=0) = P(\hat{Y}|A=1)$, where $A$ is a protected attribute.
 \end{definition}
 
-Demographic Parity does not depend on true class $Y$, only on prediction $\hat{Y}$. We can measure Demographic Parity (Definition~\ref{def:demo_parity}) for a protected attribute $A$ as the absolute difference between $P(\hat{Y}|A=0)$ and $P(\hat{Y}|A=1)$. According Demographic Parity, the predictor is considered fairer when this metric is lower. 
+For example, the credit approval probability should be the same for the male and female groups. Demographic Parity does not depend on true class $Y$, only on prediction $\hat{Y}$. We can measure Demographic Parity (Definition~\ref{def:demo_parity}) for a protected attribute $A$ as the absolute difference between $P(\hat{Y}|A=0)$ and $P(\hat{Y}|A=1)$, as seen in Equation~\ref{eq:demo_parity}. According Demographic Parity, the predictor is considered fairer when this metric is lower.
+\begin{equation}\label{eq:demo_parity}
+    |P(\hat{Y}|A=0)-P(\hat{Y}|A=1)|
+\end{equation}
+By analyzing the confusion matrix, we can determine the absolute difference between the rates of $(TP + FP)/(TP + FP + TN + FN)$ for both protected and unprotected groups.
 
 \begin{definition}[Equal Opportunity]\label{def:eq_opp}
 The probability of a person in a positive class being assigned to a positive, i.e. favorable, outcome should be the same in every group of the sensitive attribute~\citep{Hardt2016}. A binary predictor $\hat{Y}$ satisfies Equal Opportunity if $P(\hat{Y}|A=0,Y=1) = P(\hat{Y}|A=1,Y=1)$, where $Y$ is true class and $A$ is a protected attribute.
 \end{definition}
 
-Definition~\ref{def:eq_opp} claims that protected and unprotected, i.e. privileged, groups should have equal true positive rates. Mathematically, a classifier with equal true positive rates will also have equal false negative rates. Like in Demographic Parity, we can measure Equal Opportunity as an absolute difference between protected and privileged group rates. A variation of Equal Opportunity is Predictive Equality (Definition~\ref{def:pred_eq}).
+Definition~\ref{def:eq_opp} claims that protected and unprotected, i.e. privileged, groups should have equal true positive rates. Mathematically, a classifier with equal true positive rates will also have equal false negative rates, so we can analyze the confusion matrix checking whether a predictor has equal $(TP)/(TP + FN)$ or $(FN)/(TP + FN)$ in each group of the sensitive attribute. Like in Demographic Parity, we can measure Equal Opportunity as an absolute difference between protected and privileged groups, as defined in Equation~\ref{eq:eq_opp}.
+\begin{equation}\label{eq:eq_opp}
+    |P(\hat{Y}|A=0,Y=1)-P(\hat{Y}|A=1,Y=1)|
+\end{equation}
 
 \begin{definition}[Predictive Equality]\label{def:pred_eq}
 The probability of a person in a negative class being assigned to a negative outcome should be the same in every group of the sensitive attribute. A binary predictor $\hat{Y}$ satisfies Predictive Equality if $P(\hat{Y}|A=0,Y=0) = P(\hat{Y}|A=1,Y=0)$, where $Y$ is true class and $A$ is a protected attribute.
 \end{definition}
 
-Equalized Odds is a combination of the principles from Definition~\ref{def:eq_opp} and Definition~\ref{def:pred_eq}, i.e., protected and unprotected groups should have equal true positive and true negative rates, therefore equal false positive and false negative rates. We can measure Equalized Odds as the average between Equal Opportunity and Predictive Equality.
+Definition~\ref{def:pred_eq} establishes that that both the protected and privileged groups should have the same true negative rates, which consequently results in equal false positive rates. Using a confusion matrix definition, we check the absolute difference of $(TN)/(TN + FP)$ or $(FP)/(TN + FP)$ between the groups. So, we can measure Predictive Equality according Equation~\ref{eq:pred_eq}.
+\begin{equation}\label{eq:pred_eq}
+    |P(\hat{Y}|A=0,Y=0) - P(\hat{Y}|A=1,Y=0)|
+\end{equation}
 
 \begin{definition}[Equalized Odds]\label{def:eq_odds}
 Both probabilities of the person in a positive class being assigned to a positive outcome and of a person in a negative class being assigned to a negative outcome should be the same in every group of the sensitive attribute~\citep{Hardt2016}. A binary predictor $\hat{Y}$ satisfies Equalized Odds (a.k.a. Average Odds Difference) if $P(\hat{Y}|A=0,Y) = P(\hat{Y}|A=1,Y)$, where $Y$ is true class and $A$ is a protected attribute.
 \end{definition}
+
+Equalized Odds is a combination of the principles from Definition~\ref{def:eq_opp} and Definition~\ref{def:pred_eq}, i.e., protected and unprotected groups should have equal true positive and true negative rates, therefore equal false positive and false negative rates. Using a confusion matrix definition, we check the absolute difference between $(TP)/(TP + FN)$ and $(TN)/(TN + FP)$ of predictor in protected and unprotected groups. Equation~\ref{eq:eq_odds} describes how to measure Equalized Odds as the average between Equal Opportunity and Predictive Equality. According to Definition~\ref{def:eq_odds}, the predictor is considered fairer when this metric is lower.
+\begin{equation}\label{eq:eq_odds}
+    \frac{1}{2}\left[
+    \begin{aligned}
+    |P(\hat{Y}|A=0,Y=1)\,-\,&P(\hat{Y}|A=1,Y=1)| \, +\\
+    |P(\hat{Y}|A=0,Y=0)\,-\,&P(\hat{Y}|A=1,Y=0)|
+    \end{aligned}
+    \right]
+\end{equation}
+
+Using the same logic, it is possible to define group fairness metrics based derived from any binary classification metric from confusion matrix. The procedure is the same, asessing the absolute difference from those metrics between protected and unprotected groups.
+
+One example of Individual Fairness Metric is the notion of Counterfactual Fairness~\citep{Kusner2018}, which introduce a causal reasoning framework into the fairness discourse. These metrics are based on the concept that a decision is fair towards an individual if the same decision would have been made in a counterfactual world where the individual belonged to a different demographic group but all other characteristics remained constant. This approach hinges on causal models that specify how sensitive attributes affect other features and the outcome. Counterfactual fairness aims to address the individual-level biases that group fairness metrics might overlook, providing a nuanced approach that considers the hypothetical scenarios of individuals belonging to different demographic categories. By employing counterfactual analysis, one can assess whether the disparities in ML predictions stem from legitimate factors or unjust biases. Relevant works approaching this notion include~\citet{Wu2022}, \citet{Yuchen2023}, and~\citet{GrariLD23}.
+
+\begin{definition}[Counterfactual Fairness]\label{def:counterfactual_fairness}
+A predictor $\hat{Y}$ is counterfactually fair with respect to an attribute $A$ if, under any value of $A$ and any value of non-descendants of $A$, the distribution of $\hat{Y}$ is the same in the actual world and a counterfactual world where $A$ is set to any permissible value. Mathematically, this is expressed as:
+$$
+P(\hat{Y}_{A \leftarrow a'}(U) = y \mid X = x, A = a) = P(\hat{Y}(U) = y \mid X = x, A = a)
+$$
+for all $y$ and any value $a'$ of $A$, where $X$ are the features not causally dependent on $A$, and $U$ denotes the background variables.
+\end{definition}
+
+This definition roots itself in the idea that fairness should be preserved across hypothetical alterations of the sensitive attribute, reflecting a robust stance against biases that might otherwise emerge due to such attributes.
+
+\subsection*{Practical Application}
+Implementing counterfactual fairness involves constructing a causal model that maps how inputs (features including sensitive attributes) influence the outputs (predictions). One must identify which attributes are causally independent of the sensitive attribute and ensure that the predictions are invariant when the sensitive attribute's values are modified hypothetically.
+
+This approach is particularly pertinent when decisions have substantial impacts on individuals, such as in hiring, loan approval, or healthcare settings. By ensuring that predictions remain consistent regardless of changes to sensitive attributes, models can be designed to mitigate unfair discriminatory practices that could otherwise affect outcomes based on irrelevant attributes.
+
+While the concept of counterfactual fairness is compelling, its implementation poses significant challenges:
+\begin{enumerate}
+    \item \textbf{Modeling Complexity}: Building accurate causal models that reflect the true causal relationships in the data is non-trivial and requires deep domain knowledge.
+    \item \textbf{Data Requirements}: Access to comprehensive data that sufficiently captures the causal dependencies is crucial, which can be a limiting factor in many practical scenarios.
+    \item \textbf{Computational Overhead}: The complexity of calculating counterfactuals, especially in large datasets with many attributes, can be computationally demanding.
+\end{enumerate}
+
+Despite these challenges, counterfactual fairness pushes the boundaries of fairness in machine learning by providing a framework that directly tackles the underlying causal mechanisms leading to biased decisions. This approach not only enhances the transparency of the decision-making process but also aligns it more closely with ethical standards, ensuring that individuals are treated fairly irrespective of their membership in different demographic categories.
+
+This in-depth understanding of counterfactual fairness provides a comprehensive framework for addressing individual-level biases, offering a nuanced method that contrasts with and complements the broader group-level fairness metrics previously discussed.
+
+\end{document}
+
+
 
 \subsection{The impossibility theorem}
 
