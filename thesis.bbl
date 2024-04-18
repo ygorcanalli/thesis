@@ -73,6 +73,23 @@
 \newblock \coppeenquote{Equality of Opportunity in Supervised Learning}. In: \emph{Proceedings of the 30th International Conference on Neural Information Processing Systems}, NIPS'16, p. 3323–3331, Red Hook, NY, USA, 2016. Curran Associates Inc.
 \newblock ISBN: 9781510838819.
 
+\bibitem[\MakeUppercase{Wu}\emph{ et~al.}(2022)Wu, Han, Liu, Liu, Schölkopf, Uhler, Zhang, Wu, Gong, Han, Liu, e Liu]{Wu2022}
+\MakeUppercase{Wu, S., Han, B., Liu, Y., \MakeLowercase{et~al.}}
+\newblock \coppeenquote{Fair Classification with Instance-dependent Label Noise}, \emph{Proceedings of Machine Learning Research}, v.~140, \penalty0 pp.~1--17, 2022.
+\newblock Dispon{\' i}vel em: \textless\url{https://www.mturk.com/}\textgreater .
+
+\bibitem[\MakeUppercase{Ma}\emph{ et~al.}(2023)Ma, Frauen, Melnychuk, e Feuerriegel]{Yuchen2023}
+\MakeUppercase{Ma, Y., Frauen, D., Melnychuk, V., \MakeLowercase{et~al.}}
+\newblock \coppeenquote{Counterfactual Fairness for Predictions using Generative Adversarial Networks}, \emph{CoRR}, v.~abs/2310.17687, 2023.
+\newblock \doi{10.48550/ARXIV.2310.17687}.
+\newblock Dispon{\' i}vel em: \textless\url{https://doi.org/10.48550/arXiv.2310.17687}\textgreater .
+
+\bibitem[\MakeUppercase{Grari}\emph{ et~al.}(2023)Grari, Lamprier, e Detyniecki]{GrariLD23}
+\MakeUppercase{Grari, V., Lamprier, S., Detyniecki, M.}
+\newblock \coppeenquote{Adversarial learning for counterfactual fairness}, \emph{Mach. Learn.}, v.~112, n.~3, \penalty0 pp.~741--763, 2023.
+\newblock \doi{10.1007/S10994-022-06206-8}.
+\newblock Dispon{\' i}vel em: \textless\url{https://doi.org/10.1007/s10994-022-06206-8}\textgreater .
+
 \bibitem[\MakeUppercase{Calders} e \MakeUppercase{Verwer}(2010)Calders e Verwer]{Calders2010}
 \MakeUppercase{Calders, T., Verwer, S.}
 \newblock \coppeenquote{Three naive Bayes approaches for discrimination-free classification}, \emph{Data Mining and Knowledge Discovery}, v.~21, \penalty0 pp.~277--292, 2010.
@@ -189,12 +206,6 @@
 \newblock \doi{10.1016/J.KNOSYS.2023.110777}.
 \newblock Dispon{\' i}vel em: \textless\url{https://doi.org/10.1016/j.knosys.2023.110777}\textgreater .
 
-\bibitem[\MakeUppercase{Grari}\emph{ et~al.}(2023)Grari, Lamprier, e Detyniecki]{GrariLD23}
-\MakeUppercase{Grari, V., Lamprier, S., Detyniecki, M.}
-\newblock \coppeenquote{Adversarial learning for counterfactual fairness}, \emph{Mach. Learn.}, v.~112, n.~3, \penalty0 pp.~741--763, 2023.
-\newblock \doi{10.1007/S10994-022-06206-8}.
-\newblock Dispon{\' i}vel em: \textless\url{https://doi.org/10.1007/s10994-022-06206-8}\textgreater .
-
 \bibitem[\MakeUppercase{Mousavi}\emph{ et~al.}(2023)Mousavi, Mousavi, e Daneshtalab]{MousaviMD23}
 \MakeUppercase{Mousavi, S.~A., Mousavi, H., Daneshtalab, M.}
 \newblock \coppeenquote{{FARMUR:} Fair Adversarial Retraining to Mitigate Unfairness in Robustness}. In: Abell{\'{o}}, A., Vassiliadis, P., Romero, O., \MakeLowercase{et~al.} (Eds.), \emph{Advances in Databases and Information Systems - 27th European Conference, {ADBIS} 2023, Barcelona, Spain, September 4-7, 2023, Proceedings}, v. 13985, \emph{Lecture Notes in Computer Science}, pp. 133--145. Springer, 2023.
@@ -206,12 +217,6 @@
 \newblock \coppeenquote{{CFA:} Class-wise Calibrated Fair Adversarial Training}, \emph{CoRR}, v.~abs/2303.14460, 2023.
 \newblock \doi{10.48550/ARXIV.2303.14460}.
 \newblock Dispon{\' i}vel em: \textless\url{https://doi.org/10.48550/arXiv.2303.14460}\textgreater .
-
-\bibitem[\MakeUppercase{Ma}\emph{ et~al.}(2023)Ma, Frauen, Melnychuk, e Feuerriegel]{Yuchen2023}
-\MakeUppercase{Ma, Y., Frauen, D., Melnychuk, V., \MakeLowercase{et~al.}}
-\newblock \coppeenquote{Counterfactual Fairness for Predictions using Generative Adversarial Networks}, \emph{CoRR}, v.~abs/2310.17687, 2023.
-\newblock \doi{10.48550/ARXIV.2310.17687}.
-\newblock Dispon{\' i}vel em: \textless\url{https://doi.org/10.48550/arXiv.2310.17687}\textgreater .
 
 \bibitem[\MakeUppercase{Chen}\emph{ et~al.}(2024)Chen, Zhu, Zhang, Zhou, e Yu]{ChenZZZY24}
 \MakeUppercase{Chen, H., Zhu, T., Zhang, T., \MakeLowercase{et~al.}}
@@ -363,11 +368,6 @@
 \newblock \coppeenquote{Fair classification with group-dependent label noise}, \emph{FAccT 2021 - Proceedings of the 2021 ACM Conference on Fairness, Accountability, and Transparency}, pp. 526--536, 3 2021.
 \newblock \doi{10.1145/3442188.3445915}.
 \newblock Dispon{\' i}vel em: \textless\url{https://doi.org/10.1145/3442188.3445915}\textgreater .
-
-\bibitem[\MakeUppercase{Wu}\emph{ et~al.}(2022)Wu, Han, Liu, Liu, Schölkopf, Uhler, Zhang, Wu, Gong, Han, Liu, e Liu]{Wu2022}
-\MakeUppercase{Wu, S., Han, B., Liu, Y., \MakeLowercase{et~al.}}
-\newblock \coppeenquote{Fair Classification with Instance-dependent Label Noise}, \emph{Proceedings of Machine Learning Research}, v.~140, \penalty0 pp.~1--17, 2022.
-\newblock Dispon{\' i}vel em: \textless\url{https://www.mturk.com/}\textgreater .
 
 \bibitem[\MakeUppercase{Ghosh}\emph{ et~al.}(2023)Ghosh, Kvitca, e Wilson]{Ghosh2023}
 \MakeUppercase{Ghosh, A., Kvitca, P., Wilson, C.}

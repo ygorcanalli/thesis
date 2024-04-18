@@ -160,16 +160,15 @@ Using the same logic, it is possible to define group fairness metrics based deri
 One example of Individual Fairness Metric is the notion of Counterfactual Fairness~\citep{Kusner2018}, which introduce a causal reasoning framework into the fairness discourse. These metrics are based on the concept that a decision is fair towards an individual if the same decision would have been made in a counterfactual world where the individual belonged to a different demographic group but all other characteristics remained constant. This approach hinges on causal models that specify how sensitive attributes affect other features and the outcome. Counterfactual fairness aims to address the individual-level biases that group fairness metrics might overlook, providing a nuanced approach that considers the hypothetical scenarios of individuals belonging to different demographic categories. By employing counterfactual analysis, one can assess whether the disparities in ML predictions stem from legitimate factors or unjust biases. Relevant works approaching this notion include~\citet{Wu2022}, \citet{Yuchen2023}, and~\citet{GrariLD23}.
 
 \begin{definition}[Counterfactual Fairness]\label{def:counterfactual_fairness}
-A predictor $\hat{Y}$ is counterfactually fair with respect to an attribute $A$ if, under any value of $A$ and any value of non-descendants of $A$, the distribution of $\hat{Y}$ is the same in the actual world and a counterfactual world where $A$ is set to any permissible value. Mathematically, this is expressed as:
+A predictor $\hat{Y}$ is counterfactually fair with respect to a protected attribute $A$ if, under any context $X = x$ and $A = a$, the distribution of $\hat{Y}$ is the same in the actual world and a counterfactual world where $A$ is set to any permissible value. That is,
 $$
-P(\hat{Y}_{A \leftarrow a'}(U) = y \mid X = x, A = a) = P(\hat{Y}(U) = y \mid X = x, A = a)
+P(\hat{Y}_{A \leftarrow a}(U) = y \mid X = x, A = a) = P(\hat{Y}_{A \leftarrow a'}(U) = y \mid X = x, A = a),
 $$
 for all $y$ and any value $a'$ of $A$, where $X$ are the features not causally dependent on $A$, and $U$ denotes the background variables.
 \end{definition}
 
 This definition roots itself in the idea that fairness should be preserved across hypothetical alterations of the sensitive attribute, reflecting a robust stance against biases that might otherwise emerge due to such attributes.
 
-\subsection*{Practical Application}
 Implementing counterfactual fairness involves constructing a causal model that maps how inputs (features including sensitive attributes) influence the outputs (predictions). One must identify which attributes are causally independent of the sensitive attribute and ensure that the predictions are invariant when the sensitive attribute's values are modified hypothetically.
 
 This approach is particularly pertinent when decisions have substantial impacts on individuals, such as in hiring, loan approval, or healthcare settings. By ensuring that predictions remain consistent regardless of changes to sensitive attributes, models can be designed to mitigate unfair discriminatory practices that could otherwise affect outcomes based on irrelevant attributes.
@@ -184,9 +183,6 @@ While the concept of counterfactual fairness is compelling, its implementation p
 Despite these challenges, counterfactual fairness pushes the boundaries of fairness in machine learning by providing a framework that directly tackles the underlying causal mechanisms leading to biased decisions. This approach not only enhances the transparency of the decision-making process but also aligns it more closely with ethical standards, ensuring that individuals are treated fairly irrespective of their membership in different demographic categories.
 
 This in-depth understanding of counterfactual fairness provides a comprehensive framework for addressing individual-level biases, offering a nuanced method that contrasts with and complements the broader group-level fairness metrics previously discussed.
-
-\end{document}
-
 
 
 \subsection{The impossibility theorem}
