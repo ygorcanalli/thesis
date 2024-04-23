@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.25)  16 APR 2024 18:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.25)  22 APR 2024 21:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -583,9 +583,27 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@postskip=\skip65
 \thm@headsep=\skip66
 \dth@everypar=\toks43
+) (/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2023/01/19 line numbers on paragraphs v5.1
+\linenopenalty=\count324
+\output=\toks44
+\linenoprevgraf=\count325
+\linenumbersep=\dimen301
+\linenumberwidth=\dimen302
+\c@linenumber=\count326
+\c@pagewiselinenumber=\count327
+\c@LN@truepage=\count328
+\c@internallinenumber=\count329
+\c@internallinenumbers=\count330
+\quotelinenumbersep=\dimen303
+\bframerule=\dimen304
+\bframesep=\dimen305
+\bframebox=\box68
+\linenoamsmath@ams@eqpen=\count331
+LaTeX Info: Redefining \\ on input line 3131.
 )
-\c@definition=\count324
-\c@theorem=\count325
+\c@definition=\count332
+\c@theorem=\count333
 \@losfile=\write4
 \openout4 = `thesis.syx'.
 
@@ -597,42 +615,42 @@ Writing index of symbols file thesis.syx
 Writing index of abbreviations file thesis.abx
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count326
-\l__pdf_internal_box=\box68
+\l__color_backend_stack_int=\count334
+\l__pdf_internal_box=\box69
 ) (./thesis.aux (./chapter1.aux) (./chapter2.aux) (./chapter3.aux) (./chapter4.aux) (./chapter5.aux) (./appendix.aux))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count327
-\scratchdimen=\dimen301
-\scratchbox=\box69
-\nofMPsegments=\count328
-\nofMParguments=\count329
-\everyMPshowfont=\toks44
-\MPscratchCnt=\count330
-\MPscratchDim=\dimen302
-\MPnumerator=\count331
-\makeMPintoPDFobject=\count332
-\everyMPtoPDFconversion=\toks45
+\scratchcounter=\count335
+\scratchdimen=\dimen306
+\scratchbox=\box70
+\nofMPsegments=\count336
+\nofMParguments=\count337
+\everyMPshowfont=\toks45
+\MPscratchCnt=\count338
+\MPscratchDim=\dimen307
+\MPnumerator=\count339
+\makeMPintoPDFobject=\count340
+\everyMPtoPDFconversion=\toks46
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -674,50 +692,54 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 52.
+Package hyperref Info: Link coloring OFF on input line 58.
 (./thesis.out) (./thesis.out)
 \@outlinefile=\write6
 \openout6 = `thesis.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Option `breaklinks' set `true' on input line 72.
-Package hyperref Info: Option `raiselinks' set `true' on input line 72.
-Package hyperref Info: Option `pageanchor' set `true' on input line 72.
+Package hyperref Info: Option `breaklinks' set `true' on input line 78.
+Package hyperref Info: Option `raiselinks' set `true' on input line 78.
+Package hyperref Info: Option `pageanchor' set `true' on input line 78.
 <coppe-logo.pdf, id=95, 177.463pt x 76.285pt>
 File: coppe-logo.pdf Graphic file (type pdf)
 <use coppe-logo.pdf>
-Package pdftex.def Info: coppe-logo.pdf  used on input line 72.
+Package pdftex.def Info: coppe-logo.pdf  used on input line 78.
 (pdftex.def)             Requested size: 177.46255pt x 76.2848pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 72.
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 78.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
+File: t1cmss.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 78.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 72.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 78.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc} <./coppe-logo.pdf>]
-Underfull \hbox (badness 1259) in paragraph at lines 73--73
+Underfull \hbox (badness 1259) in paragraph at lines 79--79
 \T1/cmr/m/n/12 TESE SUB-ME-TIDA []AO CORPO DOCENTE DO INSTITUTO ALBERTO
  []
 
 [2
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 79--79
 []\T1/cmr/m/n/12 Label noise techniques to fairness in machine
  []
 
 
-Underfull \hbox (badness 1442) in paragraph at lines 73--73
+Underfull \hbox (badness 1442) in paragraph at lines 79--79
 \T1/cmr/m/n/12 learning/Ygor de Mello Canalli. -- Rio de Janeiro:
  []
 
 
-Underfull \hbox (badness 7081) in paragraph at lines 73--73
+Underfull \hbox (badness 7081) in paragraph at lines 79--79
 []\T1/cmr/m/n/12 Tese (doutorado) -- UFRJ/COPPE/Programa de
  []
 
@@ -775,134 +797,139 @@ Cap\'{\i }tulo 2.
 
 
 
-] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19]) [20]
+] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20]) [21]
 \openout2 = `chapter3.aux'.
 
  (./chapter3.tex
 Cap\'{\i }tulo 3.
-[21
+[22
 
 
 
 
-] [22] [23]) [24]
+] [23] [24]) [25]
 \openout2 = `chapter4.aux'.
 
  (./chapter4.tex
 Cap\'{\i }tulo 4.
-[25
+[26
 
 
 
 
-] [26]
-<images/fitness_sensibility.pdf, id=749, 867.24pt x 433.62pt>
+] [27]
+<images/fitness_sensibility.pdf, id=787, 867.24pt x 433.62pt>
 File: images/fitness_sensibility.pdf Graphic file (type pdf)
 <use images/fitness_sensibility.pdf>
 Package pdftex.def Info: images/fitness_sensibility.pdf  used on input line 39.
 (pdftex.def)             Requested size: 426.79135pt x 213.39536pt.
- [27 <./images/fitness_sensibility.pdf>] [28] [29] [30]
+ [28 <./images/fitness_sensibility.pdf>] [29] [30] [31]
 Overfull \vbox (9.93167pt too high) detected at line 144
  []
 
-[31]
-<images/boxplot_mcc_parity.pdf, id=864, 289.08pt x 578.16pt>
+[32]
+<images/boxplot_mcc_parity.pdf, id=901, 289.08pt x 578.16pt>
 File: images/boxplot_mcc_parity.pdf Graphic file (type pdf)
 <use images/boxplot_mcc_parity.pdf>
 Package pdftex.def Info: images/boxplot_mcc_parity.pdf  used on input line 169.
 (pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
-<images/boxplot_mcc_opportunity.pdf, id=865, 289.08pt x 578.16pt>
+<images/boxplot_mcc_opportunity.pdf, id=902, 289.08pt x 578.16pt>
 File: images/boxplot_mcc_opportunity.pdf Graphic file (type pdf)
 <use images/boxplot_mcc_opportunity.pdf>
 Package pdftex.def Info: images/boxplot_mcc_opportunity.pdf  used on input line 174.
 (pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
-<images/boxplot_mcc_odds.pdf, id=866, 289.08pt x 578.16pt>
+<images/boxplot_mcc_odds.pdf, id=903, 289.08pt x 578.16pt>
 File: images/boxplot_mcc_odds.pdf Graphic file (type pdf)
 <use images/boxplot_mcc_odds.pdf>
 Package pdftex.def Info: images/boxplot_mcc_odds.pdf  used on input line 179.
 (pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
- [32 <./images/boxplot_mcc_parity.pdf> <./images/boxplot_mcc_opportunity.pdf> <./images/boxplot_mcc_odds.pdf>] [33]
-<images/boxplot_acc_parity.pdf, id=1032, 289.08pt x 578.16pt>
+ [33 <./images/boxplot_mcc_parity.pdf> <./images/boxplot_mcc_opportunity.pdf> <./images/boxplot_mcc_odds.pdf>] [34]
+<images/boxplot_acc_parity.pdf, id=1069, 289.08pt x 578.16pt>
 File: images/boxplot_acc_parity.pdf Graphic file (type pdf)
 <use images/boxplot_acc_parity.pdf>
 Package pdftex.def Info: images/boxplot_acc_parity.pdf  used on input line 203.
 (pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
-<images/boxplot_acc_opportunity.pdf, id=1033, 289.08pt x 578.16pt>
+<images/boxplot_acc_opportunity.pdf, id=1070, 289.08pt x 578.16pt>
 File: images/boxplot_acc_opportunity.pdf Graphic file (type pdf)
 <use images/boxplot_acc_opportunity.pdf>
 Package pdftex.def Info: images/boxplot_acc_opportunity.pdf  used on input line 208.
 (pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
-<images/boxplot_acc_odds.pdf, id=1034, 289.08pt x 578.16pt>
+<images/boxplot_acc_odds.pdf, id=1071, 289.08pt x 578.16pt>
 File: images/boxplot_acc_odds.pdf Graphic file (type pdf)
 <use images/boxplot_acc_odds.pdf>
 Package pdftex.def Info: images/boxplot_acc_odds.pdf  used on input line 213.
 (pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
- [34 <./images/boxplot_acc_parity.pdf> <./images/boxplot_acc_opportunity.pdf> <./images/boxplot_acc_odds.pdf>]
-<images/ftl_sensibility_results.pdf, id=1199, 859.98915pt x 681.55127pt>
+ [35 <./images/boxplot_acc_parity.pdf> <./images/boxplot_acc_opportunity.pdf> <./images/boxplot_acc_odds.pdf>]
+<images/ftl_sensibility_results.pdf, id=1236, 859.98915pt x 681.55127pt>
 File: images/ftl_sensibility_results.pdf Graphic file (type pdf)
 <use images/ftl_sensibility_results.pdf>
 Package pdftex.def Info: images/ftl_sensibility_results.pdf  used on input line 225.
 (pdftex.def)             Requested size: 426.79135pt x 338.23727pt.
- [35 <./images/ftl_sensibility_results.pdf>]) [36] [37] [38] [39] [40] [41] [42]
+ [36 <./images/ftl_sensibility_results.pdf>]) [37] [38] [39] [40] [41] [42] [43]
 \openout2 = `chapter5.aux'.
 
  (./chapter5.tex
 Cap\'{\i }tulo 5.
-[43
+[44
 
 
 
 
-]) [44] (./thesis.bbl
+]) [45] (./thesis.bbl
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 14.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
-) [45
+)
+Underfull \hbox (badness 2384) in paragraph at lines 35--38
+[]\T1/cmr/m/n/12 HLEG, A.  ``Ethics gui-de-li-nes for trustworthy AI''. abr. 2019.  Dis-po-
+ []
+
+[46
 
 
 
 
 ]
-Underfull \hbox (badness 1210) in paragraph at lines 82--86
+Underfull \hbox (badness 1210) in paragraph at lines 87--91
 []\T1/cmr/m/n/12 MA, Y., FRAUEN, D., MELNY-CHUK, V., et al.  ``Coun-ter-fac-tual Fair-
  []
 
-[46] [47] [48] [49]
-Underfull \hbox (badness 1028) in paragraph at lines 246--250
+[47] [48] [49] [50]
+Underfull \hbox (badness 1028) in paragraph at lines 251--255
 \T1/cmr/m/n/12 S10115-[]023-[]01842-[]5$.  Dis-po-ní-vel em: <[]$\T1/cmtt/m/n/12 https : / / doi . org / 10 . 1007 /
  []
 
-[50]
-Underfull \hbox (badness 1286) in paragraph at lines 283--286
+[51]
+Underfull \hbox (badness 1286) in paragraph at lines 288--291
 \T1/cmr/m/n/12 als with Da-ta-set Cons-traints''. In: Lee, D., Su-giyama, M., Lux-
  []
 
 
-Underfull \hbox (badness 1939) in paragraph at lines 283--286
+Underfull \hbox (badness 1939) in paragraph at lines 288--291
 \T1/cmr/m/n/12 burg, U., et al. (Eds.), \T1/cmr/m/it/12 Ad-van-ces in Neu-ral In-for-ma-tion Pro-ces-
  []
 
 
-Underfull \hbox (badness 2012) in paragraph at lines 283--286
+Underfull \hbox (badness 2012) in paragraph at lines 288--291
 \T1/cmr/m/it/12 sing Sys-tems\T1/cmr/m/n/12 , v. 29. Cur-ran As-so-ci-a-tes, Inc., 2016.  Dis-po-ní-vel
  []
 
-[51] [52] [53]
-Underfull \hbox (badness 1168) in paragraph at lines 418--421
+[52] [53] [54]
+Underfull \hbox (badness 1168) in paragraph at lines 423--426
 []\T1/cmr/m/n/12 BERGSTRA, J., BAR-DE-NET, R., BEN-GIO, Y., et al.  ``Al-go-rithms for
  []
 
 
-Underfull \hbox (badness 1546) in paragraph at lines 418--421
+Underfull \hbox (badness 1546) in paragraph at lines 423--426
 \T1/cmr/m/n/12 Hyper-Parameter Op-ti-mi-za-tion''. In: Shawe-Taylor, J., Ze-mel, R.,
  []
 
 
-Underfull \hbox (badness 1796) in paragraph at lines 418--421
+Underfull \hbox (badness 1796) in paragraph at lines 423--426
 \T1/cmr/m/n/12 Bar-tlett, P., et al. (Eds.), \T1/cmr/m/it/12 Ad-van-ces in Neu-ral In-for-ma-tion Pro-
  []
 
-[54]) [55]
+[55]) [56]
 \openout2 = `appendix.aux'.
 
  (./appendix.tex) 
@@ -912,21 +939,21 @@ enddocument/afterlastpage: lastpage setting LastPage.
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 1503329A25104F62230715D3221DA940;4022.
+(rerunfilecheck)             Checksum: E668DFDFBF963B497F36B76BB68922F0;3805.
  ) 
 Here is how much of TeX's memory you used:
- 25444 strings out of 476034
- 469268 string characters out of 5792864
- 1905388 words of memory out of 6000000
- 45164 multiletter control sequences out of 15000+600000
- 531699 words of font info for 76 fonts, out of 8000000 for 9000
+ 25696 strings out of 476034
+ 473700 string characters out of 5792864
+ 1907388 words of memory out of 6000000
+ 45406 multiletter control sequences out of 15000+600000
+ 532458 words of font info for 77 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
- 84i,15n,89p,1473b,1003s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfti0800.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on thesis.pdf (65 pages, 803120 bytes).
+ 84i,15n,89p,1473b,1009s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfti0800.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on thesis.pdf (66 pages, 822566 bytes).
 PDF statistics:
- 1608 PDF objects out of 1728 (max. 8388607)
- 1103 compressed objects within 12 object streams
- 226 named destinations out of 1000 (max. 500000)
+ 1698 PDF objects out of 1728 (max. 8388607)
+ 1190 compressed objects within 12 object streams
+ 228 named destinations out of 1000 (max. 500000)
  234 words of extra memory for PDF output out of 10000 (max. 10000000)
 

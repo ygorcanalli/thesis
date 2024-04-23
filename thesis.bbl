@@ -1,4 +1,4 @@
-\begin{thebibliography}{79}
+\begin{thebibliography}{80}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -30,6 +30,11 @@
 \MakeUppercase{Zafar, M.~B., Valera, I., Rogriguez, M.~G., \MakeLowercase{et~al.}}
 \newblock \coppeenquote{{Fairness Constraints: Mechanisms for Fair Classification}}. In: Singh, A., Zhu, J. (Eds.), \emph{Proceedings of the 20th International Conference on Artificial Intelligence and Statistics}, v.~54, \emph{Proceedings of Machine Learning Research}, pp. 962--970. PMLR, 20--22 Apr 2017{\natexlab{a}}.
 \newblock Dispon{\' i}vel em: \textless\url{https://proceedings.mlr.press/v54/zafar17a.html}\textgreater .
+
+\bibitem[\MakeUppercase{HLEG}(2019)HLEG]{TwAI_Europe}
+\MakeUppercase{HLEG, A.}
+\newblock \coppeenquote{Ethics guidelines for trustworthy AI}. abr. 2019.
+\newblock Dispon{\' i}vel em: \textless\url{https://digital-strategy.ec.europa.eu/en/library/ethics-guidelines-trustworthy-ai}\textgreater .
 
 \bibitem[\MakeUppercase{Verma} e \MakeUppercase{Rubin}(2018)Verma e Rubin]{Verma2018}
 \MakeUppercase{Verma, S., Rubin, J.}

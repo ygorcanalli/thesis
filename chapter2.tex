@@ -1,19 +1,32 @@
 
 \chapter{Bibliographic revision}
 
-\section{Fairness, Accountability, and Transparency in Machine Learning}
+\section{Fair Machine Learning}
 
-The field of Machine Learning (ML) has experienced significant growth and is increasingly applied in various societal domains such as healthcare, finance, and criminal justice. This growth raises important ethical and operational concerns, particularly regarding the principles of Fairness, Accountability, and Transparency (FAT). As ML algorithms increasingly influence a wide array of societal domains, including criminal justice, healthcare, finance, and employment, the imperative to ensure these systems are designed and implemented responsibly has become paramount. This section aims to delineate the significance, scope, and prevailing challenges associated with integrating FAT principles into ML, providing a foundation for the subsequent discussion.
+The field of Machine Learning (ML) has experienced significant growth and is increasingly applied in various societal domains such as healthcare, finance, and criminal justice. This growth raises important ethical and operational concerns, particularly regarding the principles of Fairness, Accountability, and Transparency (FAT) \citep{}. As ML algorithms increasingly influence a wide array of societal domains, including criminal justice, healthcare, finance, and employment, the imperative to ensure these systems are designed and implemented responsibly has become paramount. This section aims to delineate the significance, scope, and prevailing challenges associated with integrating FAT principles into ML, providing a foundation for the subsequent discussion.
 
-Fairness in ML concerns the equitable and just treatment of all individuals, particularly those from historically marginalized or disadvantaged groups. It seeks to ensure that ML algorithms do not perpetuate existing biases or create new forms of discrimination. However, the multifaceted nature of fairness, encompassing various definitions and metrics, poses substantial challenges in operationalizing it within algorithmic frameworks. Further in this section we will explore these complexities, examining different conceptions of fairness and the inherent trade-offs they entail.
+Fairness in ML concerns the equitable and just treatment of all individuals, particularly those from historically marginalized or disadvantaged groups\citep{}. It seeks to ensure that ML algorithms do not perpetuate existing biases or create new forms of discrimination. However, the multifaceted nature of fairness, encompassing various definitions and metrics, poses substantial challenges in operationalizing it within algorithmic frameworks. Further in this section we will explore these complexities, examining different conceptions of fairness and the inherent trade-offs they entail.
 
-Accountability in ML pertains to the obligation of designers, developers, and deployers of ML systems to be answerable for the outcomes of these systems. It involves establishing mechanisms that allow for the tracing of decisions back to the entities responsible for the deployment of the ML algorithms. Accountability also encompasses the adherence to ethical standards, legal requirements, and societal norms. This discussion frequently involves mechanisms and practices that can enhance accountability in ML, like auditing, documentation, and regulatory compliance.
+Accountability in ML pertains to the obligation of designers, developers, and deployers of ML systems to be answerable for the outcomes of these systems\citep{}. It involves establishing mechanisms that allow for the tracing of decisions back to the entities responsible for the deployment of the ML algorithms. Accountability also encompasses the adherence to ethical standards, legal requirements, and societal norms. This discussion frequently involves mechanisms and practices that can enhance accountability in ML, like auditing, documentation, and regulatory compliance.
 
-Transparency, the third pillar, refers to the clarity and openness with which ML systems operate. It involves the ability of stakeholders, including end-users, regulators, and the broader public, to understand how ML systems make decisions. Transparency is crucial for building trust, facilitating informed consent, and enabling the scrutiny necessary to identify and rectify biases. However, achieving transparency, particularly with complex models, presents its own set of technical and ethical challenges. This research topic includes isses as the trade-off between explainability and model performance, and discussing emerging approaches to enhance interpretability without sacrificing effectiveness.
+Transparency, the third pillar, refers to the clarity and openness with which ML systems operate\citep{}. It involves the ability of stakeholders, including end-users, regulators, and the broader public, to understand how ML systems make decisions. Transparency is crucial for building trust, facilitating informed consent, and enabling the scrutiny necessary to identify and rectify biases. However, achieving transparency, particularly with complex models, presents its own set of technical and ethical challenges. This research topic includes isses as the trade-off between explainability and model performance, and discussing emerging approaches to enhance interpretability without sacrificing effectiveness.
 
-The triad of Fairness, Accountability, and Transparency (FAT) forms the cornerstone of ethical Artificial Intelligence (AI). These principles are pivotal in ensuring that AI systems are developed and deployed in a manner that respects human rights, promotes social well-being, and maintains public trust. While accountability ensures that entities behind AI systems can be held responsible for their outcomes, transparency allows stakeholders to understayfoster environments where AI systems can be scrutinized, understood, and corrected, thereby aligning their functionality with societal norms and values. 
+The triad of Fairness, Accountability, and Transparency (FAT) alongwith data privacy forms the cornerstone of Trustworty Artificial Intelligence (TwAI). These principles are pivotal in ensuring that AI systems are developed and deployed in a manner that respects human rights, promotes social well-being, and maintains public trust. While accountability ensures that entities behind AI systems can be held responsible for their outcomes, transparency allows stakeholders to understayfoster environments where AI systems can be scrutinized, understood, and corrected, thereby aligning their functionality with societal norms and values. 
 
-However, the present text will concentrate predominantly on the aspect of fairness Fairness is not only crucial for the development of just and equitable technological solutions but also imperative for maintaining the legitimacy and acceptability of AI systems in diverse societal contexts. In delving into the multifaceted dimensions of fairness, this text aims to unpack the theoretical underpinnings, practical challenges, and potential pathways to achieving fairer AI systems, thereby contributing to the broader discourse on ethical AI.
+In this context of Trustworty AI the European Union's High-Level Expert Group on Artificial Intelligence has outlined seven key principles that aim to ensure that AI systems are designed and used in a way that is ethically sound and trustworthy~\citep{TwAI_Europe}. These principles are crucial for building AI systems that are beneficial and do not cause unintended harm. The seven principles are as follows:
+
+\begin{description}
+    \item[Human agency and oversight] AI systems should empower human beings, allowing them to make informed decisions and fostering their fundamental rights. At the same time, proper oversight mechanisms need to be ensured, which can be achieved through human-in-the-loop, human-on-the-loop, and human-in-command approaches
+    \item[Technical Robustness and safety] AI systems need to be resilient and secure. They need to be safe, ensuring a fall back plan in case something goes wrong, as well as being accurate, reliable and reproducible. That is the only way to ensure that also unintentional harm can be minimized and prevented.
+    \item[Privacy and data governance] besides ensuring full respect for privacy and data protection, adequate data governance mechanisms must also be ensured, taking into account the quality and integrity of the data, and ensuring legitimised access to data.
+    \item[Transparency] the data, system and AI business models should be transparent. Traceability mechanisms can help achieving this. Moreover, AI systems and their decisions should be explained in a manner adapted to the stakeholder concerned. Humans need to be aware that they are interacting with an AI system, and must be informed of the system’s capabilities and limitations.
+    \item[Diversity, non-discrimination and fairness] Unfair bias must be avoided, as it could could have multiple negative implications, from the marginalization of vulnerable groups, to the exacerbation of prejudice and discrimination. Fostering diversity, AI systems should be accessible to all, regardless of any disability, and involve relevant stakeholders throughout their entire life circle.
+    \item[Societal and environmental well-being] AI systems should benefit all human beings, including future generations. It must hence be ensured that they are sustainable and environmentally friendly. Moreover, they should take into account the environment, including other living beings, and their social and societal impact should be carefully considered. 
+    \item[Accountability] Mechanisms should be put in place to ensure responsibility and accountability for AI systems and their outcomes. Auditability, which enables the assessment of algorithms, data and design processes plays a key role therein, especially in critical applications. Moreover, adequate an accessible redress should be ensured.
+\end{description}
+
+
+Although there are many aspects to consider to an ethical automated decision system with social impacts, the present text will concentrate predominantly on the aspect of fairness Fairness is not only crucial for the development of just and equitable technological solutions but also imperative for maintaining the legitimacy and acceptability of AI systems in diverse societal contexts. In delving into the multifaceted dimensions of fairness, this text aims to unpack the theoretical underpinnings, practical challenges, and potential pathways to achieving fairer AI systems, thereby contributing to the broader discourse on ethical AI.
 
 \subsection{Sources of unfairness}
 
@@ -32,9 +45,7 @@ Demographic Parity, for example, mandates uniformity in the rate of positive alg
 
 Individual Fairness Metrics, in contrast, introduce a more granular perspective to fairness, advocating that similar individuals should be treated similarly by the ML system. This approach diverges from group-level considerations, focusing instead on ensuring that the algorithm’s treatment is consistent for individuals who are alike in relevant aspects, barring their membership in different demographic categories. Individual fairness seeks to ensure a personalized sense of justice, where the algorithmic outcomes are solely reflective of pertinent attributes rather than biased by irrelevant factors associated with sensitive attributes. This concept champions the notion that fairness extends beyond group identities to recognize and respect the uniqueness of individual experiences and qualifications.
 
-To establish the foundation for discussing fairness definitions and metrics, we commence with an examination of the confusion matrix. This matrix is an essential instrument in machine learning, utilized for assessing the efficacy of classification algorithms. It constitutes a tabular visualization that delineates the correspondence between the true labels and the predicted outcomes generated by a model. For binary classification tasks, the confusion matrix is structured into four principal components: True Positives (TP), True Negatives (TN), False Positives (FP), and False Negatives (FN), as outlined in Table~\ref{tab:confusion_matrix_definition}. These elements enable the computation of performance metrics that reflect the model's diagnostic ability and form the basis for evaluating fairness across distinct demographic groups. After describing the confusion matrix and it's terms, we describe some directly derived performance metrics to classification problems.
-
-True Positives and True Negatives represent the correctly predicted instances for the positive and negative classes, respectively, indicating the model's effectiveness in identifying each class. Conversely, False Positives occur when the model incorrectly predicts the positive class to an instance with a negative true class. Analogously, False Negatives occur when the model fails to detect the positive class, wrongly predicting as negative. By providing a clear breakdown of these outcomes, the confusion matrix allows to calculate many key performance metrics such as accuracy, precision, recall, and the F1 score, offering comprehensive insights into the strengths and weaknesses of the classification model.
+To establish the foundation for discussing fairness definitions and metrics, we commence with an examination of the confusion matrix, which is an essential instrument in machine learning to assessing the performance of classification algorithms. It constitutes a tabular visualization that delineates the correspondence between the true labels and the predicted outcomes generated by a model. For binary classification tasks, the confusion matrix is structured into four principal components: True Positives (TP), True Negatives (TN), False Positives (FP), and False Negatives (FN), as outlined in Table~\ref{tab:confusion_matrix_definition}. By providing a clear breakdown of these outcomes, the confusion matrix allows to calculate many key performance metrics such as accuracy, precision, recall, and the F1 score, offering comprehensive insights into the strengths and weaknesses of the classification model. Also, the computation of those metrics forms the basis for evaluating fairness across distinct demographic groups. 
 
 \begin{table}[h]
     \centering
@@ -56,6 +67,8 @@ False Positives (FP) represent the probability that the predictor incorrectly id
 False Negatives (FN) are defined as the probability that the predictor incorrectly identifies a negative outcome when the true class is positive. This is given by $P(\hat{Y}=0|Y=1)$, the probability that the predicted class $\hat{Y}$ is negative given that the actual class $Y$ is positive.
 
 True Negatives (TN) correspond to the probability that the predictor correctly identifies a negative outcome when the true condition is negative. In conditional probability terms, it is $P(\hat{Y}=0|Y=0)$, indicating the probability that the predicted class $\hat{Y}$ is negative given that the actual class $Y$ is negative.
+
+Now we proceed to more complex metrics that offer complementary insights into the performance of the classifier. These derived metrics, such as Positive Predictive Value (PPV), False Discovery Rate (FDR), and others, leverage the basic elements of the confusion matrix to quantify the reliability of the predictions in various ways. By expressing these metrics in terms of conditional probabilities and confusion matrix components, we facilitate a comprehensive analysis of the classifier's behavior, providing resources to a proper evaluation of its fairness across different demographic groups.
 
 \begin{definition}[Positive Predictive Value (PPV)]\label{def:ppv}
 PPV, or precision, measures the proportion of correctly identified positive outcomes among all predicted positives. It is defined as the probability that the true condition is positive given the predicted condition is positive, $P(Y=1|\hat{Y}=1)$. In terms of the confusion matrix, PPV is calculated as $\frac{TP}{TP + FP}$, the ratio of true positives to the sum of true positives and false positives.
@@ -89,6 +102,8 @@ TNR, or specificity, indicates the accuracy of negative predictions, representin
 FPR assesses the likelihood of incorrect negative predictions, calculated as the probability that the predicted condition is positive when the true condition is negative, $P(\hat{Y}=1|Y=0)$. FPR is given by $\frac{FP}{TN + FP}$ in the confusion matrix, the ratio of false positives to the sum of true negatives and false positives.
 \end{definition}
 
+As we transition from foundational metrics that directly stem from the confusion matrix, such as PPV and TPR, we now delve into standard performance metrics that assess classification models in a more comprehensive manner. These metrics, such as Accuracy and F1 are distinguished by their reliance on both classes to provide a more holistic evaluation.
+
 \begin{definition}[Accuracy (Acc.)]\label{def:acc}
 Probably the most widely usaed performence metric to classification problems, Accuracy is the proportion of true results, both true positives and true negatives, among the total number of cases examined. In terms of conditional probabilities, accuracy reflects the probability that the predicted condition is correct, both as a positive and negative outcome, given the actual conditions, and can be 
 expressed as 
@@ -96,28 +111,29 @@ expressed as
     P(\hat{Y}=Y) &= P(\hat{Y}=1|Y=1) \cdot P(Y=1) \\
     &+ P(\hat{Y}=0|Y=0) \cdot P(Y=0).
 \end{align*}
-Using the confusion matrix, accuracy is computed as $\frac{TP + TN}{TP + TN + FP + FN}$. 
+Using the confusion matrix, accuracy is computed as $$\frac{TP + TN}{TP + TN + FP + FN}.$$
 \end{definition}
     
 \begin{definition}[Balanced Accuracy (Bal. Acc.)]\label{def:ba}
-Balanced accuracy is an average of the true positive rate (TPR) and the true negative rate (TNR), which compensates for class imbalance by treating both classes equally. Using conditional probabilities, it can be expressed as $\frac{1}{2}\left(P(\hat{Y}=1|Y=1) + P(\hat{Y}=0|Y=0)\right)$, where each term represents the conditional probability of correctly predicting the respective class. In terms of the confusion matrix, balanced accuracy is calculated as $\frac{1}{2}\left(\frac{TP}{TP + FN} + \frac{TN}{TN + FP}\right)$.
+Balanced accuracy is an average of the true positive rate (TPR) and the true negative rate (TNR), which compensates for class imbalance by treating both classes equally. Using conditional probabilities, it can be expressed as $$\frac{1}{2}\left[ P(\hat{Y}=1|Y=1) \; + \; P(\hat{Y}=0|Y=0)\right],$$ where each term represents the conditional probability of correctly predicting the respective class. In terms of the confusion matrix, balanced accuracy is calculated as $$\frac{1}{2}\left[\frac{TP}{TP + FN} + \frac{TN}{TN + FP}\right].$$
 \end{definition}
     
 \begin{definition}[F1 Score]\label{def:f1}
-The F1 score is the harmonic mean of precision and recall, providing a balance between the PPV and TPR. It is calculated as $2 \cdot \frac{\text{PPV} \cdot \text{TPR}}{\text{PPV} + \text{TPR}}$. Using conditional probabilities and confusion matrix terms, the F1 score can be expressed as $$2 \cdot \frac{P(Y=1|\hat{Y}=1) \cdot P(\hat{Y}=1|Y=1)}{P(Y=1|\hat{Y}=1) + P(\hat{Y}=1|Y=1)},$$ or more concisely, $\frac{2 \cdot TP}{2 \cdot TP + FP + FN}$.
+The F1 score is the harmonic mean of precision and recall, providing a balance between the PPV and TPR. It is calculated as $2 \cdot \frac{\text{PPV} \cdot \text{TPR}}{\text{PPV} + \text{TPR}}$. Using conditional probabilities and confusion matrix terms, the F1 score can be expressed as $$2 \cdot \frac{P(Y=1|\hat{Y}=1) \cdot P(\hat{Y}=1|Y=1)}{P(Y=1|\hat{Y}=1) + P(\hat{Y}=1|Y=1)},$$ and calculated using terms from confusion matrix as $$\frac{2 \cdot TP}{2 \cdot TP + FP + FN}.$$
 \end{definition}
 
 \begin{definition}[Matthews Correlation Coefficient (MCC)]\label{def:mcc}
 MCC is a measure of the quality of binary classifications, producing a value between -1 and 1 where 1 is a perfect prediction, 0 no better than random prediction, and -1 indicates total disagreement between prediction and observation. The MCC is defined as $$\frac{TP \cdot TN - FP \cdot FN}{\sqrt{(TP+FP) \cdot (TP+FN) \cdot (TN+FP) \cdot (TN+FN)}}.$$ In terms of conditional probabilities, MCC considers all four quadrants of the confusion matrix, correlating the true and predicted conditions. It can be seen as a correlation coefficient between the observed and predicted binary classifications, providing a more informative measure than simple accuracy in the presence of class imbalance.
 \end{definition}
     
-Now we describe the most widely used group fairness definitions definitions include statistical parity, equal opportunity, predictive equality, and equalized odds. Demographic parity requires that the likelihood of a positive outcome is the same across different groups, irrespective of their sensitive attributes. Equal opportunity extends this concept to the true positive rate, ensuring that individuals from different groups have an equal chance of being correctly classified as positive. Predictive equality, on the other hand, focuses on the true negative rate, ensuring that individuals from different groups have an equal chance of being correctly classified as negative. Equalized odds combines the principles of equal opportunity and predictive equality, ensuring that both true positive and true negative rates are equal across different groups.
+Now we describe the most widely used group fairness definitions, including statistical parity, equal opportunity, predictive equality, and equalized odds. Demographic parity requires that the likelihood of a positive outcome is the same across different groups, irrespective of their sensitive attributes. Equal opportunity extends this concept to the true positive rate, ensuring that individuals from different groups have an equal chance of being correctly classified as positive. Predictive equality, on the other hand, focuses on the true negative rate, ensuring that individuals from different groups have an equal chance of being correctly classified as negative. Equalized odds combines the principles of equal opportunity and predictive equality, ensuring that both true positive and true negative rates are equal across different groups.
 
 \begin{definition}[Statistical Parity]\label{def:demo_parity}
 The likelihood of a positive, i.e. favorable, outcome should be the same in every group of the sensitive attribute~\citep{Dwork2011,Kusner2018}. A binary predictor $\hat{Y}$ satisfies Statistical Parity (a.k.a. Demographic Parity) if $P(\hat{Y}|A=0) = P(\hat{Y}|A=1)$, where $A$ is a protected attribute.
 \end{definition}
 
 For example, the credit approval probability should be the same for the male and female groups. Demographic Parity does not depend on true class $Y$, only on prediction $\hat{Y}$. We can measure Demographic Parity (Definition~\ref{def:demo_parity}) for a protected attribute $A$ as the absolute difference between $P(\hat{Y}|A=0)$ and $P(\hat{Y}|A=1)$, as seen in Equation~\ref{eq:demo_parity}. According Demographic Parity, the predictor is considered fairer when this metric is lower.
+
 \begin{equation}\label{eq:demo_parity}
     |P(\hat{Y}|A=0)-P(\hat{Y}|A=1)|
 \end{equation}
@@ -129,7 +145,7 @@ The probability of a person in a positive class being assigned to a positive, i.
 
 Definition~\ref{def:eq_opp} claims that protected and unprotected, i.e. privileged, groups should have equal true positive rates. Mathematically, a classifier with equal true positive rates will also have equal false negative rates, so we can analyze the confusion matrix checking whether a predictor has equal $(TP)/(TP + FN)$ or $(FN)/(TP + FN)$ in each group of the sensitive attribute. Like in Demographic Parity, we can measure Equal Opportunity as an absolute difference between protected and privileged groups, as defined in Equation~\ref{eq:eq_opp}.
 \begin{equation}\label{eq:eq_opp}
-    |P(\hat{Y}|A=0,Y=1)-P(\hat{Y}|A=1,Y=1)|
+    |P(\hat{Y}|A=0,Y=1)\; - \; P(\hat{Y}|A=1,Y=1)|
 \end{equation}
 
 \begin{definition}[Predictive Equality]\label{def:pred_eq}
@@ -138,7 +154,7 @@ The probability of a person in a negative class being assigned to a negative out
 
 Definition~\ref{def:pred_eq} establishes that that both the protected and privileged groups should have the same true negative rates, which consequently results in equal false positive rates. Using a confusion matrix definition, we check the absolute difference of $(TN)/(TN + FP)$ or $(FP)/(TN + FP)$ between the groups. So, we can measure Predictive Equality according Equation~\ref{eq:pred_eq}.
 \begin{equation}\label{eq:pred_eq}
-    |P(\hat{Y}|A=0,Y=0) - P(\hat{Y}|A=1,Y=0)|
+    |P(\hat{Y}|A=0,Y=0) \; - \; P(\hat{Y}|A=1,Y=0)|
 \end{equation}
 
 \begin{definition}[Equalized Odds]\label{def:eq_odds}
@@ -147,12 +163,12 @@ Both probabilities of the person in a positive class being assigned to a positiv
 
 Equalized Odds is a combination of the principles from Definition~\ref{def:eq_opp} and Definition~\ref{def:pred_eq}, i.e., protected and unprotected groups should have equal true positive and true negative rates, therefore equal false positive and false negative rates. Using a confusion matrix definition, we check the absolute difference between $(TP)/(TP + FN)$ and $(TN)/(TN + FP)$ of predictor in protected and unprotected groups. Equation~\ref{eq:eq_odds} describes how to measure Equalized Odds as the average between Equal Opportunity and Predictive Equality. According to Definition~\ref{def:eq_odds}, the predictor is considered fairer when this metric is lower.
 \begin{equation}\label{eq:eq_odds}
-    \frac{1}{2}\left[
+    \frac{1}{2}\left[\;
     \begin{aligned}
-    |P(\hat{Y}|A=0,Y=1)\,-\,&P(\hat{Y}|A=1,Y=1)| \, +\\
-    |P(\hat{Y}|A=0,Y=0)\,-\,&P(\hat{Y}|A=1,Y=0)|
+    |P(\hat{Y}|A=0,Y=1)\;-\;&P(\hat{Y}|A=1,Y=1)| \, +\\
+    |P(\hat{Y}|A=0,Y=0)\;-\;&P(\hat{Y}|A=1,Y=0)|
     \end{aligned}
-    \right]
+    \;\right]
 \end{equation}
 
 Using the same logic, it is possible to define group fairness metrics based derived from any binary classification metric from confusion matrix. The procedure is the same, asessing the absolute difference from those metrics between protected and unprotected groups.
