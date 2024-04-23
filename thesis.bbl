@@ -1,4 +1,4 @@
-\begin{thebibliography}{80}
+\begin{thebibliography}{86}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -35,6 +35,13 @@
 \MakeUppercase{HLEG, A.}
 \newblock \coppeenquote{Ethics guidelines for trustworthy AI}. abr. 2019.
 \newblock Dispon{\' i}vel em: \textless\url{https://digital-strategy.ec.europa.eu/en/library/ethics-guidelines-trustworthy-ai}\textgreater .
+
+\bibitem[\MakeUppercase{Pedreschi}\emph{ et~al.}(2008)Pedreschi, Ruggieri, e Turini]{Pedreschi2008}
+\MakeUppercase{Pedreschi, D., Ruggieri, S., Turini, F.}
+\newblock \coppeenquote{Discrimination-aware data mining}, \emph{Proceeding of the 14th ACM SIGKDD international conference on Knowledge discovery and data mining - KDD 08}, p. 560, 2008.
+\newblock ISSN: 0309-0167 (Print).
+\newblock \doi{10.1145/1401890.1401959}.
+\newblock Dispon{\' i}vel em: \textless\url{http://dl.acm.org/citation.cfm?doid=1401890.1401959}\textgreater .
 
 \bibitem[\MakeUppercase{Verma} e \MakeUppercase{Rubin}(2018)Verma e Rubin]{Verma2018}
 \MakeUppercase{Verma, S., Rubin, J.}
@@ -78,6 +85,62 @@
 \newblock \coppeenquote{Equality of Opportunity in Supervised Learning}. In: \emph{Proceedings of the 30th International Conference on Neural Information Processing Systems}, NIPS'16, p. 3323–3331, Red Hook, NY, USA, 2016. Curran Associates Inc.
 \newblock ISBN: 9781510838819.
 
+\bibitem[\MakeUppercase{Blyth}(1972)Blyth]{Simpson}
+\MakeUppercase{Blyth, C.~R.}
+\newblock \coppeenquote{On Simpson's Paradox and the Sure-Thing Principle}, \emph{Journal of the American Statistical Association}, v.~67, n. 338, \penalty0 pp.~364--366, 1972.
+\newblock ISSN: 01621459.
+\newblock Dispon{\' i}vel em: \textless\url{http://www.jstor.org/stable/2284382}\textgreater .
+
+\bibitem[\MakeUppercase{Goh}\emph{ et~al.}(2016)Goh, Cotter, Gupta, e Friedlander]{Goh2016}
+\MakeUppercase{Goh, G., Cotter, A., Gupta, M., \MakeLowercase{et~al.}}
+\newblock \coppeenquote{Satisfying Real-world Goals with Dataset Constraints}. In: Lee, D., Sugiyama, M., Luxburg, U., \MakeLowercase{et~al.} (Eds.), \emph{Advances in Neural Information Processing Systems}, v.~29. Curran Associates, Inc., 2016.
+\newblock Dispon{\' i}vel em: \textless\url{https://proceedings.neurips.cc/paper\_files/paper/2016/file/dc4c44f624d600aa568390f1f1104aa0-Paper.pdf}\textgreater .
+
+\bibitem[\MakeUppercase{Komiyama}\emph{ et~al.}(2018)Komiyama, Takeda, Honda, e Shimao]{Komiyama2018}
+\MakeUppercase{Komiyama, J., Takeda, A., Honda, J., \MakeLowercase{et~al.}}
+\newblock \coppeenquote{{Nonconvex optimization for regression with fairness constraints}}, \emph{35th International Conference on Machine Learning, ICML 2018}, v.~6, \penalty0 pp.~4280--4294, 2018.
+
+\bibitem[\MakeUppercase{Petrovi{\'{c}}}\emph{ et~al.}(2021)Petrovi{\'{c}}, Nikoli{\'{c}}, Jovanovi{\'{c}}, Bijani{\'{c}}, e Deliba{\v{s}}i{\'{c}}]{Petrovic2021}
+\MakeUppercase{Petrovi{\'{c}}, A., Nikoli{\'{c}}, M., Jovanovi{\'{c}}, M., \MakeLowercase{et~al.}}
+\newblock \coppeenquote{{Fair classification via Monte Carlo policy gradient method}}, \emph{Engineering Applications of Artificial Intelligence}, v.~104, n. February, \penalty0 pp.~104398, 2021.
+\newblock ISSN: 09521976.
+\newblock \doi{10.1016/j.engappai.2021.104398}.
+\newblock Dispon{\' i}vel em: \textless\url{https://doi.org/10.1016/j.engappai.2021.104398}\textgreater .
+
+\bibitem[\MakeUppercase{F.Cruz}\emph{ et~al.}(2021)F.Cruz, Saleiro, Belém, Soares, e Bizarro]{Cruz2021}
+\MakeUppercase{F.Cruz, A., Saleiro, P., Belém, C., \MakeLowercase{et~al.}}
+\newblock \coppeenquote{Promoting Fairness through Hyperparameter Optimization}. In: \emph{2021 IEEE International Conference on Data Mining (ICDM)}, pp. 1036--1041, 2021.
+\newblock \doi{10.1109/ICDM51629.2021.00119}.
+
+\bibitem[\MakeUppercase{Liu} e \MakeUppercase{Vicente}(2022)Liu e Vicente]{Liu2022}
+\MakeUppercase{Liu, S., Vicente, L.~N.}
+\newblock \coppeenquote{Accuracy and fairness trade-offs in machine learning: a stochastic multi-objective approach}, \emph{Computational Management Science}, v.~19, \penalty0 pp.~513--537, 7 2022.
+\newblock ISSN: 16196988.
+\newblock \doi{10.1007/s10287-022-00425-z}.
+
+\bibitem[\MakeUppercase{Kearns}\emph{ et~al.}(2017)Kearns, Neel, Roth, e Wu]{Kearns2017}
+\MakeUppercase{Kearns, M., Neel, S., Roth, A., \MakeLowercase{et~al.}}
+\newblock \coppeenquote{Preventing Fairness Gerrymandering: Auditing and Learning for Subgroup Fairness}, 11 2017.
+\newblock Dispon{\' i}vel em: \textless\url{http://arxiv.org/abs/1711.05144}\textgreater .
+
+\bibitem[\MakeUppercase{Kearns}\emph{ et~al.}(2019)Kearns, Neel, Roth, e Wu]{Kearns2018}
+\MakeUppercase{Kearns, M., Neel, S., Roth, A., \MakeLowercase{et~al.}}
+\newblock \coppeenquote{An Empirical Study of Rich Subgroup Fairness for Machine Learning}. In: \emph{Proceedings of the Conference on Fairness, Accountability, and Transparency}, FAT* '19, p. 100–109, New York, NY, USA, 2019. Association for Computing Machinery.
+\newblock ISBN: 9781450361255.
+\newblock \doi{10.1145/3287560.3287592}.
+\newblock Dispon{\' i}vel em: \textless\url{https://doi.org/10.1145/3287560.3287592}\textgreater .
+
+\bibitem[\MakeUppercase{Corbett-Davies}\emph{ et~al.}(2018)Corbett-Davies, Goel, Chohlas-Wood, Chouldechova, Feller, Huq, Hardt, Ho, Mitchell, Overgoor, Pierson, e Shroff]{Corbett-Davies2018}
+\MakeUppercase{Corbett-Davies, S., Goel, S., Chohlas-Wood, A., \MakeLowercase{et~al.}}
+\newblock \emph{{The Measure and Mismeasure of Fairness: A Critical Review of Fair Machine Learning *}}.
+\newblock Relat{\'o}rio t{\'e}cnico, 2018.
+\newblock Dispon{\' i}vel em: \textless\url{https://arxiv.org/pdf/1808.00023.pdf}\textgreater .
+
+\bibitem[\MakeUppercase{Hort}\emph{ et~al.}(2023)Hort, Chen, Zhang, Harman, e Sarro]{Hort2023}
+\MakeUppercase{Hort, M., Chen, Z., Zhang, J.~M., \MakeLowercase{et~al.}}
+\newblock \coppeenquote{{Bias Mitigation for Machine Learning Classifiers: A Comprehensive Survey}}, \emph{ACM Journal on Responsible Computing}, pp. 1--52, 2023.
+\newblock \doi{10.1145/3631326}.
+
 \bibitem[\MakeUppercase{Wu}\emph{ et~al.}(2022)Wu, Han, Liu, Liu, Schölkopf, Uhler, Zhang, Wu, Gong, Han, Liu, e Liu]{Wu2022}
 \MakeUppercase{Wu, S., Han, B., Liu, Y., \MakeLowercase{et~al.}}
 \newblock \coppeenquote{Fair Classification with Instance-dependent Label Noise}, \emph{Proceedings of Machine Learning Research}, v.~140, \penalty0 pp.~1--17, 2022.
@@ -94,6 +157,11 @@
 \newblock \coppeenquote{Adversarial learning for counterfactual fairness}, \emph{Mach. Learn.}, v.~112, n.~3, \penalty0 pp.~741--763, 2023.
 \newblock \doi{10.1007/S10994-022-06206-8}.
 \newblock Dispon{\' i}vel em: \textless\url{https://doi.org/10.1007/s10994-022-06206-8}\textgreater .
+
+\bibitem[\MakeUppercase{Kasirzadeh} e \MakeUppercase{Smart}(2021)Kasirzadeh e Smart]{Kasirzadeh2021}
+\MakeUppercase{Kasirzadeh, A., Smart, A.}
+\newblock \coppeenquote{{The use and misuse of counterfactuals in ethical machine learning}}, \emph{FAccT 2021 - Proceedings of the 2021 ACM Conference on Fairness, Accountability, and Transparency}, pp. 228--236, 2021.
+\newblock \doi{10.1145/3442188.3445886}.
 
 \bibitem[\MakeUppercase{Calders} e \MakeUppercase{Verwer}(2010)Calders e Verwer]{Calders2010}
 \MakeUppercase{Calders, T., Verwer, S.}
@@ -124,13 +192,6 @@
 \newblock \coppeenquote{Preventing Fairness Gerrymandering: Auditing and Learning for Subgroup Fairness}. In: Dy, J., Krause, A. (Eds.), \emph{Proceedings of the 35th International Conference on Machine Learning}, v.~80, \emph{Proceedings of Machine Learning Research}, pp. 2564--2572. PMLR, 10--15 Jul 2018.
 \newblock Dispon{\' i}vel em: \textless\url{https://proceedings.mlr.press/v80/kearns18a.html}\textgreater .
 
-\bibitem[\MakeUppercase{Kearns}\emph{ et~al.}(2019)Kearns, Neel, Roth, e Wu]{Kearns2018}
-\MakeUppercase{Kearns, M., Neel, S., Roth, A., \MakeLowercase{et~al.}}
-\newblock \coppeenquote{An Empirical Study of Rich Subgroup Fairness for Machine Learning}. In: \emph{Proceedings of the Conference on Fairness, Accountability, and Transparency}, FAT* '19, p. 100–109, New York, NY, USA, 2019. Association for Computing Machinery.
-\newblock ISBN: 9781450361255.
-\newblock \doi{10.1145/3287560.3287592}.
-\newblock Dispon{\' i}vel em: \textless\url{https://doi.org/10.1145/3287560.3287592}\textgreater .
-
 \bibitem[\MakeUppercase{Adel}\emph{ et~al.}(2019)Adel, Valera, Ghahramani, e Weller]{Adel2019}
 \MakeUppercase{Adel, T., Valera, I., Ghahramani, Z., \MakeLowercase{et~al.}}
 \newblock \coppeenquote{One-Network Adversarial Fairness}, \emph{Proceedings of the AAAI Conference on Artificial Intelligence}, v.~33, n.~01, \penalty0 pp.~2412--2420, Jul. 2019.
@@ -142,24 +203,11 @@
 \newblock \coppeenquote{FairGAN+: Achieving Fair Data Generation and Classification through Generative Adversarial Nets}, \emph{Proceedings - 2019 IEEE International Conference on Big Data, Big Data 2019}, pp. 1401--1406, 2019.
 \newblock \doi{10.1109/BigData47090.2019.9006322}.
 
-\bibitem[\MakeUppercase{Petrovi{\'{c}}}\emph{ et~al.}(2021)Petrovi{\'{c}}, Nikoli{\'{c}}, Jovanovi{\'{c}}, Bijani{\'{c}}, e Deliba{\v{s}}i{\'{c}}]{Petrovic2021}
-\MakeUppercase{Petrovi{\'{c}}, A., Nikoli{\'{c}}, M., Jovanovi{\'{c}}, M., \MakeLowercase{et~al.}}
-\newblock \coppeenquote{{Fair classification via Monte Carlo policy gradient method}}, \emph{Engineering Applications of Artificial Intelligence}, v.~104, n. February, \penalty0 pp.~104398, 2021.
-\newblock ISSN: 09521976.
-\newblock \doi{10.1016/j.engappai.2021.104398}.
-\newblock Dispon{\' i}vel em: \textless\url{https://doi.org/10.1016/j.engappai.2021.104398}\textgreater .
-
 \bibitem[\MakeUppercase{Wei} e \MakeUppercase{Niethammer}(2022)Wei e Niethammer]{Wei2022}
 \MakeUppercase{Wei, S., Niethammer, M.}
 \newblock \coppeenquote{The fairness-accuracy Pareto front}, \emph{Statistical Analysis and Data Mining}, v.~15, \penalty0 pp.~287--302, 6 2022.
 \newblock ISSN: 19321872.
 \newblock \doi{10.1002/SAM.11560}.
-
-\bibitem[\MakeUppercase{Liu} e \MakeUppercase{Vicente}(2022)Liu e Vicente]{Liu2022}
-\MakeUppercase{Liu, S., Vicente, L.~N.}
-\newblock \coppeenquote{Accuracy and fairness trade-offs in machine learning: a stochastic multi-objective approach}, \emph{Computational Management Science}, v.~19, \penalty0 pp.~513--537, 7 2022.
-\newblock ISSN: 16196988.
-\newblock \doi{10.1007/s10287-022-00425-z}.
 
 \bibitem[\MakeUppercase{Mercier}\emph{ et~al.}(2018)Mercier, Poirion, e Désidéri]{Mercier2018}
 \MakeUppercase{Mercier, Q., Poirion, F., Désidéri, J.~A.}
@@ -272,22 +320,12 @@
 \newblock \coppeenquote{Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization}, \emph{J. Mach. Learn. Res.}, v.~18, n.~1, \penalty0 pp.~6765–6816, jan 2017.
 \newblock ISSN: 1532-4435.
 
-\bibitem[\MakeUppercase{F.Cruz}\emph{ et~al.}(2021)F.Cruz, Saleiro, Belém, Soares, e Bizarro]{Cruz2021}
-\MakeUppercase{F.Cruz, A., Saleiro, P., Belém, C., \MakeLowercase{et~al.}}
-\newblock \coppeenquote{Promoting Fairness through Hyperparameter Optimization}. In: \emph{2021 IEEE International Conference on Data Mining (ICDM)}, pp. 1036--1041, 2021.
-\newblock \doi{10.1109/ICDM51629.2021.00119}.
-
 \bibitem[\MakeUppercase{Giagkiozis} e \MakeUppercase{Fleming}(2015)Giagkiozis e Fleming]{GIAGKIOZIS2015338}
 \MakeUppercase{Giagkiozis, I., Fleming, P.~J.}
 \newblock \coppeenquote{{Methods for multi-objective optimization: An analysis}}, \emph{Information Sciences}, v.~293, \penalty0 pp.~338--350, 2015.
 \newblock ISSN: 0020-0255.
 \newblock \doi{https://doi.org/10.1016/j.ins.2014.08.071}.
 \newblock Dispon{\' i}vel em: \textless\url{https://www.sciencedirect.com/science/article/pii/S0020025514009074}\textgreater .
-
-\bibitem[\MakeUppercase{Goh}\emph{ et~al.}(2016)Goh, Cotter, Gupta, e Friedlander]{Goh2016}
-\MakeUppercase{Goh, G., Cotter, A., Gupta, M., \MakeLowercase{et~al.}}
-\newblock \coppeenquote{Satisfying Real-world Goals with Dataset Constraints}. In: Lee, D., Sugiyama, M., Luxburg, U., \MakeLowercase{et~al.} (Eds.), \emph{Advances in Neural Information Processing Systems}, v.~29. Curran Associates, Inc., 2016.
-\newblock Dispon{\' i}vel em: \textless\url{https://proceedings.neurips.cc/paper\_files/paper/2016/file/dc4c44f624d600aa568390f1f1104aa0-Paper.pdf}\textgreater .
 
 \bibitem[\MakeUppercase{Fr{\'{e}}nay} e \MakeUppercase{Verleysen}(2014)Fr{\'{e}}nay e Verleysen]{Frenay2014}
 \MakeUppercase{Fr{\'{e}}nay, B., Verleysen, M.}
@@ -461,12 +499,5 @@
 \MakeUppercase{Jeff~Larson, Surya~Mattu, L.~K., Angwin, J.}
 \newblock \coppeenquote{{COMPAS Dataset}}. ProPublica, 2016.
 \newblock Dispon{\' i}vel em: \textless\url{https://www.propublica.org/article/how-we-analyzed-the-compas-recidivism-algorithm}\textgreater .
-
-\bibitem[\MakeUppercase{Pedreschi}\emph{ et~al.}(2008)Pedreschi, Ruggieri, e Turini]{Pedreschi2008}
-\MakeUppercase{Pedreschi, D., Ruggieri, S., Turini, F.}
-\newblock \coppeenquote{Discrimination-aware data mining}, \emph{Proceeding of the 14th ACM SIGKDD international conference on Knowledge discovery and data mining - KDD 08}, p. 560, 2008.
-\newblock ISSN: 0309-0167 (Print).
-\newblock \doi{10.1145/1401890.1401959}.
-\newblock Dispon{\' i}vel em: \textless\url{http://dl.acm.org/citation.cfm?doid=1401890.1401959}\textgreater .
 
 \end{thebibliography}

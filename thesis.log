@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.25)  22 APR 2024 21:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.25)  23 APR 2024 16:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -797,85 +797,85 @@ Cap\'{\i }tulo 2.
 
 
 
-] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20]) [21]
+] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25] [26]) [27]
 \openout2 = `chapter3.aux'.
 
  (./chapter3.tex
 Cap\'{\i }tulo 3.
-[22
+[28
 
 
 
 
-] [23] [24]) [25]
+] [29] [30]) [31]
 \openout2 = `chapter4.aux'.
 
  (./chapter4.tex
 Cap\'{\i }tulo 4.
-[26
+[32
 
 
 
 
-] [27]
-<images/fitness_sensibility.pdf, id=787, 867.24pt x 433.62pt>
+] [33]
+<images/fitness_sensibility.pdf, id=856, 867.24pt x 433.62pt>
 File: images/fitness_sensibility.pdf Graphic file (type pdf)
 <use images/fitness_sensibility.pdf>
 Package pdftex.def Info: images/fitness_sensibility.pdf  used on input line 39.
 (pdftex.def)             Requested size: 426.79135pt x 213.39536pt.
- [28 <./images/fitness_sensibility.pdf>] [29] [30] [31]
+ [34 <./images/fitness_sensibility.pdf>] [35] [36] [37]
 Overfull \vbox (9.93167pt too high) detected at line 144
  []
 
-[32]
-<images/boxplot_mcc_parity.pdf, id=901, 289.08pt x 578.16pt>
+[38]
+<images/boxplot_mcc_parity.pdf, id=969, 289.08pt x 578.16pt>
 File: images/boxplot_mcc_parity.pdf Graphic file (type pdf)
 <use images/boxplot_mcc_parity.pdf>
 Package pdftex.def Info: images/boxplot_mcc_parity.pdf  used on input line 169.
 (pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
-<images/boxplot_mcc_opportunity.pdf, id=902, 289.08pt x 578.16pt>
+<images/boxplot_mcc_opportunity.pdf, id=970, 289.08pt x 578.16pt>
 File: images/boxplot_mcc_opportunity.pdf Graphic file (type pdf)
 <use images/boxplot_mcc_opportunity.pdf>
 Package pdftex.def Info: images/boxplot_mcc_opportunity.pdf  used on input line 174.
 (pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
-<images/boxplot_mcc_odds.pdf, id=903, 289.08pt x 578.16pt>
+<images/boxplot_mcc_odds.pdf, id=971, 289.08pt x 578.16pt>
 File: images/boxplot_mcc_odds.pdf Graphic file (type pdf)
 <use images/boxplot_mcc_odds.pdf>
 Package pdftex.def Info: images/boxplot_mcc_odds.pdf  used on input line 179.
 (pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
- [33 <./images/boxplot_mcc_parity.pdf> <./images/boxplot_mcc_opportunity.pdf> <./images/boxplot_mcc_odds.pdf>] [34]
-<images/boxplot_acc_parity.pdf, id=1069, 289.08pt x 578.16pt>
+ [39 <./images/boxplot_mcc_parity.pdf> <./images/boxplot_mcc_opportunity.pdf> <./images/boxplot_mcc_odds.pdf>] [40]
+<images/boxplot_acc_parity.pdf, id=1137, 289.08pt x 578.16pt>
 File: images/boxplot_acc_parity.pdf Graphic file (type pdf)
 <use images/boxplot_acc_parity.pdf>
 Package pdftex.def Info: images/boxplot_acc_parity.pdf  used on input line 203.
 (pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
-<images/boxplot_acc_opportunity.pdf, id=1070, 289.08pt x 578.16pt>
+<images/boxplot_acc_opportunity.pdf, id=1138, 289.08pt x 578.16pt>
 File: images/boxplot_acc_opportunity.pdf Graphic file (type pdf)
 <use images/boxplot_acc_opportunity.pdf>
 Package pdftex.def Info: images/boxplot_acc_opportunity.pdf  used on input line 208.
 (pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
-<images/boxplot_acc_odds.pdf, id=1071, 289.08pt x 578.16pt>
+<images/boxplot_acc_odds.pdf, id=1139, 289.08pt x 578.16pt>
 File: images/boxplot_acc_odds.pdf Graphic file (type pdf)
 <use images/boxplot_acc_odds.pdf>
 Package pdftex.def Info: images/boxplot_acc_odds.pdf  used on input line 213.
 (pdftex.def)             Requested size: 136.57635pt x 273.14676pt.
- [35 <./images/boxplot_acc_parity.pdf> <./images/boxplot_acc_opportunity.pdf> <./images/boxplot_acc_odds.pdf>]
-<images/ftl_sensibility_results.pdf, id=1236, 859.98915pt x 681.55127pt>
+ [41 <./images/boxplot_acc_parity.pdf> <./images/boxplot_acc_opportunity.pdf> <./images/boxplot_acc_odds.pdf>]
+<images/ftl_sensibility_results.pdf, id=1304, 859.98915pt x 681.55127pt>
 File: images/ftl_sensibility_results.pdf Graphic file (type pdf)
 <use images/ftl_sensibility_results.pdf>
 Package pdftex.def Info: images/ftl_sensibility_results.pdf  used on input line 225.
 (pdftex.def)             Requested size: 426.79135pt x 338.23727pt.
- [36 <./images/ftl_sensibility_results.pdf>]) [37] [38] [39] [40] [41] [42] [43]
+ [42 <./images/ftl_sensibility_results.pdf>]) [43] [44] [45] [46] [47] [48] [49]
 \openout2 = `chapter5.aux'.
 
  (./chapter5.tex
 Cap\'{\i }tulo 5.
-[44
+[50
 
 
 
 
-]) [45] (./thesis.bbl
+]) [51] (./thesis.bbl
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 14.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
@@ -884,52 +884,52 @@ Underfull \hbox (badness 2384) in paragraph at lines 35--38
 []\T1/cmr/m/n/12 HLEG, A.  ``Ethics gui-de-li-nes for trustworthy AI''. abr. 2019.  Dis-po-
  []
 
-[46
+[52
 
 
 
 
 ]
-Underfull \hbox (badness 1210) in paragraph at lines 87--91
-[]\T1/cmr/m/n/12 MA, Y., FRAUEN, D., MELNY-CHUK, V., et al.  ``Coun-ter-fac-tual Fair-
- []
-
-[47] [48] [49] [50]
-Underfull \hbox (badness 1028) in paragraph at lines 251--255
-\T1/cmr/m/n/12 S10115-[]023-[]01842-[]5$.  Dis-po-ní-vel em: <[]$\T1/cmtt/m/n/12 https : / / doi . org / 10 . 1007 /
- []
-
-[51]
-Underfull \hbox (badness 1286) in paragraph at lines 288--291
+Underfull \hbox (badness 1286) in paragraph at lines 95--98
 \T1/cmr/m/n/12 als with Da-ta-set Cons-traints''. In: Lee, D., Su-giyama, M., Lux-
  []
 
 
-Underfull \hbox (badness 1939) in paragraph at lines 288--291
+Underfull \hbox (badness 1939) in paragraph at lines 95--98
 \T1/cmr/m/n/12 burg, U., et al. (Eds.), \T1/cmr/m/it/12 Ad-van-ces in Neu-ral In-for-ma-tion Pro-ces-
  []
 
 
-Underfull \hbox (badness 2012) in paragraph at lines 288--291
+Underfull \hbox (badness 2012) in paragraph at lines 95--98
 \T1/cmr/m/it/12 sing Sys-tems\T1/cmr/m/n/12 , v. 29. Cur-ran As-so-ci-a-tes, Inc., 2016.  Dis-po-ní-vel
  []
 
-[52] [53] [54]
-Underfull \hbox (badness 1168) in paragraph at lines 423--426
+[53] [54]
+Underfull \hbox (badness 1210) in paragraph at lines 150--154
+[]\T1/cmr/m/n/12 MA, Y., FRAUEN, D., MELNY-CHUK, V., et al.  ``Coun-ter-fac-tual Fair-
+ []
+
+[55] [56] [57]
+Underfull \hbox (badness 1028) in paragraph at lines 299--303
+\T1/cmr/m/n/12 S10115-[]023-[]01842-[]5$.  Dis-po-ní-vel em: <[]$\T1/cmtt/m/n/12 https : / / doi . org / 10 . 1007 /
+ []
+
+[58] [59] [60] [61]
+Underfull \hbox (badness 1168) in paragraph at lines 461--464
 []\T1/cmr/m/n/12 BERGSTRA, J., BAR-DE-NET, R., BEN-GIO, Y., et al.  ``Al-go-rithms for
  []
 
 
-Underfull \hbox (badness 1546) in paragraph at lines 423--426
+Underfull \hbox (badness 1546) in paragraph at lines 461--464
 \T1/cmr/m/n/12 Hyper-Parameter Op-ti-mi-za-tion''. In: Shawe-Taylor, J., Ze-mel, R.,
  []
 
 
-Underfull \hbox (badness 1796) in paragraph at lines 423--426
+Underfull \hbox (badness 1796) in paragraph at lines 461--464
 \T1/cmr/m/n/12 Bar-tlett, P., et al. (Eds.), \T1/cmr/m/it/12 Ad-van-ces in Neu-ral In-for-ma-tion Pro-
  []
 
-[55]) [56]
+[62]) [63]
 \openout2 = `appendix.aux'.
 
  (./appendix.tex) 
@@ -939,21 +939,21 @@ enddocument/afterlastpage: lastpage setting LastPage.
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: E668DFDFBF963B497F36B76BB68922F0;3805.
+(rerunfilecheck)             Checksum: 2D8FC843C4044AFD6C40D32BD29C2EA4;3924.
  ) 
 Here is how much of TeX's memory you used:
- 25696 strings out of 476034
- 473700 string characters out of 5792864
+ 25728 strings out of 476034
+ 474225 string characters out of 5792864
  1907388 words of memory out of 6000000
- 45406 multiletter control sequences out of 15000+600000
+ 45426 multiletter control sequences out of 15000+600000
  532458 words of font info for 77 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
  84i,15n,89p,1473b,1009s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfti0800.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on thesis.pdf (66 pages, 822566 bytes).
+Output written on thesis.pdf (73 pages, 842630 bytes).
 PDF statistics:
- 1698 PDF objects out of 1728 (max. 8388607)
- 1190 compressed objects within 12 object streams
- 228 named destinations out of 1000 (max. 500000)
+ 1781 PDF objects out of 2073 (max. 8388607)
+ 1265 compressed objects within 13 object streams
+ 240 named destinations out of 1000 (max. 500000)
  234 words of extra memory for PDF output out of 10000 (max. 10000000)
 
