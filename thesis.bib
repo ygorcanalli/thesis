@@ -1265,6 +1265,78 @@ year = {2020}
   abstract = 	 {Risk assessment tools are widely used around the country to inform decision making within the criminal justice system. Recently, considerable attention has been devoted to the question of whether such tools may suffer from racial bias. In this type of assessment, a fundamental issue is that the training and evaluation of the model is based on a variable (arrest) that may represent a noisy version of an unobserved outcome of more central interest (offense). We propose a sensitivity analysis framework for assessing how assumptions on the noise across groups affect the predictive bias properties of the risk assessment model as a predictor of reoffense. Our experimental results on two real world criminal justice data sets demonstrate how even small biases in the observed labels may call into question the conclusions of an analysis based on the noisy outcome. }
 }
 
+@article{Kleinberg2017,
+abstract = {Recent discussion in the public sphere about algorithmic classification has involved tension between competing notions of what it means for a probabilistic classification to be fair to different groups. We formalize three fairness conditions that lie at the heart of these debates, and we prove that except in highly constrained special cases, there is no method that can satisfy these three conditions simultaneously. Moreover, even satisfying all three conditions approximately requires that the data lie in an approximate version of one of the constrained special cases identified by our theorem. These results suggest some of the ways in which key notions of fairness are incompatible with each other, and hence provide a framework for thinking about the trade-offs between them.},
+archivePrefix = {arXiv},
+arxivId = {1609.05807},
+author = {Kleinberg, Jon and Mullainathan, Sendhil and Raghavan, Manish},
+doi = {10.4230/LIPIcs.ITCS.2017.43},
+eprint = {1609.05807},
+file = {:home/canalli/.var/app/com.elsevier.MendeleyDesktop/data/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Kleinberg, Mullainathan, Raghavan - 2017 - Inherent trade-offs in the fair determination of risk scores.pdf:pdf},
+isbn = {9783959770293},
+issn = {18688969},
+journal = {Leibniz International Proceedings in Informatics, LIPIcs},
+keywords = {algorithmic fairness,calibration,risk tools},
+mendeley-groups = {PESC-Disciplines/DM,Fairness},
+pages = {1--23},
+title = {{Inherent trade-offs in the fair determination of risk scores}},
+volume = {67},
+year = {2017}
+}
+
+@article{Saravanakumar2017,
+abstract = {With the increasing pervasive use of machine learning in social and economic settings, there has been an interest in the notion of machine bias in the AI community. Models trained on historic data reflect biases that exist in society and propagated them to the future through their decisions. There are three prominent metrics of machine fairness used in the community, and it has been shown statistically that it is impossible to satisfy them all at the same time. This has led to an ambiguity with regards to the definition of fairness. In this report, a causal perspective to the impossibility theorem of fairness is presented along with a causal goal for machine fairness.},
+archivePrefix = {arXiv},
+arxivId = {2007.06024},
+author = {Saravanakumar, Kailash Karthik},
+eprint = {2007.06024},
+file = {:home/canalli/Downloads/2007.06024.pdf:pdf},
+mendeley-groups = {Fairness/impossibility theorem},
+title = {{The Impossibility Theorem of Machine Fairness -- A Causal Perspective}},
+url = {http://arxiv.org/abs/2007.06024},
+year = {2020}
+}
+
+@article{Bell2023,
+abstract = {The "impossibility theorem"- which is considered foundational in algorithmic fairness literature - asserts that there must be trade-offs between common notions of fairness and performance when fitting statistical models, except in two special cases: when the prevalence of the outcome being predicted is equal across groups, or when a perfectly accurate predictor is used. However, theory does not always translate to practice. In this work, we challenge the implications of the impossibility theorem in practical settings. First, we show analytically that, by slightly relaxing the impossibility theorem (to accommodate a practitioner's perspective of fairness), it becomes possible to identify abundant sets of models that satisfy seemingly incompatible fairness constraints. Second, we demonstrate the existence of these models through extensive experiments on five real-world datasets. We conclude by offering tools and guidance for practitioners to understand when - and to what degree - fairness along multiple criteria can be achieved. This work has an important implication for the community: achieving fairness along multiple metrics for multiple groups (and their intersections) is much more possible than was previously believed.},
+archivePrefix = {arXiv},
+arxivId = {2302.06347},
+author = {Bell, Andrew and Bynum, Lucius and Drushchak, Nazarii and Zakharchenko, Tetiana and Rosenblatt, Lucas and Stoyanovich, Julia},
+doi = {10.1145/3593013.3594007},
+eprint = {2302.06347},
+file = {:home/canalli/Downloads/2302.06347.pdf:pdf},
+isbn = {9781450372527},
+journal = {ACM International Conference Proceeding Series},
+keywords = {fairness,machine learning,public policy,responsible AI},
+mendeley-groups = {Fairness/impossibility theorem},
+number = {1},
+pages = {400--422},
+publisher = {Association for Computing Machinery},
+title = {{The Possibility of Fairness: Revisiting the Impossibility Theorem in Practice}},
+volume = {1},
+year = {2023}
+}
+
+@article{Beigang2023,
+abstract = {In recent years, there has been a surge in research addressing the question which properties predictive algorithms ought to satisfy in order to be considered fair. Three of the most widely discussed criteria of fairness are the criteria called equalized odds, predictive parity, and counterfactual fairness. In this paper, I will present a new impossibility result involving these three criteria of algorithmic fairness. In particular, I will argue that there are realistic circumstances under which any predictive algorithm that satisfies counterfactual fairness will violate both other fairness criteria, that is, equalized odds and predictive parity. As will be shown, this impossibility result forces us to give up one of four intuitively plausible assumptions about algorithmic fairness. I will explain and motivate each of the four assumptions and discuss which of them can plausibly be given up in order to circumvent the impossibility.},
+author = {Beigang, Fabian},
+doi = {10.1007/s11023-023-09645-x},
+file = {:home/canalli/Downloads/s11023-023-09645-x.pdf:pdf},
+isbn = {1102302309},
+issn = {15728641},
+journal = {Minds and Machines},
+keywords = {AI ethics,Algorithmic fairness,Causal modeling,Impossibility theorem,Machine learning},
+mendeley-groups = {Fairness/impossibility theorem},
+number = {4},
+pages = {715--735},
+publisher = {Springer Netherlands},
+title = {{Yet Another Impossibility Theorem in Algorithmic Fairness}},
+url = {https://doi.org/10.1007/s11023-023-09645-x},
+volume = {33},
+year = {2023}
+}
+
+
 @inproceedings{Ghazimatin2022,
 author = {Ghazimatin, Azin and Kleindessner, Matthaus and Russell, Chris and Abedjan, Ziawasch and Golebiowski, Jacek},
 title = {Measuring Fairness of Rankings under Noisy Sensitive Information},

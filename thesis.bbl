@@ -1,4 +1,4 @@
-\begin{thebibliography}{86}
+\begin{thebibliography}{90}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -162,6 +162,29 @@
 \MakeUppercase{Kasirzadeh, A., Smart, A.}
 \newblock \coppeenquote{{The use and misuse of counterfactuals in ethical machine learning}}, \emph{FAccT 2021 - Proceedings of the 2021 ACM Conference on Fairness, Accountability, and Transparency}, pp. 228--236, 2021.
 \newblock \doi{10.1145/3442188.3445886}.
+
+\bibitem[\MakeUppercase{Kleinberg}\emph{ et~al.}(2017)Kleinberg, Mullainathan, e Raghavan]{Kleinberg2017}
+\MakeUppercase{Kleinberg, J., Mullainathan, S., Raghavan, M.}
+\newblock \coppeenquote{{Inherent trade-offs in the fair determination of risk scores}}, \emph{Leibniz International Proceedings in Informatics, LIPIcs}, v.~67, \penalty0 pp.~1--23, 2017.
+\newblock ISSN: 18688969.
+\newblock \doi{10.4230/LIPIcs.ITCS.2017.43}.
+
+\bibitem[\MakeUppercase{Saravanakumar}(2020)Saravanakumar]{Saravanakumar2017}
+\MakeUppercase{Saravanakumar, K.~K.}
+\newblock \coppeenquote{{The Impossibility Theorem of Machine Fairness -- A Causal Perspective}}, 2020.
+\newblock Dispon{\' i}vel em: \textless\url{http://arxiv.org/abs/2007.06024}\textgreater .
+
+\bibitem[\MakeUppercase{Bell}\emph{ et~al.}(2023)Bell, Bynum, Drushchak, Zakharchenko, Rosenblatt, e Stoyanovich]{Bell2023}
+\MakeUppercase{Bell, A., Bynum, L., Drushchak, N., \MakeLowercase{et~al.}}
+\newblock \coppeenquote{{The Possibility of Fairness: Revisiting the Impossibility Theorem in Practice}}, \emph{ACM International Conference Proceeding Series}, v.~1, n.~1, \penalty0 pp.~400--422, 2023.
+\newblock \doi{10.1145/3593013.3594007}.
+
+\bibitem[\MakeUppercase{Beigang}(2023)Beigang]{Beigang2023}
+\MakeUppercase{Beigang, F.}
+\newblock \coppeenquote{{Yet Another Impossibility Theorem in Algorithmic Fairness}}, \emph{Minds and Machines}, v.~33, n.~4, \penalty0 pp.~715--735, 2023.
+\newblock ISSN: 15728641.
+\newblock \doi{10.1007/s11023-023-09645-x}.
+\newblock Dispon{\' i}vel em: \textless\url{https://doi.org/10.1007/s11023-023-09645-x}\textgreater .
 
 \bibitem[\MakeUppercase{Calders} e \MakeUppercase{Verwer}(2010)Calders e Verwer]{Calders2010}
 \MakeUppercase{Calders, T., Verwer, S.}
