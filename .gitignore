@@ -32,6 +32,9 @@
 *-blx.bib
 *.run.xml
 
+## ABX file
+*.abx
+
 ## Build tool auxiliary files:
 *.fdb_latexmk
 *.synctex
