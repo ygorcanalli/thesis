@@ -311,6 +311,29 @@ In this work, we incorporate information about disparities among social groups i
 
 Other relevant in-processing strategies for fair classification include Naive Bayes approaches for discrimination-free classification~\citep{Calders2010}, Fairness Through Awareness Framework~\citep{Dwork2011}, Fairness-Aware Classifier with Prejudice Remover Regularizer~\cite{Kamishima2012}, $\alpha$-discriminatory empirical risk minimizer~\citep{Woodworth2017}, Disparate Impact and Disparate Mistreatment frameworks for margin-based classifiers~\citep{Zafar2017a,Zafar2017b}, Weak Agnostic Learning to Auditing Subgroup Fairness~\citep{pmlr-v80-kearns18a,Kearns2018}, One-Network Adversarial Fairness~\citep{Adel2019}, FairGan$^{+}$ ~\citep{Xu2019}, Monte Carlo policy gradient method~\citep{Petrovic2021}, Fairness-accuracy Pareto~\citep{Wei2022}, and Pareto front stochastic multi-gradient~\citep{Liu2022} based in original stochastic multi-gradient~\citep{Mercier2018} to Multi-Objective Optimization and the hybrid Adaptive Priority Reweighing approach~\cite{HuXT23}.
 
+In \cite{Kamishima2012} three primary causes of unfairness in machine learning are identified:
+
+\begin{description}
+    \item[Prejudice] refers to a statistical dependence between sensitive features (e.g., race, gender) and other variables in the model. It can be direct, indirect, or latent.
+    \begin{description}
+        \item[Direct Prejudice] occurs when a sensitive feature is used directly in the prediction model, making the outcomes dependent on it.
+        \item[Indirect Prejudice] involves statistical dependence between a sensitive variable and a target variable.
+        \item[Latent Prejudice]  arises when non-sensitive features correlate with sensitive ones, leading to biased outcomes, which is frequently refered as redlining effect.
+    \end{description}
+    \item[Underestimation] happens when a model has not fully converged due to insufficient training data, resulting in more unfair determinations than those present in the training sample.
+    \item[Negative Legacy] results from biased sampling or labeling in the training data, such as underrepresentation of certain groups.
+\end{description}
+
+The Prejudice Remover Regularizer (PR) is implemented as a regularizer in logistic regression models. It introduces an additional term in the loss function to penalize the model for making decisions based on sensitive features. The objective function to be minimized is available on Equation~\ref{eq:prejudice_remover}, where $\Theta$ is the model parameters, $L(D;\Theta)$ the log-likelihood, $R(D, \Theta)$ the prejudice remover regularizer,$\eta$ a regularization parameter controlling the trade-off between fairness and accuracy, and $\lambda$ a parameter for the L2 regularizer.
+
+\begin{equation} \label{eq:prejudice_remover}
+    -L(D;\Theta) + \eta R(D, \Theta) + \frac{\lambda}{2} \|\Theta\|^2
+\end{equation}
+
+
+The regularizer \( R(D, \Theta) \) aims to minimize the mutual information between the predicted outcomes and the sensitive features, thereby reducing the model's reliance on sensitive information. The mutual information is approximated using sample means to make the computation feasible for large datasets.The authors compared the proposed method with Calders-Verwer 2-naïve-Bayes method~\citep{Calders2010}, showing that the PR effectively reduced bias, though sometimes at the cost of decreased accuracy. 
+
+
 Recently, special attention has been given in fair machine learning research topics like addressing multiple sensitive attributes or multiple classes \cite{DAloisio2023,Liu_Wang_Wang_Wang_Su_Gao_2023}, loss balancing techniques~\cite{KIM2023231,KhaliliZA23}, where the objective is to balance the loss across different groups instead of predictive metrics, adversarial approaches~\cite{Liang2023,ZhangZLZY23,GrariLD23,MousaviMD23,Zeming2023,Yuchen2023} and the privacy concerns involving fairness under federated learning settings~\cite{ChenZZZY24,VucinichZ23}. Another relevant research topic in fair machine learning is learning under censored data~\cite{WZhang2022,WZhang2023_a,WZhang2023_b,WZhang2023_c}, which we will discuss in section~\ref{sec:fairness_noise}.
 
 
@@ -451,7 +474,7 @@ Furthermore, many recent works deals with fairness under semi-supervised setting
 
 Bias and noise are two related phenomena, both corrupt data affecting models trained with this data. For example, if noise disproportionately affects different groups this potentially produces unfairness in models that uses this data in training~\citep{Wang2021}. For example, we could have positive true class ($Y = 1$) flipped into negative labels ($\tilde{Y} =0$) more frequently in the protected group ($A = 1$) than in privileged group ($A = 0$). Simultaneously, the negative class ($Y = 0$) could be more frequently flipped into positives observed labels ($\tilde{Y} = 1$) within privileged/unprotected group ($A = 0$). This scenario could lead to a undetected higher false negative rate to protected group and higher false positive rate to privileged group. In this case the Noisy Not at Random data would be a source of negative social bias.
 
-As refered before \cite{Mehrabi2019} a non-exhaustive list of bias types was presented. In the scenario described above, the incorrect measurement of the true class resulted in a different observed label ($Y \neq \tilde{Y}$), which could be classified as a \textit{Measurement Bias}. Similarly, a Noisy Not at Random data could lead to a \textit{Population Bias}, where the characteristics of the population represented in the data differ from those of the original target population.
+As refered before, in \cite{Mehrabi2019} a non-exhaustive list of bias types was presented. In the scenario described above, the incorrect measurement of the true class resulted in a different observed label ($Y \neq \tilde{Y}$), which could be classified as a \textit{Measurement Bias}. Similarly, a Noisy Not at Random data could lead to a \textit{Population Bias}, where the characteristics of the population represented in the data differ from those of the original target population.
 
 It can be challenging to distinguish between label noise and bias in certain scenarios, specially when noise disproportionately affects different social groups. Although there is some overlapping, they are distinct phenomena. Label noise is a stochastic process that is considered independent and unintentional~\citep{Frenay2014}, whereas bias is rooted in historical and social issues and could be intentional. Furthermore, even noise-free data, correctly represented by observed features and labels, may be unfair since the social phenomena that produce this data could be biased against some groups. 
 
