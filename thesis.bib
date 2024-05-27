@@ -857,6 +857,38 @@ series = {FAT* '19}
   abstract = 	 {The most prevalent notions of fairness in machine learning fix a small collection of pre-defined groups (such as race or gender), and then ask for approximate parity of some statistic of the classifier (such as false positive rate) across these groups. Constraints of this form are susceptible to fairness gerrymandering, in which a classifier is fair on each individual group, but badly violates the fairness constraint on structured subgroups, such as certain combinations of protected attribute values. We thus consider fairness across exponentially or infinitely many subgroups, defined by a structured class of functions over the protected attributes. We first prove that the problem of auditing subgroup fairness for both equality of false positive rates and statistical parity is computationally equivalent to the problem of weak agnostic learning — which means it is hard in the worst case, even for simple structured subclasses. However, it also suggests that common heuristics for learning can be applied to successfully solve the auditing problem in practice. We then derive an algorithm that provably converges in a polynomial number of steps to the best subgroup-fair distribution over classifiers, given access to an oracle which can solve the agnostic learning problem. The algorithm is based on a formulation of subgroup fairness as a zero-sum game between a Learner (the primal player) and an Auditor (the dual player). We implement a variant of this algorithm using heuristic oracles, and show that we can effectively both audit and learn fair classifiers on a real dataset.}
 }
 
+@INPROCEEDINGS{Kamiran2012b,
+  author={Kamiran, Faisal and Karim, Asim and Zhang, Xiangliang},
+  booktitle={2012 IEEE 12th International Conference on Data Mining}, 
+  title={Decision Theory for Discrimination-Aware Classification}, 
+  year={2012},
+  volume={},
+  number={},
+  pages={924-929},
+  keywords={Accuracy;Probabilistic logic;Standards;Communities;Data mining;Decision trees;Logistics;social discrimination;classification;decision theory;ensembles},
+  doi={10.1109/ICDM.2012.45}}
+
+
+
+@InProceedings{Zemel2013,
+  title = 	 {Learning Fair Representations},
+  author = 	 {Zemel, Rich and Wu, Yu and Swersky, Kevin and Pitassi, Toni and Dwork, Cynthia},
+  booktitle = 	 {Proceedings of the 30th International Conference on Machine Learning},
+  pages = 	 {325--333},
+  year = 	 {2013},
+  editor = 	 {Dasgupta, Sanjoy and McAllester, David},
+  volume = 	 {28},
+  number =       {3},
+  series = 	 {Proceedings of Machine Learning Research},
+  address = 	 {Atlanta, Georgia, USA},
+  month = 	 {17--19 Jun},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v28/zemel13.pdf},
+  url = 	 {https://proceedings.mlr.press/v28/zemel13.html},
+  abstract = 	 {We propose a learning algorithm for fair classification that achieves both group fairness (the proportion of members in a protected group receiving positive classification is identical to the proportion in the population as a  whole), and individual fairness (similar individuals should be treated similarly).  We formulate fairness as an optimization problem of finding a  good representation of the data with two competing goals: to encode the data as well as possible, while simultaneously obfuscating any information about membership in the protected group.  We show positive results of our algorithm relative to other known techniques, on three datasets.  Moreover, we demonstrate several advantages to our approach.  First, our intermediate representation can be used for other classification tasks (i.e., transfer  learning is possible); secondly, we take a step toward learning a distance metric which can find important dimensions of the data for classification.}
+}
+
+
 @inproceedings{Dwork2011,
 author = {Dwork, Cynthia and Hardt, Moritz and Pitassi, Toniann and Reingold, Omer and Zemel, Richard},
 title = {Fairness through Awareness},
@@ -1485,6 +1517,58 @@ location = {Long Beach, California, USA},
 series = {NIPS'17}
 }
 
+@article{Burkart2021,
+author = {Burkart, Nadia and Huber, Marco F.},
+title = {A Survey on the Explainability of Supervised Machine Learning},
+year = {2021},
+issue_date = {May 2021},
+publisher = {AI Access Foundation},
+address = {El Segundo, CA, USA},
+volume = {70},
+issn = {1076-9757},
+url = {https://doi.org/10.1613/jair.1.12228},
+doi = {10.1613/jair.1.12228},
+abstract = {Predictions obtained by, e.g., artificial neural networks have a high accuracy but humans often perceive the models as black boxes. Insights about the decision making are mostly opaque for humans. Particularly understanding the decision making in highly sensitive areas such as healthcare or finance, is of paramount importance. The decision-making behind the black boxes requires it to be more transparent, accountable, and understandable for humans. This survey paper provides essential definitions, an overview of the different principles and methodologies of explainable Supervised Machine Learning (SML). We conduct a state-of-the-art survey that reviews past and recent explainable SML approaches and classifies them according to the introduced definitions. Finally, we illustrate principles by means of an explanatory case study and discuss important future directions.},
+journal = {J. Artif. Int. Res.},
+month = {may},
+pages = {245–317},
+numpages = {73}
+}
+
+@inproceedings{Hutchinson2021,
+author = {Hutchinson, Ben and Smart, Andrew and Hanna, Alex and Denton, Emily and Greer, Christina and Kjartansson, Oddur and Barnes, Parker and Mitchell, Margaret},
+title = {Towards Accountability for Machine Learning Datasets: Practices from Software Engineering and Infrastructure},
+year = {2021},
+isbn = {9781450383097},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3442188.3445918},
+doi = {10.1145/3442188.3445918},
+abstract = {Datasets that power machine learning are often used, shared, and reused with little visibility into the processes of deliberation that led to their creation. As artificial intelligence systems are increasingly used in high-stakes tasks, system development and deployment practices must be adapted to address the very real consequences of how model development data is constructed and used in practice. This includes greater transparency about data, and accountability for decisions made when developing it. In this paper, we introduce a rigorous framework for dataset development transparency that supports decision-making and accountability. The framework uses the cyclical, infrastructural and engineering nature of dataset development to draw on best practices from the software development lifecycle. Each stage of the data development lifecycle yields documents that facilitate improved communication and decision-making, as well as drawing attention to the value and necessity of careful data work. The proposed framework makes visible the often overlooked work and decisions that go into dataset creation, a critical step in closing the accountability gap in artificial intelligence and a critical/necessary resource aligned with recent work on auditing processes.},
+booktitle = {Proceedings of the 2021 ACM Conference on Fairness, Accountability, and Transparency},
+pages = {560–575},
+numpages = {16},
+keywords = {requirements engineering, machine learning, datasets},
+location = {Virtual Event, Canada},
+series = {FAccT '21}
+}
+
+
+@misc{Memarian2023,
+   abstract = {Background: The use of Artificial Intelligence or AI is rising in higher education. With this rise, the morality of AI programs is being questioned. There is, as such, a need to understand how notions of Fairness, Accountability, Transparency, and Ethics or FATE are identified in the AI and higher education studies to date. Purpose: This systematic review paper aims to understand definitions and studies on FATE and AI in the higher education literature. The contribution of this work is to provide a summary of FATE development and the synthesis of the challenges and potentials of each of the reviewed studies. Method: A total of 33 publications from SCOPUS and Web of Science (WoS) were included in this systematic literature review. We examined definitions of FATE noted in the reviewed articles (may have been multiple in each study) and grouped them into descriptive (understandable by laypeople) and technical (containing jargon) definitions. We also examined the main FATE term studied in detail in each reviewed article and grouped them into qualitative and quantitative studies. Results: Findings show more descriptive definitions exist (especially for fairness) and similarly quantitative definitions mostly emerge for Fairness. Findings also show more quantitative studies exist (especially for fairness) and qualitative definitions mostly emerge for ethics. Generally, though, there are more definitions than relevant studies conducted in the literature. Conclusion: This systematic literature review offers a summary of definitions and studies conducted for FATE terms and AI in the higher education literature. Future work may benefit from bridging the gap between laypeople and experts by linking descriptive definitions with technical ones as well as qualitative studies with quantitative ones. Moreover, future work can study accountability and transparency further and make the study of FATE terms more longitudinal, open-access, and reproducible.},
+   author = {Bahar Memarian and Tenzin Doleck},
+   doi = {10.1016/j.caeai.2023.100152},
+   issn = {2666920X},
+   journal = {Computers and Education: Artificial Intelligence},
+   keywords = {Accountability,Artificial intelligence,Ethics,Fairness,Higher education,Transparency},
+   month = {1},
+   publisher = {Elsevier B.V.},
+   title = {Fairness, Accountability, Transparency, and Ethics (FATE) in Artificial Intelligence (AI) and higher education: A systematic review},
+   volume = {5},
+   year = {2023},
+}
+
+
 @inproceedings{Hardt2016,
 author = {Hardt, Moritz and Price, Eric and Srebro, Nathan},
 title = {Equality of Opportunity in Supervised Learning},
@@ -1556,6 +1640,23 @@ year = {2018}
    title = {Classifying without discriminating},
    year = {2009},
 }
+
+@article{Kamiran2012,
+   abstract = {Recently, the following Discrimination-Aware Classification Problem was introduced: Suppose we are given training data that exhibit unlawful discrimination; e. g., toward sensitive attributes such as gender or ethnicity. The task is to learn a classifier that optimizes accuracy, but does not have this discrimination in its predictions on test data. This problem is relevant in many settings, such as when the data are generated by a biased decision process or when the sensitive attribute serves as a proxy for unobserved features. In this paper, we concentrate on the case with only one binary sensitive attribute and a two-class classification problem. We first study the theoretically optimal trade-off between accuracy and non-discrimination for pure classifiers. Then, we look at algorithmic solutions that preprocess the data to remove discrimination before a classifier is learned. We survey and extend our existing data preprocessing techniques, being suppression of the sensitive attribute, massaging the dataset by changing class labels, and reweighing or resampling the data to remove discrimination without relabeling instances. These preprocessing techniques have been implemented in a modified version of Weka and we present the results of experiments on real-life data. © 2011 The Author(s).},
+   author = {Faisal Kamiran and Toon Calders},
+   doi = {10.1007/s10115-011-0463-8},
+   issn = {02193116},
+   issue = {1},
+   journal = {Knowledge and Information Systems},
+   keywords = {Classification,Discrimination-aware data mining,Preprocessing},
+   pages = {1-33},
+   publisher = {Springer London},
+   title = {Data preprocessing techniques for classification without discrimination},
+   volume = {33},
+   year = {2012},
+}
+
+
 @article{Mercier2018,
    abstract = {In this article, we propose a new method for multiobjective optimization problems in which the objective functions are expressed as expectations of random functions. The present method is based on an extension of the classical stochastic gradient algorithm and a deterministic multiobjective algorithm, the Multiple Gradient Descent Algorithm (MGDA). In MGDA a descent direction common to all specified objective functions is identified through a result of convex geometry. The use of this common descent vector and the Pareto stationarity definition into the stochastic gradient algorithm makes the algorithm able to solve multiobjective problems. The mean square and almost sure convergence of this new algorithm are proven considering the classical stochastic gradient algorithm hypothesis. The algorithm efficiency is illustrated on a set of benchmarks with diverse complexity and assessed in comparison with two classical algorithms (NSGA-II, DMS) coupled with a Monte Carlo expectation estimator.},
    author = {Quentin Mercier and Fabrice Poirion and Jean Antoine Désidéri},
