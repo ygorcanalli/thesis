@@ -1,7 +1,5 @@
 
-\chapter{Bibliographic revision}
-
-\section{Fair Machine Learning}
+\chapter{Fair Machine Learning Review}
 
 The field of Machine Learning (ML) has experienced significant growth and is increasingly applied in various societal domains such as healthcare, finance, and criminal justice. This growth raises important ethical and operational concerns, particularly regarding the principles of Fairness, Accountability, and Transparency (FAT) \citep{Memarian2023}. As ML algorithms increasingly influence a wide array of societal domains, including criminal justice, healthcare, finance, and employment, the imperative to ensure these systems are designed and implemented responsibly has become paramount. This section aims to delineate the significance, scope, and prevailing challenges associated with integrating FAT principles into ML, providing a foundation for the subsequent discussion.
 
@@ -20,15 +18,15 @@ In this context of Trustworty AI the European Union's High-Level Expert Group on
     \item[Technical Robustness and safety] AI systems need to be resilient and secure. They need to be safe, ensuring a fall back plan in case something goes wrong, as well as being accurate, reliable and reproducible. That is the only way to ensure that also unintentional harm can be minimized and prevented.
     \item[Privacy and data governance] besides ensuring full respect for privacy and data protection, adequate data governance mechanisms must also be ensured, taking into account the quality and integrity of the data, and ensuring legitimised access to data.
     \item[Transparency] the data, system and AI business models should be transparent. Traceability mechanisms can help achieving this. Moreover, AI systems and their decisions should be explained in a manner adapted to the stakeholder concerned. Humans need to be aware that they are interacting with an AI system, and must be informed of the system’s capabilities and limitations.
-    \item[Diversity, non-discrimination and fairness] Unfair bias must be avoided, as it could could have multiple negative implications, from the marginalization of vulnerable groups, to the exacerbation of prejudice and discrimination. Fostering diversity, AI systems should be accessible to all, regardless of any disability, and involve relevant stakeholders throughout their entire life circle.
+    \item[Diversity, non-discrimination and fairness] Unfair bias must be avoided, as it could have multiple negative implications, from the marginalization of vulnerable groups, to the exacerbation of prejudice and discrimination. Fostering diversity, AI systems should be accessible to all, regardless of any disability, and involve relevant stakeholders throughout their entire life circle.
     \item[Societal and environmental well-being] AI systems should benefit all human beings, including future generations. It must hence be ensured that they are sustainable and environmentally friendly. Moreover, they should take into account the environment, including other living beings, and their social and societal impact should be carefully considered. 
     \item[Accountability] Mechanisms should be put in place to ensure responsibility and accountability for AI systems and their outcomes. Auditability, which enables the assessment of algorithms, data and design processes plays a key role therein, especially in critical applications. Moreover, adequate an accessible redress should be ensured.
 \end{description}
 
 
-Although there are many aspects to consider to an ethical automated decision system with social impacts, the present text will concentrate predominantly on the aspect of fairness Fairness is not only crucial for the development of just and equitable technological solutions but also imperative for maintaining the legitimacy and acceptability of AI systems in diverse societal contexts. In delving into the multifaceted dimensions of fairness, this text aims to unpack the theoretical underpinnings, practical challenges, and potential pathways to achieving fairer AI systems, thereby contributing to the broader discourse on ethical AI.
+Although there are many aspects to consider to an ethical automated decision system with social impacts, the present text will concentrate predominantly on the aspect of fairness and negative social bias. Fairness is not only crucial for the development of just and equitable technological solutions but also imperative for maintaining the legitimacy and acceptability of AI systems in diverse societal contexts. In delving into the multifaceted dimensions of fairness, this text aims to unpack the theoretical underpinnings, practical challenges, and potential pathways to achieving fairer AI systems, thereby contributing to the broader discourse on ethical AI.
 
-\subsection{Sources and types of algorithmic unfairness}
+\section{Sources and types of algorithmic unfairness}
 
 
 The comprehensive survey conducted by \citet{Mehrabi2019} elucidates the multitude of biases that can pervade artificial intelligence applications, potentially leading to unfair outcomes. This analysis categorizes the various sources of bias, illustrating the multifaceted ways in which such biases can infiltrate different stages of machine learning processes, ranging from the initial data collection phase to the final algorithmic processing. The following exposition provides a short delineation of these sources of bias. To a rich discussion on this topic - including references, examples and real cases where each source of bias can emerge - we recommend the reading of the original work. The discussion here is with the purpose of proper describing the complexity and multifaceted nature of unfairness in machine learning models.
@@ -107,7 +105,7 @@ Having outlined the various sources of unfairness in machine learning, \citet{Me
 \end{description}
 
 
-\subsection{Fairness definitions and metrics}
+\section{Fairness definitions and metrics}
 
 This section aims to present some widely used definitions and metrics of fairness, as described by \cite{Verma2018} and summarized by \cite{Mehrabi2019} and \cite{caton2023}, providing a comprehensive overview for understanding and navigating the multifaceted dimensions of fairness in ML systems. Initially, the discourse will delve into general considerations and intuitive aspects of fairness, setting the stage for a deeper understanding. This preliminary discussion is crucial as it lays the groundwork for grasping the nuanced nature of fairness notions within the context of ML. Following this, we will transition into formal definitions, where we will dissect and explain those metrics and concepts.
 
@@ -296,7 +294,7 @@ According to the theorem, if a predictive model is designed to achieve counterfa
 
 This theorem thus underscores the practical dilemmas in fair machine learning models. Achieving comprehensive fairness in ML systems often requires navigating complex trade-offs, necessitating a thoughtful prioritization of fairness criteria tailored to the specific context and ethical considerations of each use case. The Impossibility Theorem serves as a critical reminder of the limitations and careful considerations required in the pursuit of fair decision making systems, highlighting the importance of making informed, contextually sensitive decisions when implementing fairness metrics.
 
-\subsection{Fair classification}
+\section{Fair classification}
 
 In this section, we review pertinent literature on fair machine learning, placing a particular emphasis on in-processing techniques. Fairness intervention methods can be classified into three categories based on the stage at which they occur, as proposed by \cite{Mehrabi2019} and \cite{AlerTubella2022}:
 
@@ -341,7 +339,7 @@ The method is evaluated on benchmark datasets, outperforming many state-of-art p
 Recently, special attention has been given in fair machine learning research topics like addressing multiple sensitive attributes or multiple classes \cite{DAloisio2023,Liu_Wang_Wang_Wang_Su_Gao_2023}, loss balancing techniques~\cite{KIM2023231,KhaliliZA23}, where the objective is to balance the loss across different groups instead of predictive metrics, adversarial approaches~\cite{Liang2023,ZhangZLZY23,GrariLD23,MousaviMD23,Zeming2023,Yuchen2023} and the privacy concerns involving fairness under federated learning settings~\cite{ChenZZZY24,VucinichZ23}. Another relevant research topic in fair machine learning is learning under censored data~\cite{WZhang2022,WZhang2023_a,WZhang2023_b,WZhang2023_c}, which we will discuss in section~\ref{sec:fairness_noise}.
 
 
-\subsection{Fairness and multi-objective optimization}
+\section{Fairness and multi-objective optimization}
 
 Here we discuss multi-objective optimization within the context of fair machine learning. A model that substantially decreases model performance to reduce unfairness may not be a viable option, as low performance could harm all groups affected by the model's decisions, including protected groups. Similarly, a model projected to be a fair alternative that keeps performance almost intact, but with little or even no gain in fairness, is not practically relevant. It is possible that fine-tuning this trade-off could result in a fairer solution that achieves better performance than traditional methods, but this is not the case for most practical problems. Achieving this balance is one of the most challenging tasks in fair machine learning.
 
@@ -370,116 +368,3 @@ A general objective function to be used with some popular off-the-shelf hyperpar
 
 A Multi-objective SVMOptimizer with Dataset Constraints is proposed by \cite{Goh2016}, where the objective is to minimize multiple objectives on real-world datasets, such as misclassification error and positive prediction at specific rate to some population. A custom reinforcement learning algorithm directly modeling performance and fairness as objectives is proposed by \cite{Petrovic2021}. Authors proposes using as reward function the difference between model performance (Area Under the ROC Curve) and three different fairness metrics (Statistical Parity, Equal Opportunity and Equalized Odds), each one with its respective importance coefficient. In experimental setups only one of those coefficient are different from zero. Thus, the optimized metric could be written as $G(\lambda) = \rho(\lambda) - \alpha \cdot \varphi(\lambda)$, where $\alpha$ is the relative importance of fairness.
 
-
-\section{Classification in the presence of label noise}
-
-The presence of noise in data can substantially decrease model performance in classification problems. Noise can be defined as non systematic errors that obscures the relationship between features of an instance and its class~\citep{Frenay2014,Hickey1996,Quinlan1986}. Two types of noise are found in literature, in features (or attributes) and in labels (or classes). Feature noise affects observed values, e.g. by adding a small Gaussian noise on each feature during measurement. Likewise, label noise change the observed label assigned to an instance, e.g. by randomly inverting labels in a binary classification problem. Although feature noise could affect model performance, label noise is potentially more harmful, since we frequently have many features and only one label. Note that in label noise only the observed label of an instance is affected, its true class remains the same.
-
-The label noise taxonomy considers three types of noise: Noisy Completely at Random, Noisy at Random, and Noisy Not at Random~\citep{Frenay2014}. Figure~\ref{fig:taxonomia} presents the statistical dependency between features $X$, class $Y$, observed label $\tilde{Y}$ and the occurrence of error E, i.e. $E=1$ when $Y \neq \tilde{Y}$. The simplest type is Noisy Completely at Random, where the occurrence of error $E$ not depend on $X$ and $Y$, e.g. randomly flipping labels on a binary classification problem. In Noisy at Random, the occurrence of error $E$ depends only on $Y$, e.g. randomly flipping labels on binary classification with different rates for positives and negatives classes. Noisy Not at Random considers the occurrence of error $E$ depending on both $Y$ and $X$, e.g. flipping labels on binary classification with different rates for each group of instances of a certain feature.
-
-
- \begin{figure}[!htb]
- \centering
-\caption{Noise taxonomy from a statistical perspective. (a) completely random noise (NCAR), (b) random noise (NAR) and (c) non-random noise (NNAR). The arrows correspond to the statistical dependencies. For clarity, the dependency between $X$ and $Y$ was placed as a dashed arrow.}
- \label{fig:taxonomia}
- \scalebox{1.0}{%
-    \begin{tikzpicture}[main_node/.style={circle,draw,minimum size=2em,inner sep=3pt]}]
-
-     \node[main_node] (1) at (-1, 0) {$Y$};
-     \node[main_node] (2) at (-1, -1.5)  {$X$};
-     \node[main_node] (3) at (1, -1.5) {$\tilde{Y}$};
-     \node[main_node] (4) at (1, 0) {$E$};
-     \path[->,draw,thick]
-     (1) edge node {} (3)
-     (4) edge node {} (3)
-     ;
-    
-     \path[->,dashed,thick]
-     (2) edge node {} (1)
-     ;
-    
-     \node[below=2cm] at (current bounding box.base) {(a)};
-    
-     \begin{scope}[xshift=3cm,grow=right,baseline]
-     
-     \node[main_node] (1) at (-1, 0) {$Y$};
-     \node[main_node] (2) at (-1, -1.5)  {$X$};
-     \node[main_node] (3) at (1, -1.5) {$\tilde{Y}$};
-     \node[main_node] (4) at (1, 0) {$E$};
-
-     \path[->,draw,thick]
-     (1) edge node {} (3)
-     (4) edge node {} (3)
-     (1) edge node {} (4)
-     ;
-    
-     \path[->,dashed,thick]
-     (2) edge node {} (1)
-     ;
-    
-     \node[below=2cm,xshift=1.5cm] at (current bounding box.base) {(b)};
-    
-     \end{scope}
-    
-     \begin{scope}[xshift=6cm,grow=right,baseline]
-     \node[main_node] (1) at (-1, 0) {$Y$};
-     \node[main_node] (2) at (-1, -1.5)  {$X$};
-     \node[main_node] (3) at (1, -1.5) {$\tilde{Y}$};
-     \node[main_node] (4) at (1, 0) {$E$};
-
-     \path[->, draw,thick]
-     (1) edge node {} (3)
-     (4) edge node {} (3)
-     (1) edge node {} (4)
-     (2) edge node {} (3)
-     (2) edge node {} (4)
-     ;
-    
-     \path[->,dashed,thick]
-     (2) edge node {} (1)
-     ;
-    
-     \node[below=2cm,xshift=3cm] at (current bounding box.base) {(c)};
-    
-     \end{scope}
- \end{tikzpicture}
- }
- \end{figure}
-
-\subsection{Loss factorization and correction}
-    
-Many label noise robustness methods can be found on literature, in this work we highlight the \textit{backward} and \textit{forward} loss corrections, proposed by \cite{Patrini2017} using concepts of loss factorization~\citep{Patrini2016}. Those loss correction techniques considers a NAR label noise, which is described by a transition matrix $T$ such as 
-\begin{equation}
-    T_{i,j} = P(\tilde{Y} = y_j|Y = y_i),
-\end{equation}
-where $\mathcal{Y} = \{y_1, y_2, \ldots, y_c\}$ is the set of all possible class labels. Transition matrix includes corruption probabilities for every possible label combination, each value represents the probability of one label be corrupted onto another. This matrix is row-stochastic and not necessarily symmetric across the classes.
-\begin{equation} \label{eq:backward}
-    \ell^{\leftarrow}(P(\tilde{Y}|X)) = T^{-1} \ell(P(\tilde{Y}|X))
-\end{equation}
-
-The backward loss correction is defined by Equation~\ref{eq:backward} to an arbitrary loss function $\ell$ and a transition matrix $T$. The backward loss correction involves a linear combination of the loss values for each observed label, using coefficients that depends on the probability that each observed label reflects the true class. Intuitively, we are reweighting the loss according to the noise probabilities of each label using the inverse of T and thus somehow going one step back, reverting the noise effects. This corrected loss is unbiased and can be minimized with any conventional back-propagation algorithm, making it flexible to include within different training techniques and data pipelines.
-\begin{equation} \label{eq:forward}
-    \ell^{\rightarrow}(P(\tilde{Y}|X)) = \ell(T^{\top} P(\tilde{Y}|X))
-\end{equation}
-
-However, backward correction requires matrix inversion, which may not exist or may lead to numerical instabilities if the transition matrix T is ill-conditioned. Although there is possible solutions to a bad condition number of T, one should consider using the forward correction, a backward variation proposed by \cite{Patrini2017} to avoid this issue, as defined in Equation~\ref{eq:forward}. While backward acts on the loss itself, forward corrects model predictions. Forward correction does not have the same theoretical guarantees as backward, but offers a label noise robustness, ensuring that the learned model is the minimize over the clean distribution without the need of matrix inversion.
-
-\subsection{Fairness in the presence of noise}\label{sec:fairness_noise}
-
-In this section we delve into classification methodologies that operate in the presence of label noise. While our research does not directly tackle fairness problems in the presence of label noise, we highlight relevant works that, akin to ours, bridge the domains of fairness and noise in machine learning research. 
-
-Some recent works deal with fairness problems in the presence of noise. For example, the sensitive attribute available could be noisy, which could distort the effects of fairness intervention. In this context, \cite{Lamy2019} uses noise-rate estimators from the label noise literature to change a fairness model. Also, \cite{Fogliato2020} proposes a framework for assessing how assumptions on the noise across groups affect the predictive bias properties in risk assessment models. Furthermore, \cite{Wang2020} considers the consequences of naively relying on noisy protected group labels while proposing two new optimization approaches with sensitive attribute noise robustness. A denoised version of the selection problem to deal with noisy sensitive attributes is proposed in \cite{Mehrotra2021}. Lastly, \cite{Celis2021} proposes an optimization framework for classification in the presence of noisy protected attributes.
-
-There is also the perspective of dealing with the proxy features divergence or covariance. A theoretical approach to this issue identifying potential sources of errors can be found in \cite{Prost2021}. The problem of measuring group fairness in ranking based on divergence with proxy features is investigated by \cite{Ghazimatin2022}. A framework of fair semi-supervised learning in the pre-processing phase can be found in \cite{Zhang2022}, which includes predicting labels for unlabeled data, a resampling method, and ensemble learning to improve accuracy and decrease discrimination.
-
-Another research direction is considering how fair models perform in the presence of NNAR label noise, where error rates of corruption depend both on the label class and the membership of a protected subgroup. In this scenario \cite{Wang2021} addresses the problem of fair classification and \cite{Wu2022} provides a general framework for rewriting the classification risk and the fairness metric in terms of noisy data and thereby building robust classifiers. In \cite{Ghosh2023} a study about the presence of noise in the protected attribute can be found.
-
-Furthermore, many recent works deals with fairness under semi-supervised settings considering censored data, that is, for some individuals the class label is not available due censorship~\cite{WZhang2022,WZhang2023_a,WZhang2023_b,WZhang2023_c}. In this scenario, the main approach is to use some technique to estimate the missing data instead of removing the instance from training data. This is closely related to the previous problems of fair learning under noisy data. In censored fairness problems noise can be interpreted as a kind of censorship, as the original data affected by noise is not available.
-
-Bias and noise are two related phenomena, both corrupt data affecting models trained with this data. For example, if noise disproportionately affects different groups this potentially produces unfairness in models that uses this data in training~\citep{Wang2021}. For example, we could have positive true class ($Y = 1$) flipped into negative labels ($\tilde{Y} =0$) more frequently in the protected group ($A = 1$) than in privileged group ($A = 0$). Simultaneously, the negative class ($Y = 0$) could be more frequently flipped into positives observed labels ($\tilde{Y} = 1$) within privileged/unprotected group ($A = 0$). This scenario could lead to a undetected higher false negative rate to protected group and higher false positive rate to privileged group. In this case the Noisy Not at Random data would be a source of negative social bias.
-
-As refered before, in \cite{Mehrabi2019} a non-exhaustive list of bias types was presented. In the scenario described above, the incorrect measurement of the true class resulted in a different observed label ($Y \neq \tilde{Y}$), which could be classified as a \textit{Measurement Bias}. Similarly, a Noisy Not at Random data could lead to a \textit{Population Bias}, where the characteristics of the population represented in the data differ from those of the original target population.
-
-It can be challenging to distinguish between label noise and bias in certain scenarios, specially when noise disproportionately affects different social groups. Although there is some overlapping, they are distinct phenomena. Label noise is a stochastic process that is considered independent and unintentional~\citep{Frenay2014}, whereas bias is rooted in historical and social issues and could be intentional. Furthermore, even noise-free data, correctly represented by observed features and labels, may be unfair since the social phenomena that produce this data could be biased against some groups. 
-
-Prior studies in the realm of fairness have largely concentrated on understanding how noisy or censored data affects fair learning and on mitigating these effects. Thus, the objective of this work is not to theoretically deal with fair machine learning as a label noise problem or incorporate noisy classes or attributes in fairness problems. In contrast, our approach is inspired by label noise techniques, but with a distinct goal: not merely to analyze or mitigate the impact of noise or censorship, but to directly address and reduce unfairness itself.
