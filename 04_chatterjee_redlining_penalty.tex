@@ -4,6 +4,26 @@
 
 \section{Proposal}
 
+Let
+
+\begin{itemize}
+    \item $X \in \mathbb{R}^{n\times d}$ represent a dataset with $n$ instances and $d$ features
+    \item $X_i \in \mathbb{R}^n, \; 1 \leq i \leq d$ be the $i$-th feature of the dataset
+    \item $A = X_i \in \mathbb{R}^n$ the sensitive feature (protected) for some $i$
+    \item $W^{(1)} \in \mathbb{R}^{d \times h}$ the weight matrix for the first hidden layer, with $h$ being the number of neurons in this layer.
+    \item $\lambda \in \mathbb{R}^{d}$ the vector of regularization strengths for each feature
+    \item $\alpha$  a scalar that controls the overall strength of the regularization
+\end{itemize}
+
+The regularization term $R(\mathbf{W}^{(1)})$ applied to the weight matrix $\mathbf{W}^{(1)}$ of the first hidden layer is defined as:
+$$R(\mathbf{W}^{(1)}) = \sum_{i=1}^d \lambda_i \sum_{j=1}^h (W^{(1)}_{ij})^2$$
+Here, $\lambda_i = |correlation(A,X_i)|$ is the regularization strength for the $i$-th input feature using an arbitrary correlation coefficient (eg. Pearson r, Spearman r, Kendall tau, Chatterjee xi) within sensitive feature A, and $W^{(1)}_{ij}$ is the weight connecting the $i$-th input feature to the $j$-th neuron in the first hidden layer.
+
+The total loss function $L$ for the MLP, incorporating sensitive-$L_2$ regularization, is:
+$$L = L_0 + \alpha \; R(\mathbf{W}^{(1)})$$
+where $L_0$ is the primary loss function of the network
+
+
 \section{Experimental setup}
 
 \section{Results and discussion}
