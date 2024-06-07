@@ -16,7 +16,7 @@ Spearman's rank correlation coefficient, denoted by $\rho_s$, measures the stren
 
 Chatterjee's correlation coefficient, denoted by $\xi$, is designed to measure the degree of dependence between two variables without assuming any specific type of relationship. Given a dataset $(X, Y)$ with $n$ pairs, the coefficient is defined as:
 \begin{equation}
-\xi_n(X,Y) := 1 - \frac{3 \sum_{i=1}^{n-1} |r_{i+1} - r_i|}{n^2 - 1}
+\xi_n(X,Y) = 1 - \frac{3 \sum_{i=1}^{n-1} |r_{i+1} - r_i|}{n^2 - 1}
 \end{equation}
 where $r_i$ is the rank of $Y_i$ in the ordered sequence of $Y$ values corresponding to the sorted $X$ values. This coefficient ranges from 0 to 1, where 0 indicates independence and 1 indicates a perfect functional relationship. For the general case with ties, a more complex formula involving additional terms to handle the ties is used.
 
@@ -32,15 +32,15 @@ where $d_l$ and $h_l$ are the dimensions of the weight matrix $\mathbf{W}^{(l)}$
 
 The total regularization term for the entire network, considering all layers, is:
 \begin{equation}
-R(\mathbf{W}) = \sum_{l=1}^{L} \frac{1}{2} \sum_{i=1}^{d_l} \sum_{j=1}^{h_l} \left( W^{(l)}_{ij} \right)^2,
+R(\mathbf{W}) = \frac{1}{2} \sum_{l=1}^{L} \sum_{i=1}^{d_l} \sum_{j=1}^{h_l} \left( W^{(l)}_{ij} \right)^2,
 \end{equation}
 where $L$ is the total number of layers in the network.
 
 The total loss function $L$ for the MLP, incorporating the L2 regularization term, is defined as:
 \begin{equation}
-L = L_0 + \alpha R(\mathbf{W}),
+L = L_0 + \lambda \; R(\mathbf{W}),
 \end{equation}
-where $\alpha$ is a scalar hyperparameter that controls the overall strength of the regularization.
+where $\lambda$ is a scalar hyperparameter that controls the overall strength of the regularization.
 
 By adding this regularization term, the optimization process not only aims to minimize the primary loss $L_0$ but also to keep the weights small, thereby helping to reduce the model complexity and prevent overfitting. The gradient descent updates for the weights will be adjusted to account for the regularization term, effectively shrinking the weights during the training process.
 
@@ -48,8 +48,6 @@ By adding this regularization term, the optimization process not only aims to mi
 \section{Proposal}
 
 The Chatterjee Redlining Penalty is defined as a regularization term that penalizes the weights associated with features that are highly correlated with the sensitive attribute. This penalty term is incorporated into the loss function of the neural network in order to produce fairer predictions. Consider a dataset \(X \in \mathbb{R}^{n \times d}\) where \(n\) represents the number of instances and \(d\) represents the number of features. Let \(X_i \in \mathbb{R}^n\) denote the \(i\)-th feature of the dataset, and let \(A = X_i \in \mathbb{R}^n\) be a sensitive (protected) feature for some \(i\). In this neural network, \(\mathbf{W}^{(1)} \in \mathbb{R}^{d \times h}\) is the weight matrix for the first hidden layer, with \(h\) being the number of neurons in this layer. Additionally, \(\lambda \in \mathbb{R}^d\) is a vector representing the regularization strengths for each feature, and $\lambda$ is a scalar that controls the overall strength of the regularization.
-
-
 
 The regularization term \(R(\mathbf{W}^{(1)})\) applied to the weight matrix \(\mathbf{W}^{(1)}\) of the first hidden layer is defined in Equation~\ref{eq:xi_reg}
 
