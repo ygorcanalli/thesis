@@ -8,6 +8,12 @@ The Pearson correlation coefficient, denoted by $\rho_{X,Y}$, is a measure of th
 \rho_{X,Y} = \frac{\mathrm{Cov}(X, Y)}{\sigma_X \sigma_Y}
 \end{equation}
 
+The rank of a matrix measures the dimension of the vector space spanned by its rows or columns. More formally, the rank of a matrix can be defined accordding Definition~\ref{def:matrix_rank}.
+
+\begin{definition}[Matrix Rank] \label{def:matrix_rank}
+Let $\mathbf{A} \in \mathbb{R}^{m \times n}$ be a matrix with $m$ rows and $n$ columns. The rank of $\mathbf{A}$, denoted as $\text{rank}(\mathbf{A})$, is the maximum number of linearly independent rows (or columns) in the matrix.
+\end{definition}
+
 Spearman's rank correlation coefficient, denoted by $\rho_s$, measures the strength and direction of the monotonic relationship between two ranked variables. It is defined as the Pearson correlation coefficient between the ranked variables, as described in Equation~\ref{eq:spearman}, where $\rank(X)$ and $\rank(Y)$ are the ranks of $X$ and $Y$ respectively. Using the notation in Pearson correlation coefficient, $\mathrm{Cov}(\rank(X), \rank(Y))$ is the covariance of the rank variables, while $\sigma_{\rank(X)}$ and $\sigma_{\rank(Y)}$ are the standard deviations of the ranks of $X$ and $Y$, respectively. As like Pearson correlation coefficient, Spearman's rank correlation coefficient ranges from $-1$ to $1$, where $1$ indicates a perfect positive linear relationship, $-1$ indicates a perfect negative linear relationship, and $0$ indicates no linear relationship.
 
 \begin{equation}\label{eq:spearman}
