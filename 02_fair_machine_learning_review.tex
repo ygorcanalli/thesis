@@ -1,7 +1,7 @@
 
 \chapter{Fair Machine Learning Review}
 
-The field of Machine Learning (ML) has experienced significant growth and is increasingly applied in various societal domains such as healthcare, finance, and criminal justice. This growth raises important ethical and operational concerns, particularly regarding the principles of Fairness, Accountability, and Transparency (FAT) \citep{Memarian2023}. As ML algorithms increasingly influence a wide array of societal domains, including criminal justice, healthcare, finance, and employment, the imperative to ensure these systems are designed and implemented responsibly has become paramount. This section aims to delineate the significance, scope, and prevailing challenges associated with integrating FAT principles into ML, providing a foundation for the subsequent discussion.
+The field of Machine Learning (ML) has experienced significant growth and is increasingly applied in various societal domains such as healthcare, finance, and criminal justice. This growth raises important ethical and operational concerns, particularly regarding the principles of Fairness, Accountability, and Transparency (FAT) \citep{Memarian2023}. As ML algorithms increasingly influence a wide array of societal domains, including criminal justice, healthcare, finance, and employment, the requirement to ensure these systems are designed and implemented responsibly has become paramount. This section aims to delineate the significance, scope, and prevailing challenges associated with integrating FAT principles into ML, providing a foundation for the subsequent discussion.
 
 Fairness in ML concerns the equitable and just treatment of all individuals, particularly those from historically marginalized or disadvantaged groups \citep{Mehrabi2019, caton2023}. It seeks to ensure that ML algorithms do not perpetuate existing biases or create new forms of discrimination. However, the multifaceted nature of fairness, encompassing various definitions and metrics, poses substantial challenges in operationalizing it within algorithmic frameworks. Further in this section we will explore these complexities, examining different conceptions of fairness and the inherent trade-offs they entail.
 
@@ -24,7 +24,7 @@ In this context of Trustworty AI the European Union's High-Level Expert Group on
 \end{description}
 
 
-Although there are many aspects to consider to an ethical automated decision system with social impacts, the present text will concentrate predominantly on the aspect of fairness and negative social bias. Fairness is not only desirable for the development of just and equitable technological solutions but also imperative for maintaining the trustworthyness and acceptability of AI systems in diverse societal contexts.
+Although there are many aspects to consider to an ethical automated decision system with social impacts, the present text will concentrate predominantly on the aspect of fairness and negative social bias. Fairness is not only desirable for the development of just and equitable technological solutions but an obligation for maintaining the trustworthyness and acceptability of AI systems in diverse societal contexts.
 
 \section{Sources and types of algorithmic unfairness}
 
@@ -317,7 +317,7 @@ The regularizer \( R(D, \Theta) \) aims to minimize the mutual information betwe
 
 As an alternative to mitigating unwanted bias, \cite{Zhang2018} proposes an adversarial method for reducing bias in machine learning models, namely Adversarial Debiasing (AD). This technique involves training a neural network predictor to forecast an outcome variable from inputs while an adversary network simultaneously attempts to predict a sensitive attribute, which should not influence the outcome. 
 
-The method utilizes an adversarial network architecture where the main predictor's task is complemented by an adversarial model that tries to learn the sensitive attribute. By integrating the adversarial model’s feedback into the training process, the predictor learns to make decisions that are increasingly independent of the sensitive attribute. This setup allows the model to adhere to fairness constraints like Statistical Parity (Definition~\ref{def:demo_parity}), Equal Opportunity (Definition~\ref{def:eq_opp}), and Equalized Odds (Definition~\ref{def:eq_odds}).
+The method utilizes an adversarial network architecture where the main predictor's task is complemented by an adversarial model that tries to learn the sensitive attribute. By integrating the adversarial model’s feedback into the training process, the predictor learns to make decisions that are increasingly independent of the sensitive attribute. This setup allows the model to attain to fairness constraints like Statistical Parity (Definition~\ref{def:demo_parity}), Equal Opportunity (Definition~\ref{def:eq_opp}), and Equalized Odds (Definition~\ref{def:eq_odds}).
 
 In a similar vein, \cite{kearns18a} propose a framework for ensuring subgroup fairness, addressing the issue of fairness gerrymandering. Below, a toy example given by the authors ilustrating a scenario where the refered fairness gerrymandering occurs.
 
