@@ -8,6 +8,12 @@ The Pearson correlation coefficient, denoted by $\rho_{X,Y}$, is a measure of th
 \rho_{X,Y} = \frac{\mathrm{Cov}(X, Y)}{\sigma_X \sigma_Y}
 \end{equation}
 
+The rank of a matrix measures the dimension of the vector space spanned by its rows or columns. More formally, the rank of a matrix can be defined accordding Definition~\ref{def:matrix_rank}.
+
+\begin{definition}[Matrix Rank] \label{def:matrix_rank}
+Let $\mathbf{A} \in \mathbb{R}^{m \times n}$ be a matrix with $m$ rows and $n$ columns. The rank of $\mathbf{A}$, denoted as $\text{rank}(\mathbf{A})$, is the maximum number of linearly independent rows (or columns) in the matrix.
+\end{definition}
+
 Spearman's rank correlation coefficient, denoted by $\rho_s$, measures the strength and direction of the monotonic relationship between two ranked variables. It is defined as the Pearson correlation coefficient between the ranked variables, as described in Equation~\ref{eq:spearman}, where $\rank(X)$ and $\rank(Y)$ are the ranks of $X$ and $Y$ respectively. Using the notation in Pearson correlation coefficient, $\mathrm{Cov}(\rank(X), \rank(Y))$ is the covariance of the rank variables, while $\sigma_{\rank(X)}$ and $\sigma_{\rank(Y)}$ are the standard deviations of the ranks of $X$ and $Y$, respectively. As like Pearson correlation coefficient, Spearman's rank correlation coefficient ranges from $-1$ to $1$, where $1$ indicates a perfect positive linear relationship, $-1$ indicates a perfect negative linear relationship, and $0$ indicates no linear relationship.
 
 \begin{equation}\label{eq:spearman}
@@ -16,7 +22,7 @@ Spearman's rank correlation coefficient, denoted by $\rho_s$, measures the stren
 
 Chatterjee's correlation coefficient, denoted by $\xi$, is designed to measure the degree of dependence between two variables without assuming any specific type of relationship. Given a dataset $(X, Y)$ with $n$ pairs, the coefficient is defined as:
 \begin{equation}
-\xi_n(X,Y) := 1 - \frac{3 \sum_{i=1}^{n-1} |r_{i+1} - r_i|}{n^2 - 1}
+\xi_n(X,Y) = 1 - \frac{3 \sum_{i=1}^{n-1} |r_{i+1} - r_i|}{n^2 - 1}
 \end{equation}
 where $r_i$ is the rank of $Y_i$ in the ordered sequence of $Y$ values corresponding to the sorted $X$ values. This coefficient ranges from 0 to 1, where 0 indicates independence and 1 indicates a perfect functional relationship. For the general case with ties, a more complex formula involving additional terms to handle the ties is used.
 
@@ -32,17 +38,17 @@ where $d_l$ and $h_l$ are the dimensions of the weight matrix $\mathbf{W}^{(l)}$
 
 The total regularization term for the entire network, considering all layers, is:
 \begin{equation}
-R(\mathbf{W}) = \sum_{l=1}^{L} \frac{1}{2} \sum_{i=1}^{d_l} \sum_{j=1}^{h_l} \left( W^{(l)}_{ij} \right)^2,
+R(\mathbf{W}) = \frac{1}{2} \sum_{l=1}^{L} \sum_{i=1}^{d_l} \sum_{j=1}^{h_l} \left( W^{(l)}_{ij} \right)^2,
 \end{equation}
 where $L$ is the total number of layers in the network.
 
 The total loss function $L$ for the MLP, incorporating the L2 regularization term, is defined as:
 \begin{equation}
-L = L_0 + \alpha R(\mathbf{W}),
+L = L_0 + \lambda \; R(\mathbf{W}),
 \end{equation}
-where $\alpha$ is a scalar hyperparameter that controls the overall strength of the regularization.
+where $\lambda$ is a scalar hyperparameter that controls the overall strength of the regularization.
 
-By adding this regularization term, the optimization process not only aims to minimize the primary loss $L_0$ but also to keep the weights small, thereby helping to reduce the model complexity and prevent overfitting. The gradient descent updates for the weights will be adjusted to account for the regularization term, effectively shrinking the weights during the training process.
+By adding this regularization term, the optimization process aims to minimize the primary loss $L_0$ along with keeping the weights small, thereby helping to reduce the model complexity and prevent overfitting. The gradient descent updates for the weights will be adjusted to account for the regularization term, effectively shrinking the weights during the training process.
 
 
 \section{Proposal}
