@@ -2,29 +2,47 @@
 
 \section{Preliminaries}
 
-The Pearson correlation coefficient, denoted as $\rho_{XY}$, is a measure of the linear relationship between two variables $X$ and $Y$. It is defined as:
-\[
-\rho_{XY} = \frac{\mathrm{Cov}(X, Y)}{\sigma_X \sigma_Y}
-\]
-where $\mathrm{Cov}(X, Y)$ is the covariance of $X$ and $Y$, and $\sigma_X$ and $\sigma_Y$ are the standard deviations of $X$ and $Y$, respectively. The Pearson correlation coefficient ranges from -1 to 1, where 1 indicates a perfect positive linear relationship, -1 indicates a perfect negative linear relationship, and 0 indicates no linear relationship.
+The Pearson correlation coefficient, denoted by $\rho_{X,Y}$, is a measure of the linear relationship between two variables $X$ and $Y$. It is defined in Equation~\ref{eq:pearson}, where $\mathrm{Cov}(X, Y)$ is the covariance of $X$ and $Y$, while $\sigma_X$ and $\sigma_Y$ are the standard deviations of $X$ and $Y$, respectively. The Pearson correlation coefficient ranges from $-1$ to $1$, where $1$ indicates a perfect positive linear relationship, $-1$ indicates a perfect negative linear relationship, and $0$ indicates no linear relationship.
 
-Spearman's rank correlation coefficient, denoted as $\rho_s$, measures the strength and direction of the monotonic relationship between two ranked variables. It is defined as the Pearson correlation coefficient between the ranked variables. If $r_i$ and $s_i$ are the ranks of $X_i$ and $Y_i$ respectively, then:
-\[
-\rho_s = \frac{\mathrm{Cov}(r, s)}{\sigma_r \sigma_s}
-\]
-where $\mathrm{Cov}(r, s)$ is the covariance of the rank variables, and $\sigma_r$ and $\sigma_s$ are the standard deviations of the ranks. The coefficient also ranges from -1 to 1.
+\begin{equation}\label{eq:pearson}
+\rho_{X,Y} = \frac{\mathrm{Cov}(X, Y)}{\sigma_X \sigma_Y}
+\end{equation}
 
-Kendall's tau, denoted as $\tau$, is a measure of the ordinal association between two variables. It is defined as:
-\[
-\tau = \frac{C - D}{\binom{n}{2}}
-\]
-where $C$ is the number of concordant pairs, $D$ is the number of discordant pairs, and $\binom{n}{2}$ is the total number of pairs. A pair of observations $(X_i, Y_i)$ and $(X_j, Y_j)$ is concordant if the ranks for both elements agree, i.e., either $X_i > X_j$ and $Y_i > Y_j$, or $X_i < X_j$ and $Y_i < Y_j$. It ranges from -1 to 1.
+Spearman's rank correlation coefficient, denoted by $\rho_s$, measures the strength and direction of the monotonic relationship between two ranked variables. It is defined as the Pearson correlation coefficient between the ranked variables, as described in Equation~\ref{eq:spearman}, where $\rank(X)$ and $\rank(Y)$ are the ranks of $X$ and $Y$ respectively. Using the notation in Pearson correlation coefficient, $\mathrm{Cov}(\rank(X), \rank(Y))$ is the covariance of the rank variables, while $\sigma_{\rank(X)}$ and $\sigma_{\rank(Y)}$ are the standard deviations of the ranks of $X$ and $Y$, respectively. As like Pearson correlation coefficient, Spearman's rank correlation coefficient ranges from $-1$ to $1$, where $1$ indicates a perfect positive linear relationship, $-1$ indicates a perfect negative linear relationship, and $0$ indicates no linear relationship.
 
-Chatterjee's correlation coefficient, denoted as $\xi$, is designed to measure the degree of dependence between two variables without assuming any specific type of relationship. Given a dataset $(X, Y)$ with $n$ pairs, the coefficient is defined as:
-\[
-\xi_n(X,Y) = 1 - \frac{3 \sum_{i=1}^{n-1} |r_{i+1} - r_i|}{n^2 - 1}
-\]
+\begin{equation}\label{eq:spearman}
+\rho_s = \rho_{\rank(X),\rank(Y)} = \frac{\mathrm{Cov}(\rank(X), \rank(Y))}{\sigma_{\rank(X)} \sigma_{\rank(Y)}}
+\end{equation}
+
+Chatterjee's correlation coefficient, denoted by $\xi$, is designed to measure the degree of dependence between two variables without assuming any specific type of relationship. Given a dataset $(X, Y)$ with $n$ pairs, the coefficient is defined as:
+\begin{equation}
+\xi_n(X,Y) := 1 - \frac{3 \sum_{i=1}^{n-1} |r_{i+1} - r_i|}{n^2 - 1}
+\end{equation}
 where $r_i$ is the rank of $Y_i$ in the ordered sequence of $Y$ values corresponding to the sorted $X$ values. This coefficient ranges from 0 to 1, where 0 indicates independence and 1 indicates a perfect functional relationship. For the general case with ties, a more complex formula involving additional terms to handle the ties is used.
+
+L2 regularization, also known as weight decay, is a common technique used to prevent overfitting in machine learning models, including Multi-Layer Perceptrons (MLPs). In the context of an MLP, L2 regularization adds a penalty term to the loss function that is proportional to the sum of the squares of the model parameters (weights). This encourages the model to keep the weights small, which can help improve generalization.
+
+Let $\mathbf{W}^{(l)}$ represent the weight matrix for the $l$-th layer of the MLP, and let $\mathbf{b}^{(l)}$ denote the corresponding bias vector. The primary loss function of the network, $L_0$, could be any suitable loss function such as the mean squared error for regression or the cross-entropy loss for classification.
+
+The L2 regularization term for a single layer is given by:
+\begin{equation}
+R(\mathbf{W}^{(l)}) = \frac{1}{2} \sum_{i=1}^{d_l} \sum_{j=1}^{h_l} \left( W^{(l)}_{ij} \right)^2,
+\end{equation}
+where $d_l$ and $h_l$ are the dimensions of the weight matrix $\mathbf{W}^{(l)}$, and $W^{(l)}_{ij}$ is the weight connecting the $i$-th input neuron to the $j$-th neuron in the $l$-th layer.
+
+The total regularization term for the entire network, considering all layers, is:
+\begin{equation}
+R(\mathbf{W}) = \sum_{l=1}^{L} \frac{1}{2} \sum_{i=1}^{d_l} \sum_{j=1}^{h_l} \left( W^{(l)}_{ij} \right)^2,
+\end{equation}
+where $L$ is the total number of layers in the network.
+
+The total loss function $L$ for the MLP, incorporating the L2 regularization term, is defined as:
+\begin{equation}
+L = L_0 + \alpha R(\mathbf{W}),
+\end{equation}
+where $\alpha$ is a scalar hyperparameter that controls the overall strength of the regularization.
+
+By adding this regularization term, the optimization process not only aims to minimize the primary loss $L_0$ but also to keep the weights small, thereby helping to reduce the model complexity and prevent overfitting. The gradient descent updates for the weights will be adjusted to account for the regularization term, effectively shrinking the weights during the training process.
 
 
 \section{Proposal}
