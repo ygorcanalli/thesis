@@ -22,25 +22,25 @@ where $C$ is the number of concordant pairs, $D$ is the number of discordant pai
 
 Chatterjee's correlation coefficient, denoted as $\xi$, is designed to measure the degree of dependence between two variables without assuming any specific type of relationship. Given a dataset $(X, Y)$ with $n$ pairs, the coefficient is defined as:
 \[
-\xi_n(X,Y) := 1 - \frac{3 \sum_{i=1}^{n-1} |r_{i+1} - r_i|}{n^2 - 1}
+\xi_n(X,Y) = 1 - \frac{3 \sum_{i=1}^{n-1} |r_{i+1} - r_i|}{n^2 - 1}
 \]
 where $r_i$ is the rank of $Y_i$ in the ordered sequence of $Y$ values corresponding to the sorted $X$ values. This coefficient ranges from 0 to 1, where 0 indicates independence and 1 indicates a perfect functional relationship. For the general case with ties, a more complex formula involving additional terms to handle the ties is used.
 
 
 \section{Proposal}
 
-The Chatterjee Redlining Penalty is defined as a regularization term that penalizes the weights associated with features that are highly correlated with the sensitive attribute. This penalty term is incorporated into the loss function of the neural network in order to produce fairer predictions. Consider a dataset \(X \in \mathbb{R}^{n \times d}\) where \(n\) represents the number of instances and \(d\) represents the number of features. Let \(X_i \in \mathbb{R}^n\) denote the \(i\)-th feature of the dataset, and let \(A = X_i \in \mathbb{R}^n\) be a sensitive (protected) feature for some \(i\). In this neural network, \(\mathbf{W}^{(1)} \in \mathbb{R}^{d \times h}\) is the weight matrix for the first hidden layer, with \(h\) being the number of neurons in this layer. Additionally, \(\lambda \in \mathbb{R}^d\) is a vector representing the regularization strengths for each feature, and $\lambda$ is a scalar that controls the overall strength of the regularization.
+The Chatterjee Redlining Penalty is a regularization term that penalizes the weights of features highly correlated with the sensitive attribute, as measured by Chatterjee's Xi Rank Correlation Coefficient. By incorporating this penalty into the loss function of the neural network, the model is encouraged to reduce its reliance on sensitive attributes, thus promoting fairer predictions.
 
+Let $X \in \mathbb{R}^{n \times d}$ be a dataset where $n$ represents the number of instances and $d$ represents the number of features. Let $X_i \in \mathbb{R}^n$ denote the $i$-th feature of the dataset, and let $A = X_i \in \mathbb{R}^n$ be a sensitive (protected) feature for some $i$. In this neural network, $\mathbf{W}^{(1)} \in \mathbb{R}^{d \times h}$ is the weight matrix for the first hidden layer, with $h$ being the number of neurons in this layer. Additionally, $\lambda$ is a scalar that controls the overall strength of the regularization.
 
-
-The regularization term \(R(\mathbf{W}^{(1)})\) applied to the weight matrix \(\mathbf{W}^{(1)}\) of the first hidden layer is defined in Equation~\ref{eq:xi_reg}
+Thus, the proposed regularization term $R(\mathbf{W}^{(1)})$ applied to the weight matrix $\mathbf{W}^{(1)}$ of the first hidden layer is defined in Equation~\ref{eq:xi_reg}, where, the Chatterjee's Xi Correlation Coefficient $\xi_n(X_i,\,A)$ between the $i$-th input feature $X_i$ and the sensitive feature $A$ acts as the regularization strength for the $i$-th input feature. Here $W^{(1)}_{ij}$ are the weights connecting the $i$-th input feature to the $j$-th neuron in the first hidden layer. The greater $i$-th input feature dependence on sensitive feature the greater the penalization factor enforcing lower values to those weights
 
 \begin{equation}\label{eq:xi_reg}
 R(\mathbf{W}^{(1)}) = \sum_{i=1}^d \xi_n(X_i,\,A) \sum_{j=1}^h (W^{(1)}_{ij})^2,
 \end{equation}
-where,the Chatterjee's Xi Correlation Coefficient  $\xi_n(X_i,\,A)$  between the $i$-th input feature $X_i$ and the sensitive feature $A$ acts as the regularization strength for the $i$-th input feature. Here $W^{(1)}_{ij}$ are the weights connecting the $i$-th input feature to the $j$-th neuron in the first hidden layer. The greater $i$-th input feature dependence on sensitive feature the greater the penalization factor enforcing lower values to those weights
 
-The total loss function \(L\) for the multilayer perceptron (MLP), incorporating the sensitive-feature-specific \(L_2\) regularization, is given by Equation~\ref{eq:total_regularized_loss}
+
+The total loss function $L$ for the multilayer perceptron (MLP), incorporating the sensitive-feature-specific $L_2$ regularization, is given by Equation~\ref{eq:total_regularized_loss}
 \begin{equation}\label{eq:total_regularized_loss}
 L = L_0 + \lambda \; R(\mathbf{W}^{(1)}),
 \end{equation}
