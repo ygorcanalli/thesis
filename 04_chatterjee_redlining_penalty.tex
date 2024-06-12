@@ -2,23 +2,35 @@
 
 \section{Preliminaries}
 
-The Pearson correlation coefficient, denoted by $\rho_{X,Y}$, is a measure of the linear relationship between two variables $X$ and $Y$. It is defined in Equation~\ref{eq:pearson}, where $\mathrm{Cov}(X, Y)$ is the covariance of $X$ and $Y$, while $\sigma_X$ and $\sigma_Y$ are the standard deviations of $X$ and $Y$, respectively. The Pearson correlation coefficient ranges from $-1$ to $1$, where $1$ indicates a perfect positive linear relationship, $-1$ indicates a perfect negative linear relationship, and $0$ indicates no linear relationship.
+The proposed regularization approach uses Chatterjee's xi correlation coefficient~\cite{}, which asses whether a random variable can be described as a function of another one, as a measure of the potential of given feature to be used by the model as a proxy to the sensitive feature. This phenomena, known as redlining effect, can lead model to produce indirect discrimination in their outcomes. Thus, the insight here is to penalize the use of those proxy features proportionally according Chatterjee's correlation in order to avoid redlining effed. Before discussing this approach, we start defining some common correlation coefficients and providing a proper comparison within Chatterjee's correlation. Also, we present some related approaches, specially those ones that, like ours, use regularization and penalty factors to avoid indirect discrimination.
 
-\begin{equation}\label{eq:pearson}
-\rho_{X,Y} = \frac{\mathrm{Cov}(X, Y)}{\sigma_X \sigma_Y}
+The Pearson correlation coefficient, denoted by $\rho_{X,Y}$ and defined in Definition~\ref{def:pearson}, is a measure of the linear relationship between two random variables. The Pearson correlation coefficient ranges from $-1$ to $1$, where $1$ indicates a perfect positive linear relationship, $-1$ indicates a perfect negative linear relationship, and $0$ indicates no linear relationship.
+
+\begin{definition}[Pearson correlation coefficient]\label{def:pearson}
+Let  $X$ and $Y$\ random variables. The Pearson correlation coefficient between $X$ and $Y$ can be defined as  
+\begin{equation}
+\rho_{X,Y} = \frac{\mathrm{Cov}(X, Y)}{\sigma_X \sigma_Y},
 \end{equation}
+where $\mathrm{Cov}(X, Y)$ is the covariance between $X$ and $Y$, while $\sigma_X$ and $\sigma_Y$ the standard deviations of $X$ and $Y$, respectively. 
+\end{definition}
 
-The rank of a matrix measures the dimension of the vector space spanned by its rows or columns. More formally, the rank of a matrix can be defined accordding Definition~\ref{def:matrix_rank}.
+Another relevant correlation coefficient is the Spearman's rank correlation coefficient. Firstly, we define the rank of a matrix, which measures the dimension of the vector space spanned by its rows or columns. More formally, the rank of a matrix can be defined according Definition~\ref{def:matrix_rank}.
 
 \begin{definition}[Matrix Rank] \label{def:matrix_rank}
 Let $\mathbf{A} \in \mathbb{R}^{m \times n}$ be a matrix with $m$ rows and $n$ columns. The rank of $\mathbf{A}$, denoted as $\text{rank}(\mathbf{A})$, is the maximum number of linearly independent rows (or columns) in the matrix.
 \end{definition}
 
-Spearman's rank correlation coefficient, denoted by $\rho_s$, measures the strength and direction of the monotonic relationship between two ranked variables. It is defined as the Pearson correlation coefficient between the ranked variables, as described in Equation~\ref{eq:spearman}, where $\rank(X)$ and $\rank(Y)$ are the ranks of $X$ and $Y$ respectively. Using the notation in Pearson correlation coefficient, $\mathrm{Cov}(\rank(X), \rank(Y))$ is the covariance of the rank variables, while $\sigma_{\rank(X)}$ and $\sigma_{\rank(Y)}$ are the standard deviations of the ranks of $X$ and $Y$, respectively. As like Pearson correlation coefficient, Spearman's rank correlation coefficient ranges from $-1$ to $1$, where $1$ indicates a perfect positive linear relationship, $-1$ indicates a perfect negative linear relationship, and $0$ indicates no linear relationship.
+Spearman's rank correlation coefficient, denoted by $\rho_s$ and defined in Definition~\ref{def:spearman}, measures the strength and direction of the monotonic relationship between two ranked variables.  As like Pearson correlation coefficient, Spearman's rank correlation coefficient ranges from $-1$ to $1$, where $1$ indicates a perfect positive linear relationship, $-1$ indicates a perfect negative linear relationship, and $0$ indicates no linear relationship.
+ 
+\begin{definition}[Spearman's correlation coefficient]\label{def:spearman}
+Let  $X$ and $Y$\ random variables. Spearman's rank correlation coefficient  $\rho_s$ between $X$ and $Y$ can be defined as the Pearson correlation coefficient between the ranked variables, that is, 
 
 \begin{equation}\label{eq:spearman}
-\rho_s = \rho_{\rank(X),\rank(Y)} = \frac{\mathrm{Cov}(\rank(X), \rank(Y))}{\sigma_{\rank(X)} \sigma_{\rank(Y)}}
+\rho_s = \rho_{\rank(X),\rank(Y)} = \frac{\mathrm{Cov}(\rank(X), \rank(Y))}{\sigma_{\rank(X)} \sigma_{\rank(Y)}},
 \end{equation}
+
+where $\rank(X)$ and $\rank(Y)$ are the ranks of $X$ and $Y$, $\mathrm{Cov}(\rank(X), \rank(Y))$ is the covariance of the rank variables, while $\sigma_{\rank(X)}$ and $\sigma_{\rank(Y)}$ are the standard deviations of the ranks of $X$ and $Y$, respectively.
+\end{definition}
 
 Chatterjee's correlation coefficient, denoted by $\xi$, is designed to measure the degree of dependence between two variables without assuming any specific type of relationship. Given a dataset $(X, Y)$ with $n$ pairs, the coefficient is defined as:
 \begin{equation}
@@ -64,7 +76,7 @@ R(\mathbf{W}^{(1)}) = \sum_{i=1}^d \xi_n(X_i,\,A) \sum_{j=1}^h (W^{(1)}_{ij})^2,
 \end{equation}
 
 
-The total loss function $L$ for the multilayer perceptron (MLP), incorporating the sensitive-feature-specific $L_2$ regularization, is given by Equation~\ref{eq:total_regularized_loss}
+The total loss function $L$ for the multilayer perceptron (MLP), incorporating the sensitive-feature-specific $L_2$ regularization, is given by Equation~\ref{eq:total_regularized_loss}:
 \begin{equation}\label{eq:total_regularized_loss}
 L = L_0 + \lambda \; R(\mathbf{W}^{(1)}),
 \end{equation}

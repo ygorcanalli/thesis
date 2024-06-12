@@ -144,7 +144,6 @@ Fair Transition Loss consists in correcting model's predictions with the same te
 \end{theorem}
 \begin{proof}
     First notice that:
-
     \begin{align} \label{eq:proof_ftl}
         \FTL_{\psi}(Y, h(X|A=a)) &= \ell(Y, T^{\top}_a \psi^{-1}(h(X|A=a))) \nonumber \\
         &= \ell_{\phi}(Y, h(X|A=a)),
@@ -165,7 +164,6 @@ Considering a common scenario with only two groups in sensitive attributes (prot
 %        \ell(T^{\top}_1 P(\tilde{Y}|X)), & A = 1.\\
 %    \end{array}\right.
 %\end{equation}
-
 \begin{equation}
     \FTL(P(\tilde{Y}|X)) = (1-A) \cdot \ell(T^{\top}_0 P(\tilde{Y}|X)) + A \cdot \ell(T^{\top}_1 P(\tilde{Y}|X)),
 \end{equation}
