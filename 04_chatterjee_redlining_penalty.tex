@@ -1,8 +1,10 @@
 \chapter{Chatterjee Redlining Penalty}
 
+In this chapter, we propose a novel regularization factor to penalize the use of features highly correlated with a protected attribute by a machine learning model, aiming to avoid the redlining effect~\citep{Pedreschi2008}. The proposed quadratic penalization factor is applied directly to the input weights of a Multi-Layer Perceptron, using a strategy that proportionately penalizes features use based on their correlation with the sensitive feature.
+
 \section{Preliminaries}
 
-The proposed regularization approach uses Chatterjee's xi correlation coefficient~\cite{}, which asses whether a random variable can be described as a function of another one, as a measure of the potential of given feature to be used by the model as a proxy to the sensitive feature. This phenomena, known as redlining effect, can lead model to produce indirect discrimination in their outcomes. Thus, the insight here is to penalize the use of those proxy features proportionally according Chatterjee's correlation in order to avoid redlining effed. Before discussing this approach, we start defining some common correlation coefficients and providing a proper comparison within Chatterjee's correlation. Also, we present some related approaches, specially those ones that, like ours, use regularization and penalty factors to avoid indirect discrimination.
+The proposed regularization approach uses Chatterjee's xi correlation coefficient~\cite{chatterjee2020new}, which asses whether a random variable can be described as a function of another one, as a measure of the potential of given feature to be used by the model as a proxy to the sensitive feature. This phenomena, known as redlining effect~\citep{Pedreschi2008}, can lead model to produce indirect discrimination in their outcomes. Thus, the insight here is to penalize the use of those proxy features proportionally according Chatterjee's correlation in order to avoid redlining effed. Before discussing this approach, we start defining some common correlation coefficients and providing a proper comparison within Chatterjee's correlation. Also, we present some related approaches, specially those ones that, like ours, use regularization and penalty factors to avoid indirect discrimination.
 
 The Pearson correlation coefficient, denoted by $\rho_{X,Y}$ and defined in Definition~\ref{def:pearson}, is a measure of the linear relationship between two random variables. The Pearson correlation coefficient ranges from $-1$ to $1$, where $1$ indicates a perfect positive linear relationship, $-1$ indicates a perfect negative linear relationship, and $0$ indicates no linear relationship.
 
@@ -32,29 +34,23 @@ Let  $X$ and $Y$\ random variables. Spearman's rank correlation coefficient  $\r
 where $\rank(X)$ and $\rank(Y)$ are the ranks of $X$ and $Y$, $\mathrm{Cov}(\rank(X), \rank(Y))$ is the covariance of the rank variables, while $\sigma_{\rank(X)}$ and $\sigma_{\rank(Y)}$ are the standard deviations of the ranks of $X$ and $Y$, respectively.
 \end{definition}
 
-Chatterjee's correlation coefficient, denoted by $\xi$, is designed to measure the degree of dependence between two variables without assuming any specific type of relationship. Given a dataset $(X, Y)$ with $n$ pairs, the coefficient is defined as:
+Chatterjee's correlation coefficient, denoted by $\xi$, is designed to measure the degree of dependence between two variables without assuming any specific type of relationship. Given a dataset $(X, Y)$ with $n$ pairs, the coefficient is defined as
 \begin{equation}
-\xi_n(X,Y) = 1 - \frac{3 \sum_{i=1}^{n-1} |r_{i+1} - r_i|}{n^2 - 1}
+\xi_n(X,Y) = 1 - \frac{3 \sum_{i=1}^{n-1} |r_{i+1} - r_i|}{n^2 - 1},
 \end{equation}
 where $r_i$ is the rank of $Y_i$ in the ordered sequence of $Y$ values corresponding to the sorted $X$ values. This coefficient ranges from 0 to 1, where 0 indicates independence and 1 indicates a perfect functional relationship. For the general case with ties, a more complex formula involving additional terms to handle the ties is used.
 
 L2 regularization, also known as weight decay, is a common technique used to prevent overfitting in machine learning models, including Multi-Layer Perceptrons (MLPs). In the context of an MLP, L2 regularization adds a penalty term to the loss function that is proportional to the sum of the squares of the model parameters (weights). This encourages the model to keep the weights small, which can help improve generalization.
 
-Let $\mathbf{W}^{(l)}$ represent the weight matrix for the $l$-th layer of the MLP, and let $\mathbf{b}^{(l)}$ denote the corresponding bias vector. The primary loss function of the network, $L_0$, could be any suitable loss function such as the mean squared error for regression or the cross-entropy loss for classification.
-
-The L2 regularization term for a single layer is given by:
+Let $\mathbf{W}^{(l)}$ represent the weight matrix for the $l$-th layer of the MLP, and let $\mathbf{b}^{(l)}$ denote the corresponding bias vector. The primary loss function of the network, $L_0$, could be any suitable loss function such as the mean squared error for regression or the cross-entropy loss for classification. The L2 regularization term for a single layer is given by
 \begin{equation}
 R(\mathbf{W}^{(l)}) = \frac{1}{2} \sum_{i=1}^{d_l} \sum_{j=1}^{h_l} \left( W^{(l)}_{ij} \right)^2,
 \end{equation}
-where $d_l$ and $h_l$ are the dimensions of the weight matrix $\mathbf{W}^{(l)}$, and $W^{(l)}_{ij}$ is the weight connecting the $i$-th input neuron to the $j$-th neuron in the $l$-th layer.
-
-The total regularization term for the entire network, considering all layers, is:
+where $d_l$ and $h_l$ are the dimensions of the weight matrix $\mathbf{W}^{(l)}$, and $W^{(l)}_{ij}$ is the weight connecting the $i$-th input neuron to the $j$-th neuron in the $l$-th layer. Thus, the total regularization term for the entire network, considering all layers, is
 \begin{equation}
 R(\mathbf{W}) = \frac{1}{2} \sum_{l=1}^{L} \sum_{i=1}^{d_l} \sum_{j=1}^{h_l} \left( W^{(l)}_{ij} \right)^2,
 \end{equation}
-where $L$ is the total number of layers in the network.
-
-The total loss function $L$ for the MLP, incorporating the L2 regularization term, is defined as:
+where $L$ is the total number of layers in the network. Furthermore, the total loss function $L$ for the MLP, incorporating the L2 regularization term, is defined as
 \begin{equation}
 L = L_0 + \lambda \; R(\mathbf{W}),
 \end{equation}
@@ -62,27 +58,61 @@ where $\lambda$ is a scalar hyperparameter that controls the overall strength of
 
 By adding this regularization term, the optimization process aims to minimize the primary loss $L_0$ along with keeping the weights small, thereby helping to reduce the model complexity and prevent overfitting. The gradient descent updates for the weights will be adjusted to account for the regularization term, effectively shrinking the weights during the training process.
 
-
 \section{Proposal}
 
-The Chatterjee Redlining Penalty is a regularization term that penalizes the weights of features highly correlated with the sensitive attribute, as measured by Chatterjee's Xi Rank Correlation Coefficient. By incorporating this penalty into the loss function of the neural network, the model is encouraged to reduce its reliance on sensitive attributes, thus promoting fairer predictions.
+The Chatterjee Redlining Penalty (CRP) is a regularization term that penalizes the weights of features highly correlated with the sensitive attribute, as measured by Chatterjee's Xi Rank Correlation Coefficient. By incorporating this penalty into the loss function of the neural network, the model is encouraged to reduce its reliance on sensitive attributes, thus promoting fairer predictions.
 
 Let $X \in \mathbb{R}^{n \times d}$ be a dataset where $n$ represents the number of instances and $d$ represents the number of features. Let $X_i \in \mathbb{R}^n$ denote the $i$-th feature of the dataset, and let $A = X_i \in \mathbb{R}^n$ be a sensitive (protected) feature for some $i$. In this neural network, $\mathbf{W}^{(1)} \in \mathbb{R}^{d \times h}$ is the weight matrix for the first hidden layer, with $h$ being the number of neurons in this layer. Additionally, $\lambda$ is a scalar that controls the overall strength of the regularization.
 
-Thus, the proposed regularization term $R(\mathbf{W}^{(1)})$ applied to the weight matrix $\mathbf{W}^{(1)}$ of the first hidden layer is defined in Equation~\ref{eq:xi_reg}, where, the Chatterjee's Xi Correlation Coefficient $\xi_n(X_i,\,A)$ between the $i$-th input feature $X_i$ and the sensitive feature $A$ acts as the regularization strength for the $i$-th input feature. Here $W^{(1)}_{ij}$ are the weights connecting the $i$-th input feature to the $j$-th neuron in the first hidden layer. The greater $i$-th input feature dependence on sensitive feature the greater the penalization factor enforcing lower values to those weights
-
+Thus, the proposed regularization term $R(\mathbf{W}^{(1)})$ applied to the weight matrix $\mathbf{W}^{(1)}$ of the first hidden layer is defined as 
 \begin{equation}\label{eq:xi_reg}
 R(\mathbf{W}^{(1)}) = \sum_{i=1}^d \xi_n(X_i,\,A) \sum_{j=1}^h (W^{(1)}_{ij})^2,
 \end{equation}
+where $W^{(1)}_{ij}$ are the weights connecting the $i$-th input feature to the $j$-th neuron in the first hidden layer. Here, the Chatterjee's Xi Correlation Coefficient $\xi_n(X_i,\,A)$ between the $i$-th input feature $X_i$ and the sensitive feature $A$ acts as the regularization strength for the $i$-th input feature. The greater $i$-th input feature dependence on sensitive feature the greater the penalization factor enforcing lower values to those weights.
 
-
-The total loss function $L$ for the multilayer perceptron (MLP), incorporating the sensitive-feature-specific $L_2$ regularization, is given by Equation~\ref{eq:total_regularized_loss}:
+Thus, the total loss function $L$ to a MLP, incorporating the sensitive-feature-specific $L_2$ regularization, is defined as
 \begin{equation}\label{eq:total_regularized_loss}
 L = L_0 + \lambda \; R(\mathbf{W}^{(1)}),
 \end{equation}
-where $L_0$ is the primary loss function of the network. This formulation ensures that the model's learning process penalizes the weights associated with features highly correlated with the sensitive attribute, thereby reducing the potential for biased decisions.
-
+where $L_0$ is the primary loss function of the network. This formulation ensures that the model's learning process penalizes weights with high values associated with features highly correlated to the sensitive attribute, thereby reducing the potential for biased decisions influenced by redlining effect.
 
 \section{Experimental setup}
+
+In this section, we detail the experimental setup employed to benchmark the proposed regularization within both Standard MLP with Cross Entropy Loss and a MLP using Fair Transition Loss. Both MLP model uses two hidden layers with $100$ hidden units each, $ReLU$ activation function, batch size of $64$, $50$ epochs early stopped at $3$ epochs without improvement~\citep{Li2020} and softmax in output, trained with ADAM optimizer~\citep{KingmaB14} and learning rate at $3\mathrm{e}{-4}$. 
+
+The experimental methodology follows same principles of the one used on Fair Transition Loss Evaluation. There are two phases: hyperparameter tuning and testing. In the hyperparameter tuning phase we perform a Bandit-Based pruning approach using HyperBand~\citep{Li2018} with Tree-structured Parzen Estimator Sampler (TPE)~\citep{bergstra2011} over $100$ trials. At each trial a fitness function is evaluated by performing a complete training and validation, where both model performance and fairness metrics are assessed. The fitness function is computed based on the objective defined in Equation~\ref{eq:obj_fn}. 
+
+Once the best hyperparameters are selected, we proceed to the testing phase, where a new training is conducted using those optimal hyperparameters. After this training, we evaluate the model's performance on a separate test set that was not used during the hyperparameter tuning phase, which are reported. This complete tuning-training-testing described is repeated $15$ times with dataset re-sampling then we proceed to comparison. Here the re-sampling consists in shuffling the whole dataset before splitting, which is better described further in this section.
+
+As the objective defined in Equation~\ref{eq:obj_fn} can be achieved with different performance and fairness metrics, we compare the proposed regularization schema within Standard MLP and MLP with FTL in different optimization scenarios, considering as performance metrics Accuracy (Acc.) and Mathews Correlation Coefficient (MCC), while the fairness metrics considered are Statistical Parity (Stat. Parity), Equal Opportunity (Eq. Opp.) and Equalized Odds (Eq. Odds). Those pursued metrics lead us to the following optimization scenarios: MCC and Statistical Parity; MCC and Equal Opportunity; MCC and Equalized Odds; Accuracy and Statistical Parity; Accuracy and Equal Opportunity; Accuracy and Equalized Odds.
+
+\begin{table}[ht]
+\centering
+\caption{Hyperparameters search ranges or options of each method.}\label{tab:hyperparameters_crp}
+{\footnotesize
+\begin{tabular}{lll}
+\toprule
+Method & Parameter & Range/options \\ \midrule
+ Standard MLP without regularization (baseline) & dropout & $[0.0,\,0.2]$  \vspace{1ex} \\
+ Standard MLP with CRP & dropout & $[0.0,\,0.2]$  \vspace{1ex} \\
+ & $\lambda$ & $\{1e^{-2}, 1^{e-3}, 1^{e-4}\}$ \\
+ Fair Transition Loss without regularization & $d_0,p_0,d_1,p_1$ & $[0.0,\,1.0]$ \\
+ &  dropout & $[0.0,\,0.2]$ \\
+ Fair Transition Loss with CRP & $d_0,p_0,d_1,p_1$ & $[0.0,\,1.0]$ \\
+ &  dropout & $[0.0,\,0.2]$ \\
+ & $\lambda$ & $\{1e^{-2}, 1^{e-3}, 1^{e-4}\}$ \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+Table~\ref{tab:hyperparameters_crp} presents the methods hyperparameters along with their corresponding search ranges or options. While each method may possess a varying number of hyperparameters and range sizes, all are optimized under the same conditions and number of configurations to guarantee a balanced comparison.
+
+To properly compare this set of $15$ results of each method, we conduct an Almost Stochastic Order (ASO) test \citep{dror2019deep}, a significance test suitable for comparing complex machine learning models with various hyperparameters. The ASO test involves evaluating a set of metrics through multiple samplings of a Collection of Statistics (in this case assessed in test phase using random resampling) to compare one method against another. The $ASO(A, B)$ function yields a value in the range $[0, 1]$, given two methods $A$ and $B$. If $ASO(A, B)$ is lesser than $0.5$, we can reject the null hypothesis and conclude that method $A$ outperforms method $B$ in the given task. That is, method $A$ produces stochastically larger values than method $B$ for a given metric. The lower the $ASO(A, B)$ value, the stronger the evidence that $A$ is superior to $B$ in that particular task, which can be interpreted as a confidence interval. Therefore, we perform pairwise comparisons between all methods for each optimization scenario outlined previously and for each dataset.
+
+Our experiments uses common datasets used in Fair Classification problems, namely \textit{Adult Income}~\citep{misc_adult_2}, \textit{German Credit}~\citep{misc_statlog_(german_credit_data)_144}, \textit{Bank Marketing}~\citep{misc_bank_marketing_222}, and \textit{COMPAS Recidivism}~\citep{misc_compas}. We use the dataset readers available in the AI Fairness 360 toolkit~\citep{aif360-oct-2018} with its standard configurations. Instances with missing data are removed. To a proper description of those datasets please check Section~\ref{sec:experimental}
+
+
+For all datasets, the data preparation process is the same, one-hot encoding for categorical features and standardize the numerical features. We perform a random split, with $80\%$ allocated for the hyperparameter tuning phase and the remaining $20\%$ reserved for evaluating metrics in the test phase. Within the hyperparameter tuning phase, this corresponding fraction of data is further randomly split, with $80\%$ assigned to training and $20\%$ to validation. The validation set allows us to assess metrics and compute the fitness function for each hyperparameter configuration. In datasets where there is originally some kind of split (e.g., train set and test set in separate files), all available data is merged and then shuffled to produce new splits at each run.
 
 \section{Results and discussion}

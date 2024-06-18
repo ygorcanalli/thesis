@@ -1,5 +1,6 @@
 \chapter{Fair Transition Loss}
 
+In this chapter we propose a novel loss function inspired by label noise robustness methods to fair classification problems. The core of this proposal consists in using transition matrices as parameters to a proper loss correction~\cite{Patrini2017}, with matrices values as factors to redistribute unbalanced bias across different groups within the sensitive feature.
 
 \section{Preliminaries}
 
@@ -158,12 +159,7 @@ Fair Transition Loss consists in correcting model's predictions with the same te
 \end{proof}
 
 Considering a common scenario with only two groups in sensitive attributes (protected and privileged), we can correct the model's predictions using two different fair transition matrices. One with rates applied while learning instances from the protected group, and the other with rates applied while learning instances from the privileged group. Formally, to the sensitive feature $A \in \{0,1\}$, let $T_0$ the transition matrix associated with privileged/unprotected group ($A = 0$) and $T_1$ with the protected group ($A = 1$), $\FTL$ can be computed as
-%\begin{equation}
-%    \FTL(P(\tilde{Y}|X) = \left\{\begin{array}{ll}
-%        \ell(T^{\top}_0 P(\tilde{Y}|X)), & A = 0 \vspace{1ex}\\
-%        \ell(T^{\top}_1 P(\tilde{Y}|X)), & A = 1.\\
-%    \end{array}\right.
-%\end{equation}
+
 \begin{equation}
     \FTL(P(\tilde{Y}|X)) = (1-A) \cdot \ell(T^{\top}_0 P(\tilde{Y}|X)) + A \cdot \ell(T^{\top}_1 P(\tilde{Y}|X)),
 \end{equation}
@@ -323,7 +319,7 @@ This section summarizes our results, comparing Fair Transition Loss (FTL) with t
     }
 \end{table}
 
-As we have multiple optimization scenarios with different objective functions and datasets, and to each of them multiple runs, we present in Table~\ref{tab:aso_compare} the results of the ASO test described before, which allow us to properly compare each method to FTL. Values under $0.5$ (in bold) mean that we can reject the null hypothesis, i.e., FTL produces stochastically larger fitness than method in respective column for a objective and dataset. Lower values indicate stronger evidence. The complete results with mean and standard deviation of fitness, performance and fairness can be found in Appendix~\ref{apendix:results} to a fairness-performance trade-off analysis.
+As we have multiple optimization scenarios with different objective functions and datasets, and to each of them multiple runs, we present in Table~\ref{tab:aso_compare} the results of the ASO test described before, which allow us to properly compare each method to FTL. Values under $0.5$ (in bold) mean that we can reject the null hypothesis, i.e., FTL produces stochastically larger fitness than method in respective column for a objective and dataset. Lower values indicate stronger evidence. The complete results with mean and standard deviation of fitness, performance and fairness can be found in tables~\ref{tab:complete_mcc_parity} to ~\ref{tab:complete_acc_odds} to a fairness-performance trade-off analysis.
 
 In $69$ of $120$ comparison scenarios from Almost Stochastic Order test (Table~\ref{tab:aso_compare}), it is possible to claim that FTL outperforms its competitor, i.e., FTL produces stochastically higher fitness values. Despite these positive results, one can argue that the proposed technique only adds extra hyperparameters that increase models flexibility to achieve higher fitness values. In other words, are we effectively describing bias in datasets by transition matrices as claimed before? To address this, we showcase various FTL hyperparameter combinations selected during the tuning phase described in Section~\ref{sec:experimental}, comparing with corresponding dataset information available at Table~\ref{tab:datasets}. We perform this analysis using \textit{Adult Income} dataset. The corresponding hyperparameters can be found in Table~\ref{tab:found_hyperparameters}. Here, high values mean that FTL alters the corresponding probabilities, while values close to zero indicate minimal interference by the method.
 
@@ -421,18 +417,13 @@ To evaluate the capability of FTL to address this risk, we present another exper
 
 The results, presented in Figure~\ref{fig:ftl_sensibility_test}, show that increasing the protected promotion hyperparameter value leads to a decreased false negative rate for the protected group. Meanwhile, most other monitored metrics tended towards stability to reasonable hyperparameter levels ($p_1$ under $0.95$) . An exception is the false positive rate, specially to protected group, which increased as the false negative rate decreased to keep accuracy. This pattern was consistent across all evaluated datasets. The primary aim of this experiment was to demonstrate that our proposed technique does not inadvertently penalize the protected group. Rather, the overall impact of increasing the aforementioned parameter is to effectively promote fairness for the protected group without detriment to either the privileged or protected groups. The behavior of the remaining FTL parameters is analogous, necessitating proper fine-tuning to achieve a balanced outcome. This underscores the efficacy of our method in achieving its intended purpose of reducing bias and promoting fairness in the model.
 
-
-
-\setcounter{table}{0}
-\renewcommand{\thetable}{A.\arabic{table}}
-
-In this appendix we present complete results with mean fitness (Equation~\ref{eq:obj_fn}), performance and fairness across multiple resampling, to a proper trade-off comparison. To each objective function and dataset methods results are ordered from higher to lower fitness mean, with corresponding standard deviation presented between parenthesis. Results corresponding each optimization scenario can be found on tables \ref{tab:complete_mcc_parity}, \ref{tab:complete_mcc_opportunity}, \ref{tab:complete_mcc_odds}, \ref{tab:complete_acc_parity}, \ref{tab:complete_acc_opportunity}, and \ref{tab:complete_acc_odds}.
+Here we present complete results with mean fitness (Equation~\ref{eq:obj_fn}), performance and fairness across multiple resampling, to a proper trade-off comparison. To each objective function and dataset methods results are ordered from higher to lower fitness mean, with corresponding standard deviation presented between parenthesis. Results corresponding each optimization scenario can be found on tables \ref{tab:complete_mcc_parity}, \ref{tab:complete_mcc_opportunity}, \ref{tab:complete_mcc_odds}, \ref{tab:complete_acc_parity}, \ref{tab:complete_acc_opportunity}, and \ref{tab:complete_acc_odds}.
 
 
 \begin{table}
     \centering
     \caption{Complete results optimizing MCC and Statistical Parity.}\label{tab:complete_mcc_parity}
-    {\footnotesize\begin{tabular}{llrrr}
+    {\tiny\begin{tabular}{llrrr}
     \toprule
     Dataset & Method & Fitness & MCC & Stat. Parity \\
     \midrule
@@ -478,7 +469,7 @@ In this appendix we present complete results with mean fitness (Equation~\ref{eq
  \begin{table}
     \centering
     \caption{Complete results optimizing MCC and Equal Opportunity.}\label{tab:complete_mcc_opportunity}
-    {\footnotesize\begin{tabular}{llrrr}
+    {\tiny\begin{tabular}{llrrr}
     \toprule
     Dataset & Method & Fitness & MCC & Eq. Opp. \\
     \midrule
@@ -523,7 +514,7 @@ In this appendix we present complete results with mean fitness (Equation~\ref{eq
  \begin{table}
     \centering
     \caption{Complete results optimizing MCC and Equalized Odds.}\label{tab:complete_mcc_odds}
-    {\footnotesize\begin{tabular}{llrrr}
+    {\tiny\begin{tabular}{llrrr}
     \toprule
     Dataset & Method & Fitness & MCC & Eq. Odds \\
     \midrule
@@ -569,7 +560,7 @@ In this appendix we present complete results with mean fitness (Equation~\ref{eq
  \begin{table}
     \centering
     \caption{Complete results optimizing Accuracy and Statistical Parity.}\label{tab:complete_acc_parity}
-   {\footnotesize \begin{tabular}{llrrr}
+   {\tiny \begin{tabular}{llrrr}
     \toprule
     Dataset & Method & Fitness & Accuracy & Stat. Parity \\
     \midrule
@@ -616,7 +607,7 @@ In this appendix we present complete results with mean fitness (Equation~\ref{eq
 \begin{table}
     \centering
     \caption{Complete results optimizing Accuracy and Equal Opportunity.}\label{tab:complete_acc_opportunity}
-    {\footnotesize \begin{tabular}{llrrr}
+    {\tiny \begin{tabular}{llrrr}
     \toprule
     Dataset & Method & Fitness & Accuracy & Eq. Opp. \\
     \midrule
@@ -662,7 +653,7 @@ In this appendix we present complete results with mean fitness (Equation~\ref{eq
  \begin{table}
     \centering
     \caption{Complete results optimizing Accuracy and Equalized Odds.}\label{tab:complete_acc_odds}
-    {\footnotesize \begin{tabular}{llrrr}
+    {\tiny \begin{tabular}{llrrr}
     \toprule
     Dataset & Method & Fitness & Accuracy & Eq. Odds \\
     \midrule
