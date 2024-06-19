@@ -116,3 +116,253 @@ Our experiments uses common datasets used in Fair Classification problems, namel
 For all datasets, the data preparation process is the same, one-hot encoding for categorical features and standardize the numerical features. We perform a random split, with $80\%$ allocated for the hyperparameter tuning phase and the remaining $20\%$ reserved for evaluating metrics in the test phase. Within the hyperparameter tuning phase, this corresponding fraction of data is further randomly split, with $80\%$ assigned to training and $20\%$ to validation. The validation set allows us to assess metrics and compute the fitness function for each hyperparameter configuration. In datasets where there is originally some kind of split (e.g., train set and test set in separate files), all available data is merged and then shuffled to produce new splits at each run.
 
 \section{Results and discussion}
+
+
+\begin{table}[ht]
+\centering
+\caption{Almost Stochastic Order test comparing the use of Chatterjee Redlining Penalty on Standard MLP and MLP with Fair Transition Loss fitness. Values under $0.5$ (in bold) mean that the model with CRP outperforms the same model without regularization on each optimization scenario.} \label{tab:aso_compare_crp}
+{\footnotesize
+\begin{tabular}{lrrrr|rrrr}
+\toprule
+\multirow{2}{*}{Fitness Rule} & \multicolumn{4}{c}{MLP} & \multicolumn{4}{c}{FTL} \\
+& Adult & Bank & Compas & German & Adult & Bank & Compas & German \\
+\midrule
+MCC - S. Parity & 0.79 & 0.99 & \textbf{0.03} & 1.00 & \textbf{0.34} & 1.00 & 1.00 & \textbf{0.31} \\
+MCC - Eq. Opp. & \textbf{0.26} & 1.00 & \textbf{0.01} & 1.00 & \textbf{0.35} & 1.00 & \textbf{0.19} & 1.00 \\
+MCC - Eq. Odds & \textbf{0.08} & 1.00 & \textbf{0.20} & 1.00 & \textbf{0.30} & 1.00 & 0.56 & 1.00 \\
+Acc. - S. Parity & 0.75 & 1.00 & \textbf{0.39} & 0.87 & \textbf{0.44} & 1.00 & \textbf{0.02} & 1.00 \\
+Acc. - Eq. Opp. & 1.00 & \textbf{0.18} & \textbf{0.07} & \textbf{0.24} & 0.58 & 0.67 & 1.00 & 1.00 \\
+Acc. - Eq. Odds & \textbf{0.33} & 1.00 & \textbf{0.01} & 0.62 & \textbf{0.40} & 1.00 & \textbf{0.20} & 1.00 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+
+\begin{figure}[!ht]
+\centering
+\caption{Fitness values of CRP optimizing MCC and multiple fairness metrics.}
+\begin{subfigure}{.32\linewidth}
+    \caption{Statistical Parity}
+    \label{fig:boxplot_mcc_parity}
+    \includegraphics[width=1\linewidth]{images/boxplot_mcc_parity_crp.pdf}
+\end{subfigure}
+\begin{subfigure}{.32\linewidth}
+    \caption{Equal Opportunity}
+    \label{fig:boxplot_mcc_opp}
+    \includegraphics[width=1\linewidth]{images/boxplot_mcc_opportunity_crp.pdf}
+\end{subfigure}
+\begin{subfigure}{.32\linewidth}
+    \caption{Equalized Odds}
+    \label{fig:boxplot_mcc_odds}
+    \includegraphics[width=1\linewidth]{images/boxplot_mcc_odds_crp.pdf}
+\end{subfigure}
+\end{figure}
+
+\begin{figure}[!ht]
+\centering
+\caption{Fitness values of CRP optimizing Accuracy and multiple fairness metrics.}
+\begin{subfigure}{.32\linewidth}
+    \caption{Statistical Parity}
+    \label{fig:boxplot_acc_parity}
+    \includegraphics[width=1\linewidth]{images/boxplot_acc_parity_crp.pdf}
+\end{subfigure}
+\begin{subfigure}{.32\linewidth}
+    \caption{Equal Opportunity}
+    \label{fig:boxplot_acc_opp}
+    \includegraphics[width=1\linewidth]{images/boxplot_acc_opportunity_crp.pdf}
+\end{subfigure}
+\begin{subfigure}{.32\linewidth}
+    \caption{Equalized Odds}
+    \label{fig:boxplot_acc_odds}
+    \includegraphics[width=1\linewidth]{images/boxplot_acc_odds_crp.pdf}
+\end{subfigure}
+\end{figure}
+
+
+
+\begin{table}
+    \centering
+    \caption{Mean and standard deviation metric values optimizing MCC and Statistical Parity in comparison with Chatterjee Redlining Penalty.}\label{tab:complete_mcc_parity_crp}
+    {\footnotesize\begin{tabular}{llrrr}
+    \toprule
+    Dataset & Method & Fitness & MCC & Stat. Parity \\
+    \midrule
+
+    \multirow[t]{4}{*}{Adult Income} & FTL+CRP & $0.494 (\pm0.01)$ & $0.517 (\pm0.02)$ & $0.023 (\pm0.02)$ \\
+     & FTL & $0.487 (\pm0.02)$ & $0.509 (\pm0.02)$ & $0.022 (\pm0.02)$ \\
+     & MLP+CRP & $0.388 (\pm0.01)$ & $0.578 (\pm0.01)$ & $0.191 (\pm0.01)$ \\
+     & MLP & $0.386 (\pm0.01)$ & $0.576 (\pm0.01)$ & $0.191 (\pm0.01)$ \\
+    \midrule
+    \multirow[t]{4}{*}{Bank Marketing} & FTL & $0.534 (\pm0.03)$ & $0.569 (\pm0.01)$ & $0.035 (\pm0.03)$ \\
+     & FTL+CRP & $0.523 (\pm0.04)$ & $0.569 (\pm0.01)$ & $0.046 (\pm0.04)$ \\
+     & MLP & $0.429 (\pm0.03)$ & $0.521 (\pm0.02)$ & $0.092 (\pm0.02)$ \\
+     & MLP+CRP & $0.426 (\pm0.05)$ & $0.528 (\pm0.02)$ & $0.102 (\pm0.04)$ \\
+    \midrule
+    \multirow[t]{4}{*}{Compas Recidivism} & FTL & $0.239 (\pm0.03)$ & $0.276 (\pm0.03)$ & $0.036 (\pm0.03)$ \\
+     & FTL+CRP & $0.236 (\pm0.05)$ & $0.294 (\pm0.03)$ & $0.058 (\pm0.04)$ \\
+     & MLP+CRP & $0.121 (\pm0.05)$ & $0.329 (\pm0.03)$ & $0.208 (\pm0.03)$ \\
+     & MLP & $0.074 (\pm0.03)$ & $0.283 (\pm0.02)$ & $0.209 (\pm0.04)$ \\
+    \midrule
+    \multirow[t]{4}{*}{German Credit} & FTL+CRP & $0.302 (\pm0.06)$ & $0.371 (\pm0.05)$ & $0.069 (\pm0.05)$ \\
+     & MLP & $0.266 (\pm0.10)$ & $0.329 (\pm0.09)$ & $0.064 (\pm0.05)$ \\
+     & FTL & $0.256 (\pm0.12)$ & $0.355 (\pm0.08)$ & $0.099 (\pm0.06)$ \\
+     & MLP+CRP & $0.246 (\pm0.07)$ & $0.329 (\pm0.05)$ & $0.084 (\pm0.06)$ \\
+     \bottomrule
+\end{tabular}}
+\end{table}
+
+ \begin{table}
+    \centering
+    \caption{Mean and standard deviation metric values optimizing MCC and Equal Opportunity in comparison with Chatterjee Redlining Penalty.}\label{tab:complete_mcc_opportunity_crp}
+    {\footnotesize\begin{tabular}{llrrr}
+    \toprule
+    Dataset & Method & Fitness & MCC & Eq. Opp. \\
+    \midrule
+
+    \multirow[t]{4}{*}{Adult Income} & FTL+CRP & $0.554 (\pm0.03)$ & $0.581 (\pm0.02)$ & $0.027 (\pm0.02)$ \\
+     & FTL & $0.540 (\pm0.04)$ & $0.576 (\pm0.01)$ & $0.036 (\pm0.03)$ \\
+     & MLP+CRP & $0.506 (\pm0.05)$ & $0.577 (\pm0.01)$ & $0.071 (\pm0.05)$ \\
+     & MLP & $0.480 (\pm0.04)$ & $0.582 (\pm0.01)$ & $0.103 (\pm0.04)$ \\
+    \midrule
+    \multirow[t]{4}{*}{Bank Marketing} & FTL & $0.483 (\pm0.07)$ & $0.567 (\pm0.02)$ & $0.084 (\pm0.06)$ \\
+     & MLP & $0.420 (\pm0.08)$ & $0.524 (\pm0.02)$ & $0.104 (\pm0.08)$ \\
+     & MLP+CRP & $0.420 (\pm0.10)$ & $0.529 (\pm0.02)$ & $0.109 (\pm0.09)$ \\
+     & FTL+CRP & $0.416 (\pm0.14)$ & $0.519 (\pm0.15)$ & $0.104 (\pm0.08)$ \\
+    \midrule
+    \multirow[t]{4}{*}{Compas Recidivism} & FTL+CRP & $0.251 (\pm0.04)$ & $0.309 (\pm0.03)$ & $0.058 (\pm0.04)$ \\
+     & MLP+CRP & $0.211 (\pm0.05)$ & $0.325 (\pm0.02)$ & $0.114 (\pm0.04)$ \\
+     & FTL & $0.195 (\pm0.11)$ & $0.281 (\pm0.03)$ & $0.086 (\pm0.09)$ \\
+     & MLP & $0.150 (\pm0.05)$ & $0.282 (\pm0.03)$ & $0.132 (\pm0.05)$ \\
+    \midrule
+    \multirow[t]{4}{*}{German Credit} & FTL & $0.293 (\pm0.12)$ & $0.368 (\pm0.10)$ & $0.074 (\pm0.05)$ \\
+     & MLP & $0.290 (\pm0.09)$ & $0.355 (\pm0.07)$ & $0.065 (\pm0.06)$ \\
+     & MLP+CRP & $0.275 (\pm0.09)$ & $0.341 (\pm0.06)$ & $0.066 (\pm0.05)$ \\
+     & FTL+CRP & $0.166 (\pm0.16)$ & $0.284 (\pm0.14)$ & $0.117 (\pm0.07)$ \\
+     \bottomrule
+\end{tabular}}
+\end{table}
+ \begin{table}
+    \centering
+    \caption{Mean and standard deviation metric values optimizing MCC and Equalized Odds in comparison with Chatterjee Redlining Penalty.}\label{tab:complete_mcc_odds_crp}
+    {\footnotesize\begin{tabular}{llrrr}
+    \toprule
+    Dataset & Method & Fitness & MCC & Eq. Odds \\
+    \midrule
+
+    \multirow[t]{4}{*}{Adult Income} & FTL+CRP & $0.526 (\pm0.02)$ & $0.575 (\pm0.01)$ & $0.048 (\pm0.02)$ \\
+     & FTL & $0.515 (\pm0.03)$ & $0.572 (\pm0.02)$ & $0.057 (\pm0.02)$ \\
+     & MLP+CRP & $0.500 (\pm0.02)$ & $0.578 (\pm0.01)$ & $0.078 (\pm0.02)$ \\
+     & MLP & $0.478 (\pm0.02)$ & $0.575 (\pm0.01)$ & $0.097 (\pm0.02)$ \\
+    \midrule
+    \multirow[t]{4}{*}{Bank Marketing} & FTL & $0.495 (\pm0.05)$ & $0.574 (\pm0.01)$ & $0.078 (\pm0.05)$ \\
+     & FTL+CRP & $0.490 (\pm0.03)$ & $0.571 (\pm0.01)$ & $0.081 (\pm0.03)$ \\
+     & MLP & $0.461 (\pm0.05)$ & $0.522 (\pm0.02)$ & $0.061 (\pm0.04)$ \\
+     & MLP+CRP & $0.446 (\pm0.04)$ & $0.539 (\pm0.02)$ & $0.093 (\pm0.04)$ \\
+    \midrule
+    \multirow[t]{4}{*}{Compas Recidivism} & FTL+CRP & $0.225 (\pm0.04)$ & $0.282 (\pm0.03)$ & $0.056 (\pm0.03)$ \\
+     & FTL & $0.216 (\pm0.04)$ & $0.288 (\pm0.02)$ & $0.072 (\pm0.04)$ \\
+     & MLP+CRP & $0.129 (\pm0.05)$ & $0.303 (\pm0.02)$ & $0.174 (\pm0.03)$ \\
+     & MLP & $0.098 (\pm0.05)$ & $0.283 (\pm0.03)$ & $0.185 (\pm0.03)$ \\
+    \midrule
+    \multirow[t]{4}{*}{German Credit} & FTL & $0.278 (\pm0.12)$ & $0.383 (\pm0.08)$ & $0.105 (\pm0.06)$ \\
+     & MLP & $0.249 (\pm0.10)$ & $0.352 (\pm0.08)$ & $0.102 (\pm0.06)$ \\
+     & MLP+CRP & $0.231 (\pm0.10)$ & $0.332 (\pm0.07)$ & $0.102 (\pm0.06)$ \\
+     & FTL+CRP & $0.228 (\pm0.08)$ & $0.337 (\pm0.07)$ & $0.109 (\pm0.06)$ \\
+     \bottomrule
+\end{tabular}}
+\end{table}
+
+ \begin{table}
+    \centering
+    \caption{Mean and standard deviation metric values optimizing Accuracy and Statistical Parity in comparison with Chatterjee Redlining Penalty.}\label{tab:complete_acc_parity_crp}
+   {\footnotesize \begin{tabular}{llrrr}
+    \toprule
+    Dataset & Method & Fitness & Accuracy & Stat. Parity \\
+    \midrule
+
+    \multirow[t]{4}{*}{Adult Income} & FTL+CRP & $0.811 (\pm0.01)$ & $0.825 (\pm0.01)$ & $0.015 (\pm0.01)$ \\
+     & FTL & $0.806 (\pm0.02)$ & $0.827 (\pm0.01)$ & $0.022 (\pm0.02)$ \\
+     & MLP+CRP & $0.666 (\pm0.01)$ & $0.850 (\pm0.00)$ & $0.183 (\pm0.02)$ \\
+     & MLP & $0.664 (\pm0.01)$ & $0.850 (\pm0.00)$ & $0.185 (\pm0.01)$ \\
+    \midrule
+    \multirow[t]{4}{*}{Bank Marketing} & FTL & $0.828 (\pm0.14)$ & $0.887 (\pm0.01)$ & $0.059 (\pm0.14)$ \\
+     & FTL+CRP & $0.800 (\pm0.25)$ & $0.897 (\pm0.01)$ & $0.096 (\pm0.24)$ \\
+     & MLP & $0.799 (\pm0.03)$ & $0.902 (\pm0.00)$ & $0.103 (\pm0.03)$ \\
+     & MLP+CRP & $0.777 (\pm0.03)$ & $0.905 (\pm0.00)$ & $0.127 (\pm0.04)$ \\
+    \midrule
+    \multirow[t]{4}{*}{Compas Recidivism} & FTL+CRP & $0.606 (\pm0.03)$ & $0.651 (\pm0.01)$ & $0.045 (\pm0.03)$ \\
+     & FTL & $0.520 (\pm0.12)$ & $0.619 (\pm0.04)$ & $0.100 (\pm0.11)$ \\
+     & MLP+CRP & $0.462 (\pm0.03)$ & $0.659 (\pm0.01)$ & $0.197 (\pm0.03)$ \\
+     & MLP & $0.439 (\pm0.04)$ & $0.646 (\pm0.01)$ & $0.207 (\pm0.04)$ \\
+    \midrule
+    \multirow[t]{4}{*}{German Credit} & FTL & $0.684 (\pm0.07)$ & $0.723 (\pm0.03)$ & $0.040 (\pm0.05)$ \\
+     & FTL+CRP & $0.655 (\pm0.07)$ & $0.725 (\pm0.03)$ & $0.070 (\pm0.06)$ \\
+     & MLP+CRP & $0.631 (\pm0.07)$ & $0.733 (\pm0.02)$ & $0.102 (\pm0.06)$ \\
+     & MLP & $0.628 (\pm0.06)$ & $0.742 (\pm0.03)$ & $0.114 (\pm0.06)$ \\
+     \bottomrule
+\end{tabular}}
+\end{table}
+
+
+\begin{table}
+    \centering
+    \caption{Mean and standard deviation metric values optimizing Accuracy and Equal Opportunity in comparison with Chatterjee Redlining Penalty.}\label{tab:complete_acc_opportunity_crp}
+    {\footnotesize \begin{tabular}{llrrr}
+    \toprule
+    Dataset & Method & Fitness & Accuracy & Eq. Opp. \\
+    \midrule
+    
+    \multirow[t]{4}{*}{Adult Income} & FTL+CRP & $0.815 (\pm0.02)$ & $0.847 (\pm0.00)$ & $0.031 (\pm0.02)$ \\
+     & FTL & $0.812 (\pm0.03)$ & $0.845 (\pm0.01)$ & $0.034 (\pm0.02)$ \\
+     & MLP & $0.758 (\pm0.04)$ & $0.848 (\pm0.00)$ & $0.090 (\pm0.04)$ \\
+     & MLP+CRP & $0.757 (\pm0.05)$ & $0.849 (\pm0.00)$ & $0.091 (\pm0.05)$ \\
+    \midrule
+    \multirow[t]{4}{*}{Bank Marketing} & MLP+CRP & $0.839 (\pm0.05)$ & $0.903 (\pm0.00)$ & $0.063 (\pm0.04)$ \\
+     & MLP & $0.803 (\pm0.07)$ & $0.902 (\pm0.00)$ & $0.099 (\pm0.07)$ \\
+     & FTL+CRP & $0.802 (\pm0.08)$ & $0.892 (\pm0.01)$ & $0.090 (\pm0.09)$ \\
+     & FTL & $0.781 (\pm0.17)$ & $0.883 (\pm0.02)$ & $0.102 (\pm0.17)$ \\
+    \midrule
+    \multirow[t]{4}{*}{Compas Recidivism} & FTL & $0.614 (\pm0.03)$ & $0.645 (\pm0.03)$ & $0.031 (\pm0.02)$ \\
+     & FTL+CRP & $0.598 (\pm0.03)$ & $0.639 (\pm0.02)$ & $0.041 (\pm0.03)$ \\
+     & MLP+CRP & $0.536 (\pm0.03)$ & $0.663 (\pm0.01)$ & $0.127 (\pm0.03)$ \\
+     & MLP & $0.498 (\pm0.04)$ & $0.646 (\pm0.01)$ & $0.148 (\pm0.04)$ \\
+    \midrule
+    \multirow[t]{4}{*}{German Credit} & MLP+CRP & $0.702 (\pm0.05)$ & $0.750 (\pm0.02)$ & $0.048 (\pm0.04)$ \\
+     & FTL & $0.676 (\pm0.06)$ & $0.751 (\pm0.02)$ & $0.075 (\pm0.06)$ \\
+     & MLP & $0.673 (\pm0.06)$ & $0.739 (\pm0.03)$ & $0.066 (\pm0.05)$ \\
+     & FTL+CRP & $0.665 (\pm0.06)$ & $0.736 (\pm0.03)$ & $0.071 (\pm0.05)$ \\
+     \bottomrule
+\end{tabular} }
+\end{table}
+
+ \begin{table}
+    \centering
+    \caption{Mean and standard deviation metric values optimizing Accuracy and Equalized Odds in comparison with Chatterjee Redlining Penalty.}\label{tab:complete_acc_odds_crp}
+    {\footnotesize \begin{tabular}{llrrr}
+    \toprule
+    Dataset & Method & Fitness & Accuracy & Eq. Odds \\
+    \midrule
+    
+    \multirow[t]{4}{*}{Adult Income} & FTL+CRP & $0.805 (\pm0.02)$ & $0.843 (\pm0.01)$ & $0.038 (\pm0.02)$ \\
+     & FTL & $0.798 (\pm0.02)$ & $0.841 (\pm0.01)$ & $0.043 (\pm0.02)$ \\
+     & MLP+CRP & $0.772 (\pm0.02)$ & $0.849 (\pm0.00)$ & $0.077 (\pm0.02)$ \\
+     & MLP & $0.760 (\pm0.02)$ & $0.849 (\pm0.00)$ & $0.089 (\pm0.02)$ \\
+    \midrule
+    \multirow[t]{4}{*}{Bank Marketing} & FTL & $0.846 (\pm0.03)$ & $0.890 (\pm0.01)$ & $0.044 (\pm0.04)$ \\
+     & MLP & $0.845 (\pm0.03)$ & $0.901 (\pm0.00)$ & $0.057 (\pm0.03)$ \\
+     & FTL+CRP & $0.831 (\pm0.05)$ & $0.892 (\pm0.01)$ & $0.061 (\pm0.05)$ \\
+     & MLP+CRP & $0.830 (\pm0.03)$ & $0.902 (\pm0.00)$ & $0.072 (\pm0.03)$ \\
+    \midrule
+    \multirow[t]{4}{*}{Compas Recidivism} & FTL+CRP & $0.594 (\pm0.04)$ & $0.647 (\pm0.02)$ & $0.053 (\pm0.04)$ \\
+     & FTL & $0.545 (\pm0.10)$ & $0.631 (\pm0.05)$ & $0.086 (\pm0.08)$ \\
+     & MLP+CRP & $0.497 (\pm0.04)$ & $0.667 (\pm0.01)$ & $0.170 (\pm0.03)$ \\
+     & MLP & $0.449 (\pm0.04)$ & $0.649 (\pm0.01)$ & $0.200 (\pm0.03)$ \\
+    \midrule
+    \multirow[t]{4}{*}{German Credit} & FTL & $0.669 (\pm0.05)$ & $0.712 (\pm0.02)$ & $0.043 (\pm0.07)$ \\
+     & MLP+CRP & $0.640 (\pm0.06)$ & $0.748 (\pm0.02)$ & $0.107 (\pm0.06)$ \\
+     & FTL+CRP & $0.631 (\pm0.06)$ & $0.721 (\pm0.03)$ & $0.090 (\pm0.08)$ \\
+     & MLP & $0.619 (\pm0.07)$ & $0.740 (\pm0.03)$ & $0.121 (\pm0.07)$ \\
+     \bottomrule
+\end{tabular}}
+\end{table}

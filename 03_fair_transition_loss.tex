@@ -417,13 +417,13 @@ To evaluate the capability of FTL to address this risk, we present another exper
 
 The results, presented in Figure~\ref{fig:ftl_sensibility_test}, show that increasing the protected promotion hyperparameter value leads to a decreased false negative rate for the protected group. Meanwhile, most other monitored metrics tended towards stability to reasonable hyperparameter levels ($p_1$ under $0.95$) . An exception is the false positive rate, specially to protected group, which increased as the false negative rate decreased to keep accuracy. This pattern was consistent across all evaluated datasets. The primary aim of this experiment was to demonstrate that our proposed technique does not inadvertently penalize the protected group. Rather, the overall impact of increasing the aforementioned parameter is to effectively promote fairness for the protected group without detriment to either the privileged or protected groups. The behavior of the remaining FTL parameters is analogous, necessitating proper fine-tuning to achieve a balanced outcome. This underscores the efficacy of our method in achieving its intended purpose of reducing bias and promoting fairness in the model.
 
-Here we present complete results with mean fitness (Equation~\ref{eq:obj_fn}), performance and fairness across multiple resampling, to a proper trade-off comparison. To each objective function and dataset methods results are ordered from higher to lower fitness mean, with corresponding standard deviation presented between parenthesis. Results corresponding each optimization scenario can be found on tables \ref{tab:complete_mcc_parity}, \ref{tab:complete_mcc_opportunity}, \ref{tab:complete_mcc_odds}, \ref{tab:complete_acc_parity}, \ref{tab:complete_acc_opportunity}, and \ref{tab:complete_acc_odds}.
+Here we present complete results with mean and standard deviation values to fitness (Equation~\ref{eq:obj_fn}), performance and fairness across multiple resampling, to a proper trade-off comparison. To each objective function and dataset methods results are ordered from higher to lower fitness mean, with corresponding standard deviation presented between parenthesis. Results corresponding each optimization scenario can be found on tables \ref{tab:complete_mcc_parity}, \ref{tab:complete_mcc_opportunity}, \ref{tab:complete_mcc_odds}, \ref{tab:complete_acc_parity}, \ref{tab:complete_acc_opportunity}, and \ref{tab:complete_acc_odds}.
 
 
 \begin{table}
     \centering
-    \caption{Complete results optimizing MCC and Statistical Parity.}\label{tab:complete_mcc_parity}
-    {\tiny\begin{tabular}{llrrr}
+    \caption{Mean and standard deviation metric values optimizing MCC and Statistical Parity in comparison with Fair Transition Loss.}\label{tab:complete_mcc_parity}
+    {\footnotesize\begin{tabular}{llrrr}
     \toprule
     Dataset & Method & Fitness & MCC & Stat. Parity \\
     \midrule
@@ -468,8 +468,8 @@ Here we present complete results with mean fitness (Equation~\ref{eq:obj_fn}), p
 
  \begin{table}
     \centering
-    \caption{Complete results optimizing MCC and Equal Opportunity.}\label{tab:complete_mcc_opportunity}
-    {\tiny\begin{tabular}{llrrr}
+    \caption{Mean and standard deviation metric values optimizing MCC and Equal Opportunity in comparison with Fair Transition Loss.}\label{tab:complete_mcc_opportunity}
+    {\footnotesize\begin{tabular}{llrrr}
     \toprule
     Dataset & Method & Fitness & MCC & Eq. Opp. \\
     \midrule
@@ -513,8 +513,8 @@ Here we present complete results with mean fitness (Equation~\ref{eq:obj_fn}), p
 \end{table}
  \begin{table}
     \centering
-    \caption{Complete results optimizing MCC and Equalized Odds.}\label{tab:complete_mcc_odds}
-    {\tiny\begin{tabular}{llrrr}
+    \caption{Mean and standard deviation metric values optimizing MCC and Equalized Odds in comparison with Fair Transition Loss.}\label{tab:complete_mcc_odds}
+    {\footnotesize\begin{tabular}{llrrr}
     \toprule
     Dataset & Method & Fitness & MCC & Eq. Odds \\
     \midrule
@@ -559,8 +559,8 @@ Here we present complete results with mean fitness (Equation~\ref{eq:obj_fn}), p
 
  \begin{table}
     \centering
-    \caption{Complete results optimizing Accuracy and Statistical Parity.}\label{tab:complete_acc_parity}
-   {\tiny \begin{tabular}{llrrr}
+    \caption{Mean and standard deviation metric values optimizing Accuracy and Statistical Parity in comparison with Fair Transition Loss.}\label{tab:complete_acc_parity}
+   {\footnotesize \begin{tabular}{llrrr}
     \toprule
     Dataset & Method & Fitness & Accuracy & Stat. Parity \\
     \midrule
@@ -606,8 +606,8 @@ Here we present complete results with mean fitness (Equation~\ref{eq:obj_fn}), p
 
 \begin{table}
     \centering
-    \caption{Complete results optimizing Accuracy and Equal Opportunity.}\label{tab:complete_acc_opportunity}
-    {\tiny \begin{tabular}{llrrr}
+    \caption{Mean and standard deviation metric values optimizing Accuracy and Equal Opportunity in comparison with Fair Transition Loss.}\label{tab:complete_acc_opportunity}
+    {\footnotesize \begin{tabular}{llrrr}
     \toprule
     Dataset & Method & Fitness & Accuracy & Eq. Opp. \\
     \midrule
@@ -652,8 +652,8 @@ Here we present complete results with mean fitness (Equation~\ref{eq:obj_fn}), p
 
  \begin{table}
     \centering
-    \caption{Complete results optimizing Accuracy and Equalized Odds.}\label{tab:complete_acc_odds}
-    {\tiny \begin{tabular}{llrrr}
+    \caption{Mean and standard deviation metric values optimizing Accuracy and Equalized Odds in comparison with Fair Transition Loss.}\label{tab:complete_acc_odds}
+    {\footnotesize \begin{tabular}{llrrr}
     \toprule
     Dataset & Method & Fitness & Accuracy & Eq. Odds \\
     \midrule
