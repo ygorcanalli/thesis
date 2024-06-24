@@ -1,4 +1,4 @@
-\chapter{Chatterjee Redlining Penalty}
+\chapter{Correlation based penalty function}
 
 In this chapter, we propose a novel regularization factor to penalize the use of features highly correlated with a protected attribute by a machine learning model, aiming to avoid the redlining effect~\citep{Pedreschi2008}. The proposed quadratic penalization factor is applied directly to the input weights of a Multi-Layer Perceptron, using a strategy that proportionately penalizes features use based on their correlation with the sensitive feature.
 
@@ -58,7 +58,7 @@ where $\lambda$ is a scalar hyperparameter that controls the overall strength of
 
 By adding this regularization term, the optimization process aims to minimize the primary loss $L_0$ along with keeping the weights small, thereby helping to reduce the model complexity and prevent overfitting. The gradient descent updates for the weights will be adjusted to account for the regularization term, effectively shrinking the weights during the training process.
 
-\section{Proposal}
+\section{Chatterjee Redlining Penalty}
 
 The Chatterjee Redlining Penalty (CRP) is a regularization term that penalizes the weights of features highly correlated with the sensitive attribute, as measured by Chatterjee's Xi Rank Correlation Coefficient. By incorporating this penalty into the loss function of the neural network, the model is encouraged to reduce its reliance on sensitive attributes, thus promoting fairer predictions.
 

@@ -1,4 +1,4 @@
-\chapter{Fair Transition Loss}
+\chapter{Fair loss function from noise robustness}
 
 In this chapter we propose a novel loss function inspired by label noise robustness methods to fair classification problems. The core of this proposal consists in using transition matrices as parameters to a proper loss correction~\cite{Patrini2017}, with matrices values as factors to redistribute unbalanced bias across different groups within the sensitive feature.
 
@@ -105,15 +105,42 @@ Furthermore, many recent works deals with fairness under semi-supervised setting
 
 Bias and noise are two related phenomena, both corrupt data affecting models trained with this data. For example, if noise disproportionately affects different groups this potentially produces unfairness in models that uses this data in training~\citep{Wang2021}. For example, we could have positive true class ($Y = 1$) flipped into negative labels ($\tilde{Y} =0$) more frequently in the protected group ($A = 1$) than in privileged group ($A = 0$). Simultaneously, the negative class ($Y = 0$) could be more frequently flipped into positives observed labels ($\tilde{Y} = 1$) within privileged/unprotected group ($A = 0$). This scenario could lead to a undetected higher false negative rate to protected group and higher false positive rate to privileged group. In this case the Noisy Not at Random data would be a source of negative social bias.
 
-As refered before, in \cite{Mehrabi2019} a non-exhaustive list of bias types was presented. In the scenario described above, the incorrect measurement of the true class resulted in a different observed label ($Y \neq \tilde{Y}$), which could be classified as a \textit{Measurement Bias}. Similarly, a Noisy Not at Random data could lead to a \textit{Population Bias}, where the characteristics of the population represented in the data differ from those of the original target population.
+As referred before, in \cite{Mehrabi2019} a non-exhaustive list of bias types was presented. In the scenario described above, the incorrect measurement of the true class resulted in a different observed label ($Y \neq \tilde{Y}$), which could be classified as a \textit{Measurement Bias}. Similarly, a Noisy Not at Random data could lead to a \textit{Population Bias}, where the characteristics of the population represented in the data differ from those of the original target population.
 
 It can be challenging to distinguish between label noise and bias in certain scenarios, specially when noise disproportionately affects different social groups. Although there is some overlapping, they are distinct phenomena. Label noise is a stochastic process that is considered independent and unintentional~\citep{Frenay2014}, whereas bias is rooted in historical and social issues and could be intentional. Furthermore, even noise-free data, correctly represented by observed features and labels, may be unfair since the social phenomena that produce this data could be biased against some groups.
 
 Previous studies on fair machine learning have largely concentrated on understanding how noisy or censored data affects fair learning and on mitigating these effects. Thus, the objective of this work is not to theoretically deal with fair machine learning as a label noise problem or incorporate noisy classes or attributes in fairness problems. In contrast, our approach is inspired by label noise techniques, but with a distinct goal: not merely to analyze or mitigate the impact of noise or censorship, but to directly address and reduce unfairness itself.
 
-\section{Proposal} \label{sec:proposal}
+To achieve a competitive trade-off between performance and fairness in the proposed method, we discuss multi-objective optimization within the context of fair machine learning. A model that substantially decreases model performance to reduce unfairness may not be a viable option, as low performance could harm all groups affected by the model's decisions, including protected groups. Similarly, a model projected to be a fair alternative that keeps performance almost intact, but with little or even no gain in fairness, is not practically relevant. It is possible that fine-tuning this trade-off could result in a fairer solution that achieves better performance than traditional methods, but this is not the case for most practical problems. Achieving this balance is one of the most challenging tasks in fair machine learning.
 
-We propose a novel fair classification method inspired by techniques used for classification in the presence of label noise. By using some features of label noise methods that redistribute probabilities for unbalanced noise across classes, our approach re-weights prediction probabilities to reduce disparities in favorable and unfavorable outcomes across social groups.
+In this context, an interesting approach is to deal with fair machine learning as a Multi-Objective Optimization (MOO) problem, where predictive performance and fairness metric are the objectives, which could be defined according Equation~\ref{def:moo}, where $\lambda$ is a parameter configuration in the space $\Lambda$, $\rho: \Lambda \mapsto [0,1]$ is a model performance metric and $\varphi: \Lambda \mapsto [0,1]$ a fairness metric. The set of all optimal solutions is called Pareto front, where one objective cannot be improved without sacrificing another. In this setting there is no single $\lambda^*$ optimal solution, but a set of solutions forming a Pareto front~\citep{pareto1906manuale}.
+
+\begin{align}\label{def:moo}
+\max &\hspace{1ex} (\rho(\lambda), \varphi(\lambda)) \\
+\text{subject to} &\hspace{1ex} \lambda\in\Lambda \nonumber
+\end{align}
+
+One of the most frequent approach to deal with MOO problems like these is to combine the multiple function outputs to a single scalar, which is called scalarization. Therefore, we could describe a general scalarization setup to Equation~\ref{def:moo} according Equation~\ref{def:scalarized_moo}. The effectiveness of this approach is that is also possible to use single objective optimization techniques to tackle the MOO optimization problem. In this scenario a relevant issue is to select a scalarization setup capable of promote a proper trade-off of all the objectives thorough the optimization process given the optimization method.
+
+\begin{equation}\label{def:scalarized_moo}
+\arg\max\limits_{\lambda\in\Lambda} G(\lambda) = (\rho(\lambda), \varphi(\lambda))
+\end{equation}
+
+The fairness-accuracy Pareto front is formally described in \cite{Wei2022}, which demonstrate that many existing fairness methods are performing a linear scalarization scheme and argues that it has several limitations in recovering Pareto optimal solutions. Instead, authors proposes a Chebyshev scalarization scheme, that is theoretically superior than linear scheme. A characterization of the accuracy-fairness trade-off as a Pareto front can be found in \cite{Liu2022}. Also, \cite{Mercier2018} proposes a stochastic multi-gradient based in original stochastic multi-gradient to Multi-Objective Optimization.
+
+Another remarkable use of MOO in Fair Machine Learning is to perform a Fair Hyperparameter Optimization, which provides a model agnostic approach with flexibility to apply in multiple machine learning pipelines. A time-efficient Baysian Optimization approach can be found in \cite{Schmucker2020}, combining scalarization techniques with the bandit-inspired Hyperband \citep{Li2016} algorithm to Hyperparameter Optimization in context of fairness.
+
+A general objective function to be used with some popular off-the-shelf hyperparameters optimization techniques combining model performance and fairness in a flexible setting can be found in \cite{Cruz2021}. The authors argues that in fairness context the Pareto front is most often convex, thus proposes a simple scalarizing function that could be applied to reduce $G$ to a single scalar with weighed $l_p$-norm. Also, they argue that \cite{GIAGKIOZIS2015338} demonstrate the the  use  of $l_p$-norms with a high $p$ value leads to slower convergence. Thus, the optimization metric $g(\lambda) = ||G(\lambda)||_1$ is optimized according Equation~\ref{eq:moo_smoothed_2}, where $\alpha$ is the relative importance of predictive performance and fairness and $\lambda$ is a parameter configuration in the space $\Lambda$. In experiments, $\alpha$ is fixed at $0.5$, giving same importance to both objectives.
+
+\begin{equation} \label{eq:moo_smoothed_2}
+    G(\lambda) = \alpha \cdot \rho(\lambda) + (1-\alpha) \cdot \varphi(\lambda)
+\end{equation}
+
+A Multi-objective SVMOptimizer with Dataset Constraints is proposed by \cite{Goh2016}, where the objective is to minimize multiple objectives on real-world datasets, such as misclassification error and positive prediction at specific rate to some population. A custom reinforcement learning algorithm directly modeling performance and fairness as objectives is proposed by \cite{Petrovic2021}. Authors proposes using as reward function the difference between model performance (Area Under the ROC Curve) and three different fairness metrics (Statistical Parity, Equal Opportunity and Equalized Odds), each one with its respective importance coefficient. In experimental setups only one of those coefficient are different from zero. Thus, the optimized metric could be written as $G(\lambda) = \rho(\lambda) - \alpha \cdot \varphi(\lambda)$, where $\alpha$ is the relative importance of fairness.
+
+\section{Fair Transition Loss} \label{sec:proposal}
+
+We propose a novel fair classification method inspired by techniques used for classification in the presence of label noise. By using some features of label noise methods that redistribute probabilities for unbalanced noise across classes, our approach re-weights prediction probabilities to reduce disparities in favorable and unfavorable outcomes across social groups. This proposal was originally inspired by \cite{Braida2018}, that applies label noise techniques in order to achieve label noise robust collaborative filtering,
 
 Whereas forward loss correction~\citep{Patrini2017} uses a transition matrix with corruption probabilities for every label combination in the case of NAR, fair classification problems are more related to NNAR. While forward loss correction uses a transition matrix with corruption probabilities for each label combination, as in the case of NAR, fair classification problems align more with NNAR scenarios. In NNAR, the probability of corruption depends not only on the true class but also on features, analogous to how bias in fairness problems is directed against certain groups. Here our correction does not revert a random label corruption from the true class, but a potentially unfair prediction. While noise label techniques, like forward~\citep{Patrini2017}, aims to correct the prediction targeting a unknown true class using the available noisy label, analogously the proposed technique focus on correcting predictions chasing the unknown fair class using the available unfair label. Despite those are distinct phenomena, the corrections works the same way, adjusting the probabilities of predictions produced by a machine learning model during the training. 
 
@@ -417,281 +444,398 @@ To evaluate the capability of FTL to address this risk, we present another exper
 
 The results, presented in Figure~\ref{fig:ftl_sensibility_test}, show that increasing the protected promotion hyperparameter value leads to a decreased false negative rate for the protected group. Meanwhile, most other monitored metrics tended towards stability to reasonable hyperparameter levels ($p_1$ under $0.95$) . An exception is the false positive rate, specially to protected group, which increased as the false negative rate decreased to keep accuracy. This pattern was consistent across all evaluated datasets. The primary aim of this experiment was to demonstrate that our proposed technique does not inadvertently penalize the protected group. Rather, the overall impact of increasing the aforementioned parameter is to effectively promote fairness for the protected group without detriment to either the privileged or protected groups. The behavior of the remaining FTL parameters is analogous, necessitating proper fine-tuning to achieve a balanced outcome. This underscores the efficacy of our method in achieving its intended purpose of reducing bias and promoting fairness in the model.
 
-Here we present complete results with mean and standard deviation values to fitness (Equation~\ref{eq:obj_fn}), performance and fairness across multiple resampling, to a proper trade-off comparison. To each objective function and dataset methods results are ordered from higher to lower fitness mean, with corresponding standard deviation presented between parenthesis. Results corresponding each optimization scenario can be found on tables \ref{tab:complete_mcc_parity}, \ref{tab:complete_mcc_opportunity}, \ref{tab:complete_mcc_odds}, \ref{tab:complete_acc_parity}, \ref{tab:complete_acc_opportunity}, and \ref{tab:complete_acc_odds}.
+Additionally, we present performance and fairness results along with the fitness, in order to provide material to a trade-off analysis. Also, those metric values enable the reader to compare this results with different experimental setup and fitness objective from literature. Results corresponding each optimization scenario can be found on tables \ref{tab:complete_mcc_parity} to \ref{tab:complete_acc_odds}, presenting metric means and standard deviation values across multiple resample run. Best result of each metric within evaluation scenario are in bold, and standard deviation values are presented between parenthesis. Up arrow ($\uparrow$) indicates that the referred metric should be maximized while down arrow ($\downarrow$) that the metric should be minimized. To provide a visual resource to this comparison, the distribution of those metrics across multiple resample runs comparing the propose method (FTL) with baseline (MLP) and current state-of-art (APW) are presented in joint plot format in figures \ref{fig:complete_mcc_parity} to \ref{fig:complete_acc_odds}. Here each joint plot is present within the corresponding table to a better comprehension.
 
+\newpage
 
 \begin{table}
     \centering
-    \caption{Mean and standard deviation metric values optimizing MCC and Statistical Parity in comparison with Fair Transition Loss.}\label{tab:complete_mcc_parity}
-    {\footnotesize\begin{tabular}{llrrr}
+    \caption{Mean and standard deviation metric values optimizing MCC and Statistical Parity in comparison with Fair Transition Loss across multiple resample runs.}\label{tab:complete_mcc_parity}
+    {\scriptsize\begin{tabular}{llrrr}
     \toprule
-    Dataset & Method & Fitness & MCC & Stat. Parity \\
+    Dataset & Method & $\uparrow\;$Fitness & $\uparrow\;$MCC & $\downarrow\;$Stat. Parity \\
     \midrule
 
     \multirow{5}{*}{\shortstack[l]{Adult\\ Income}}
-& Adaptive Priority Reweighting & $0.499 (\pm0.01)$ & $0.510 (\pm0.01)$ & $0.011 (\pm0.01)$ \\
-& Fair Transition Loss & $0.492 (\pm0.02)$ & $0.512 (\pm0.01)$ & $0.020 (\pm0.01)$ \\
-& Prejudice Remover & $0.491 (\pm0.01)$ & $0.500 (\pm0.01)$ & $0.009 (\pm0.01)$ \\
-& Adversarial Debiasing & $0.478 (\pm0.01)$ & $0.501 (\pm0.02)$ & $0.024 (\pm0.02)$ \\
-& Standard MLP (baseline) & $0.395 (\pm0.01)$ & $0.581 (\pm0.01)$ & $0.185 (\pm0.01)$ \\
-& Gerry Fair Classifier & $0.357 (\pm0.02)$ & $0.512 (\pm0.02)$ & $0.154 (\pm0.03)$ \\
+& Adaptive Priority Reweighting & $\textbf{0.499} \; (\pm0.01)$ & $0.510 \; (\pm0.01)$ & $0.011 \; (\pm0.01)$ \\
+ & Adversarial Debiasing & $0.478 \; (\pm0.01)$ & $0.501 \; (\pm0.02)$ & $0.024 \; (\pm0.02)$ \\
+ & Fair Transition Loss & $0.492 \; (\pm0.02)$ & $0.512 \; (\pm0.01)$ & $0.020 \; (\pm0.01)$ \\
+ & Gerry Fair Classifier & $0.357 \; (\pm0.02)$ & $0.512 \; (\pm0.02)$ & $0.154 \; (\pm0.03)$ \\
+ & Prejudice Remover & $0.491 \; (\pm0.01)$ & $0.500 \; (\pm0.01)$ & $\textbf{0.009} \; (\pm0.01)$ \\
+ & Standard MLP (baseline) & $0.395 \; (\pm0.01)$ & $\textbf{0.581} \; (\pm0.01)$ & $0.185 \; (\pm0.01)$ \\
 \midrule
 
     \multirow{5}{*}{\shortstack[l]{Bank\\ Marketing}}
-& Fair Transition Loss & $0.539 (\pm0.03)$ & $0.579 (\pm0.01)$ & $0.040 (\pm0.03)$ \\
-& Adversarial Debiasing & $0.459 (\pm0.03)$ & $0.505 (\pm0.02)$ & $0.046 (\pm0.02)$ \\
-& Prejudice Remover & $0.454 (\pm0.03)$ & $0.487 (\pm0.02)$ & $0.033 (\pm0.02)$ \\
-& Adaptive Priority Reweighting & $0.441 (\pm0.03)$ & $0.482 (\pm0.02)$ & $0.041 (\pm0.04)$ \\
-& Standard MLP (baseline) & $0.419 (\pm0.04)$ & $0.522 (\pm0.02)$ & $0.102 (\pm0.03)$ \\
-& Gerry Fair Classifier & $0.358 (\pm0.04)$ & $0.428 (\pm0.02)$ & $0.070 (\pm0.03)$ \\
+& Adaptive Priority Reweighting & $0.441 \; (\pm0.03)$ & $0.482 \; (\pm0.02)$ & $0.041 \; (\pm0.04)$ \\
+ & Adversarial Debiasing & $0.459 \; (\pm0.03)$ & $0.505 \; (\pm0.02)$ & $0.046 \; (\pm0.02)$ \\
+ & Fair Transition Loss & $\textbf{0.539} \; (\pm0.03)$ & $\textbf{0.579} \; (\pm0.01)$ & $0.040 \; (\pm0.03)$ \\
+ & Gerry Fair Classifier & $0.358 \; (\pm0.04)$ & $0.428 \; (\pm0.02)$ & $0.070 \; (\pm0.03)$ \\
+ & Prejudice Remover & $0.454 \; (\pm0.03)$ & $0.487 \; (\pm0.02)$ & $\textbf{0.033} \; (\pm0.02)$ \\
+ & Standard MLP (baseline) & $0.419 \; (\pm0.04)$ & $0.522 \; (\pm0.02)$ & $0.102 \; (\pm0.03)$ \\
 \midrule
 
     \multirow{5}{*}{\shortstack[l]{COMPAS\\ Recidivism}}
-& Fair Transition Loss & $0.220 (\pm0.06)$ & $0.276 (\pm0.03)$ & $0.057 (\pm0.05)$ \\
-& Adversarial Debiasing & $0.157 (\pm0.14)$ & $0.322 (\pm0.02)$ & $0.165 (\pm0.14)$ \\
-& Gerry Fair Classifier & $0.141 (\pm0.04)$ & $0.289 (\pm0.06)$ & $0.148 (\pm0.06)$ \\
-& Prejudice Remover & $-0.318 (\pm0.05)$ & $-0.276 (\pm0.03)$ & $0.042 (\pm0.03)$ \\
-& Adaptive Priority Reweighting & $-0.412 (\pm0.35)$ & $0.194 (\pm0.07)$ & $0.606 (\pm0.29)$ \\
-& Standard MLP (baseline) & $-0.511 (\pm0.05)$ & $-0.299 (\pm0.03)$ & $0.212 (\pm0.04)$ \\
+& Adaptive Priority Reweighting & $-0.412 \; (\pm0.35)$ & $0.194 \; (\pm0.07)$ & $0.606 \; (\pm0.29)$ \\
+ & Adversarial Debiasing & $0.157 \; (\pm0.14)$ & $\textbf{0.322} \; (\pm0.02)$ & $0.165 \; (\pm0.14)$ \\
+ & Fair Transition Loss & $\textbf{0.220} \; (\pm0.06)$ & $0.276 \; (\pm0.03)$ & $0.057 \; (\pm0.05)$ \\
+ & Gerry Fair Classifier & $0.141 \; (\pm0.04)$ & $0.289 \; (\pm0.06)$ & $0.148 \; (\pm0.06)$ \\
+ & Prejudice Remover & $-0.318 \; (\pm0.05)$ & $-0.276 \; (\pm0.03)$ & $\textbf{0.042} \; (\pm0.03)$ \\
+ & Standard MLP (baseline) & $-0.511 \; (\pm0.05)$ & $-0.299 \; (\pm0.03)$ & $0.212 \; (\pm0.04)$ \\
 \midrule
 
     \multirow{5}{*}{\shortstack[l]{German\\ Credit}}
-& Fair Transition Loss & $0.272 (\pm0.08)$ & $0.354 (\pm0.07)$ & $0.083 (\pm0.04)$ \\
-& Prejudice Remover & $0.234 (\pm0.09)$ & $0.329 (\pm0.05)$ & $0.095 (\pm0.06)$ \\
-& Standard MLP (baseline) & $0.223 (\pm0.10)$ & $0.330 (\pm0.07)$ & $0.107 (\pm0.07)$ \\
-& Gerry Fair Classifier & $0.221 (\pm0.09)$ & $0.291 (\pm0.11)$ & $0.071 (\pm0.06)$ \\
-& Adaptive Priority Reweighting & $0.217 (\pm0.09)$ & $0.321 (\pm0.05)$ & $0.105 (\pm0.06)$ \\
-& Adversarial Debiasing & $0.200 (\pm0.17)$ & $0.368 (\pm0.06)$ & $0.168 (\pm0.15)$ \\
+& Adaptive Priority Reweighting & $0.217 \; (\pm0.09)$ & $0.321 \; (\pm0.05)$ & $0.105 \; (\pm0.06)$ \\
+ & Adversarial Debiasing & $0.200 \; (\pm0.17)$ & $\textbf{0.368} \; (\pm0.06)$ & $0.168 \; (\pm0.15)$ \\
+ & Fair Transition Loss & $\textbf{0.272} \; (\pm0.08)$ & $0.354 \; (\pm0.07)$ & $0.083 \; (\pm0.04)$ \\
+ & Gerry Fair Classifier & $0.221 \; (\pm0.09)$ & $0.291 \; (\pm0.11)$ & $\textbf{0.071} \; (\pm0.06)$ \\
+ & Prejudice Remover & $0.234 \; (\pm0.09)$ & $0.329 \; (\pm0.05)$ & $0.095 \; (\pm0.06)$ \\
+ & Standard MLP (baseline) & $0.223 \; (\pm0.10)$ & $0.330 \; (\pm0.07)$ & $0.107 \; (\pm0.07)$ \\
      \bottomrule
 \end{tabular}}
 \end{table}
+
+\begin{figure}
+\centering
+\caption{Metric distribution optimizing MCC and Statistical Parity in comparison with Fair Transition Loss across multiple resample runs. Corresponding values available at Table~\ref{tab:complete_mcc_parity}.}
+\label{fig:complete_mcc_parity}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_parity_adult.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_parity_bank.pdf}
+\end{subfigure}
+
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_parity_compas.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_parity_german.pdf}
+\end{subfigure}
+\end{figure}
+    
+ \begin{table}
+    \centering
+    \caption{Mean and standard deviation metric values optimizing MCC and Equal Opportunity in comparison with Fair Transition Loss across multiple resample runs.}\label{tab:complete_mcc_opportunity}
+    {\scriptsize\begin{tabular}{llrrr}
+    \toprule
+    Dataset & Method & $\uparrow\;$Fitness & $\uparrow\;$MCC & $\downarrow\;$q. Opp. \\
+    \midrule
+
+    \multirow{5}{*}{\shortstack[l]{Adult\\ Income}}
+& Adaptive Priority Reweighting & $0.493 \; (\pm0.01)$ & $0.523 \; (\pm0.01)$ & $\textbf{0.030} \; (\pm0.01)$ \\
+ & Adversarial Debiasing & $0.509 \; (\pm0.03)$ & $0.565 \; (\pm0.02)$ & $0.056 \; (\pm0.02)$ \\
+ & Fair Transition Loss & $\textbf{0.523} \; (\pm0.02)$ & $\textbf{0.576} \; (\pm0.02)$ & $0.052 \; (\pm0.02)$ \\
+ & Gerry Fair Classifier & $0.434 \; (\pm0.01)$ & $0.523 \; (\pm0.01)$ & $0.089 \; (\pm0.01)$ \\
+ & Prejudice Remover & $0.509 \; (\pm0.05)$ & $0.558 \; (\pm0.02)$ & $0.049 \; (\pm0.03)$ \\
+ & Standard MLP (baseline) & $0.489 \; (\pm0.03)$ & $0.576 \; (\pm0.01)$ & $0.087 \; (\pm0.03)$ \\
+\midrule
+
+    \multirow{5}{*}{\shortstack[l]{Bank\\ Marketing}}
+& Adaptive Priority Reweighting & $0.424 \; (\pm0.04)$ & $0.474 \; (\pm0.02)$ & $\textbf{0.050} \; (\pm0.04)$ \\
+ & Adversarial Debiasing & $0.426 \; (\pm0.06)$ & $0.512 \; (\pm0.02)$ & $0.086 \; (\pm0.05)$ \\
+ & Fair Transition Loss & $\textbf{0.485} \; (\pm0.06)$ & $\textbf{0.569} \; (\pm0.01)$ & $0.084 \; (\pm0.06)$ \\
+ & Gerry Fair Classifier & $0.371 \; (\pm0.04)$ & $0.423 \; (\pm0.02)$ & $0.052 \; (\pm0.03)$ \\
+ & Prejudice Remover & $0.413 \; (\pm0.04)$ & $0.485 \; (\pm0.02)$ & $0.072 \; (\pm0.04)$ \\
+ & Standard MLP (baseline) & $0.439 \; (\pm0.03)$ & $0.514 \; (\pm0.02)$ & $0.075 \; (\pm0.03)$ \\
+\midrule
+
+    \multirow{5}{*}{\shortstack[l]{COMPAS\\ Recidivism}}
+& Adaptive Priority Reweighting & $-0.111 \; (\pm0.18)$ & $0.260 \; (\pm0.04)$ & $0.371 \; (\pm0.17)$ \\
+ & Adversarial Debiasing & $0.191 \; (\pm0.11)$ & $\textbf{0.324} \; (\pm0.03)$ & $0.133 \; (\pm0.10)$ \\
+ & Fair Transition Loss & $\textbf{0.208} \; (\pm0.06)$ & $0.283 \; (\pm0.02)$ & $0.074 \; (\pm0.05)$ \\
+ & Gerry Fair Classifier & $0.155 \; (\pm0.05)$ & $0.274 \; (\pm0.06)$ & $0.120 \; (\pm0.04)$ \\
+ & Prejudice Remover & $-0.352 \; (\pm0.03)$ & $-0.278 \; (\pm0.02)$ & $\textbf{0.073} \; (\pm0.03)$ \\
+ & Standard MLP (baseline) & $-0.471 \; (\pm0.05)$ & $-0.294 \; (\pm0.02)$ & $0.176 \; (\pm0.04)$ \\
+\midrule
+
+    \multirow{5}{*}{\shortstack[l]{German\\ Credit}}
+& Adaptive Priority Reweighting & $\textbf{0.299} \; (\pm0.08)$ & $0.373 \; (\pm0.06)$ & $\textbf{0.075} \; (\pm0.05)$ \\
+ & Adversarial Debiasing & $0.040 \; (\pm0.41)$ & $0.301 \; (\pm0.13)$ & $0.261 \; (\pm0.30)$ \\
+ & Fair Transition Loss & $0.273 \; (\pm0.10)$ & $0.386 \; (\pm0.08)$ & $0.113 \; (\pm0.08)$ \\
+ & Gerry Fair Classifier & $0.218 \; (\pm0.11)$ & $0.321 \; (\pm0.10)$ & $0.103 \; (\pm0.05)$ \\
+ & Prejudice Remover & $0.283 \; (\pm0.10)$ & $\textbf{0.391} \; (\pm0.07)$ & $0.107 \; (\pm0.06)$ \\
+ & Standard MLP (baseline) & $0.270 \; (\pm0.07)$ & $0.352 \; (\pm0.05)$ & $0.082 \; (\pm0.04)$ \\
+     \bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{figure}
+\centering
+\caption{Metric distribution optimizing MCC and Equal Opportunity in comparison with Fair Transition Loss across multiple resample runs. Corresponding values available at Table~\ref{tab:complete_mcc_opportunity}.}
+\label{fig:complete_mcc_opportunity}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_opportunity_adult.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_opportunity_bank.pdf}
+\end{subfigure}
+
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_opportunity_compas.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_opportunity_german.pdf}
+\end{subfigure}
+\end{figure}
 
  \begin{table}
     \centering
-    \caption{Mean and standard deviation metric values optimizing MCC and Equal Opportunity in comparison with Fair Transition Loss.}\label{tab:complete_mcc_opportunity}
-    {\footnotesize\begin{tabular}{llrrr}
+    \caption{Mean and standard deviation metric values optimizing MCC and Equalized Odds in comparison with Fair Transition Loss across multiple resample runs.}\label{tab:complete_mcc_odds}
+    {\scriptsize\begin{tabular}{llrrr}
     \toprule
-    Dataset & Method & Fitness & MCC & Eq. Opp. \\
+    Dataset & Method & $\uparrow\;$Fitness & $\uparrow\;$MCC & $\downarrow\;$Eq. Odds \\
     \midrule
 
     \multirow{5}{*}{\shortstack[l]{Adult\\ Income}}
-& Fair Transition Loss & $0.523 (\pm0.02)$ & $0.576 (\pm0.02)$ & $0.052 (\pm0.02)$ \\
-& Prejudice Remover & $0.509 (\pm0.05)$ & $0.558 (\pm0.02)$ & $0.049 (\pm0.03)$ \\
-& Adversarial Debiasing & $0.509 (\pm0.03)$ & $0.565 (\pm0.02)$ & $0.056 (\pm0.02)$ \\
-& Adaptive Priority Reweighting & $0.493 (\pm0.01)$ & $0.523 (\pm0.01)$ & $0.030 (\pm0.01)$ \\
-& Standard MLP (baseline) & $0.489 (\pm0.03)$ & $0.576 (\pm0.01)$ & $0.087 (\pm0.03)$ \\
-& Gerry Fair Classifier & $0.434 (\pm0.01)$ & $0.523 (\pm0.01)$ & $0.089 (\pm0.01)$ \\
+& Adaptive Priority Reweighting & $0.553 \; (\pm0.01)$ & $0.576 \; (\pm0.01)$ & $\textbf{0.022} \; (\pm0.02)$\\
+ & Adversarial Debiasing & $0.493 \; (\pm0.05)$ & $0.573 \; (\pm0.01)$ & $0.080 \; (\pm0.05)$ \\
+ & Fair Transition Loss & $\textbf{0.556} \; (\pm0.03)$& $\textbf{0.584} \; (\pm0.01)$& $0.029 \; (\pm0.03)$ \\
+ & Gerry Fair Classifier & $0.394 \; (\pm0.03)$ & $0.515 \; (\pm0.02)$ & $0.121 \; (\pm0.02)$ \\
+ & Prejudice Remover & $0.505 \; (\pm0.09)$ & $0.560 \; (\pm0.02)$ & $0.055 \; (\pm0.08)$ \\
+ & Standard MLP (baseline) & $0.489 \; (\pm0.03)$ & $0.580 \; (\pm0.01)$ & $0.091 \; (\pm0.03)$ \\
 \midrule
 
     \multirow{5}{*}{\shortstack[l]{Bank\\ Marketing}}
-& Fair Transition Loss & $0.485 (\pm0.06)$ & $0.569 (\pm0.01)$ & $0.084 (\pm0.06)$ \\
-& Standard MLP (baseline) & $0.439 (\pm0.03)$ & $0.514 (\pm0.02)$ & $0.075 (\pm0.03)$ \\
-& Adversarial Debiasing & $0.426 (\pm0.06)$ & $0.512 (\pm0.02)$ & $0.086 (\pm0.05)$ \\
-& Adaptive Priority Reweighting & $0.424 (\pm0.04)$ & $0.474 (\pm0.02)$ & $0.050 (\pm0.04)$ \\
-& Prejudice Remover & $0.413 (\pm0.04)$ & $0.485 (\pm0.02)$ & $0.072 (\pm0.04)$ \\
-& Gerry Fair Classifier & $0.371 (\pm0.04)$ & $0.423 (\pm0.02)$ & $0.052 (\pm0.03)$ \\
+& Adaptive Priority Reweighting & $0.441 \; (\pm0.06)$ & $0.500 \; (\pm0.01)$ & $\textbf{0.059} \; (\pm0.06)$\\
+ & Adversarial Debiasing & $0.373 \; (\pm0.09)$ & $0.508 \; (\pm0.02)$ & $0.136 \; (\pm0.09)$ \\
+ & Fair Transition Loss & $\textbf{0.467} \; (\pm0.11)$& $0.560 \; (\pm0.03)$ & $0.093 \; (\pm0.10)$ \\
+ & Gerry Fair Classifier & $0.344 \; (\pm0.07)$ & $0.422 \; (\pm0.02)$ & $0.078 \; (\pm0.06)$ \\
+ & Prejudice Remover & $0.392 \; (\pm0.09)$ & $0.490 \; (\pm0.02)$ & $0.098 \; (\pm0.08)$ \\
+ & Standard MLP (baseline) & $0.432 \; (\pm0.06)$ & $\textbf{0.520} \; (\pm0.02)$& $0.087 \; (\pm0.06)$ \\
 \midrule
 
     \multirow{5}{*}{\shortstack[l]{COMPAS\\ Recidivism}}
-& Fair Transition Loss & $0.208 (\pm0.06)$ & $0.283 (\pm0.02)$ & $0.074 (\pm0.05)$ \\
-& Adversarial Debiasing & $0.191 (\pm0.11)$ & $0.324 (\pm0.03)$ & $0.133 (\pm0.10)$ \\
-& Gerry Fair Classifier & $0.155 (\pm0.05)$ & $0.274 (\pm0.06)$ & $0.120 (\pm0.04)$ \\
-& Adaptive Priority Reweighting & $-0.111 (\pm0.18)$ & $0.260 (\pm0.04)$ & $0.371 (\pm0.17)$ \\
-& Prejudice Remover & $-0.352 (\pm0.03)$ & $-0.278 (\pm0.02)$ & $0.073 (\pm0.03)$ \\
-& Standard MLP (baseline) & $-0.471 (\pm0.05)$ & $-0.294 (\pm0.02)$ & $0.176 (\pm0.04)$ \\
+& Adaptive Priority Reweighting & $\textbf{0.292} \; (\pm0.03)$& $0.319 \; (\pm0.02)$ & $\textbf{0.027} \; (\pm0.02)$\\
+ & Adversarial Debiasing & $0.258 \; (\pm0.05)$ & $\textbf{0.329} \; (\pm0.03)$& $0.070 \; (\pm0.05)$ \\
+ & Fair Transition Loss & $0.213 \; (\pm0.06)$ & $0.264 \; (\pm0.06)$ & $0.050 \; (\pm0.03)$ \\
+ & Gerry Fair Classifier & $0.201 \; (\pm0.05)$ & $0.290 \; (\pm0.04)$ & $0.089 \; (\pm0.05)$ \\
+ & Prejudice Remover & $-0.319 \; (\pm0.03)$ & $-0.289 \; (\pm0.03)$ & $0.030 \; (\pm0.02)$ \\
+ & Standard MLP (baseline) & $-0.435 \; (\pm0.03)$ & $-0.292 \; (\pm0.02)$ & $0.143 \; (\pm0.03)$ \\
 \midrule
 
     \multirow{5}{*}{\shortstack[l]{German\\ Credit}}
-& Adaptive Priority Reweighting & $0.299 (\pm0.08)$ & $0.373 (\pm0.06)$ & $0.075 (\pm0.05)$ \\
-& Prejudice Remover & $0.283 (\pm0.10)$ & $0.391 (\pm0.07)$ & $0.107 (\pm0.06)$ \\
-& Fair Transition Loss & $0.273 (\pm0.10)$ & $0.386 (\pm0.08)$ & $0.113 (\pm0.08)$ \\
-& Standard MLP (baseline) & $0.270 (\pm0.07)$ & $0.352 (\pm0.05)$ & $0.082 (\pm0.04)$ \\
-& Gerry Fair Classifier & $0.218 (\pm0.11)$ & $0.321 (\pm0.10)$ & $0.103 (\pm0.05)$ \\
-& Adversarial Debiasing & $0.040 (\pm0.41)$ & $0.301 (\pm0.13)$ & $0.261 (\pm0.30)$ \\
+& Adaptive Priority Reweighting & $0.261 \; (\pm0.08)$ & $0.326 \; (\pm0.06)$ & $0.065 \; (\pm0.05)$ \\
+ & Adversarial Debiasing & $0.116 \; (\pm0.40)$ & $0.311 \; (\pm0.14)$ & $0.195 \; (\pm0.28)$ \\
+ & Fair Transition Loss & $0.274 \; (\pm0.10)$ & $\textbf{0.361} \; (\pm0.08)$& $0.087 \; (\pm0.05)$ \\
+ & Gerry Fair Classifier & $0.273 \; (\pm0.10)$ & $\textbf{0.361} \; (\pm0.06)$& $0.087 \; (\pm0.06)$ \\
+ & Prejudice Remover & $0.271 \; (\pm0.07)$ & $0.324 \; (\pm0.06)$ & $\textbf{0.054} \; (\pm0.04)$\\
+ & Standard MLP (baseline) & $\textbf{0.295} \; (\pm0.09)$& $0.354 \; (\pm0.08)$ & $0.060 \; (\pm0.04)$ \\
      \bottomrule
 \end{tabular}}
 \end{table}
- \begin{table}
-    \centering
-    \caption{Mean and standard deviation metric values optimizing MCC and Equalized Odds in comparison with Fair Transition Loss.}\label{tab:complete_mcc_odds}
-    {\footnotesize\begin{tabular}{llrrr}
-    \toprule
-    Dataset & Method & Fitness & MCC & Eq. Odds \\
-    \midrule
 
-    \multirow{5}{*}{\shortstack[l]{Adult\\ Income}}
-& Fair Transition Loss & $0.556 (\pm0.03)$ & $0.584 (\pm0.01)$ & $0.029 (\pm0.03)$ \\
-& Adaptive Priority Reweighting & $0.553 (\pm0.01)$ & $0.576 (\pm0.01)$ & $0.022 (\pm0.02)$ \\
-& Prejudice Remover & $0.505 (\pm0.09)$ & $0.560 (\pm0.02)$ & $0.055 (\pm0.08)$ \\
-& Adversarial Debiasing & $0.493 (\pm0.05)$ & $0.573 (\pm0.01)$ & $0.080 (\pm0.05)$ \\
-& Standard MLP (baseline) & $0.489 (\pm0.03)$ & $0.580 (\pm0.01)$ & $0.091 (\pm0.03)$ \\
-& Gerry Fair Classifier & $0.394 (\pm0.03)$ & $0.515 (\pm0.02)$ & $0.121 (\pm0.02)$ \\
-\midrule
+\begin{figure}
+\centering
+\caption{Metric distribution optimizing MCC and Equalized Odds in comparison with Fair Transition Loss across multiple resample runs. Corresponding values available at Table~\ref{tab:complete_mcc_odds}.}
+\label{tab:complete_mcc_odds}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_odds_adult.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_odds_bank.pdf}
+\end{subfigure}
 
-    \multirow{5}{*}{\shortstack[l]{Bank\\ Marketing}}
-& Fair Transition Loss & $0.467 (\pm0.11)$ & $0.560 (\pm0.03)$ & $0.093 (\pm0.10)$ \\
-& Adaptive Priority Reweighting & $0.441 (\pm0.06)$ & $0.500 (\pm0.01)$ & $0.059 (\pm0.06)$ \\
-& Standard MLP (baseline) & $0.432 (\pm0.06)$ & $0.520 (\pm0.02)$ & $0.087 (\pm0.06)$ \\
-& Prejudice Remover & $0.392 (\pm0.09)$ & $0.490 (\pm0.02)$ & $0.098 (\pm0.08)$ \\
-& Adversarial Debiasing & $0.373 (\pm0.09)$ & $0.508 (\pm0.02)$ & $0.136 (\pm0.09)$ \\
-& Gerry Fair Classifier & $0.344 (\pm0.07)$ & $0.422 (\pm0.02)$ & $0.078 (\pm0.06)$ \\
-\midrule
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_odds_compas.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_odds_german.pdf}
+\end{subfigure}
+\end{figure}
 
-    \multirow{5}{*}{\shortstack[l]{COMPAS\\ Recidivism}}
-& Adaptive Priority Reweighting & $0.292 (\pm0.03)$ & $0.319 (\pm0.02)$ & $0.027 (\pm0.02)$ \\
-& Adversarial Debiasing & $0.258 (\pm0.05)$ & $0.329 (\pm0.03)$ & $0.070 (\pm0.05)$ \\
-& Fair Transition Loss & $0.213 (\pm0.06)$ & $0.264 (\pm0.06)$ & $0.050 (\pm0.03)$ \\
-& Gerry Fair Classifier & $0.201 (\pm0.05)$ & $0.290 (\pm0.04)$ & $0.089 (\pm0.05)$ \\
-& Prejudice Remover & $-0.319 (\pm0.03)$ & $-0.289 (\pm0.03)$ & $0.030 (\pm0.02)$ \\
-& Standard MLP (baseline) & $-0.435 (\pm0.03)$ & $-0.292 (\pm0.02)$ & $0.143 (\pm0.03)$ \\
-\midrule
-
-    \multirow{5}{*}{\shortstack[l]{German\\ Credit}}
-& Standard MLP (baseline) & $0.295 (\pm0.09)$ & $0.354 (\pm0.08)$ & $0.060 (\pm0.04)$ \\
-& Fair Transition Loss & $0.274 (\pm0.10)$ & $0.361 (\pm0.08)$ & $0.087 (\pm0.05)$ \\
-& Gerry Fair Classifier & $0.273 (\pm0.10)$ & $0.361 (\pm0.06)$ & $0.087 (\pm0.06)$ \\
-& Prejudice Remover & $0.271 (\pm0.07)$ & $0.324 (\pm0.06)$ & $0.054 (\pm0.04)$ \\
-& Adaptive Priority Reweighting & $0.261 (\pm0.08)$ & $0.326 (\pm0.06)$ & $0.065 (\pm0.05)$ \\
-& Adversarial Debiasing & $0.116 (\pm0.40)$ & $0.311 (\pm0.14)$ & $0.195 (\pm0.28)$ \\
-     \bottomrule
-\end{tabular}}
-\end{table}
 
  \begin{table}
     \centering
-    \caption{Mean and standard deviation metric values optimizing Accuracy and Statistical Parity in comparison with Fair Transition Loss.}\label{tab:complete_acc_parity}
-   {\footnotesize \begin{tabular}{llrrr}
+    \caption{Mean and standard deviation metric values optimizing Accuracy and Statistical Parity in comparison with Fair Transition Loss across multiple resample runs.}\label{tab:complete_acc_parity}
+   {\scriptsize \begin{tabular}{llrrr}
     \toprule
-    Dataset & Method & Fitness & Accuracy & Stat. Parity \\
+    Dataset & Method & $\uparrow\;$Fitness & $\uparrow\;$Accuracy & $\downarrow\;$Stat. Parity \\
     \midrule
 
     \multirow{5}{*}{\shortstack[l]{Adult\\ Income}}
-& Fair Transition Loss & $0.814 (\pm0.01)$ & $0.828 (\pm0.01)$ & $0.014 (\pm0.01)$ \\
-& Adaptive Priority Reweighting & $0.811 (\pm0.01)$ & $0.822 (\pm0.01)$ & $0.011 (\pm0.01)$ \\
-& Adversarial Debiasing & $0.808 (\pm0.01)$ & $0.830 (\pm0.01)$ & $0.022 (\pm0.01)$ \\
-& Prejudice Remover & $0.807 (\pm0.01)$ & $0.825 (\pm0.00)$ & $0.018 (\pm0.01)$ \\
-& Standard MLP (baseline) & $0.666 (\pm0.01)$ & $0.851 (\pm0.00)$ & $0.184 (\pm0.01)$ \\
-& Gerry Fair Classifier & $0.651 (\pm0.21)$ & $0.721 (\pm0.07)$ & $0.070 (\pm0.14)$ \\
+& Adaptive Priority Reweighting & $0.811 \; (\pm0.01)$ & $0.822 \; (\pm0.01)$ & $\textbf{0.011}(\pm0.01)$\\
+ & Adversarial Debiasing & $0.808 \; (\pm0.01)$ & $0.830 \; (\pm0.01)$ & $0.022 \; (\pm0.01)$ \\
+ & Fair Transition Loss & $\textbf{0.814} \; (\pm0.01)$& $0.828 \; (\pm0.01)$ & $0.014 \; (\pm0.01)$ \\
+ & Gerry Fair Classifier & $0.651 \; (\pm0.21)$ & $0.721 \; (\pm0.07)$ & $0.070 \; (\pm0.14)$ \\
+ & Prejudice Remover & $0.807 \; (\pm0.01)$ & $0.825 \; (\pm0.00)$ & $0.018 \; (\pm0.01)$ \\
+ & Standard MLP (baseline) & $0.666 \; (\pm0.01)$ & $\textbf{0.851} \; (\pm0.00)$& $0.184 \; (\pm0.01)$ \\
 \midrule
 
     \multirow{5}{*}{\shortstack[l]{Bank\\ Marketing}}
-& Adversarial Debiasing & $0.869 (\pm0.03)$ & $0.901 (\pm0.00)$ & $0.031 (\pm0.02)$ \\
-& Prejudice Remover & $0.860 (\pm0.02)$ & $0.898 (\pm0.00)$ & $0.038 (\pm0.02)$ \\
-& Fair Transition Loss & $0.854 (\pm0.05)$ & $0.889 (\pm0.01)$ & $0.035 (\pm0.05)$ \\
-& Adaptive Priority Reweighting & $0.851 (\pm0.06)$ & $0.900 (\pm0.00)$ & $0.049 (\pm0.06)$ \\
-& Gerry Fair Classifier & $0.824 (\pm0.02)$ & $0.895 (\pm0.00)$ & $0.071 (\pm0.02)$ \\
-& Standard MLP (baseline) & $0.799 (\pm0.04)$ & $0.902 (\pm0.00)$ & $0.103 (\pm0.03)$ \\
+& Adaptive Priority Reweighting & $0.851 \; (\pm0.06)$ & $0.900 \; (\pm0.00)$ & $0.049 \; (\pm0.06)$ \\
+ & Adversarial Debiasing & $\textbf{0.869} \; (\pm0.03)$& $0.901 \; (\pm0.00)$ & $\textbf{0.031} \; (\pm0.02)$\\
+ & Fair Transition Loss & $0.854 \; (\pm0.05)$ & $0.889 \; (\pm0.01)$ & $0.035 \; (\pm0.05)$ \\
+ & Gerry Fair Classifier & $0.824 \; (\pm0.02)$ & $0.895 \; (\pm0.00)$ & $0.071 \; (\pm0.02)$ \\
+ & Prejudice Remover & $0.860 \; (\pm0.02)$ & $0.898 \; (\pm0.00)$ & $0.038 \; (\pm0.02)$ \\
+ & Standard MLP (baseline) & $0.799 \; (\pm0.04)$ & $\textbf{0.902} \; (\pm0.00)$& $0.103 \; (\pm0.03)$ \\
 \midrule
 
     \multirow{5}{*}{\shortstack[l]{COMPAS\\ Recidivism}}
-& Adversarial Debiasing & $0.538 (\pm0.07)$ & $0.670 (\pm0.02)$ & $0.132 (\pm0.08)$ \\
-& Fair Transition Loss & $0.501 (\pm0.15)$ & $0.600 (\pm0.05)$ & $0.099 (\pm0.14)$ \\
-& Gerry Fair Classifier & $0.501 (\pm0.05)$ & $0.614 (\pm0.05)$ & $0.113 (\pm0.07)$ \\
-& Prejudice Remover & $0.308 (\pm0.03)$ & $0.359 (\pm0.01)$ & $0.052 (\pm0.02)$ \\
-& Standard MLP (baseline) & $0.146 (\pm0.03)$ & $0.354 (\pm0.02)$ & $0.208 (\pm0.02)$ \\
-& Adaptive Priority Reweighting & $-0.105 (\pm0.26)$ & $0.584 (\pm0.03)$ & $0.689 (\pm0.23)$ \\
+& Adaptive Priority Reweighting & $-0.105 \; (\pm0.26)$ & $0.584 \; (\pm0.03)$ & $0.689 \; (\pm0.23)$ \\
+ & Adversarial Debiasing & $\textbf{0.538} \; (\pm0.07)$& $\textbf{0.670} \; (\pm0.02)$& $0.132 \; (\pm0.08)$ \\
+ & Fair Transition Loss & $0.501 \; (\pm0.15)$ & $0.600 \; (\pm0.05)$ & $0.099 \; (\pm0.14)$ \\
+ & Gerry Fair Classifier & $0.501 \; (\pm0.05)$ & $0.614 \; (\pm0.05)$ & $0.113 \; (\pm0.07)$ \\
+ & Prejudice Remover & $0.308 \; (\pm0.03)$ & $0.359 \; (\pm0.01)$ & $\textbf{0.052} \; (\pm0.02)$\\
+ & Standard MLP (baseline) & $0.146 \; (\pm0.03)$ & $0.354 \; (\pm0.02)$ & $0.208 \; (\pm0.02)$ \\
 \midrule
 
     \multirow{5}{*}{\shortstack[l]{German\\ Credit}}
-& Prejudice Remover & $0.684 (\pm0.05)$ & $0.757 (\pm0.02)$ & $0.073 (\pm0.06)$ \\
-& Standard MLP (baseline) & $0.639 (\pm0.06)$ & $0.752 (\pm0.02)$ & $0.113 (\pm0.06)$ \\
-& Gerry Fair Classifier & $0.621 (\pm0.09)$ & $0.712 (\pm0.12)$ & $0.090 (\pm0.04)$ \\
-& Fair Transition Loss & $0.616 (\pm0.20)$ & $0.715 (\pm0.06)$ & $0.098 (\pm0.17)$ \\
-& Adaptive Priority Reweighting & $0.589 (\pm0.08)$ & $0.682 (\pm0.03)$ & $0.093 (\pm0.08)$ \\
-& Adversarial Debiasing & $0.430 (\pm0.33)$ & $0.713 (\pm0.09)$ & $0.283 (\pm0.26)$ \\
+& Adaptive Priority Reweighting & $0.589 \; (\pm0.08)$ & $0.682 \; (\pm0.03)$ & $0.093 \; (\pm0.08)$ \\
+ & Adversarial Debiasing & $0.430 \; (\pm0.33)$ & $0.713 \; (\pm0.09)$ & $0.283 \; (\pm0.26)$ \\
+ & Fair Transition Loss & $0.616 \; (\pm0.20)$ & $0.715 \; (\pm0.06)$ & $0.098 \; (\pm0.17)$ \\
+ & Gerry Fair Classifier & $0.621 \; (\pm0.09)$ & $0.712 \; (\pm0.12)$ & $0.090 \; (\pm0.04)$ \\
+ & Prejudice Remover & $\textbf{0.684} \; (\pm0.05)$& $\textbf{0.757} \; (\pm0.02)$& $\textbf{0.073} \; (\pm0.06)$\\
+ & Standard MLP (baseline) & $0.639 \; (\pm0.06)$ & $0.752 \; (\pm0.02)$ & $0.113 \; (\pm0.06)$ \\
      \bottomrule
 \end{tabular}}
 \end{table}
 
+
+\begin{figure}
+\centering
+\caption{Metric distribution optimizing Accuracy and Statistical Parity in comparison with Fair Transition Loss across multiple resample runs. Corresponding values available at Table~\ref{tab:complete_acc_parity}.}
+\label{fig:complete_acc_parity}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_parity_adult.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_parity_bank.pdf}
+\end{subfigure}
+
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_parity_compas.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_parity_german.pdf}
+\end{subfigure}
+\end{figure}
 
 \begin{table}
     \centering
     \caption{Mean and standard deviation metric values optimizing Accuracy and Equal Opportunity in comparison with Fair Transition Loss.}\label{tab:complete_acc_opportunity}
-    {\footnotesize \begin{tabular}{llrrr}
+    {\scriptsize \begin{tabular}{llrrr}
     \toprule
-    Dataset & Method & Fitness & Accuracy & Eq. Opp. \\
+    Dataset & Method & $\uparrow\;$Fitness & $\uparrow\;$Accuracy & $\downarrow\;$Eq. Opp. \\
     \midrule
 
     \multirow{5}{*}{\shortstack[l]{Adult\\ Income}}
-& Adaptive Priority Reweighting & $0.808 (\pm0.01)$ & $0.837 (\pm0.00)$ & $0.029 (\pm0.01)$ \\
-& Fair Transition Loss & $0.808 (\pm0.02)$ & $0.842 (\pm0.01)$ & $0.034 (\pm0.02)$ \\
-& Adversarial Debiasing & $0.796 (\pm0.01)$ & $0.849 (\pm0.00)$ & $0.052 (\pm0.01)$ \\
-& Prejudice Remover & $0.794 (\pm0.02)$ & $0.845 (\pm0.01)$ & $0.051 (\pm0.01)$ \\
-& Standard MLP (baseline) & $0.765 (\pm0.02)$ & $0.850 (\pm0.00)$ & $0.084 (\pm0.02)$ \\
-& Gerry Fair Classifier & $0.756 (\pm0.01)$ & $0.788 (\pm0.03)$ & $0.032 (\pm0.04)$ \\
+& Adaptive Priority Reweighting & $\textbf{0.808} \; (\pm0.01)$& $0.837 \; (\pm0.00)$ & $\textbf{0.029} \; (\pm0.01)$\\
+ & Adversarial Debiasing & $0.796 \; (\pm0.01)$ & $0.849 \; (\pm0.00)$ & $0.052 \; (\pm0.01)$ \\
+ & Fair Transition Loss & $0.808 \; (\pm0.02)$ & $0.842 \; (\pm0.01)$ & $0.034 \; (\pm0.02)$ \\
+ & Gerry Fair Classifier & $0.756 \; (\pm0.01)$ & $0.788 \; (\pm0.03)$ & $0.032 \; (\pm0.04)$ \\
+ & Prejudice Remover & $0.794 \; (\pm0.02)$ & $0.845 \; (\pm0.01)$ & $0.051 \; (\pm0.01)$ \\
+ & Standard MLP (baseline) & $0.765 \; (\pm0.02)$ & $\textbf{0.850} \; (\pm0.00)$& $0.084 \; (\pm0.02)$ \\
 \midrule
 
     \multirow{5}{*}{\shortstack[l]{Bank\\ Marketing}}
-& Adaptive Priority Reweighting & $0.858 (\pm0.02)$ & $0.897 (\pm0.00)$ & $0.039 (\pm0.03)$ \\
-& Gerry Fair Classifier & $0.837 (\pm0.04)$ & $0.895 (\pm0.00)$ & $0.058 (\pm0.04)$ \\
-& Fair Transition Loss & $0.833 (\pm0.05)$ & $0.892 (\pm0.01)$ & $0.059 (\pm0.05)$ \\
-& Prejudice Remover & $0.827 (\pm0.04)$ & $0.898 (\pm0.00)$ & $0.071 (\pm0.04)$ \\
-& Standard MLP (baseline) & $0.826 (\pm0.04)$ & $0.901 (\pm0.00)$ & $0.075 (\pm0.04)$ \\
-& Adversarial Debiasing & $0.807 (\pm0.07)$ & $0.902 (\pm0.00)$ & $0.095 (\pm0.07)$ \\
+& Adaptive Priority Reweighting & $\textbf{0.858} \; (\pm0.02)$& $0.897 \; (\pm0.00)$ & $\textbf{0.039} \; (\pm0.03)$\\
+ & Adversarial Debiasing & $0.807 \; (\pm0.07)$ & $\textbf{0.902} \; (\pm0.00)$& $0.095 \; (\pm0.07)$ \\
+ & Fair Transition Loss & $0.833 \; (\pm0.05)$ & $0.892 \; (\pm0.01)$ & $0.059 \; (\pm0.05)$ \\
+ & Gerry Fair Classifier & $0.837 \; (\pm0.04)$ & $0.895 \; (\pm0.00)$ & $0.058 \; (\pm0.04)$ \\
+ & Prejudice Remover & $0.827 \; (\pm0.04)$ & $0.898 \; (\pm0.00)$ & $0.071 \; (\pm0.04)$ \\
+ & Standard MLP (baseline) & $0.826 \; (\pm0.04)$ & $0.901 \; (\pm0.00)$& $0.075 \; (\pm0.04)$ \\
 \midrule
 
     \multirow{5}{*}{\shortstack[l]{COMPAS\\ Recidivism}}
-& Fair Transition Loss & $0.572 (\pm0.03)$ & $0.631 (\pm0.04)$ & $0.059 (\pm0.03)$ \\
-& Adversarial Debiasing & $0.553 (\pm0.09)$ & $0.669 (\pm0.01)$ & $0.116 (\pm0.09)$ \\
-& Gerry Fair Classifier & $0.530 (\pm0.03)$ & $0.637 (\pm0.04)$ & $0.107 (\pm0.05)$ \\
-& Adaptive Priority Reweighting & $0.356 (\pm0.18)$ & $0.643 (\pm0.02)$ & $0.287 (\pm0.18)$ \\
-& Prejudice Remover & $0.264 (\pm0.03)$ & $0.357 (\pm0.01)$ & $0.093 (\pm0.02)$ \\
-& Standard MLP (baseline) & $0.155 (\pm0.04)$ & $0.350 (\pm0.02)$ & $0.195 (\pm0.04)$ \\
+& Adaptive Priority Reweighting & $0.356 \; (\pm0.18)$ & $0.643 \; (\pm0.02)$ & $0.287 \; (\pm0.18)$ \\
+ & Adversarial Debiasing & $0.553 \; (\pm0.09)$ & $\textbf{0.669} \; (\pm0.01)$& $0.116 \; (\pm0.09)$ \\
+ & Fair Transition Loss & $\textbf{0.572} \; (\pm0.03)$& $0.631 \; (\pm0.04)$ & $\textbf{0.059} \; (\pm0.03)$\\
+ & Gerry Fair Classifier & $0.530 \; (\pm0.03)$ & $0.637 \; (\pm0.04)$ & $0.107 \; (\pm0.05)$ \\
+ & Prejudice Remover & $0.264 \; (\pm0.03)$ & $0.357 \; (\pm0.01)$ & $0.093 \; (\pm0.02)$ \\
+ & Standard MLP (baseline) & $0.155 \; (\pm0.04)$ & $0.350 \; (\pm0.02)$ & $0.195 \; (\pm0.04)$ \\
 \midrule
 
     \multirow{5}{*}{\shortstack[l]{German\\ Credit}}
-& Adaptive Priority Reweighting & $0.674 (\pm0.06)$ & $0.750 (\pm0.03)$ & $0.076 (\pm0.04)$ \\
-& Prejudice Remover & $0.664 (\pm0.05)$ & $0.748 (\pm0.02)$ & $0.084 (\pm0.04)$ \\
-& Gerry Fair Classifier & $0.662 (\pm0.12)$ & $0.719 (\pm0.12)$ & $0.057 (\pm0.07)$ \\
-& Standard MLP (baseline) & $0.638 (\pm0.06)$ & $0.738 (\pm0.04)$ & $0.101 (\pm0.05)$ \\
-& Fair Transition Loss & $0.599 (\pm0.12)$ & $0.711 (\pm0.05)$ & $0.112 (\pm0.11)$ \\
-& Adversarial Debiasing & $0.368 (\pm0.38)$ & $0.685 (\pm0.10)$ & $0.317 (\pm0.30)$ \\
+& Adaptive Priority Reweighting & $\textbf{0.674} \; (\pm0.06)$& $0.750 \; (\pm0.03)$ & $0.076 \; (\pm0.04)$ \\
+ & Adversarial Debiasing & $0.368 \; (\pm0.38)$ & $0.685 \; (\pm0.10)$ & $0.317 \; (\pm0.30)$ \\
+ & Fair Transition Loss & $0.599 \; (\pm0.12)$ & $0.711 \; (\pm0.05)$ & $0.112 \; (\pm0.11)$ \\
+ & Gerry Fair Classifier & $0.662 \; (\pm0.12)$ & $0.719 \; (\pm0.12)$ & $0.057 \; (\pm0.07)$ \\
+ & Prejudice Remover & $0.664 \; (\pm0.05)$ & $\textbf{0.748} \; (\pm0.02)$& $0.084 \; (\pm0.04)$ \\
+ & Standard MLP (baseline) & $0.638 \; (\pm0.06)$ & $0.738 \; (\pm0.04)$ & $0.101 \; (\pm0.05)$ \\
      \bottomrule
 \end{tabular} }
 \end{table}
 
+\begin{figure}
+\centering
+\caption{Metric distribution optimizing Accuracy and Equal Opportunity in comparison with Fair Transition Loss across multiple resample runs. Corresponding values available at Table~\ref{tab:complete_acc_opportunity}.}
+\label{fig:complete_acc_opportunity}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_opportunity_adult.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_opportunity_bank.pdf}
+\end{subfigure}
+
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_opportunity_compas.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_opportunity_german.pdf}
+\end{subfigure}
+\end{figure}
+
  \begin{table}
     \centering
-    \caption{Mean and standard deviation metric values optimizing Accuracy and Equalized Odds in comparison with Fair Transition Loss.}\label{tab:complete_acc_odds}
-    {\footnotesize \begin{tabular}{llrrr}
+    \caption{Mean and standard deviation metric values optimizing Accuracy and Equalized Odds in comparison with Fair Transition Loss across multiple resample runs.}\label{tab:complete_acc_odds}
+    {\scriptsize \begin{tabular}{llrrr}
     \toprule
-    Dataset & Method & Fitness & Accuracy & Eq. Odds \\
+    Dataset & Method & $\uparrow\;$Fitness & $\uparrow\;$Accuracy & $\downarrow\;$Eq. Odds \\
     \midrule
 
     \multirow{5}{*}{\shortstack[l]{Adult\\ Income}}
-& Adaptive Priority Reweighting & $0.829 (\pm0.01)$ & $0.847 (\pm0.00)$ & $0.018 (\pm0.01)$ \\
- & Prejudice Remover & $0.810 (\pm0.02)$ & $0.846 (\pm0.00)$ & $0.036 (\pm0.02)$ \\
- & Fair Transition Loss & $0.787 (\pm0.08)$ & $0.826 (\pm0.07)$ & $0.039 (\pm0.04)$ \\
- & Adversarial Debiasing & $0.756 (\pm0.03)$ & $0.848 (\pm0.00)$ & $0.092 (\pm0.03)$ \\
- & Standard MLP (baseline) & $0.752 (\pm0.04)$ & $0.849 (\pm0.00)$ & $0.097 (\pm0.04)$ \\
- & Gerry Fair Classifier & $0.705 (\pm0.07)$ & $0.751 (\pm0.09)$ & $0.046 (\pm0.05)$ \\
+& Adaptive Priority Reweighting & $\textbf{0.829} \; (\pm0.01)$& $0.847 \; (\pm0.00)$ & $\textbf{0.018} \; (\pm0.01)$ \\
+ & Adversarial Debiasing & $0.756 \; (\pm0.03)$ & $0.848 \; (\pm0.00)$ & $0.092 \; (\pm0.03)$ \\
+ & Fair Transition Loss & $0.787 \; (\pm0.08)$ & $0.826 \; (\pm0.07)$ & $0.039 \; (\pm0.04)$ \\
+ & Gerry Fair Classifier & $0.705 \; (\pm0.07)$ & $0.751 \; (\pm0.09)$ & $0.046 \; (\pm0.05)$ \\
+ & Prejudice Remover & $0.810 \; (\pm0.02)$ & $0.846 \; (\pm0.00)$ & $0.036 \; (\pm0.02)$ \\
+ & Standard MLP (baseline) & $0.752 \; (\pm0.04)$ & $\textbf{0.849} \; (\pm0.00)$& $0.097 \; (\pm0.04)$ \\
 \midrule
 
     \multirow{5}{*}{\shortstack[l]{Bank\\ Marketing}}
-& Adaptive Priority Reweighting & $0.846 (\pm0.05)$ & $0.901 (\pm0.00)$ & $0.055 (\pm0.05)$ \\
-& Gerry Fair Classifier & $0.837 (\pm0.06)$ & $0.893 (\pm0.00)$ & $0.057 (\pm0.06)$ \\
-& Standard MLP (baseline) & $0.800 (\pm0.06)$ & $0.902 (\pm0.00)$ & $0.102 (\pm0.06)$ \\
-& Fair Transition Loss & $0.799 (\pm0.10)$ & $0.891 (\pm0.01)$ & $0.092 (\pm0.10)$ \\
-& Prejudice Remover & $0.781 (\pm0.07)$ & $0.899 (\pm0.00)$ & $0.118 (\pm0.07)$ \\
-& Adversarial Debiasing & $0.750 (\pm0.09)$ & $0.900 (\pm0.00)$ & $0.150 (\pm0.09)$ \\
+& Adaptive Priority Reweighting & $\textbf{0.846} \; (\pm0.05)$& $0.901 \; (\pm0.00)$ & $\textbf{0.055} \; (\pm0.05)$\\
+ & Adversarial Debiasing & $0.750 \; (\pm0.09)$ & $0.900 \; (\pm0.00)$ & $0.150 \; (\pm0.09)$ \\
+ & Fair Transition Loss & $0.799 \; (\pm0.10)$ & $0.891 \; (\pm0.01)$ & $0.092 \; (\pm0.10)$ \\
+ & Gerry Fair Classifier & $0.837 \; (\pm0.06)$ & $0.893 \; (\pm0.00)$ & $0.057 \; (\pm0.06)$ \\
+ & Prejudice Remover & $0.781 \; (\pm0.07)$ & $0.899 \; (\pm0.00)$ & $0.118 \; (\pm0.07)$ \\
+ & Standard MLP (baseline) & $0.800 \; (\pm0.06)$ & $\textbf{0.902} \; (\pm0.00)$& $0.102 \; (\pm0.06)$ \\
 \midrule
 
     \multirow{5}{*}{\shortstack[l]{COMPAS\\ Recidivism}}
-& Adaptive Priority Reweighting & $0.642 (\pm0.03)$ & $0.669 (\pm0.01)$ & $0.027 (\pm0.02)$ \\
-& Fair Transition Loss & $0.594 (\pm0.04)$ & $0.648 (\pm0.01)$ & $0.054 (\pm0.03)$ \\
-& Adversarial Debiasing & $0.594 (\pm0.07)$ & $0.672 (\pm0.02)$ & $0.078 (\pm0.06)$ \\
-& Gerry Fair Classifier & $0.558 (\pm0.05)$ & $0.647 (\pm0.02)$ & $0.088 (\pm0.04)$ \\
-& Prejudice Remover & $0.287 (\pm0.03)$ & $0.342 (\pm0.01)$ & $0.055 (\pm0.03)$ \\
-& Standard MLP (baseline) & $0.218 (\pm0.05)$ & $0.353 (\pm0.01)$ & $0.135 (\pm0.05)$ \\
+& Adaptive Priority Reweighting & $\textbf{0.642} \; (\pm0.03)$& $0.669 \; (\pm0.01)$ & $\textbf{0.027} \; (\pm0.02)$\\
+ & Adversarial Debiasing & $0.594 \; (\pm0.07)$ & $\textbf{0.672} \; (\pm0.02)$& $0.078 \; (\pm0.06)$ \\
+ & Fair Transition Loss & $0.594 \; (\pm0.04)$ & $0.648 \; (\pm0.01)$ & $0.054 \; (\pm0.03)$ \\
+ & Gerry Fair Classifier & $0.558 \; (\pm0.05)$ & $0.647 \; (\pm0.02)$ & $0.088 \; (\pm0.04)$ \\
+ & Prejudice Remover & $0.287 \; (\pm0.03)$ & $0.342 \; (\pm0.01)$ & $0.055 \; (\pm0.03)$ \\
+ & Standard MLP (baseline) & $0.218 \; (\pm0.05)$ & $0.353 \; (\pm0.01)$ & $0.135 \; (\pm0.05)$ \\
 \midrule
 
     \multirow{5}{*}{\shortstack[l]{German\\ Credit}}
-& Adaptive Priority Reweighting & $0.716 (\pm0.04)$ & $0.750 (\pm0.02)$ & $0.034 (\pm0.03)$ \\
-& Standard MLP (baseline) & $0.681 (\pm0.08)$ & $0.747 (\pm0.03)$ & $0.066 (\pm0.06)$ \\
-& Prejudice Remover & $0.648 (\pm0.06)$ & $0.743 (\pm0.03)$ & $0.095 (\pm0.06)$ \\
-& Gerry Fair Classifier & $0.643 (\pm0.13)$ & $0.707 (\pm0.13)$ & $0.063 (\pm0.04)$ \\
-& Fair Transition Loss & $0.622 (\pm0.26)$ & $0.705 (\pm0.10)$ & $0.083 (\pm0.17)$ \\
-& Adversarial Debiasing & $0.530 (\pm0.33)$ & $0.713 (\pm0.10)$ & $0.183 (\pm0.24)$ \\
+& Adaptive Priority Reweighting & $\textbf{0.716} \; (\pm0.04)$& $\textbf{0.750} \; (\pm0.02)$& $\textbf{0.034} \; (\pm0.03)$\\
+ & Adversarial Debiasing & $0.530 \; (\pm0.33)$ & $0.713 \; (\pm0.10)$ & $0.183 \; (\pm0.24)$ \\
+ & Fair Transition Loss & $0.622 \; (\pm0.26)$ & $0.705 \; (\pm0.10)$ & $0.083 \; (\pm0.17)$ \\
+ & Gerry Fair Classifier & $0.643 \; (\pm0.13)$ & $0.707 \; (\pm0.13)$ & $0.063 \; (\pm0.04)$ \\
+ & Prejudice Remover & $0.648 \; (\pm0.06)$ & $0.743 \; (\pm0.03)$ & $0.095 \; (\pm0.06)$ \\
+ & Standard MLP (baseline) & $0.681 \; (\pm0.08)$ & $0.747 \; (\pm0.03)$ & $0.066 \; (\pm0.06)$ \\
      \bottomrule
 \end{tabular}}
 \end{table}
+
+\begin{figure}
+\centering
+\caption{Metric distribution optimizing Accuracy and Equalized Odds in comparison with Fair Transition Loss across multiple resample runs. Corresponding values available at Table~\ref{tab:complete_acc_odds}.}
+\label{fig:complete_acc_odds}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_odds_adult.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_odds_bank.pdf}
+\end{subfigure}
+
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_odds_compas.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_odds_german.pdf}
+\end{subfigure}
+\end{figure}
