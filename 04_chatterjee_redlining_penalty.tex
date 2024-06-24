@@ -40,6 +40,10 @@ Chatterjee's correlation coefficient, denoted by $\xi$, is designed to measure t
 \end{equation}
 where $r_i$ is the rank of $Y_i$ in the ordered sequence of $Y$ values corresponding to the sorted $X$ values. This coefficient ranges from 0 to 1, where 0 indicates independence and 1 indicates a perfect functional relationship. For the general case with ties, a more complex formula involving additional terms to handle the ties is used.
 
+% TODO (P1) (Normalization). ξ ∈ [0,1], for all distributions of (X,Y ). (P2) (Perfect dependence). ξ = 1 (reaches its maximum) if and only if there is a measurable function f : R → R, such that Y = f(X) almost surely. (P3) (D-Consistency). ξ = 0 (reaches its minimum) if and only if X and Y are independent.
+
+% TODO anscomb quartet
+
 L2 regularization, also known as weight decay, is a common technique used to prevent overfitting in machine learning models, including Multi-Layer Perceptrons (MLPs). In the context of an MLP, L2 regularization adds a penalty term to the loss function that is proportional to the sum of the squares of the model parameters (weights). This encourages the model to keep the weights small, which can help improve generalization.
 
 Let $\mathbf{W}^{(l)}$ represent the weight matrix for the $l$-th layer of the MLP, and let $\mathbf{b}^{(l)}$ denote the corresponding bias vector. The primary loss function of the network, $L_0$, could be any suitable loss function such as the mean squared error for regression or the cross-entropy loss for classification. The L2 regularization term for a single layer is given by
@@ -62,7 +66,9 @@ By adding this regularization term, the optimization process aims to minimize th
 
 The Chatterjee Redlining Penalty (CRP) is a regularization term that penalizes the weights of features highly correlated with the sensitive attribute, as measured by Chatterjee's Xi Rank Correlation Coefficient. By incorporating this penalty into the loss function of the neural network, the model is encouraged to reduce its reliance on sensitive attributes, thus promoting fairer predictions.
 
-Let $X \in \mathbb{R}^{n \times d}$ be a dataset where $n$ represents the number of instances and $d$ represents the number of features. Let $X_i \in \mathbb{R}^n$ denote the $i$-th feature of the dataset, and let $A = X_i \in \mathbb{R}^n$ be a sensitive (protected) feature for some $i$. In this neural network, $\mathbf{W}^{(1)} \in \mathbb{R}^{d \times h}$ is the weight matrix for the first hidden layer, with $h$ being the number of neurons in this layer. Additionally, $\lambda$ is a scalar that controls the overall strength of the regularization.
+As referred before, the Chatterjee Xi Correlation Coefficient distinguish from many other by providing a measure of how much one random variable can be expressed as a function of another, with a range from $0$ to $1$. This characteristics is relevant to the proposed use, to capture redlining effect, as of this phenomena happens exactly when the sensitive feature can be inferred by another one, producing the same harmful effects whether the correlation is positive or negative. Naturally it would be possible to use the absolute value of a correlation coefficient such as Pearson or Spearman, but this strategy could lead to some kind of information loss. Another relevant characteristics of this correlation coefficient it is the ability to capture sophisticated nonlinearities and the effects of noise on variable's distribution, conditions frequently present in proxy feature relationships. 
+
+Thus, let $X \in \mathbb{R}^{n \times d}$ be a dataset where $n$ represents the number of instances and $d$ represents the number of features. Let $X_i \in \mathbb{R}^n$ denote the $i$-th feature of the dataset, and let $A = X_i \in \mathbb{R}^n$ be a sensitive (protected) feature for some $i$. In this neural network, $\mathbf{W}^{(1)} \in \mathbb{R}^{d \times h}$ is the weight matrix for the first hidden layer, with $h$ being the number of neurons in this layer. Additionally, $\lambda$ is a scalar that controls the overall strength of the regularization.
 
 Thus, the proposed regularization term $R(\mathbf{W}^{(1)})$ applied to the weight matrix $\mathbf{W}^{(1)}$ of the first hidden layer is defined as 
 \begin{equation}\label{eq:xi_reg}
@@ -75,6 +81,10 @@ Thus, the total loss function $L$ to a MLP, incorporating the sensitive-feature-
 L = L_0 + \lambda \; R(\mathbf{W}^{(1)}),
 \end{equation}
 where $L_0$ is the primary loss function of the network. This formulation ensures that the model's learning process penalizes weights with high values associated with features highly correlated to the sensitive attribute, thereby reducing the potential for biased decisions influenced by redlining effect.
+
+This formulation differs from similar approaches to regularization in order to achieve fairness in machine learning by two fundamental points.  The first one is that here the regularization acts as a focused penalty factor through the use of the correlation of each feature to the sensitive one, reducing it's effect on less correlated features and boosting on the highly correlated ones. The second point is that this proposed penalty does not acts as a common regularizer by imposing small values on every model's parameter. Rather, it penalizes the use of each feature according it's correlation to the sensitive one by exclusively acting on the input layer weights, that is, the usage level of each feature by hidden units.
+
+With the combination of characteristics tailored by this formulation and the chosen correlation coefficient we do expects effectively avoiding the use of indirect sensitive feature predictors within the model, thus mitigating redlining effect.
 
 \section{Experimental setup}
 
@@ -144,17 +154,17 @@ Acc. - Eq. Odds & \textbf{0.33} & 1.00 & \textbf{0.01} & 0.62 & \textbf{0.40} & 
 \caption{Fitness values of CRP optimizing MCC and multiple fairness metrics.}
 \begin{subfigure}{.32\linewidth}
     \caption{Statistical Parity}
-    \label{fig:boxplot_mcc_parity}
+    \label{fig:boxplot_mcc_parity_crp}
     \includegraphics[width=1\linewidth]{images/boxplot_mcc_parity_crp.pdf}
 \end{subfigure}
 \begin{subfigure}{.32\linewidth}
     \caption{Equal Opportunity}
-    \label{fig:boxplot_mcc_opp}
+    \label{fig:boxplot_mcc_opp_crp}
     \includegraphics[width=1\linewidth]{images/boxplot_mcc_opportunity_crp.pdf}
 \end{subfigure}
 \begin{subfigure}{.32\linewidth}
     \caption{Equalized Odds}
-    \label{fig:boxplot_mcc_odds}
+    \label{fig:boxplot_mcc_odds_crp}
     \includegraphics[width=1\linewidth]{images/boxplot_mcc_odds_crp.pdf}
 \end{subfigure}
 \end{figure}
@@ -164,17 +174,17 @@ Acc. - Eq. Odds & \textbf{0.33} & 1.00 & \textbf{0.01} & 0.62 & \textbf{0.40} & 
 \caption{Fitness values of CRP optimizing Accuracy and multiple fairness metrics.}
 \begin{subfigure}{.32\linewidth}
     \caption{Statistical Parity}
-    \label{fig:boxplot_acc_parity}
+    \label{fig:boxplot_acc_parity_crp}
     \includegraphics[width=1\linewidth]{images/boxplot_acc_parity_crp.pdf}
 \end{subfigure}
 \begin{subfigure}{.32\linewidth}
     \caption{Equal Opportunity}
-    \label{fig:boxplot_acc_opp}
+    \label{fig:boxplot_acc_opp_crp}
     \includegraphics[width=1\linewidth]{images/boxplot_acc_opportunity_crp.pdf}
 \end{subfigure}
 \begin{subfigure}{.32\linewidth}
     \caption{Equalized Odds}
-    \label{fig:boxplot_acc_odds}
+    \label{fig:boxplot_acc_odds_crp}
     \includegraphics[width=1\linewidth]{images/boxplot_acc_odds_crp.pdf}
 \end{subfigure}
 \end{figure}
