@@ -1,37 +1,41 @@
 \chapter{Correlation based penalty function}
 
-In this chapter, we propose a novel regularization factor to penalize the use of features highly correlated with a protected attribute by a machine learning model, aiming to avoid the redlining effect~\citep{Pedreschi2008}. The proposed quadratic penalization factor is applied directly to the input weights of a Multi-Layer Perceptron, using a strategy that proportionately penalizes features use based on their correlation with the sensitive feature.
+In this chapter, we propose a novel regularization factor to penalize the use of features highly correlated with a protected attribute by a machine learning model, aiming to avoid the redlining effect~\citep{Pedreschi2008}. The proposed penalization factor is applied directly to the input weights of a Multi-Layer Perceptron, using a strategy that proportionately penalizes features use based on their correlation with the sensitive feature.
 
 \section{Preliminaries}
 
-The proposed regularization approach uses Chatterjee's xi correlation coefficient~\cite{chatterjee2020new}, which asses whether a random variable can be described as a function of another one, as a measure of the potential of given feature to be used by the model as a proxy to the sensitive feature. This phenomena, known as redlining effect~\citep{Pedreschi2008}, can lead model to produce indirect discrimination in their outcomes. Thus, the insight here is to penalize the use of those proxy features proportionally according Chatterjee's correlation in order to avoid redlining effed. Before discussing this approach, we start defining some common correlation coefficients and providing a proper comparison within Chatterjee's correlation. Also, we present some related approaches, specially those ones that, like ours, use regularization and penalty factors to avoid indirect discrimination.
+The phenomena known as redlining effect~\citep{Pedreschi2008} consists in the unintended use of proxy variables to the sensitive feature by the model, which can lead model to produce indirect discrimination in their outcomes.  Thus, the insight here is to penalize the use of those proxy features by the model proportionally according its correlation with sensitive feature in order to avoid redlining effed. The proposed regularization approach uses the recently described Chatterjee's xi correlation coefficient~\cite{chatterjee2020new}, which robustly asses whether a random variable can be described as a function of another one, as a measure of the potential of given feature to be used by the model as a proxy to the sensitive feature. 
 
-The Pearson correlation coefficient, denoted by $\rho_{X,Y}$ and defined in Definition~\ref{def:pearson}, is a measure of the linear relationship between two random variables. The Pearson correlation coefficient ranges from $-1$ to $1$, where $1$ indicates a perfect positive linear relationship, $-1$ indicates a perfect negative linear relationship, and $0$ indicates no linear relationship.
+Before discussing this approach, we start defining some common correlation coefficients and providing a proper comparison within Chatterjee's correlation. Also, we present some related approaches, specially those ones that, like ours, use regularization and penalty factors to avoid indirect discrimination.
+
+The Pearson correlation coefficient, denoted by $\rho$ and defined in Definition~\ref{def:pearson}, is a measure of the linear relationship between two random variables. The Pearson correlation coefficient ranges from $-1$ to $1$, where $1$ indicates a perfect positive linear relationship, $-1$ indicates a perfect negative linear relationship, and $0$ indicates no linear relationship.
 
 \begin{definition}[Pearson correlation coefficient]\label{def:pearson}
-Let  $X$ and $Y$\ random variables. The Pearson correlation coefficient between $X$ and $Y$ can be defined as  
+Let  $X$ and $Y$\ random variables. The Pearson correlation coefficient $\rho$ between $X$ and $Y$ can be defined as  
 \begin{equation}
-\rho_{X,Y} = \frac{\mathrm{Cov}(X, Y)}{\sigma_X \sigma_Y},
+\rho = \frac{\mathrm{Cov}(X, Y)}{\sigma_X \sigma_Y},
 \end{equation}
 where $\mathrm{Cov}(X, Y)$ is the covariance between $X$ and $Y$, while $\sigma_X$ and $\sigma_Y$ the standard deviations of $X$ and $Y$, respectively. 
 \end{definition}
 
-Another relevant correlation coefficient is the Spearman's rank correlation coefficient. Firstly, we define the rank of a matrix, which measures the dimension of the vector space spanned by its rows or columns. More formally, the rank of a matrix can be defined according Definition~\ref{def:matrix_rank}.
-
-\begin{definition}[Matrix Rank] \label{def:matrix_rank}
-Let $\mathbf{A} \in \mathbb{R}^{m \times n}$ be a matrix with $m$ rows and $n$ columns. The rank of $\mathbf{A}$, denoted as $\text{rank}(\mathbf{A})$, is the maximum number of linearly independent rows (or columns) in the matrix.
-\end{definition}
-
-Spearman's rank correlation coefficient, denoted by $\rho_s$ and defined in Definition~\ref{def:spearman}, measures the strength and direction of the monotonic relationship between two ranked variables.  As like Pearson correlation coefficient, Spearman's rank correlation coefficient ranges from $-1$ to $1$, where $1$ indicates a perfect positive linear relationship, $-1$ indicates a perfect negative linear relationship, and $0$ indicates no linear relationship.
+Spearman's rank correlation coefficient, denoted by $\rho_s$ and defined in Definition~\ref{def:spearman}, measures the strength and direction of the monotonic relationship between two ranked (ordered) variables.  As like Pearson correlation coefficient, Spearman's rank correlation coefficient ranges from $-1$ to $1$, where $1$ indicates a perfect positive relationship, $-1$ indicates a perfect negative relationship, and $0$ indicates no relationship.
  
 \begin{definition}[Spearman's correlation coefficient]\label{def:spearman}
-Let  $X$ and $Y$\ random variables. Spearman's rank correlation coefficient  $\rho_s$ between $X$ and $Y$ can be defined as the Pearson correlation coefficient between the ranked variables, that is, 
-
+Let $X$ and $Y$\ random variables, $n$ the sample size and $X_i, \, Y_i$ the $i$-th observations to $i = 1 \ldots n$. Let $R_{X_i}, \, R_{Y_i}$ the rank of observations $X_i, \, Y_i$, i.e. the position of $X_i, \, Y_i$ by ordering the samples, respectively. The Spearman's rank correlation coefficient  $\rho_s$ between $X$ and $Y$ can be defined to non-repeated observation values as 
 \begin{equation}\label{eq:spearman}
-\rho_s = \rho_{\rank(X),\rank(Y)} = \frac{\mathrm{Cov}(\rank(X), \rank(Y))}{\sigma_{\rank(X)} \sigma_{\rank(Y)}},
+\rho_s = 1 - \frac{6 \sum\limits_{i=1}^{n}d_i^2}{n(n^2 - 1)},
 \end{equation}
+where $d_i = R_{X_i} - R_{Y_i}$.
+\end{definition}
 
-where $\rank(X)$ and $\rank(Y)$ are the ranks of $X$ and $Y$, $\mathrm{Cov}(\rank(X), \rank(Y))$ is the covariance of the rank variables, while $\sigma_{\rank(X)}$ and $\sigma_{\rank(Y)}$ are the standard deviations of the ranks of $X$ and $Y$, respectively.
+Kendall's rank correlation coefficient, denoted by $\tau$ and defined in Definition~\ref{def:kendall},  indicates the strength and direction of association between two variables. It is based on the relative ordering of pairs of observations rather than their actual values. Here we interpret the correlation values as like in Spearman's and Pearson's correlation coefficients, ranging from $-1$ to $1$, where $1$ indicates a perfect positive relationship, $-1$ a perfect negative relationship, and $0$  no linear relationship.
+
+\begin{definition}[Kendall's correlation coefficient]\label{def:kendall}
+Let two variables $X$ and $Y$ sampled with $n$ pairs of observations $(X_i, Y_i)$ for $i = 1, 2, \ldots, n$. A pair of observations $(X_i, Y_i)$ and $(X_j, Y_j)$ is \textbf{concordant} if the ranks (order) of both elements agree, i.e., to $i < j$ either $X_i > X_j$ and $Y_i > Y_j)$ or $X_i < X_j$ and $Y_i < Y_j$. Otherwise their are considered \textbf{discordant}, i.e., either $X_i > X_j$ and $Y_i < Y_j$ or $X_i < X_j$ and $Y_i > Y_j$. The Kendall's rank correlation coefficient $\tau$ between $X$ and $Y$ can be defined as 
+\begin{equation}\label{eq:kendall}
+\tau = \frac{2(N_c - N_d)}{n(n-1)},
+\end{equation}
+where $N_c$ is the number of concordant observation and $N_d$ the number of discordant observations.
 \end{definition}
 
 Chatterjee's correlation coefficient, denoted by $\xi$, is designed to measure the degree of dependence between two variables without assuming any specific type of relationship. Given a dataset $(X, Y)$ with $n$ pairs, the coefficient is defined as
@@ -41,6 +45,31 @@ Chatterjee's correlation coefficient, denoted by $\xi$, is designed to measure t
 where $r_i$ is the rank of $Y_i$ in the ordered sequence of $Y$ values corresponding to the sorted $X$ values. This coefficient ranges from 0 to 1, where 0 indicates independence and 1 indicates a perfect functional relationship. For the general case with ties, a more complex formula involving additional terms to handle the ties is used.
 
 % TODO (P1) (Normalization). ξ ∈ [0,1], for all distributions of (X,Y ). (P2) (Perfect dependence). ξ = 1 (reaches its maximum) if and only if there is a measurable function f : R → R, such that Y = f(X) almost surely. (P3) (D-Consistency). ξ = 0 (reaches its minimum) if and only if X and Y are independent.
+
+\begin{table}[ht]
+\centering
+\caption{Anscombe's quartet}
+\label{tab:valores}
+\begin{tabular}{rr|rr|rr|rr}
+\toprule
+\multicolumn{2}{c|}{I} & \multicolumn{2}{c|}{II} & \multicolumn{2}{c|}{III} & \multicolumn{2}{c}{IV} \\
+
+\multicolumn{1}{c}{$x$} & \multicolumn{1}{c|}{$y$} & \multicolumn{1}{c}{$x$} & \multicolumn{1}{c|}{$y$} & \multicolumn{1}{c}{$x$} & \multicolumn{1}{c|}{$y$} & \multicolumn{1}{c}{$x$} & \multicolumn{1}{c}{$y$} \\
+\midrule
+10.0 & 8.04 & 10.0 & 9.14 & 10.0 & 7.46 & 8.0 & 6.58 \\
+8.0 & 6.95 & 8.0 & 8.14 & 8.0 & 6.77 & 8.0 & 5.76 \\
+13.0 & 7.58 & 13.0 & 8.74 & 13.0 & 12.74 & 8.0 & 7.71 \\
+9.0 & 8.81 & 9.0 & 8.77 & 9.0 & 7.11 & 8.0 & 8.84 \\
+11.0 & 8.33 & 11.0 & 9.26 & 11.0 & 7.81 & 8.0 & 8.47 \\
+14.0 & 9.96 & 14.0 & 8.10 & 14.0 & 8.84 & 8.0 & 7.04 \\
+6.0 & 7.24 & 6.0 & 6.13 & 6.0 & 6.08 & 8.0 & 5.25 \\
+4.0 & 4.26 & 4.0 & 3.10 & 4.0 & 5.39 & 19.0 & 12.50 \\
+12.0 & 10.84 & 12.0 & 9.13 & 12.0 & 8.15 & 8.0 & 5.56 \\
+7.0 & 4.82 & 7.0 & 7.26 & 7.0 & 6.42 & 8.0 & 7.91 \\
+5.0 & 5.68 & 5.0 & 4.74 & 5.0 & 5.73 & 8.0 & 6.89 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \begin{figure}[!ht]
 \centering
