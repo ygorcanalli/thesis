@@ -6,7 +6,7 @@ In this chapter, we propose a novel regularization factor to penalize the use of
 
 The phenomena known as redlining effect~\citep{Pedreschi2008} consists in the unintended use of proxy variables to the sensitive feature by the model, which can lead model to produce indirect discrimination in their outcomes.  Thus, the insight here is to penalize the use of those proxy features by the model proportionally according its correlation with sensitive feature in order to avoid redlining effed. The proposed regularization approach uses the recently described Chatterjee's xi correlation coefficient~\cite{chatterjee2020new}, which robustly asses whether a random variable can be described as a function of another one, as a measure of the potential of given feature to be used by the model as a proxy to the sensitive feature. 
 
-Before discussing this approach, we start defining some common correlation coefficients and providing a proper comparison within Chatterjee's correlation. Also, we present some related approaches, specially those ones that, like ours, use regularization and penalty factors to avoid indirect discrimination.
+Before discussing this approach, we start defining some common correlation coefficients and providing a proper comparison within Chatterjee's correlation. For purpose of simplicity we describe only the most commonly used form, more complex formulations involving additional terms depending on available data should be considered to most of coefficients. Also, we present some related approaches, specially those ones that, like ours, use regularization and penalty factors to avoid indirect discrimination.
 
 The Pearson correlation coefficient, denoted by $\rho$ and defined in Definition~\ref{def:pearson}, is a measure of the linear relationship between two random variables. The Pearson correlation coefficient ranges from $-1$ to $1$, where $1$ indicates a perfect positive linear relationship, $-1$ indicates a perfect negative linear relationship, and $0$ indicates no linear relationship.
 
@@ -38,18 +38,24 @@ Let two variables $X$ and $Y$ sampled with $n$ pairs of observations $(X_i, Y_i)
 where $N_c$ is the number of concordant observation and $N_d$ the number of discordant observations.
 \end{definition}
 
-Chatterjee's correlation coefficient, denoted by $\xi$, is designed to measure the degree of dependence between two variables without assuming any specific type of relationship. Given a dataset $(X, Y)$ with $n$ pairs, the coefficient is defined as
-\begin{equation}
-\xi_n(X,Y) = 1 - \frac{3 \sum_{i=1}^{n-1} |r_{i+1} - r_i|}{n^2 - 1},
-\end{equation}
-where $r_i$ is the rank of $Y_i$ in the ordered sequence of $Y$ values corresponding to the sorted $X$ values. This coefficient ranges from 0 to 1, where 0 indicates independence and 1 indicates a perfect functional relationship. For the general case with ties, a more complex formula involving additional terms to handle the ties is used.
+Chatterjee's rank correlation coefficient, denoted by $\xi$ and defined in Definition~\ref{def:chatterjee}, is designed to robustly measure the degree of dependence between two variables without assuming any specific type of relationship and capturing noise nuances.  The previously described correlation coefficients are not effective on detecting associations that are not monotonic, even in complete absence of noise.
 
-% TODO (P1) (Normalization). ξ ∈ [0,1], for all distributions of (X,Y ). (P2) (Perfect dependence). ξ = 1 (reaches its maximum) if and only if there is a measurable function f : R → R, such that Y = f(X) almost surely. (P3) (D-Consistency). ξ = 0 (reaches its minimum) if and only if X and Y are independent.
+This correlation coefficient asses whether a random variable can be described as a function of another one. Differently from correlation coefficients described before, this coefficient ranges from 0 to 1, where 0 indicates independence and 1 indicates a perfect functional relationship. Also this correlation is not symmetric, i.e., the correlation between $X$ and $Y$ may differ from between $Y$ and $X$. 
+
+\begin{definition}[Chatterjee's correlation coefficient]\label{def:chatterjee}
+Let two variables $X$ and $Y$ , where $Y$ is not a constant, sampled with $n$ pairs of observations $(X_i, Y_i)$ for $i = 1, 2, \ldots, n$. The Chatterjee's rank correlation coefficient $\tau$ between $X$ and $Y$ when there are no ties among $Y$ can be defined as 
+\begin{equation}\label{eq:chatterjee}
+\xi = 1 - \frac{3 \sum\limits_{i=1}^{n-1} |R_{i+1} - R_i|}{n^2 - 1},
+\end{equation}
+where $R_i$ is the rank of $Y_i$ in the ordered sequence of $Y$ values corresponding to the sorted $X$ values. 
+\end{definition}
+
+To illustrate some characteristics of Chatterjee's rank correlation coefficient we compare those results on Anscombe`s quartet~\citep{anscombe1973} along with Pearson's, Spearman's and Kendall's correlation coefficients. The Anscombe's quartet (Table~\ref{tab:anscombe}) is a set of four different datasets that have nearly identical simple descriptive statistics, yet appear very different when graphed.
 
 \begin{table}[ht]
 \centering
 \caption{Anscombe's quartet}
-\label{tab:valores}
+\label{tab:anscombe}
 \begin{tabular}{rr|rr|rr|rr}
 \toprule
 \multicolumn{2}{c|}{I} & \multicolumn{2}{c|}{II} & \multicolumn{2}{c|}{III} & \multicolumn{2}{c}{IV} \\
