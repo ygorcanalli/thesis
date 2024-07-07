@@ -164,7 +164,7 @@ Table~\ref{tab:hyperparameters_rpr} presents the methods hyperparameters along w
 
 To properly compare this set of $15$ results of each method, we conduct an Almost Stochastic Order (ASO) test \citep{dror2019deep}, a significance test suitable for comparing complex machine learning models with various hyperparameters. As described before, the ASO test involves evaluating a set of metrics through multiple samplings of a Collection of Statistics (in this case assessed in test phase using random resampling) to compare one method against another. The $ASO(A, B)$ function yields a value in the range $[0, 1]$, given two methods $A$ and $B$. If $ASO(A, B)$ is lesser than $0.5$, we can reject the null hypothesis and conclude that method $A$ outperforms method $B$ in the given task. That is, method $A$ produces stochastically larger values than method $B$ for a given metric. The lower the $ASO(A, B)$ value, the stronger the evidence that $A$ is superior to $B$ in that particular task, which can be interpreted as a confidence interval. Therefore, we perform comparisons between all methods for each optimization scenario outlined previously and for each dataset.
 
-Our experiments uses common datasets used in Fair Classification problems, namely \textit{Adult Income}~\citep{misc_adult_2}, \textit{German Credit}~\citep{misc_statlog_(german_credit_data)_144}, \textit{Bank Marketing}~\citep{misc_bank_marketing_222}, and \textit{COMPAS Recidivism}~\citep{misc_compas}. We use the dataset readers available in the AI Fairness 360 toolkit~\citep{aif360-oct-2018} with its standard configurations. Instances with missing data are removed. To a proper description of those datasets please check Section~\ref{sec:experimental}
+Our experiments uses common datasets used in Fair Classification problems, namely \textit{Adult Income}~\citep{misc_adult_2}, \textit{German Credit}~\citep{misc_statlog_(german_credit_data)_144}, \textit{Bank Marketing}~\citep{misc_bank_marketing_222}, and \textit{COMPAS Recidivism}~\citep{misc_COMPAS}. We use the dataset readers available in the AI Fairness 360 toolkit~\citep{aif360-oct-2018} with its standard configurations. Instances with missing data are removed. To a proper description of those datasets please check Section~\ref{sec:experimental}
 
 For all datasets, the data preparation process is the same, one-hot encoding for categorical features and standardize the numerical features. We perform a random split, with $80\%$ allocated for the hyperparameter tuning phase and the remaining $20\%$ reserved for evaluating metrics in the test phase. Within the hyperparameter tuning phase, this corresponding fraction of data is further randomly split, with $80\%$ assigned to training and $20\%$ to validation. The validation set allows us to assess metrics and compute the fitness function for each hyperparameter configuration. In datasets where there is originally some kind of split (e.g., train set and test set in separate files), all available data is merged and then shuffled to produce new splits at each run.
 
@@ -315,17 +315,17 @@ As done on the last chapter, we present performance and fairness results along w
     \toprule
     Dataset & Method & $\uparrow\;$Fitness & $\uparrow\;$MCC & $\downarrow\;$Stat. Parity \\
     \midrule
-    \multirow{8}{*}{\shortstack[l]{Adult\\ Income}} & FTL & $0.487 \; (\pm0.02)$ & $0.509 \; (\pm0.02)$ & $0.022 \; (\pm0.02)$ \\
-     & FTL+RPR$_{\xi}$ & $0.494 \; (\pm0.01)$ & $0.517 \; (\pm0.02)$ & $0.023 \; (\pm0.02)$ \\
+    \multirow{8}{*}{\shortstack[l]{Adult\\ Income}} & FTL & $0.487 \; (\pm0.02)$ & $0.509 \; (\pm0.02)$ & $\textbf{0.022} \; (\pm0.02)$ \\
+     & FTL+RPR$_{\xi}$ & $\textbf{0.494} \; (\pm0.01)$ & $0.517 \; (\pm0.02)$ & $0.023 \; (\pm0.02)$ \\
      & MLP & $0.386 \; (\pm0.01)$ & $0.576 \; (\pm0.01)$ & $0.191 \; (\pm0.01)$ \\
      & MLP+L2 & $0.385 \; (\pm0.01)$ & $0.576 \; (\pm0.01)$ & $0.190 \; (\pm0.01)$ \\
      & MLP+RPR$_{\rho_s}$ & $0.384 \; (\pm0.01)$ & $0.576 \; (\pm0.01)$ & $0.192 \; (\pm0.01)$ \\
-     & MLP+RPR$_{\rho}$ & $0.393 \; (\pm0.01)$ & $0.580 \; (\pm0.01)$ & $0.187 \; (\pm0.01)$ \\
+     & MLP+RPR$_{\rho}$ & $0.393 \; (\pm0.01)$ & $\textbf{0.580} \; (\pm0.01)$ & $0.187 \; (\pm0.01)$ \\
      & MLP+RPR$_{\tau}$ & $0.386 \; (\pm0.01)$ & $0.577 \; (\pm0.01)$ & $0.191 \; (\pm0.01)$ \\
      & MLP+RPR$_{\xi}$ & $0.388 \; (\pm0.01)$ & $0.578 \; (\pm0.01)$ & $0.191 \; (\pm0.01)$ \\
     \midrule
-    \multirow{8}{*}{\shortstack[l]{Bank\\ Marketing}} & FTL & $0.534 \; (\pm0.03)$ & $0.569 \; (\pm0.01)$ & $0.035 \; (\pm0.03)$ \\
-     & FTL+RPR$_{\xi}$ & $0.523 \; (\pm0.04)$ & $0.569 \; (\pm0.01)$ & $0.046 \; (\pm0.04)$ \\
+    \multirow{8}{*}{\shortstack[l]{Bank\\ Marketing}} & FTL & $\textbf{0.534} \; (\pm0.03)$ & $\textbf{0.569} \; (\pm0.01)$ & $\textbf{0.035} \; (\pm0.03)$ \\
+     & FTL+RPR$_{\xi}$ & $0.523 \; (\pm0.04)$ & $\textbf{0.569} \; (\pm0.01)$ & $0.046 \; (\pm0.04)$ \\
      & MLP & $0.429 \; (\pm0.03)$ & $0.521 \; (\pm0.02)$ & $0.092 \; (\pm0.02)$ \\
      & MLP+L2 & $0.412 \; (\pm0.04)$ & $0.521 \; (\pm0.02)$ & $0.110 \; (\pm0.03)$ \\
      & MLP+RPR$_{\rho_s}$ & $0.422 \; (\pm0.03)$ & $0.527 \; (\pm0.02)$ & $0.106 \; (\pm0.03)$ \\
@@ -333,19 +333,19 @@ As done on the last chapter, we present performance and fairness results along w
      & MLP+RPR$_{\tau}$ & $0.412 \; (\pm0.04)$ & $0.520 \; (\pm0.02)$ & $0.108 \; (\pm0.03)$ \\
      & MLP+RPR$_{\xi}$ & $0.426 \; (\pm0.05)$ & $0.528 \; (\pm0.02)$ & $0.102 \; (\pm0.04)$ \\
     \midrule
-    \multirow{8}{*}{\shortstack[l]{Compas\\ Recidivism}} & FTL & $0.239 \; (\pm0.03)$ & $0.276 \; (\pm0.03)$ & $0.036 \; (\pm0.03)$ \\
+    \multirow{8}{*}{\shortstack[l]{COMPAS\\ Recidivism}} & FTL & $\textbf{0.239} \; (\pm0.03)$ & $0.276 \; (\pm0.03)$ & $\textbf{0.036} \; (\pm0.03)$ \\
      & FTL+RPR$_{\xi}$ & $0.236 \; (\pm0.05)$ & $0.294 \; (\pm0.03)$ & $0.058 \; (\pm0.04)$ \\
      & MLP & $0.074 \; (\pm0.03)$ & $0.283 \; (\pm0.02)$ & $0.209 \; (\pm0.04)$ \\
      & MLP+L2 & $0.089 \; (\pm0.04)$ & $0.291 \; (\pm0.02)$ & $0.202 \; (\pm0.04)$ \\
      & MLP+RPR$_{\rho_s}$ & $0.083 \; (\pm0.05)$ & $0.293 \; (\pm0.03)$ & $0.210 \; (\pm0.04)$ \\
      & MLP+RPR$_{\rho}$ & $0.087 \; (\pm0.05)$ & $0.282 \; (\pm0.03)$ & $0.195 \; (\pm0.04)$ \\
      & MLP+RPR$_{\tau}$ & $0.085 \; (\pm0.03)$ & $0.281 \; (\pm0.02)$ & $0.197 \; (\pm0.03)$ \\
-     & MLP+RPR$_{\xi}$ & $0.121 \; (\pm0.05)$ & $0.329 \; (\pm0.03)$ & $0.208 \; (\pm0.03)$ \\
+     & MLP+RPR$_{\xi}$ & $0.121 \; (\pm0.05)$ & $\textbf{0.329} \; (\pm0.03)$ & $0.208 \; (\pm0.03)$ \\
     \midrule
     \multirow{8}{*}{\shortstack[l]{German\\ Credit}} & FTL & $0.256 \; (\pm0.12)$ & $0.355 \; (\pm0.08)$ & $0.099 \; (\pm0.06)$ \\
-     & FTL+RPR$_{\xi}$ & $0.302 \; (\pm0.06)$ & $0.371 \; (\pm0.05)$ & $0.069 \; (\pm0.05)$ \\
-     & MLP & $0.266 \; (\pm0.10)$ & $0.329 \; (\pm0.09)$ & $0.064 \; (\pm0.05)$ \\
-     & MLP+L2 & $0.261 \; (\pm0.10)$ & $0.374 \; (\pm0.09)$ & $0.113 \; (\pm0.07)$ \\
+     & FTL+RPR$_{\xi}$ & $\textbf{0.302} \; (\pm0.06)$ & $0.371 \; (\pm0.05)$ & $0.069 \; (\pm0.05)$ \\
+     & MLP & $0.266 \; (\pm0.10)$ & $0.329 \; (\pm0.09)$ & $\textbf{0.064} \; (\pm0.05)$ \\
+     & MLP+L2 & $0.261 \; (\pm0.10)$ & $\textbf{0.374} \; (\pm0.09)$ & $0.113 \; (\pm0.07)$ \\
      & MLP+RPR$_{\rho_s}$ & $0.192 \; (\pm0.11)$ & $0.292 \; (\pm0.07)$ & $0.099 \; (\pm0.06)$ \\
      & MLP+RPR$_{\rho}$ & $0.255 \; (\pm0.07)$ & $0.341 \; (\pm0.07)$ & $0.087 \; (\pm0.04)$ \\
      & MLP+RPR$_{\tau}$ & $0.256 \; (\pm0.08)$ & $0.342 \; (\pm0.05)$ & $0.086 \; (\pm0.06)$ \\
@@ -363,37 +363,37 @@ As done on the last chapter, we present performance and fairness results along w
     \midrule
     
     \multirow{8}{*}{\shortstack[l]{Adult\\ Income}} & FTL & $0.540 \; (\pm0.04)$ & $0.576 \; (\pm0.01)$ & $0.036 \; (\pm0.03)$ \\
-     & FTL+RPR$_{\xi}$ & $0.554 \; (\pm0.03)$ & $0.581 \; (\pm0.02)$ & $0.027 \; (\pm0.02)$ \\
-     & MLP & $0.480 \; (\pm0.04)$ & $0.582 \; (\pm0.01)$ & $0.103 \; (\pm0.04)$ \\
+     & FTL+RPR$_{\xi}$ & $\textbf{0.554} \; (\pm0.03)$ & $0.581 \; (\pm0.02)$ & $\textbf{0.027} \; (\pm0.02)$ \\
+     & MLP & $0.480 \; (\pm0.04)$ & $\textbf{0.582} \; (\pm0.01)$ & $0.103 \; (\pm0.04)$ \\
      & MLP+L2 & $0.479 \; (\pm0.03)$ & $0.580 \; (\pm0.01)$ & $0.102 \; (\pm0.03)$ \\
      & MLP+RPR$_{\rho_s}$ & $0.493 \; (\pm0.04)$ & $0.578 \; (\pm0.01)$ & $0.085 \; (\pm0.04)$ \\
      & MLP+RPR$_{\rho}$ & $0.478 \; (\pm0.04)$ & $0.580 \; (\pm0.01)$ & $0.102 \; (\pm0.04)$ \\
      & MLP+RPR$_{\tau}$ & $0.488 \; (\pm0.04)$ & $0.580 \; (\pm0.01)$ & $0.092 \; (\pm0.03)$ \\
      & MLP+RPR$_{\xi}$ & $0.506 \; (\pm0.05)$ & $0.577 \; (\pm0.01)$ & $0.071 \; (\pm0.05)$ \\
     \midrule
-    \multirow{8}{*}{\shortstack[l]{Bank\\ Marketing}} & FTL & $0.483 \; (\pm0.07)$ & $0.567 \; (\pm0.02)$ & $0.084 \; (\pm0.06)$ \\
+    \multirow{8}{*}{\shortstack[l]{Bank\\ Marketing}} & FTL & $\textbf{0.483} \; (\pm0.07)$ & $\textbf{0.567} \; (\pm0.02)$ & $0.084 \; (\pm0.06)$ \\
      & FTL+RPR$_{\xi}$ & $0.416 \; (\pm0.14)$ & $0.519 \; (\pm0.15)$ & $0.104 \; (\pm0.08)$ \\
      & MLP & $0.420 \; (\pm0.08)$ & $0.524 \; (\pm0.02)$ & $0.104 \; (\pm0.08)$ \\
      & MLP+L2 & $0.438 \; (\pm0.06)$ & $0.514 \; (\pm0.02)$ & $0.076 \; (\pm0.06)$ \\
      & MLP+RPR$_{\rho_s}$ & $0.426 \; (\pm0.06)$ & $0.520 \; (\pm0.02)$ & $0.094 \; (\pm0.06)$ \\
-     & MLP+RPR$_{\rho}$ & $0.452 \; (\pm0.05)$ & $0.527 \; (\pm0.02)$ & $0.074 \; (\pm0.05)$ \\
+     & MLP+RPR$_{\rho}$ & $0.452 \; (\pm0.05)$ & $0.527 \; (\pm0.02)$ & $\textbf{0.074} \; (\pm0.05)$ \\
      & MLP+RPR$_{\tau}$ & $0.417 \; (\pm0.08)$ & $0.526 \; (\pm0.02)$ & $0.109 \; (\pm0.07)$ \\
      & MLP+RPR$_{\xi}$ & $0.420 \; (\pm0.10)$ & $0.529 \; (\pm0.02)$ & $0.109 \; (\pm0.09)$ \\
     \midrule
     \multirow{8}{*}{\shortstack[l]{COMPAS\\ Recidivism}} & FTL & $0.195 \; (\pm0.11)$ & $0.281 \; (\pm0.03)$ & $0.086 \; (\pm0.09)$ \\
-     & FTL+RPR$_{\xi}$ & $0.251 \; (\pm0.04)$ & $0.309 \; (\pm0.03)$ & $0.058 \; (\pm0.04)$ \\
+     & FTL+RPR$_{\xi}$ & $\textbf{0.251} \; (\pm0.04)$ & $0.309 \; (\pm0.03)$ & $\textbf{0.058} \; (\pm0.04)$ \\
      & MLP & $0.150 \; (\pm0.05)$ & $0.282 \; (\pm0.03)$ & $0.132 \; (\pm0.05)$ \\
      & MLP+L2 & $0.146 \; (\pm0.06)$ & $0.282 \; (\pm0.03)$ & $0.136 \; (\pm0.04)$ \\
      & MLP+RPR$_{\rho_s}$ & $0.179 \; (\pm0.04)$ & $0.303 \; (\pm0.02)$ & $0.124 \; (\pm0.03)$ \\
      & MLP+RPR$_{\rho}$ & $0.168 \; (\pm0.06)$ & $0.290 \; (\pm0.03)$ & $0.122 \; (\pm0.05)$ \\
      & MLP+RPR$_{\tau}$ & $0.146 \; (\pm0.05)$ & $0.289 \; (\pm0.03)$ & $0.143 \; (\pm0.04)$ \\
-     & MLP+RPR$_{\xi}$ & $0.211 \; (\pm0.05)$ & $0.325 \; (\pm0.02)$ & $0.114 \; (\pm0.04)$ \\
+     & MLP+RPR$_{\xi}$ & $0.211 \; (\pm0.05)$ & $\textbf{0.325} \; (\pm0.02)$ & $0.114 \; (\pm0.04)$ \\
     \midrule
-    \multirow{8}{*}{\shortstack[l]{German\\ Credit}} & FTL & $0.293 \; (\pm0.12)$ & $0.368 \; (\pm0.10)$ & $0.074 \; (\pm0.05)$ \\
+    \multirow{8}{*}{\shortstack[l]{German\\ Credit}} & FTL & $\textbf{0.293} \; (\pm0.12)$ & $\textbf{0.368} \; (\pm0.10)$ & $0.074 \; (\pm0.05)$ \\
      & FTL+RPR$_{\xi}$ & $0.166 \; (\pm0.16)$ & $0.284 \; (\pm0.14)$ & $0.117 \; (\pm0.07)$ \\
      & MLP & $0.290 \; (\pm0.09)$ & $0.355 \; (\pm0.07)$ & $0.065 \; (\pm0.06)$ \\
      & MLP+L2 & $0.249 \; (\pm0.08)$ & $0.309 \; (\pm0.07)$ & $0.060 \; (\pm0.04)$ \\
-     & MLP+RPR$_{\rho_s}$ & $0.319 \; (\pm0.05)$ & $0.367 \; (\pm0.07)$ & $0.048 \; (\pm0.04)$ \\
+     & MLP+RPR$_{\rho_s}$ & $0.319 \; (\pm0.05)$ & $0.367 \; (\pm0.07)$ & $\textbf{0.048} \; (\pm0.04)$ \\
      & MLP+RPR$_{\rho}$ & $0.229 \; (\pm0.13)$ & $0.297 \; (\pm0.10)$ & $0.068 \; (\pm0.04)$ \\
      & MLP+RPR$_{\tau}$ & $0.277 \; (\pm0.08)$ & $0.329 \; (\pm0.06)$ & $0.053 \; (\pm0.04)$ \\
      & MLP+RPR$_{\xi}$ & $0.275 \; (\pm0.09)$ & $0.341 \; (\pm0.06)$ & $0.066 \; (\pm0.05)$ \\
@@ -409,36 +409,36 @@ As done on the last chapter, we present performance and fairness results along w
     \midrule
     
     \multirow{8}{*}{\shortstack[l]{Adult\\ Income}} & FTL & $0.515 \; (\pm0.03)$ & $0.572 \; (\pm0.02)$ & $0.057 \; (\pm0.02)$ \\
-     & FTL+RPR$_{\xi}$ & $0.526 \; (\pm0.02)$ & $0.575 \; (\pm0.01)$ & $0.048 \; (\pm0.02)$ \\
+     & FTL+RPR$_{\xi}$ & $\textbf{0.526} \; (\pm0.02)$ & $0.575 \; (\pm0.01)$ & $\textbf{0.048} \; (\pm0.02)$ \\
      & MLP & $0.478 \; (\pm0.02)$ & $0.575 \; (\pm0.01)$ & $0.097 \; (\pm0.02)$ \\
      & MLP+L2 & $0.484 \; (\pm0.01)$ & $0.577 \; (\pm0.01)$ & $0.093 \; (\pm0.01)$ \\
-     & MLP+RPR$_{\rho_s}$ & $0.492 \; (\pm0.02)$ & $0.578 \; (\pm0.01)$ & $0.085 \; (\pm0.02)$ \\
+     & MLP+RPR$_{\rho_s}$ & $0.492 \; (\pm0.02)$ & $\textbf{0.578} \; (\pm0.01)$ & $0.085 \; (\pm0.02)$ \\
      & MLP+RPR$_{\rho}$ & $0.489 \; (\pm0.02)$ & $0.575 \; (\pm0.01)$ & $0.087 \; (\pm0.02)$ \\
-     & MLP+RPR$_{\tau}$ & $0.487 \; (\pm0.02)$ & $0.578 \; (\pm0.01)$ & $0.091 \; (\pm0.02)$ \\
-     & MLP+RPR$_{\xi}$ & $0.500 \; (\pm0.02)$ & $0.578 \; (\pm0.01)$ & $0.078 \; (\pm0.02)$ \\
+     & MLP+RPR$_{\tau}$ & $0.487 \; (\pm0.02)$ & $\textbf{0.578} \; (\pm0.01)$ & $0.091 \; (\pm0.02)$ \\
+     & MLP+RPR$_{\xi}$ & $0.500 \; (\pm0.02)$ & $\textbf{0.578} \; (\pm0.01)$ & $0.078 \; (\pm0.02)$ \\
     \midrule
-    \multirow{8}{*}{\shortstack[l]{Bank\\ Marketing}} & FTL & $0.495 \; (\pm0.05)$ & $0.574 \; (\pm0.01)$ & $0.078 \; (\pm0.05)$ \\
+    \multirow{8}{*}{\shortstack[l]{Bank\\ Marketing}} & FTL & $\textbf{0.495} \; (\pm0.05)$ & $\textbf{0.574} \; (\pm0.01)$ & $0.078 \; (\pm0.05)$ \\
      & FTL+RPR$_{\xi}$ & $0.490 \; (\pm0.03)$ & $0.571 \; (\pm0.01)$ & $0.081 \; (\pm0.03)$ \\
-     & MLP & $0.461 \; (\pm0.05)$ & $0.522 \; (\pm0.02)$ & $0.061 \; (\pm0.04)$ \\
+     & MLP & $0.461 \; (\pm0.05)$ & $0.522 \; (\pm0.02)$ & $\textbf{0.061} \; (\pm0.04)$ \\
      & MLP+L2 & $0.461 \; (\pm0.03)$ & $0.525 \; (\pm0.02)$ & $0.065 \; (\pm0.03)$ \\
-     & MLP+RPR$_{\rho_s}$ & $0.468 \; (\pm0.04)$ & $0.529 \; (\pm0.02)$ & $0.061 \; (\pm0.03)$ \\
+     & MLP+RPR$_{\rho_s}$ & $0.468 \; (\pm0.04)$ & $0.529 \; (\pm0.02)$ & $\textbf{0.061} \; (\pm0.03)$ \\
      & MLP+RPR$_{\rho}$ & $0.442 \; (\pm0.05)$ & $0.522 \; (\pm0.02)$ & $0.080 \; (\pm0.03)$ \\
      & MLP+RPR$_{\tau}$ & $0.434 \; (\pm0.05)$ & $0.519 \; (\pm0.01)$ & $0.085 \; (\pm0.05)$ \\
      & MLP+RPR$_{\xi}$ & $0.446 \; (\pm0.04)$ & $0.539 \; (\pm0.02)$ & $0.093 \; (\pm0.04)$ \\
     \midrule
     \multirow{8}{*}{\shortstack[l]{COMPAS\\ Recidivism}} & FTL & $0.216 \; (\pm0.04)$ & $0.288 \; (\pm0.02)$ & $0.072 \; (\pm0.04)$ \\
-     & FTL+RPR$_{\xi}$ & $0.225 \; (\pm0.04)$ & $0.282 \; (\pm0.03)$ & $0.056 \; (\pm0.03)$ \\
+     & FTL+RPR$_{\xi}$ & $\textbf{0.225} \; (\pm0.04)$ & $0.282 \; (\pm0.03)$ & $\textbf{0.056} \; (\pm0.03)$ \\
      & MLP & $0.098 \; (\pm0.05)$ & $0.283 \; (\pm0.03)$ & $0.185 \; (\pm0.03)$ \\
      & MLP+L2 & $0.097 \; (\pm0.04)$ & $0.281 \; (\pm0.03)$ & $0.185 \; (\pm0.04)$ \\
      & MLP+RPR$_{\rho_s}$ & $0.096 \; (\pm0.05)$ & $0.282 \; (\pm0.03)$ & $0.185 \; (\pm0.03)$ \\
      & MLP+RPR$_{\rho}$ & $0.119 \; (\pm0.05)$ & $0.292 \; (\pm0.03)$ & $0.174 \; (\pm0.03)$ \\
-     & MLP+RPR$_{\tau}$ & $0.124 \; (\pm0.04)$ & $0.310 \; (\pm0.02)$ & $0.185 \; (\pm0.03)$ \\
+     & MLP+RPR$_{\tau}$ & $0.124 \; (\pm0.04)$ & $\textbf{0.310} \; (\pm0.02)$ & $0.185 \; (\pm0.03)$ \\
      & MLP+RPR$_{\xi}$ & $0.129 \; (\pm0.05)$ & $0.303 \; (\pm0.02)$ & $0.174 \; (\pm0.03)$ \\
     \midrule
-    \multirow{8}{*}{\shortstack[l]{German\\ Credit}} & FTL & $0.278 \; (\pm0.12)$ & $0.383 \; (\pm0.08)$ & $0.105 \; (\pm0.06)$ \\
+    \multirow{8}{*}{\shortstack[l]{German\\ Credit}} & FTL & $\textbf{0.278} \; (\pm0.12)$ & $\textbf{0.383} \; (\pm0.08)$ & $0.105 \; (\pm0.06)$ \\
      & FTL+RPR$_{\xi}$ & $0.228 \; (\pm0.08)$ & $0.337 \; (\pm0.07)$ & $0.109 \; (\pm0.06)$ \\
      & MLP & $0.249 \; (\pm0.10)$ & $0.352 \; (\pm0.08)$ & $0.102 \; (\pm0.06)$ \\
-     & MLP+L2 & $0.214 \; (\pm0.11)$ & $0.297 \; (\pm0.10)$ & $0.084 \; (\pm0.05)$ \\
+     & MLP+L2 & $0.214 \; (\pm0.11)$ & $0.297 \; (\pm0.10)$ & $\textbf{0.084} \; (\pm0.05)$ \\
      & MLP+RPR$_{\rho_s}$ & $0.219 \; (\pm0.09)$ & $0.352 \; (\pm0.07)$ & $0.133 \; (\pm0.05)$ \\
      & MLP+RPR$_{\rho}$ & $0.228 \; (\pm0.11)$ & $0.342 \; (\pm0.06)$ & $0.114 \; (\pm0.09)$ \\
      & MLP+RPR$_{\tau}$ & $0.247 \; (\pm0.06)$ & $0.341 \; (\pm0.06)$ & $0.094 \; (\pm0.05)$ \\
@@ -456,38 +456,38 @@ As done on the last chapter, we present performance and fairness results along w
     \midrule
     
     \multirow{8}{*}{\shortstack[l]{Adult\\ Income}} & FTL & $0.806 \; (\pm0.02)$ & $0.827 \; (\pm0.01)$ & $0.022 \; (\pm0.02)$ \\
-     & FTL+RPR$_{\xi}$ & $0.811 \; (\pm0.01)$ & $0.825 \; (\pm0.01)$ & $0.015 \; (\pm0.01)$ \\
+     & FTL+RPR$_{\xi}$ & $\textbf{0.811} \; (\pm0.01)$ & $0.825 \; (\pm0.01)$ & $\textbf{0.015} \; (\pm0.01)$ \\
      & MLP & $0.664 \; (\pm0.01)$ & $0.850 \; (\pm0.00)$ & $0.185 \; (\pm0.01)$ \\
-     & MLP+L2 & $0.660 \; (\pm0.01)$ & $0.851 \; (\pm0.00)$ & $0.191 \; (\pm0.01)$ \\
+     & MLP+L2 & $0.660 \; (\pm0.01)$ & $\textbf{0.851} \; (\pm0.00)$ & $0.191 \; (\pm0.01)$ \\
      & MLP+RPR$_{\rho_s}$ & $0.663 \; (\pm0.01)$ & $0.848 \; (\pm0.00)$ & $0.186 \; (\pm0.01)$ \\
      & MLP+RPR$_{\rho}$ & $0.657 \; (\pm0.01)$ & $0.849 \; (\pm0.00)$ & $0.192 \; (\pm0.01)$ \\
      & MLP+RPR$_{\tau}$ & $0.659 \; (\pm0.01)$ & $0.849 \; (\pm0.00)$ & $0.190 \; (\pm0.01)$ \\
      & MLP+RPR$_{\xi}$ & $0.666 \; (\pm0.01)$ & $0.850 \; (\pm0.00)$ & $0.183 \; (\pm0.02)$ \\
     \midrule
-    \multirow{8}{*}{\shortstack[l]{Bank\\ Marketing}} & FTL & $0.828 \; (\pm0.14)$ & $0.887 \; (\pm0.01)$ & $0.059 \; (\pm0.14)$ \\
+    \multirow{8}{*}{\shortstack[l]{Bank\\ Marketing}} & FTL & $\textbf{0.828} \; (\pm0.14)$ & $0.887 \; (\pm0.01)$ & $\textbf{0.059} \; (\pm0.14)$ \\
      & FTL+RPR$_{\xi}$ & $0.800 \; (\pm0.25)$ & $0.897 \; (\pm0.01)$ & $0.096 \; (\pm0.24)$ \\
      & MLP & $0.799 \; (\pm0.03)$ & $0.902 \; (\pm0.00)$ & $0.103 \; (\pm0.03)$ \\
      & MLP+L2 & $0.796 \; (\pm0.03)$ & $0.902 \; (\pm0.00)$ & $0.106 \; (\pm0.03)$ \\
      & MLP+RPR$_{\rho_s}$ & $0.790 \; (\pm0.03)$ & $0.902 \; (\pm0.00)$ & $0.113 \; (\pm0.03)$ \\
      & MLP+RPR$_{\rho}$ & $0.799 \; (\pm0.03)$ & $0.902 \; (\pm0.00)$ & $0.103 \; (\pm0.03)$ \\
      & MLP+RPR$_{\tau}$ & $0.802 \; (\pm0.05)$ & $0.901 \; (\pm0.00)$ & $0.099 \; (\pm0.05)$ \\
-     & MLP+RPR$_{\xi}$ & $0.777 \; (\pm0.03)$ & $0.905 \; (\pm0.00)$ & $0.127 \; (\pm0.04)$ \\
+     & MLP+RPR$_{\xi}$ & $0.777 \; (\pm0.03)$ & $\textbf{0.905} \; (\pm0.00)$ & $0.127 \; (\pm0.04)$ \\
     \midrule
     \multirow{8}{*}{\shortstack[l]{COMPAS\\ Recidivism}} & FTL & $0.520 \; (\pm0.12)$ & $0.619 \; (\pm0.04)$ & $0.100 \; (\pm0.11)$ \\
-     & FTL+RPR$_{\xi}$ & $0.606 \; (\pm0.03)$ & $0.651 \; (\pm0.01)$ & $0.045 \; (\pm0.03)$ \\
+     & FTL+RPR$_{\xi}$ & $\textbf{0.606} \; (\pm0.03)$ & $0.651 \; (\pm0.01)$ & $\textbf{0.045} \; (\pm0.03)$ \\
      & MLP & $0.439 \; (\pm0.04)$ & $0.646 \; (\pm0.01)$ & $0.207 \; (\pm0.04)$ \\
      & MLP+L2 & $0.449 \; (\pm0.04)$ & $0.650 \; (\pm0.01)$ & $0.202 \; (\pm0.04)$ \\
      & MLP+RPR$_{\rho_s}$ & $0.462 \; (\pm0.04)$ & $0.651 \; (\pm0.01)$ & $0.189 \; (\pm0.04)$ \\
      & MLP+RPR$_{\rho}$ & $0.449 \; (\pm0.03)$ & $0.652 \; (\pm0.01)$ & $0.203 \; (\pm0.03)$ \\
      & MLP+RPR$_{\tau}$ & $0.457 \; (\pm0.03)$ & $0.646 \; (\pm0.01)$ & $0.189 \; (\pm0.03)$ \\
-     & MLP+RPR$_{\xi}$ & $0.462 \; (\pm0.03)$ & $0.659 \; (\pm0.01)$ & $0.197 \; (\pm0.03)$ \\
+     & MLP+RPR$_{\xi}$ & $0.462 \; (\pm0.03)$ & $\textbf{0.659} \; (\pm0.01)$ & $0.197 \; (\pm0.03)$ \\
     \midrule
-    \multirow{8}{*}{\shortstack[l]{German\\ Credit}} & FTL & $0.684 \; (\pm0.07)$ & $0.723 \; (\pm0.03)$ & $0.040 \; (\pm0.05)$ \\
+    \multirow{8}{*}{\shortstack[l]{German\\ Credit}} & FTL & $\textbf{0.684} \; (\pm0.07)$ & $0.723 \; (\pm0.03)$ & $\textbf{0.040} \; (\pm0.05)$ \\
      & FTL+RPR$_{\xi}$ & $0.655 \; (\pm0.07)$ & $0.725 \; (\pm0.03)$ & $0.070 \; (\pm0.06)$ \\
      & MLP & $0.628 \; (\pm0.06)$ & $0.742 \; (\pm0.03)$ & $0.114 \; (\pm0.06)$ \\
      & MLP+L2 & $0.653 \; (\pm0.08)$ & $0.741 \; (\pm0.03)$ & $0.088 \; (\pm0.07)$ \\
      & MLP+RPR$_{\rho_s}$ & $0.644 \; (\pm0.05)$ & $0.742 \; (\pm0.03)$ & $0.098 \; (\pm0.04)$ \\
-     & MLP+RPR$_{\rho}$ & $0.669 \; (\pm0.06)$ & $0.763 \; (\pm0.02)$ & $0.094 \; (\pm0.05)$ \\
+     & MLP+RPR$_{\rho}$ & $0.669 \; (\pm0.06)$ & $\textbf{0.763} \; (\pm0.02)$ & $0.094 \; (\pm0.05)$ \\
      & MLP+RPR$_{\tau}$ & $0.650 \; (\pm0.06)$ & $0.747 \; (\pm0.03)$ & $0.097 \; (\pm0.05)$ \\
      & MLP+RPR$_{\xi}$ & $0.631 \; (\pm0.07)$ & $0.733 \; (\pm0.02)$ & $0.102 \; (\pm0.06)$ \\
      \bottomrule
@@ -504,9 +504,9 @@ As done on the last chapter, we present performance and fairness results along w
     \midrule
         
     \multirow{8}{*}{\shortstack[l]{Adult\\ Income}} & FTL & $0.812 \; (\pm0.03)$ & $0.845 \; (\pm0.01)$ & $0.034 \; (\pm0.02)$ \\
-     & FTL+RPR$_{\xi}$ & $0.815 \; (\pm0.02)$ & $0.847 \; (\pm0.00)$ & $0.031 \; (\pm0.02)$ \\
+     & FTL+RPR$_{\xi}$ & $\textbf{0.815} \; (\pm0.02)$ & $0.847 \; (\pm0.00)$ & $\textbf{0.031} \; (\pm0.02)$ \\
      & MLP & $0.758 \; (\pm0.04)$ & $0.848 \; (\pm0.00)$ & $0.090 \; (\pm0.04)$ \\
-     & MLP+L2 & $0.750 \; (\pm0.04)$ & $0.850 \; (\pm0.00)$ & $0.100 \; (\pm0.04)$ \\
+     & MLP+L2 & $0.750 \; (\pm0.04)$ & $\textbf{0.850} \; (\pm0.00)$ & $0.100 \; (\pm0.04)$ \\
      & MLP+RPR$_{\rho_s}$ & $0.748 \; (\pm0.03)$ & $0.849 \; (\pm0.00)$ & $0.101 \; (\pm0.03)$ \\
      & MLP+RPR$_{\rho}$ & $0.750 \; (\pm0.04)$ & $0.848 \; (\pm0.00)$ & $0.098 \; (\pm0.04)$ \\
      & MLP+RPR$_{\tau}$ & $0.751 \; (\pm0.03)$ & $0.849 \; (\pm0.00)$ & $0.098 \; (\pm0.03)$ \\
@@ -515,29 +515,29 @@ As done on the last chapter, we present performance and fairness results along w
     \multirow{8}{*}{\shortstack[l]{Bank\\ Marketing}} & FTL & $0.781 \; (\pm0.17)$ & $0.883 \; (\pm0.02)$ & $0.102 \; (\pm0.17)$ \\
      & FTL+RPR$_{\xi}$ & $0.802 \; (\pm0.08)$ & $0.892 \; (\pm0.01)$ & $0.090 \; (\pm0.09)$ \\
      & MLP & $0.803 \; (\pm0.07)$ & $0.902 \; (\pm0.00)$ & $0.099 \; (\pm0.07)$ \\
-     & MLP+L2 & $0.791 \; (\pm0.08)$ & $0.903 \; (\pm0.00)$ & $0.112 \; (\pm0.07)$ \\
+     & MLP+L2 & $0.791 \; (\pm0.08)$ & $\textbf{0.903} \; (\pm0.00)$ & $0.112 \; (\pm0.07)$ \\
      & MLP+RPR$_{\rho_s}$ & $0.824 \; (\pm0.06)$ & $0.902 \; (\pm0.00)$ & $0.078 \; (\pm0.06)$ \\
      & MLP+RPR$_{\rho}$ & $0.798 \; (\pm0.07)$ & $0.901 \; (\pm0.00)$ & $0.103 \; (\pm0.07)$ \\
      & MLP+RPR$_{\tau}$ & $0.822 \; (\pm0.07)$ & $0.901 \; (\pm0.00)$ & $0.079 \; (\pm0.07)$ \\
-     & MLP+RPR$_{\xi}$ & $0.839 \; (\pm0.05)$ & $0.903 \; (\pm0.00)$ & $0.063 \; (\pm0.04)$ \\
+     & MLP+RPR$_{\xi}$ & $\textbf{0.839} \; (\pm0.05)$ & $\textbf{0.903} \; (\pm0.00)$ & $\textbf{0.063} \; (\pm0.04)$ \\
     \midrule
-    \multirow{8}{*}{\shortstack[l]{COMPAS\\ Recidivism}} & FTL & $0.614 \; (\pm0.03)$ & $0.645 \; (\pm0.03)$ & $0.031 \; (\pm0.02)$ \\
+    \multirow{8}{*}{\shortstack[l]{COMPAS\\ Recidivism}} & FTL & $\textbf{0.614} \; (\pm0.03)$ & $0.645 \; (\pm0.03)$ & $\textbf{0.031} \; (\pm0.02)$ \\
      & FTL+RPR$_{\xi}$ & $0.598 \; (\pm0.03)$ & $0.639 \; (\pm0.02)$ & $0.041 \; (\pm0.03)$ \\
      & MLP & $0.498 \; (\pm0.04)$ & $0.646 \; (\pm0.01)$ & $0.148 \; (\pm0.04)$ \\
      & MLP+L2 & $0.519 \; (\pm0.04)$ & $0.647 \; (\pm0.02)$ & $0.128 \; (\pm0.03)$ \\
      & MLP+RPR$_{\rho_s}$ & $0.520 \; (\pm0.03)$ & $0.651 \; (\pm0.01)$ & $0.131 \; (\pm0.03)$ \\
      & MLP+RPR$_{\rho}$ & $0.503 \; (\pm0.06)$ & $0.649 \; (\pm0.01)$ & $0.146 \; (\pm0.05)$ \\
      & MLP+RPR$_{\tau}$ & $0.506 \; (\pm0.04)$ & $0.647 \; (\pm0.01)$ & $0.141 \; (\pm0.04)$ \\
-     & MLP+RPR$_{\xi}$ & $0.536 \; (\pm0.03)$ & $0.663 \; (\pm0.01)$ & $0.127 \; (\pm0.03)$ \\
+     & MLP+RPR$_{\xi}$ & $0.536 \; (\pm0.03)$ & $\textbf{0.663} \; (\pm0.01)$ & $0.127 \; (\pm0.03)$ \\
     \midrule
-    \multirow{8}{*}{\shortstack[l]{German\\ Credit}} & FTL & $0.676 \; (\pm0.06)$ & $0.751 \; (\pm0.02)$ & $0.075 \; (\pm0.06)$ \\
+    \multirow{8}{*}{\shortstack[l]{German\\ Credit}} & FTL & $0.676 \; (\pm0.06)$ & $\textbf{0.751} \; (\pm0.02)$ & $0.075 \; (\pm0.06)$ \\
      & FTL+RPR$_{\xi}$ & $0.665 \; (\pm0.06)$ & $0.736 \; (\pm0.03)$ & $0.071 \; (\pm0.05)$ \\
      & MLP & $0.673 \; (\pm0.06)$ & $0.739 \; (\pm0.03)$ & $0.066 \; (\pm0.05)$ \\
      & MLP+L2 & $0.652 \; (\pm0.04)$ & $0.736 \; (\pm0.03)$ & $0.084 \; (\pm0.05)$ \\
      & MLP+RPR$_{\rho_s}$ & $0.667 \; (\pm0.06)$ & $0.739 \; (\pm0.03)$ & $0.072 \; (\pm0.05)$ \\
      & MLP+RPR$_{\rho}$ & $0.687 \; (\pm0.04)$ & $0.749 \; (\pm0.04)$ & $0.062 \; (\pm0.03)$ \\
-     & MLP+RPR$_{\tau}$ & $0.702 \; (\pm0.04)$ & $0.736 \; (\pm0.02)$ & $0.034 \; (\pm0.03)$ \\
-     & MLP+RPR$_{\xi}$ & $0.702 \; (\pm0.05)$ & $0.750 \; (\pm0.02)$ & $0.048 \; (\pm0.04)$ \\
+     & MLP+RPR$_{\tau}$ & $\textbf{0.702} \; (\pm0.04)$ & $0.736 \; (\pm0.02)$ & $\textbf{0.034} \; (\pm0.03)$ \\
+     & MLP+RPR$_{\xi}$ & $\textbf{0.702} \; (\pm0.05)$ & $0.750 \; (\pm0.02)$ & $0.048 \; (\pm0.04)$ \\
      \bottomrule
 \end{tabular} }
 \end{table}
@@ -551,36 +551,36 @@ As done on the last chapter, we present performance and fairness results along w
     \midrule
         
     \multirow{8}{*}{\shortstack[l]{Adult\\ Income}} & FTL & $0.798 \; (\pm0.02)$ & $0.841 \; (\pm0.01)$ & $0.043 \; (\pm0.02)$ \\
-     & FTL+RPR$_{\xi}$ & $0.805 \; (\pm0.02)$ & $0.843 \; (\pm0.01)$ & $0.038 \; (\pm0.02)$ \\
-     & MLP & $0.760 \; (\pm0.02)$ & $0.849 \; (\pm0.00)$ & $0.089 \; (\pm0.02)$ \\
-     & MLP+L2 & $0.762 \; (\pm0.02)$ & $0.849 \; (\pm0.00)$ & $0.086 \; (\pm0.02)$ \\
-     & MLP+RPR$_{\rho_s}$ & $0.772 \; (\pm0.02)$ & $0.849 \; (\pm0.00)$ & $0.076 \; (\pm0.02)$ \\
-     & MLP+RPR$_{\rho}$ & $0.759 \; (\pm0.02)$ & $0.849 \; (\pm0.00)$ & $0.090 \; (\pm0.02)$ \\
-     & MLP+RPR$_{\tau}$ & $0.753 \; (\pm0.03)$ & $0.849 \; (\pm0.00)$ & $0.096 \; (\pm0.02)$ \\
-     & MLP+RPR$_{\xi}$ & $0.772 \; (\pm0.02)$ & $0.849 \; (\pm0.00)$ & $0.077 \; (\pm0.02)$ \\
+     & FTL+RPR$_{\xi}$ & $\textbf{0.805} \; (\pm0.02)$ & $0.843 \; (\pm0.01)$ & $\textbf{0.038} \; (\pm0.02)$ \\
+     & MLP & $0.760 \; (\pm0.02)$ & $\textbf{0.849} \; (\pm0.00)$ & $0.089 \; (\pm0.02)$ \\
+     & MLP+L2 & $0.762 \; (\pm0.02)$ & $\textbf{0.849} \; (\pm0.00)$ & $0.086 \; (\pm0.02)$ \\
+     & MLP+RPR$_{\rho_s}$ & $0.772 \; (\pm0.02)$ & $\textbf{0.849} \; (\pm0.00)$ & $0.076 \; (\pm0.02)$ \\
+     & MLP+RPR$_{\rho}$ & $0.759 \; (\pm0.02)$ & $\textbf{0.849} \; (\pm0.00)$ & $0.090 \; (\pm0.02)$ \\
+     & MLP+RPR$_{\tau}$ & $0.753 \; (\pm0.03)$ & $\textbf{0.849} \; (\pm0.00)$ & $0.096 \; (\pm0.02)$ \\
+     & MLP+RPR$_{\xi}$ & $0.772 \; (\pm0.02)$ & $\textbf{0.849} \; (\pm0.00)$ & $0.077 \; (\pm0.02)$ \\
     \midrule
-    \multirow{8}{*}{\shortstack[l]{Bank\\ Marketing}} & FTL & $0.846 \; (\pm0.03)$ & $0.890 \; (\pm0.01)$ & $0.044 \; (\pm0.04)$ \\
+    \multirow{8}{*}{\shortstack[l]{Bank\\ Marketing}} & FTL & $\textbf{0.846} \; (\pm0.03)$ & $0.890 \; (\pm0.01)$ & $\textbf{0.044} \; (\pm0.04)$ \\
      & FTL+RPR$_{\xi}$ & $0.831 \; (\pm0.05)$ & $0.892 \; (\pm0.01)$ & $0.061 \; (\pm0.05)$ \\
      & MLP & $0.845 \; (\pm0.03)$ & $0.901 \; (\pm0.00)$ & $0.057 \; (\pm0.03)$ \\
-     & MLP+L2 & $0.821 \; (\pm0.04)$ & $0.903 \; (\pm0.00)$ & $0.082 \; (\pm0.04)$ \\
-     & MLP+RPR$_{\rho_s}$ & $0.838 \; (\pm0.04)$ & $0.903 \; (\pm0.00)$ & $0.065 \; (\pm0.04)$ \\
+     & MLP+L2 & $0.821 \; (\pm0.04)$ & $\textbf{0.903} \; (\pm0.00)$ & $0.082 \; (\pm0.04)$ \\
+     & MLP+RPR$_{\rho_s}$ & $0.838 \; (\pm0.04)$ & $\textbf{0.903} \; (\pm0.00)$ & $0.065 \; (\pm0.04)$ \\
      & MLP+RPR$_{\rho}$ & $0.828 \; (\pm0.05)$ & $0.902 \; (\pm0.00)$ & $0.073 \; (\pm0.05)$ \\
      & MLP+RPR$_{\tau}$ & $0.822 \; (\pm0.04)$ & $0.902 \; (\pm0.00)$ & $0.079 \; (\pm0.04)$ \\
      & MLP+RPR$_{\xi}$ & $0.830 \; (\pm0.03)$ & $0.902 \; (\pm0.00)$ & $0.072 \; (\pm0.03)$ \\
     \midrule
     \multirow{8}{*}{\shortstack[l]{COMPAS\\ Recidivism}} & FTL & $0.545 \; (\pm0.10)$ & $0.631 \; (\pm0.05)$ & $0.086 \; (\pm0.08)$ \\
-     & FTL+RPR$_{\xi}$ & $0.594 \; (\pm0.04)$ & $0.647 \; (\pm0.02)$ & $0.053 \; (\pm0.04)$ \\
+     & FTL+RPR$_{\xi}$ & $\textbf{0.594} \; (\pm0.04)$ & $0.647 \; (\pm0.02)$ & $\textbf{0.053} \; (\pm0.04)$ \\
      & MLP & $0.449 \; (\pm0.04)$ & $0.649 \; (\pm0.01)$ & $0.200 \; (\pm0.03)$ \\
      & MLP+L2 & $0.452 \; (\pm0.04)$ & $0.649 \; (\pm0.01)$ & $0.197 \; (\pm0.04)$ \\
      & MLP+RPR$_{\rho_s}$ & $0.464 \; (\pm0.03)$ & $0.650 \; (\pm0.01)$ & $0.186 \; (\pm0.03)$ \\
      & MLP+RPR$_{\rho}$ & $0.449 \; (\pm0.05)$ & $0.650 \; (\pm0.01)$ & $0.201 \; (\pm0.04)$ \\
      & MLP+RPR$_{\tau}$ & $0.463 \; (\pm0.05)$ & $0.650 \; (\pm0.01)$ & $0.187 \; (\pm0.05)$ \\
-     & MLP+RPR$_{\xi}$ & $0.497 \; (\pm0.04)$ & $0.667 \; (\pm0.01)$ & $0.170 \; (\pm0.03)$ \\
+     & MLP+RPR$_{\xi}$ & $0.497 \; (\pm0.04)$ & $\textbf{0.667} \; (\pm0.01)$ & $0.170 \; (\pm0.03)$ \\
     \midrule
-    \multirow{8}{*}{\shortstack[l]{German\\ Credit}} & FTL & $0.669 \; (\pm0.05)$ & $0.712 \; (\pm0.02)$ & $0.043 \; (\pm0.07)$ \\
+    \multirow{8}{*}{\shortstack[l]{German\\ Credit}} & FTL & $0.669 \; (\pm0.05)$ & $0.712 \; (\pm0.02)$ & $\textbf{0.043} \; (\pm0.07)$ \\
      & FTL+RPR$_{\xi}$ & $0.631 \; (\pm0.06)$ & $0.721 \; (\pm0.03)$ & $0.090 \; (\pm0.08)$ \\
      & MLP & $0.619 \; (\pm0.07)$ & $0.740 \; (\pm0.03)$ & $0.121 \; (\pm0.07)$ \\
-     & MLP+L2 & $0.675 \; (\pm0.05)$ & $0.750 \; (\pm0.02)$ & $0.075 \; (\pm0.04)$ \\
+     & MLP+L2 & $\textbf{0.675} \; (\pm0.05)$ & $\textbf{0.750} \; (\pm0.02)$ & $0.075 \; (\pm0.04)$ \\
      & MLP+RPR$_{\rho_s}$ & $0.647 \; (\pm0.06)$ & $0.742 \; (\pm0.03)$ & $0.096 \; (\pm0.05)$ \\
      & MLP+RPR$_{\rho}$ & $0.641 \; (\pm0.04)$ & $0.734 \; (\pm0.03)$ & $0.093 \; (\pm0.04)$ \\
      & MLP+RPR$_{\tau}$ & $0.647 \; (\pm0.07)$ & $0.748 \; (\pm0.03)$ & $0.101 \; (\pm0.07)$ \\
