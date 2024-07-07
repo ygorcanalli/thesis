@@ -311,7 +311,7 @@ As done on the last chapter, we present performance and fairness results along w
 \begin{table}
     \centering
     \caption{Mean and standard deviation metric values optimizing MCC and Statistical Parity in comparison with Redlining Penalty Regularizer.}\label{tab:complete_mcc_parity_rpr}
-    {\scriptsize\begin{tabular}{llrrr}
+    {\tiny\begin{tabular}{llrrr}
     \toprule
     Dataset & Method & $\uparrow\;$Fitness & $\uparrow\;$MCC & $\downarrow\;$Stat. Parity \\
     \midrule
@@ -354,10 +354,29 @@ As done on the last chapter, we present performance and fairness results along w
 \end{tabular}}
 \end{table}
 
+\begin{figure}
+\centering
+\caption{Metric distribution optimizing MCC and Statistical Parity in comparison with Redlining Penalty Regularization across multiple resample runs. Corresponding values available at Table~\ref{tab:complete_mcc_parity_rpr}.}
+\label{fig:complete_mcc_parity_rpr}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_parity_adult_rpr.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_parity_bank_rpr.pdf}
+\end{subfigure}
+
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_parity_compas_rpr.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_parity_german_rpr.pdf}
+\end{subfigure}
+\end{figure}
+
  \begin{table}
     \centering
     \caption{Mean and standard deviation metric values optimizing MCC and Equal Opportunity in comparison with Redlining Penalty Regularizer.}\label{tab:complete_mcc_opportunity_rpr}
-    {\scriptsize\begin{tabular}{llrrr}
+    {\tiny\begin{tabular}{llrrr}
     \toprule
     Dataset & Method & $\uparrow\;$Fitness & $\uparrow\;$MCC & $\downarrow\;$Eq. Opp. \\
     \midrule
@@ -400,10 +419,31 @@ As done on the last chapter, we present performance and fairness results along w
      \bottomrule
 \end{tabular}}
 \end{table}
+
+\begin{figure}
+\centering
+\caption{Metric distribution optimizing MCC and Equal Opportunity in comparison with Redlining Penalty Regularization across multiple resample runs. Corresponding values available at Table~\ref{tab:complete_mcc_opportunity_rpr}.}
+\label{fig:complete_mcc_opportunity_rpr}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_opportunity_adult_rpr.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_opportunity_bank_rpr.pdf}
+\end{subfigure}
+
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_opportunity_compas_rpr.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_opportunity_german_rpr.pdf}
+\end{subfigure}
+\end{figure}
+
+
  \begin{table}
     \centering
     \caption{Mean and standard deviation metric values optimizing MCC and Equalized Odds in comparison with Redlining Penalty Regularizer.}\label{tab:complete_mcc_odds_rpr}
-    {\scriptsize\begin{tabular}{llrrr}
+    {\tiny\begin{tabular}{llrrr}
     \toprule
     Dataset & Method & $\uparrow\;$Fitness & $\uparrow\;$MCC & $\downarrow\;$Eq. Odds \\
     \midrule
@@ -447,10 +487,29 @@ As done on the last chapter, we present performance and fairness results along w
 \end{tabular}}
 \end{table}
 
+\begin{figure}
+\centering
+\caption{Metric distribution optimizing MCC and Equalized Odds in comparison with Redlining Penalty Regularization across multiple resample runs. Corresponding values available at Table~\ref{tab:complete_mcc_odds_rpr}.}
+\label{fig:complete_mcc_odds_rpr}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_odds_adult_rpr.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_odds_bank_rpr.pdf}
+\end{subfigure}
+
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_odds_compas_rpr.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_mcc_odds_german_rpr.pdf}
+\end{subfigure}
+\end{figure}
+
  \begin{table}
     \centering
     \caption{Mean and standard deviation metric values optimizing Accuracy and Statistical Parity in comparison with Redlining Penalty Regularizer.}\label{tab:complete_acc_parity_rpr}
-   {\scriptsize \begin{tabular}{llrrr}
+   {\tiny \begin{tabular}{llrrr}
     \toprule
     Dataset & Method & $\uparrow\;$Fitness & $\uparrow\;$Accuracy & $\downarrow\;$Stat. Parity \\
     \midrule
@@ -494,11 +553,29 @@ As done on the last chapter, we present performance and fairness results along w
 \end{tabular}}
 \end{table}
 
+\begin{figure}
+\centering
+\caption{Metric distribution optimizing Acc. and Statistical Parity in comparison with Redlining Penalty Regularization across multiple resample runs. Corresponding values available at Table~\ref{tab:complete_acc_parity_rpr}.}
+\label{fig:complete_acc_parity_rpr}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_parity_adult_rpr.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_parity_bank_rpr.pdf}
+\end{subfigure}
+
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_parity_compas_rpr.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_parity_german_rpr.pdf}
+\end{subfigure}
+\end{figure}
 
 \begin{table}
     \centering
     \caption{Mean and standard deviation metric values optimizing Accuracy and Equal Opportunity in comparison with Redlining Penalty Regularizer.}\label{tab:complete_acc_opportunity_rpr}
-    {\scriptsize \begin{tabular}{llrrr}
+    {\tiny \begin{tabular}{llrrr}
     \toprule
     Dataset & Method & $\uparrow\;$Fitness & $\uparrow\;$Accuracy & $\downarrow\;$Eq. Opp. \\
     \midrule
@@ -542,10 +619,29 @@ As done on the last chapter, we present performance and fairness results along w
 \end{tabular} }
 \end{table}
 
+\begin{figure}
+\centering
+\caption{Metric distribution optimizing Acc. and Equal Opportunity in comparison with Redlining Penalty Regularization across multiple resample runs. Corresponding values available at Table~\ref{tab:complete_acc_opportunity_rpr}.}
+\label{fig:complete_mcc_apportunity_rpr}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_opportunity_adult_rpr.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_opportunity_bank_rpr.pdf}
+\end{subfigure}
+
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_opportunity_compas_rpr.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_opportunity_german_rpr.pdf}
+\end{subfigure}
+\end{figure}
+
  \begin{table}
     \centering
     \caption{Mean and standard deviation metric values optimizing Accuracy and Equalized Odds in comparison with Redlining Penalty Regularizer.}\label{tab:complete_acc_odds_rpr}
-    {\scriptsize \begin{tabular}{llrrr}
+    {\tiny \begin{tabular}{llrrr}
     \toprule
     Dataset & Method & $\uparrow\;$Fitness & $\uparrow\;$Accuracy & $\downarrow\;$Eq. Odds \\
     \midrule
@@ -588,3 +684,22 @@ As done on the last chapter, we present performance and fairness results along w
      \bottomrule
 \end{tabular}}
 \end{table}
+
+\begin{figure}
+\centering
+\caption{Metric distribution optimizing Acc. and Equalized Odds in comparison with Redlining Penalty Regularization across multiple resample runs. Corresponding values available at Table~\ref{tab:complete_acc_odds_rpr}.}
+\label{fig:complete_acc_odds_rpr}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_odds_adult_rpr.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_odds_bank_rpr.pdf}
+\end{subfigure}
+
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_odds_compas_rpr.pdf}
+\end{subfigure}
+\begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{images/pareto_acc_odds_german_rpr.pdf}
+\end{subfigure}
+\end{figure}
