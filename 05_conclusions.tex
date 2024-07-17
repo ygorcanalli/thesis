@@ -1,29 +1,45 @@
 \chapter{Conclusions}\label{chap:conclusions}
 
 
+%\section{Considerations on the proposal}
 
-In this study, we present Fair Transition Loss, a novel in-processing technique for addressing fair classification problems. It hoisting concepts from label noise robustness to mitigate social bias against underprivileged groups. We explore the intersection of these two research areas, highlighting both their similarities and differences. Our approach tackles the fairness-performance trade-off as a multi-objective optimization problem, employing a linear relaxed objective function to reduce bias while maintaining acceptable predictive performance levels. We benchmark this approach and compare to proeminent in-processing techniques in common fair classification tasks, using the Almost Stochastic Order test to evaluate results through multiple resampling iterations. This ensures that all methods operate under the same conditions, maximizing their potential within the scope of hyperparameter tuning.
+In this work we introduced Fair Transition Loss, a novel approach to fair classification that estimates the influence of historical and societal biases on outcome probabilities for distinct social groups delineated by a sensitive feature. Drawing inspiration from label noise robustness, we represented these disparities on model's positive and negative outcomes probabilities to each social group using transition matrices, therefore incorporating this information onto the loss function to promote fairness. The proposed method hyperarameters were chosen by a Multi-Objective Optimization approach combining both fairness and model performance with a linear scalarization, defined in such a way that it is suitable to optimize a wide range of fairness and performance metrics.
 
-This is the first technique that models fair classification problems by drawing insights from classification in the presence of label noise. Our experiments indicate that Fair Transition Loss consistently outperforms its competitors in most optimization scenarios. Even in those cases that the proposed method isn't the outright leader, it performs at least as well as evaluated alternatives. Therefore, this novel approach can significantly mitigate bias while keeping model performance, particularly in scenarios optimizing balanced performance metrics like MCC. The proposed technique particularly stands out in setups where hyperparameter tuning is an integral component of the prediction pipeline.
+Also, the present study proposed a novel regularization approach to fair classification named Redlining Penalty Regularization, which uses feature's correlation coefficient to the sensitive attribute to proportionately penalize model's dependency on it. Our empirical evaluation demonstrated that this approach effectively mitigate unfairness while keeping predictive performance, with benefits corresponding to redlining level on dataset. The proposed approach can be used on both standard neural networks and those trained with Fair Transition Loss to reduce bias while keeping predictive performance.
 
+\section{Results and contributions}
 
+Our experimental evaluation indicates that Fair Transition Loss consistently outperforms its competitors in most optimization scenarios. Even in those cases that the proposed method isn't the outright leader, it performs at least as well as evaluated alternatives, standing as the only model to keep competitive results in all scenarios. Therefore, this novel approach can significantly mitigate bias while keeping model performance, specially when optimizing balanced performance metrics like MCC. The proposed technique particularly stands out in setups where hyperparameter tuning procedures constitutes the prediction pipeline.
 
-With this work, we hope to establish Fair Transition Loss as a relevant tool in fair classification tasks and pave the way for novel approaches that draw insights from label noise for various fair machine learning problems, including regression, recommender systems, ranking and language models.
+Furthermore, our results indicates that the Redlining Penalty Regularization approach effectively mitigates redlining effect on multiple datasets within various objective metrics when applied to both standard MLP and MLP trained with Fair Transition Loss. Also, our analysis indicates that the effectiveness of the referred approach is proportional to redlining level present on data, the higher the redlining the higher the performance-fairness trade-off improvement.
 
-\section{Considerations on the proposal}
+Thus, we summarize some contributions of the present study:
 
-\section{Contributions}
-
-\section{Results summary}
-
-colocar uma tabela pequena para FTL e outra para regularização aqui
+\begin{enumerate}[(i)]
+    \item a novel loss correction approach inspired by label noise techniques to fair classification problems;
+    \item a discussion of recent studies that lies between fairness and noise on machine learning;
+    \item a multi-objective hyperparameter tuning approach do tackle the performance-fairness trade-off using a simple linear scalarization setup;
+    \item a solid comparison of classic and state-of-art fair classification approaches using the Almost Stochastic Order as significance test;
+    \item state-of-art results on various benchmarked datasets to fair classification using the proposed loss correction approach;
+    \item a novel regularization approach that proportionately penalizes model's dependency on sensitive feature proxies according their correlations;
+    \item improved results using the proposed regularization approach on standard MLPs to fair classification.
+    \item improved state-of-art results using both the loss correction and regularization approaches to fair classification.
+\end{enumerate}
 
 \section{Research directions}
 
-While our proposed method seems competitive in problems involving hyperparameter optimization for binary fair classification tasks using a simple Multi-Layer Perceptron, we can outline some potential research directions: evaluate Fair Transition Loss within different neural network architectures, such as Deep Neural Networks; investigate whether the proposed method can effectively address multi-class fair classification problems and handle multiple sensitive attributes, as theoretically possible; evaluate FTL within different multi objective optimization schemes, such as the Fair Hyperparameter Tuning techniques proposed by~\cite{Cruz2021} or the non-linear Chebyshev scalarization scheme proposed by~\cite{Wei2022}; explore approaches to estimating or initializing transition matrices without relying on hyperparameter tuning techniques. 
-\begin{itemize}
-    \item Evaluate FTL under different neural network architectures (e.g. CNN, Transformers) 
-    \item Evaluate FTL under different data domains (e.g. images, audio, natural language)
-    \item Evaluate FTL under non-linear scalarization setups
-    \item Estimate/initialize Fair Transition Matrix using a heuristic
-\end{itemize}
+Here we outline some research direction insights, derived from proposed method's drawbacks and issues uncharted by this study:
+
+\begin{enumerate}[(i)]
+    \item explore approaches to estimating or initializing transition matrices to reduce computational costs required by hyperparameter optimization techniques;
+    \item evaluate Fair Transition Loss within different neural network architectures, such as Deep Neural Networks;
+    \item evaluate Fair Transition Loss on different data domains, such as image, audio and natural language;
+    \item evaluate Fair Transition Loss optimization under non-linear scalarization setups, such as the Chebyshev scalarization scheme proposed by~\cite{Wei2022};
+    \item evaluate Fair Transition Loss within different multi-objective optimization schemes, such as the Fair Hyperparameter Tuning techniques proposed by~\cite{Cruz2021};
+    \item investigate whether Fair Transition Loss can effectively address multi-class fair classification problems and handle multiple sensitive attributes, as theoretically possible;
+    \item evaluate Redlining Penalty Regularization within different neural network architectures, such as Deep Neural Networks;
+    \item evaluate Redlining Penalty Regularization on different data domains, such as image, audio and natural language;
+    \item evaluate Redlining Penalty Regularization combined with multiple pre-processing, in-processing and post-processing fair classification approaches.
+    
+\end{enumerate}
+

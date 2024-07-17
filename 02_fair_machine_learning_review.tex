@@ -145,12 +145,10 @@ True Negatives (TN) correspond to the probability that the predictor correctly i
 
 Now we proceed to more complex metrics that provides complementary insights into the performance of the classifier. These derived metrics, such as Positive Predictive Value (PPV), False Discovery Rate (FDR), and others, constitutes the basic elements of the confusion matrix to quantify the reliability of the predictions in various ways. By expressing these metrics in terms of conditional probabilities and confusion matrix components, we facilitate a comprehensive analysis of the classifier's behavior, providing resources to a proper evaluation of its fairness across different demographic groups.
 
-\abbrev{PPV}{Positive Predictive Value}
 \begin{definition}[Positive Predictive Value]\label{def:ppv}
 Positive Predictive Value (PPV), or precision, measures the proportion of correctly identified positive outcomes among all predicted positives. It is defined as the probability that the true condition is positive given the predicted condition is positive, $P(Y=1|\hat{Y}=1)$. In terms of the confusion matrix, PPV is calculated as $\frac{TP}{TP + FP}$, the ratio of true positives to the sum of true positives and false positives.
 \end{definition}
 
-\abbrev{FDR}{False Discovery Rate}
 \begin{definition}[False Discovery Rate]\label{def:fdr}
 False Discovery Rate (FDR) quantifies the rate of incorrect positive predictions. It is the probability that the true condition is negative when the predicted condition is positive, $P(Y=0|\hat{Y}=1)$. From the confusion matrix, FDR is computed as $\frac{FP}{TP + FP}$, indicating the proportion of false positives out of all predicted positives.
 \end{definition}
@@ -214,7 +212,8 @@ For example, the credit approval probability should be the same for the male and
 \begin{equation}\label{eq:demo_parity}
     |P(\hat{Y}|A=0)-P(\hat{Y}|A=1)|
 \end{equation}
-By analyzing the confusion matrix, we can determine the absolute difference between the rates of $(TP + FP)/(TP + FP + TN + FN)$ for both protected and unprotected groups.
+
+%By analyzing the confusion matrix, we can determine the absolute difference between the rates of $(TP + FP)/(TP + FP + TN + FN)$ for both protected and unprotected groups.
 
 \begin{definition}[Equal Opportunity]\label{def:eq_opp}
 The probability of a person in a positive class being assigned to a positive, i.e., favorable, outcome should be the same in every group of the sensitive attribute~\citep{Hardt2016}. A binary predictor $\hat{Y}$ satisfies Equal Opportunity if $P(\hat{Y}|A=0,Y=1) = P(\hat{Y}|A=1,Y=1)$, where $Y$ is true class and $A$ is a protected attribute.
@@ -225,6 +224,8 @@ Definition~\ref{def:eq_opp} claims that protected and unprotected, i.e., privile
     |P(\hat{Y}|A=0,Y=1)\; - \; P(\hat{Y}|A=1,Y=1)|
 \end{equation}
 
+For example, the credit approval probability within individuals labeled as good payer should be the same for the male and female groups, as Equal Opportunity depends on true class $Y$.
+
 \begin{definition}[Predictive Equality]\label{def:pred_eq}
 The probability of a person in a negative class being assigned to a negative outcome should be the same in every group of the sensitive attribute. A binary predictor $\hat{Y}$ satisfies Predictive Equality if $P(\hat{Y}|A=0,Y=0) = P(\hat{Y}|A=1,Y=0)$, where $Y$ is true class and $A$ is a protected attribute.
 \end{definition}
@@ -233,6 +234,8 @@ Definition~\ref{def:pred_eq} establishes that that both the protected and privil
 \begin{equation}\label{eq:pred_eq}
     |P(\hat{Y}|A=0,Y=0) \; - \; P(\hat{Y}|A=1,Y=0)|
 \end{equation}
+
+For example, the credit denial probability within individuals labeled as bad payer should be the same for the male and female groups.
 
 \begin{definition}[Equalized Odds]\label{def:eq_odds}
 Both probabilities of the person in a positive class being assigned to a positive outcome and of a person in a negative class being assigned to a negative outcome should be the same in every group of the sensitive attribute~\citep{Hardt2016}. A binary predictor $\hat{Y}$ satisfies Equalized Odds (a.k.a. Average Odds Difference) if $P(\hat{Y}|A=0,Y) = P(\hat{Y}|A=1,Y)$, where $Y$ is true class and $A$ is a protected attribute.
@@ -248,7 +251,9 @@ Equalized Odds is a combination of the principles from Definition~\ref{def:eq_op
     \;\right]
 \end{equation}
 
-Using the same logic, it is possible to define group fairness metrics based derived from any binary classification metric from confusion matrix. The procedure is the same, asessing the absolute difference from those metrics between protected and unprotected groups.
+For example, both credit approval and denial probabilities within individuals labeled as good and bad payer, respectively, should be the same for the male and female groups.
+
+Using the same logic, it is possible to define group fairness metrics based derived from any binary classification metric from confusion matrix. The procedure is the same, assessing the absolute difference from those metrics between protected and unprotected groups.
 
 While individual fairness metrics strive to ensure equitable treatment of individuals based on their specific attributes and circumstances, they may not always capture broader systemic inequalities that affect entire groups. As we pivot our discussion towards group fairness, we examine the potential drawbacks and complications that can arise when pursuing fairness metrics across different demographic groups.
 
@@ -341,4 +346,4 @@ The Adaptive Priority Reweighing~\cite{HuXT23} method introduces a systematic ap
 
 The method is evaluated on benchmark datasets, outperforming many state-of-art pre-processing, in-processing and post-processing fair classification techniques, promoting fairness on both finetuned pre-trained models and newly traisned models. This technique can be classified as an hybrid approach, performing the traditional pre-processing instance reweighing through an adaptive training algorithm.
 
-Recently, special attention has been given in fair machine learning research topics like addressing multiple sensitive attributes or multiple classes \citep{DAloisio2023,Liu_Wang_Wang_Wang_Su_Gao_2023}, loss balancing techniques~\citep{KIM2023231,KhaliliZA23}, where the objective is to balance the loss across different groups instead of predictive metrics, adversarial approaches~\citep{Liang2023,ZhangZLZY23,GrariLD23,MousaviMD23,Zeming2023,Yuchen2023} and the privacy concerns involving fairness under federated learning settings~\citep{ChenZZZY24,VucinichZ23}. Another relevant research topic in fair machine learning is learning under censored data~\citep{WZhang2022,WZhang2023_a,WZhang2023_b,WZhang2023_c}, which we will discuss in section~\ref{sec:ftl_preliminaries}.
+Recently, special attention has been given in fair machine learning research topics like addressing multiple sensitive attributes or multiple classes \citep{DAloisio2023,Liu_Wang_Wang_Wang_Su_Gao_2023}, loss balancing techniques~\citep{KIM2023231,KhaliliZA23}, where the objective is to balance the loss across different groups instead of predictive metrics, adversarial approaches~\citep{Liang2023,ZhangZLZY23,GrariLD23,MousaviMD23,Zeming2023,Yuchen2023} and the privacy concerns involving fairness under federated learning settings~\citep{ChenZZZY24,VucinichZ23}. Another relevant research topic in fair machine learning is learning under censored data~\citep{WZhang2022,WZhang2023_a,WZhang2023_b,WZhang2023_c}, which will be discussed in section~\ref{sec:ftl_preliminaries}.
