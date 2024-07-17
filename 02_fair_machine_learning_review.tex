@@ -1,7 +1,7 @@
 
-\chapter{Fair machine learning}
+\chapter{Fair machine learning}\label{chap:fairness}
 
-The field of Machine Learning (ML) has experienced significant growth and is increasingly applied in various societal domains such as healthcare, finance, and criminal justice. This growth raises important ethical and operational concerns, particularly regarding the principles of Fairness, Accountability, and Transparency (FAT) \citep{Memarian2023}. As ML algorithms increasingly influence a wide array of societal domains, including criminal justice, healthcare, finance, and employment, the requirement to ensure these systems are designed and implemented responsibly has become paramount. This section aims to delineate the significance, scope, and prevailing challenges associated with integrating FAT principles into ML, providing a foundation for the subsequent discussion.
+The field of Machine Learning (ML) has experienced significant growth and is increasingly applied in various societal domains such as healthcare, finance, and criminal justice. This growth raises important ethical and operational concerns, particularly regarding the principles of Fairness, Accountability, and Transparency (FAT) \citep{Memarian2023}. As ML algorithms increasingly influence a wide array of societal domains, including criminal justice, healthcare, finance, and employment, the requirement to ensure these systems are designed and implemented responsibly has become paramount. This chapter aims to delineate the significance, scope, and prevailing challenges associated with integrating FAT principles into ML, providing a foundation for the subsequent discussion.
 
 Fairness in ML concerns the equitable and just treatment of all individuals, particularly those from historically marginalized or disadvantaged groups \citep{Mehrabi2019, caton2023}. It seeks to ensure that ML algorithms do not perpetuate existing biases or create new forms of discrimination. However, the multifaceted nature of fairness, encompassing various definitions and metrics, poses substantial challenges in operationalizing it within algorithmic frameworks. Further in this section we will explore these complexities, examining different conceptions of fairness and the inherent trade-offs they entail.
 
@@ -28,60 +28,60 @@ Although there are many aspects to consider to an ethical automated decision sys
 
 \section{Sources and types of algorithmic unfairness}
 
-The comprehensive survey conducted by \citet{Mehrabi2019} elucidates the multitude of biases that can pervade artificial intelligence applications, potentially leading to unfair outcomes. This analysis categorizes the various sources of bias, illustrating the multifaceted ways in which such biases can infiltrate different stages of machine learning processes, ranging from the initial data collection phase to the final algorithmic processing. The following exposition provides a short delineation of these sources of bias. To a rich discussion on this topic - including references, examples and real cases where each source of bias can emerge - we recommend the reading of the original work. The discussion here is with the purpose of proper describing the complexity and multifaceted nature of unfairness in machine learning models.
+The comprehensive survey conducted by \citet{Mehrabi2019} elucidates the multitude of biases that can pervade artificial intelligence applications, potentially leading to unfair outcomes. This analysis categorizes the various sources of bias, illustrating the multifaceted ways in which such biases can infiltrate different stages of machine learning processes, ranging from the initial data collection phase to the final algorithmic processing. The discussion here is with the purpose of proper describing the complexity and multifaceted nature of unfairness in machine learning models, not an exhaustive approach on the subject.  The following exposition provides a short delineation of possible sources of bias.
 
 
 \begin{description}
-    \item[Historical Bias] This is the existing societal bias that reflects past and present inequalities and prejudices. Historical bias is present in the data even before any machine learning model has interacted with it, due to inherent social and cultural inequalities;
+    \item[Historical Bias] is the existing societal bias that reflects past and present inequalities and prejudices. Historical bias is present in the data even before any machine learning model has interacted with it, due to inherent social and cultural inequalities;
     
-    \item[Representation Bias] Occurs when the data sample does not accurately represent the entire population or certain subgroups within it. This can lead to machine learning models that perform well on majority groups but poorly on underrepresented groups;
+    \item[Representation Bias] occurs when the data sample does not accurately represent the entire population or certain subgroups within it. This can lead to machine learning models that perform well on majority groups but poorly on underrepresented groups;
 
-    \item[Measurement Bias] Arises when the data collected does not accurately measure the real-world constructs it purports to measure. This type of bias can occur due to flawed data collection instruments or processes that systematically misrepresent certain groups;
+    \item[Measurement Bias] arises when the data collected does not accurately measure the real-world constructs it purports to measure. This type of bias can occur due to flawed data collection instruments or processes that systematically misrepresent certain groups;
     
-    \item[Evaluation Bias] This type of bias occurs during the performance evaluation of machine learning models, where the evaluation criteria or methods may favor one group over others, leading to biased assessments of model performance;
+    \item[Evaluation Bias] occurs during the performance evaluation of machine learning models, where the evaluation criteria or methods may favor one group over others, leading to biased assessments of model performance;
 
-    \item[Aggregation Bias] Happens when incorrect assumptions are made about the homogeneity of groups within the data. Aggregation bias can lead to misleading conclusions if the differences within and between groups or subgroups are not properly accounted for;
+    \item[Aggregation Bias] happens when incorrect assumptions are made about the homogeneity of groups within the data. Aggregation bias can lead to misleading conclusions if the differences within and between groups or subgroups are not properly accounted for;
     
-    \item[Population Bias] Similar to representation bias, population bias occurs when statistics, demographics, representatives, and user characteristics are different in the user population represented in the dataset, leading to models that are not generalizable across different demographic groups;
+    \item[Population Bias] is similar to representation bias, occurs when statistics, demographics, representatives, and user characteristics are different in the user population represented in the dataset, leading to models that are not generalizable across different demographic groups;
 
-    \item[Simpson’s Paradox] This is a statistical phenomenon where a trend appears in several different groups of data but disappears or reverses when these groups are combined;
+    \item[Simpson’s Paradox] is a statistical phenomenon where a trend appears in several different groups of data but disappears or reverses when these groups are combined;
 
-    \item[Longitudinal Data Fallacy] Occurs when cross-sectional data is treated as longitudinal, leading to incorrect conclusions about data trends over time;
+    \item[Longitudinal Data Fallacy] occurs when cross-sectional data is treated as longitudinal, leading to incorrect conclusions about data trends over time;
 
-    \item[Sampling Bias] Introduced by non-random sampling procedures, where certain members of the intended population are less likely to be included in the sample than others, leading to skewed data that does not accurately represent the entire population;
+    \item[Sampling Bias] introduced by non-random sampling procedures, where certain members of the intended population are less likely to be included in the sample than others, leading to skewed data that does not accurately represent the entire population;
     
-    \item[Behavioral Bias] Arises from variations in user behavior that differ across different platforms or contexts, affecting the data's representation of real-world phenomena;
+    \item[Behavioral Bias] arises from variations in user behavior that differ across different platforms or contexts, affecting the data's representation of real-world phenomena;
 
-    \item[Content Production Bias] Results from differences in how content is generated by different groups, with structural, lexical, semantic, and syntactic differences, influencing the data available for machine learning models; 
+    \item[Content Production Bias] results from differences in how content is generated by different groups, with structural, lexical, semantic, and syntactic differences, influencing the data available for machine learning models; 
 
-    \item[Linking Bias] Occurs in networked data, where the connections between nodes can misrepresent the true attributes or behavior of the nodes;
+    \item[Linking Bias] occurs in networked data, where the connections between nodes can misrepresent the true attributes or behavior of the nodes;
 
-    \item[Temporal Bias] Reflects changes in data characteristics over time, due changes in representation or behaviors, which may not be accounted for in static machine learning models;
+    \item[Temporal Bias] reflects changes in data characteristics over time, due changes in representation or behaviors, which may not be accounted for in static machine learning models;
     
-    \item[Popularity Bias] Occurs when popular items are more likely to be recommended or rated highly, not necessarily because of their quality but simply because of their initial, higher visibility and these popularity metrics are subject of mapinupation;
+    \item[Popularity Bias] occurs when popular items are more likely to be recommended or rated highly, not necessarily because of their quality but simply because of their initial, higher visibility and these popularity metrics are subject of mapinupation;
 
-    \item[Algorithmic Bias] Introduced by the algorithms themselves, when they add bias that was not present in the input data:
+    \item[Algorithmic Bias] introduced by the algorithms themselves, when they add bias that was not present in the input data:
 
-    \item[User Interaction Bias] Results from the way system design influences user behavior in biased ways. This source of bias can be influenced by other types or subtypes, such as Presentation and Ranking Biasese:
+    \item[User Interaction Bias] results from the way system design influences user behavior in biased ways. This source of bias can be influenced by other types or subtypes, such as Presentation and Ranking Biasese:
     \begin{description}
-        \item[Presentation Bias] This bias occurs when the way information is presented influences the outcomes. In machine learning, this can manifest through the design of user interfaces or the manner in which data is displayed, affecting user decisions and interactions;
+        \item[Presentation Bias] occurs when the way information is presented influences the outcomes. In machine learning, this can manifest through the design of user interfaces or the manner in which data is displayed, affecting user decisions and interactions;
 
-        \item[Ranking Bias] Arises when algorithms prioritize certain data points over others in ranked lists or search results, which can distort visibility and perpetuate certain preferences or discriminations;
+        \item[Ranking Bias] arises when algorithms prioritize certain data points over others in ranked lists or search results, which can distort visibility and perpetuate certain preferences or discriminations;
     \end{description}
     
-    \item[Social Bias] Social biases are the preconceived notions and stereotypes held by societies, where individual actions or contents are socially influenced. These biases often find their way into data through collective social behaviors and decisions, influencing the training data used for machine learning models;
+    \item[Social Bias] is the preconceived notions and stereotypes held by societies, where individual actions or contents are socially influenced. These biases often find their way into data through collective social behaviors and decisions, influencing the training data used for machine learning models;
 
-    \item[Emergent Bias] Emerges during the operation of a system, particularly as a result of changes in population, cultural values, or societal knowledge in the data over time. This type of bias is dynamic and can occur even if the initial model was unbiased, due to changes in the underlying data or context;
+    \item[Emergent Bias] arises during the operation of a system, particularly as a result of changes in population, cultural values, or societal knowledge in the data over time. This type of bias is dynamic and can occur even if the initial model was unbiased, due to changes in the underlying data or context;
 
-    \item[Self-Selection Bias] Occurs when the individuals selected for a study or dataset have self-selected in some way, producing a sample that is not representative of the general population. This can skew results and make the data less generalizable;
+    \item[Self-Selection Bias] occurs when the individuals selected for a study or dataset have self-selected in some way, producing a sample that is not representative of the general population. This can skew results and make the data less generalizable;
 
-    \item[Omitted Variable Bias] Happens when a model overlooks certain relevant variables that are correlated with both the independent and dependent variables. Omitting these variables can lead to incorrect inferences about correlations and effects;
+    \item[Omitted Variable Bias] happens when a model overlooks certain relevant variables that are correlated with both the independent and dependent variables. Omitting these variables can lead to incorrect inferences about correlations and effects;
 
-    \item[Cause-Effect Bias] This bias is a misunderstanding in the determination of causation; it can occur when correlations are mistaken for causal relationships without proper justification through causal inference techniques;
+    \item[Cause-Effect Bias] is a misunderstanding in the determination of causation; it can occur when correlations are mistaken for causal relationships without proper justification through causal inference techniques;
 
-    \item[Observer Bias] Introduced by the expectations or preconceptions of those collecting or processing data, which can influence the outcomes subconsciously.;
+    \item[Observer Bias] is introduced by the expectations or preconceptions of those collecting or processing data, which can influence the outcomes subconsciously.;
     
-    \item[Funding Bias] Refers to the influence that the source of funding can have on the conduct of research or development of algorithms. This type of bias can lead to results that favor the interests of the funding source, consciously or unconsciously.
+    \item[Funding Bias] refers to the influence that the source of funding can have on the conduct of research or development of algorithms. This type of bias can lead to results that favor the interests of the funding source, consciously or unconsciously.
 \end{description}
 
 These biases can pervade various stages of machine learning, from data collection to model evaluation and deployment, highlighting the importance of understanding and mitigating bias to achieve fairness in AI systems. Furthermore, the presence of biases can lead to feedback loops that exacerbate these inequalities over time. When biased data influence the decisions made by an AI system, these decisions can then be used to generate more data, which, if used to retrain the model, may reinforce and even amplify the existing biases. This cycle can create a self-perpetuating loop, making initial biases more entrenched and difficult to correct. Addressing feedback loops is critical, as they can progressively deteriorate the fairness of the system, leading to increasingly skewed outcomes that are harder to rectify. Effective strategies to break these loops include rigorous monitoring of model decisions, regular updates to training datasets to ensure diversity and representativeness, and the implementation of mechanisms that can detect and correct for emerging biases
@@ -261,7 +261,7 @@ A predictor $\hat{Y}$ satisfies Fairness Through Awareness if for any two indivi
 
 This definition implies that the algorithm must incorporate a nuanced understanding of what it means for two individuals to be similar, which goes beyond merely ignoring sensitive attributes. Instead, it considers these attributes in a way that respects individual differences and upholds fairness.
 
-Fairness Through Unawareness~\cite{Corbett-Davies2018}, on the other hand, is a more straightforward approach where an algorithm is considered fair if it does not explicitly use sensitive attributes (such as race, gender, etc.) in the decision-making process. This method assumes that the exclusion of sensitive attributes will prevent discriminatory practices. However, this approach can be naive as it fails to consider that biases can be encoded in other, non-sensitive attributes that are correlated with the sensitive ones~\cite{Mehrabi2019,caton2023,Hort2023}.
+Fairness Through Unawareness~\cite{Corbett-Davies2023}, on the other hand, is a more straightforward approach where an algorithm is considered fair if it does not explicitly use sensitive attributes (such as race, gender, etc.) in the decision-making process. This method assumes that the exclusion of sensitive attributes will prevent discriminatory practices. However, this approach can be naive as it fails to consider that biases can be encoded in other, non-sensitive attributes that are correlated with the sensitive ones~\cite{Mehrabi2019,caton2023,Hort2023}.
 
 \begin{definition}[Fairness Through Unawareness]\label{def:ftu}
 A predictor $\hat{Y}$ satisfies Fairness Through Unawareness if the decision function $\hat{Y}$ does not explicitly include any sensitive attribute $A$ as part of the input. In other words, $\hat{Y}$ is constructed without direct knowledge of $A$.
@@ -335,4 +335,4 @@ The Adaptive Priority Reweighing~\cite{HuXT23} method introduces a systematic ap
 
 The method is evaluated on benchmark datasets, outperforming many state-of-art pre-processing, in-processing and post-processing fair classification techniques, promoting fairness on both finetuned pre-trained models and newly traisned models. This technique can be classified as an hybrid approach, performing the traditional pre-processing instance reweighing through an adaptive training algorithm.
 
-Recently, special attention has been given in fair machine learning research topics like addressing multiple sensitive attributes or multiple classes \cite{DAloisio2023,Liu_Wang_Wang_Wang_Su_Gao_2023}, loss balancing techniques~\cite{KIM2023231,KhaliliZA23}, where the objective is to balance the loss across different groups instead of predictive metrics, adversarial approaches~\cite{Liang2023,ZhangZLZY23,GrariLD23,MousaviMD23,Zeming2023,Yuchen2023} and the privacy concerns involving fairness under federated learning settings~\cite{ChenZZZY24,VucinichZ23}. Another relevant research topic in fair machine learning is learning under censored data~\cite{WZhang2022,WZhang2023_a,WZhang2023_b,WZhang2023_c}, which we will discuss in section~\ref{sec:fairness_noise}.
+Recently, special attention has been given in fair machine learning research topics like addressing multiple sensitive attributes or multiple classes \citep{DAloisio2023,Liu_Wang_Wang_Wang_Su_Gao_2023}, loss balancing techniques~\citep{KIM2023231,KhaliliZA23}, where the objective is to balance the loss across different groups instead of predictive metrics, adversarial approaches~\citep{Liang2023,ZhangZLZY23,GrariLD23,MousaviMD23,Zeming2023,Yuchen2023} and the privacy concerns involving fairness under federated learning settings~\citep{ChenZZZY24,VucinichZ23}. Another relevant research topic in fair machine learning is learning under censored data~\citep{WZhang2022,WZhang2023_a,WZhang2023_b,WZhang2023_c}, which we will discuss in section~\ref{sec:ftl_preliminaries}.

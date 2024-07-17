@@ -102,11 +102,14 @@ pages={14611-14619}
   year={2021}
 }
 
-@article{roh2020fairbatch,
-  title={Fairbatch: Batch selection for model fairness},
-  author={Roh, Yuji and Lee, Kangwook and Whang, Steven Euijong and Suh, Changho},
-  booktitle={International Conference on Learning Representations},
-  year={2021}
+@misc{roh2020fairbatch,
+      title={FairBatch: Batch Selection for Model Fairness}, 
+      author={Yuji Roh and Kangwook Lee and Steven Euijong Whang and Changho Suh},
+      year={2021},
+      eprint={2012.01696},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2012.01696}, 
 }
 
 @article{WZhang2023_c,
@@ -164,7 +167,7 @@ pages={14611-14619}
   bibsource    = {dblp computer science bibliography, https://dblp.org}
 }
 
-@inproceedings{Zhang2018,
+@article{Zhang2018,
    abstract = {Machine learning is a tool for building models that accurately represent input training data. When undesired biases concerning demographic groups are in the training data, well-trained models will reflect those biases. We present a framework for mitigating such biases by including a variable for the group of interest and simultaneously learning a predictor and an adversary. The input to the network X, here text or census data, produces a prediction Y, such as an analogy completion or income bracket, while the adversary tries to model a protected variable Z, here gender or zip code. The objective is to maximize the predictor's ability to predict Y while minimizing the adversary's ability to predict Z. Applied to analogy completion, this method results in accurate predictions that exhibit less evidence of stereotyping Z. When applied to a classification task using the UCI Adult (Census) Dataset, it results in a predictive model that does not lose much accuracy while achieving very close to equality of odds (Hardt, et al., 2016). The method is flexible and applicable to multiple definitions of fairness as well as a wide range of gradient-based learning models, including both regression and classification tasks.},
    author = {Brian Hu Zhang and Blake Lemoine and Margaret Mitchell},
    doi = {10.1145/3278721.3278779},
@@ -260,7 +263,6 @@ isbn = {0123456789},
 issn = {15737462},
 keywords = {Hyperparameter optimization,Machine learning,Meta-heuristic,Metamodel,Multi-objective optimization},
 mendeley-groups = {Fairness/multiobjective optimization},
-number = {8},
 pages = {8043--8093},
 publisher = {Springer Netherlands},
 title = {{A survey on multi-objective hyperparameter optimization algorithms for machine learning}},
@@ -854,6 +856,8 @@ series = {ICML'16}
    abstract = {The most prevalent notions of fairness in machine learning are statistical definitions: they fix a small collection of pre-defined groups, and then ask for parity of some statistic of the classifier across these groups. Constraints of this form are susceptible to intentional or inadvertent "fairness gerrymandering", in which a classifier appears to be fair on each individual group, but badly violates the fairness constraint on one or more structured subgroups defined over the protected attributes. We propose instead to demand statistical notions of fairness across exponentially (or infinitely) many subgroups, defined by a structured class of functions over the protected attributes. This interpolates between statistical definitions of fairness and recently proposed individual notions of fairness, but raises several computational challenges. It is no longer clear how to audit a fixed classifier to see if it satisfies such a strong definition of fairness. We prove that the computational problem of auditing subgroup fairness for both equality of false positive rates and statistical parity is equivalent to the problem of weak agnostic learning, which means it is computationally hard in the worst case, even for simple structured subclasses. We then derive two algorithms that provably converge to the best fair classifier, given access to oracles which can solve the agnostic learning problem. The algorithms are based on a formulation of subgroup fairness as a two-player zero-sum game between a Learner and an Auditor. Our first algorithm provably converges in a polynomial number of steps. Our second algorithm enjoys only provably asymptotic convergence, but has the merit of simplicity and faster per-step computation. We implement the simpler algorithm using linear regression as a heuristic oracle, and show that we can effectively both audit and learn fair classifiers on real datasets.},
    author = {Michael Kearns and Seth Neel and Aaron Roth and Zhiwei Steven Wu},
    month = {11},
+   volume = {80},
+   journal = {Proceedings of Machine Learning Research},
    title = {Preventing Fairness Gerrymandering: Auditing and Learning for Subgroup Fairness},
    url = {http://arxiv.org/abs/1711.05144},
    year = {2017},
@@ -963,7 +967,6 @@ series = {FAT* '19}
   year = 	 {2013},
   editor = 	 {Dasgupta, Sanjoy and McAllester, David},
   volume = 	 {28},
-  number =       {3},
   series = 	 {Proceedings of Machine Learning Research},
   address = 	 {Atlanta, Georgia, USA},
   month = 	 {17--19 Jun},
@@ -1310,6 +1313,19 @@ keywords = {Fairness notion, Tension within fairness, Unfairness mitigation},
 abstract = {Automated decision systems are increasingly used to take consequential decisions in problems such as job hiring and loan granting with the hope of replacing subjective human decisions with objective machine learning (ML) algorithms. However, ML-based decision systems are prone to bias, which results in yet unfair decisions. Several notions of fairness have been defined in the literature to capture the different subtleties of this ethical and social concept (e.g., statistical parity, equal opportunity, etc.). Fairness requirements to be satisfied while learning models created several types of tensions among the different notions of fairness and other desirable properties such as privacy and classification accuracy. This paper surveys the commonly used fairness notions and discusses the tensions among them with privacy and accuracy. Different methods to address the fairness-accuracy trade-off (classified into four approaches, namely, pre-processing, in-processing, post-processing, and hybrid) are reviewed. The survey is consolidated with experimental analysis carried out on fairness benchmark datasets to illustrate the relationship between fairness measures and accuracy in real-world scenarios.}
 }
 
+@misc{canalli2024_zenodo,
+  author       = {Canalli, Ygor},
+  title        = {{Computational Resources to Fair Transition Loss 
+                   and Redlining Penalty Regularization methods to
+                   Fair Classification}},
+  month        = jul,
+  year         = 2024,
+  publisher    = {Zenodo},
+  version      = {1.0},
+  doi          = {10.5281/zenodo.12752457},
+  url          = {https://doi.org/10.5281/zenodo.12752457}
+}
+
 @article{caton2023,
 author = {Caton, Simon and Haas, Christian},
 title = {Fairness in Machine Learning: A Survey},
@@ -1458,17 +1474,19 @@ volume = {67},
 year = {2017}
 }
 
+
 @article{Saravanakumar2020,
-abstract = {With the increasing pervasive use of machine learning in social and economic settings, there has been an interest in the notion of machine bias in the AI community. Models trained on historic data reflect biases that exist in society and propagated them to the future through their decisions. There are three prominent metrics of machine fairness used in the community, and it has been shown statistically that it is impossible to satisfy them all at the same time. This has led to an ambiguity with regards to the definition of fairness. In this report, a causal perspective to the impossibility theorem of fairness is presented along with a causal goal for machine fairness.},
-archivePrefix = {arXiv},
-arxivId = {2007.06024},
-author = {Saravanakumar, Kailash Karthik},
-eprint = {2007.06024},
-file = {:home/canalli/Downloads/2007.06024.pdf:pdf},
-mendeley-groups = {Fairness/impossibility theorem},
-title = {{The Impossibility Theorem of Machine Fairness -- A Causal Perspective}},
-url = {http://arxiv.org/abs/2007.06024},
-year = {2020}
+  author       = {Kailash Karthik S},
+  title        = {The Impossibility Theorem of Machine Fairness - {A} Causal Perspective},
+  journal      = {CoRR},
+  volume       = {abs/2007.06024},
+  year         = {2020},
+  url          = {https://arxiv.org/abs/2007.06024},
+  eprinttype    = {arXiv},
+  eprint       = {2007.06024},
+  timestamp    = {Mon, 20 Jul 2020 14:20:39 +0200},
+  biburl       = {https://dblp.org/rec/journals/corr/abs-2007-06024.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
 }
 
 @article{Bell2023,
@@ -1717,18 +1735,21 @@ series = {NIPS'16}
   year={2018}
 }
 
-@techreport{Corbett-Davies2018,
-abstract = {The nascent field of fair machine learning aims to ensure that decisions guided by algorithms are equitable. Over the last several years, three formal definitions of fairness have gained prominence: (1) anti-classification, meaning that protected attributes-like race, gender, and their proxies-are not explicitly used to make decisions; (2) classification parity, meaning that common measures of predictive performance (e.g., false positive and false negative rates) are equal across groups defined by the protected attributes; and (3) calibration, meaning that conditional on risk estimates, outcomes are independent of protected attributes. Here we show that all three of these fairness definitions suffer from significant statistical limitations. Requiring anti-classification or classification parity can, perversely, harm the very groups they were designed to protect; and calibration, though generally desirable, provides little guarantee that decisions are equitable. In contrast to these formal fairness criteria, we argue that it is often preferable to treat similarly risky people similarly, based on the most statistically accurate estimates of risk that one can produce. Such a strategy, while not universally applicable, often aligns well with policy objectives; notably, this strategy will typically violate both anti-classification and classification parity. In practice, it requires significant effort to construct suitable risk estimates. One must carefully define and measure the targets of prediction to avoid retrenching biases in the data. But, importantly, one cannot generally address these difficulties by requiring that algorithms satisfy popular mathematical formalizations of fairness. By highlighting these challenges in the foundation of fair machine learning, we hope to help researchers and practitioners productively advance the area.},
-archivePrefix = {arXiv},
-arxivId = {1808.00023v2},
-author = {Corbett-Davies, Sam and Goel, Sharad and Chohlas-Wood, Alex and Chouldechova, Alexandra and Feller, Avi and Huq, Aziz and Hardt, Moritz and Ho, Daniel E and Mitchell, Shira and Overgoor, Jan and Pierson, Emma and Shroff, Ravi},
-eprint = {1808.00023v2},
-file = {:home/canalli/.var/app/com.elsevier.MendeleyDesktop/data/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Corbett-Davies et al. - 2018 - The Measure and Mismeasure of Fairness A Critical Review of Fair Machine Learning.pdf:pdf},
-keywords = {Algorithms,anti-classification,bias,calibration,classification parity,decision analysis,measurement error * We thank},
-mendeley-groups = {Fairness},
-title = {{The Measure and Mismeasure of Fairness: A Critical Review of Fair Machine Learning *}},
-url = {https://arxiv.org/pdf/1808.00023.pdf},
-year = {2018}
+@article{Corbett-Davies2023,
+author = {Corbett-Davies, Sam and Gaebler, Johann D. and Nilforoshan, Hamed and Shroff, Ravi and Goel, Sharad},
+title = {The measure and mismeasure of fairness},
+year = {2024},
+issue_date = {January 2023},
+publisher = {JMLR.org},
+volume = {24},
+number = {1},
+issn = {1532-4435},
+abstract = {The field of fair machine learning aims to ensure that decisions guided by algorithms are equitable. Over the last decade, several formal, mathematical definitions of fairness have gained prominence. Here we first assemble and categorize these definitions into two broad families: (1) those that constrain the effects of decisions on disparities; and (2) those that constrain the effects of legally protected characteristics, like race and gender, on decisions. We then show, analytically and empirically, that both families of definitions typically result in strongly Pareto dominated decision policies. For example, in the case of college admissions, adhering to popular formal conceptions of fairness would simultaneously result in lower student-body diversity and a less academically prepared class, relative to what one could achieve by explicitly tailoring admissions policies to achieve desired outcomes. In this sense, requiring that these fairness definitions hold can, perversely, harm the very groups they were designed to protect. In contrast to axiomatic notions of fairness, we argue that the equitable design of algorithms requires grappling with their context-specific consequences, akin to the equitable design of policy. We conclude by listing several open challenges in fair machine learning and offering strategies to ensure algorithms are better aligned with policy goals.},
+journal = {J. Mach. Learn. Res.},
+month = {mar},
+articleno = {312},
+numpages = {117},
+keywords = {fair machine learning, consequentialism, discrimination}
 }
 
 @INPROCEEDINGS{Cruz2021,

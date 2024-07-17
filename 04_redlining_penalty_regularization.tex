@@ -1,8 +1,8 @@
-\chapter{Correlation based penalty function}
+\chapter{Correlation based penalty function}\label{chap:rpr}
 
 In this chapter, we propose a novel regularization factor to penalize the use of features highly correlated with a protected attribute by a machine learning model, aiming to avoid the redlining effect~\citep{Pedreschi2008}. The proposed penalization factor is applied directly to the input weights of a Multi-Layer Perceptron, using a strategy that proportionately penalizes features use based on their correlation with the sensitive feature.
 
-\section{Preliminaries}
+\section{Preliminaries} \label{sec:rpr_preliminaries}
 
 The phenomena known as redlining effect~\citep{Pedreschi2008} consists in the unintended use of proxy variables to the sensitive feature by the model, which can lead model to produce indirect discrimination in their outcomes.  Thus, the insight here is to penalize the use of those proxy features by the model proportionally according its correlation with sensitive feature in order to avoid redlining effed. The proposed regularization approach uses the recently described Chatterjee's xi correlation coefficient~\cite{chatterjee2020new}, which robustly asses whether a random variable can be described as a function of another one, as a measure of the potential of given feature to be used by the model as a proxy to the sensitive feature. 
 
@@ -108,7 +108,7 @@ Although many fair machine learning techniques are based on imposing constraints
 
 Relevant regularization approaches to fair machine learning include the dual form for Fairness Constraints through Decision Boundary Covariance by \cite{Zafar2017b} and the example-based and model-agnostic Paired-Consistency approach~\citep{Horesh2020}. A notable approach proposed by \cite{Baharlouei2020} includes a general min-max framework for fair inference using the Rényi correlation coefficient~\citep{Renyi1959} as a regularization term. Additional recent developments in this research area can be found in the works of \cite{Olfat2020}, \cite{Yu2022}, and \cite{jung2023}.
 
-\section{Redlining Penalty Regularizer}
+\section{Redlining Penalty Regularizer} \label{sec:rpr_proposal}
 
 Here we propose the Redlining Penalty Regularizer (RPR), a novel regularization term that penalizes the weights of features highly correlated with the sensitive attribute in order to prevent the redlining effect. By incorporating this penalty into the loss function of the neural network, the model is encouraged to reduce its reliance on sensitive attributes and their proxies, thus promoting fairer predictions. To the best of our knowledge, this the first approach to incorporate a regularization term that proportionately penalizes the features weights on the input layer according its correlation to sensitive attribute to prevent the redlining effect.
 
@@ -132,7 +132,7 @@ This formulation differs from similar approaches to regularization in order to a
 
 With the combination of characteristics tailored by this formulation and the chosen correlation coefficient we do expects effectively avoiding the use of indirect sensitive feature predictors within the model, thus mitigating redlining effect.
 
-\section{Experimental setup}
+\section{Experimental setup} \label{sec:rpr_experimental}
 
 In this section, we detail the experimental setup employed to benchmark the proposed regularization within both Standard MLP with Cross Entropy Loss and a MLP using Fair Transition Loss. Both MLP model uses two hidden layers with $100$ hidden units each, $ReLU$ activation function, batch size of $64$, $50$ epochs early stopped at $3$ epochs without improvement~\citep{Li2020} and softmax in output, trained with ADAM optimizer~\citep{KingmaB14} and learning rate at $3\mathrm{e}{-4}$. 
 
@@ -166,11 +166,11 @@ Table~\ref{tab:hyperparameters_rpr} presents the methods hyperparameters along w
 
 To properly compare this set of $15$ results of each method, we conduct an Almost Stochastic Order (ASO) test \citep{dror2019deep}, a significance test suitable for comparing complex machine learning models with various hyperparameters. As described before, the ASO test involves evaluating a set of metrics through multiple samplings of a Collection of Statistics (in this case assessed in test phase using random resampling) to compare one method against another. The $ASO(A, B)$ function yields a value in the range $[0, 1]$, given two methods $A$ and $B$. If $ASO(A, B)$ is lesser than $0.5$, we can reject the null hypothesis and conclude that method $A$ outperforms method $B$ in the given task. That is, method $A$ produces stochastically larger values than method $B$ for a given metric. The lower the $ASO(A, B)$ value, the stronger the evidence that $A$ is superior to $B$ in that particular task, which can be interpreted as a confidence interval. Therefore, we perform comparisons between all methods for each optimization scenario outlined previously and for each dataset.
 
-Our experiments uses common datasets used in Fair Classification problems, namely \textit{Adult Income}~\citep{misc_adult_2}, \textit{German Credit}~\citep{misc_statlog_(german_credit_data)_144}, \textit{Bank Marketing}~\citep{misc_bank_marketing_222}, and \textit{COMPAS Recidivism}~\citep{misc_COMPAS}. We use the dataset readers available in the AI Fairness 360 toolkit~\citep{aif360-oct-2018} with its standard configurations. Instances with missing data are removed. To a proper description of those datasets please check Section~\ref{sec:experimental}
+Our experiments uses common datasets from Fair Classification benchmarks, namely \textit{Adult Income}~\citep{misc_adult_2}, \textit{German Credit}~\citep{misc_statlog_(german_credit_data)_144}, \textit{Bank Marketing}~\citep{misc_bank_marketing_222}, and \textit{COMPAS Recidivism}~\citep{misc_compas}. We use the dataset readers available in the AI Fairness 360 toolkit~\citep{aif360-oct-2018} with its standard configurations. Instances with missing data are removed. To a proper description of those datasets please check Section~\ref{sec:ftl_experimental}
 
 For all datasets, the data preparation process is the same, one-hot encoding for categorical features and standardize the numerical features. We perform a random split, with $80\%$ allocated for the hyperparameter tuning phase and the remaining $20\%$ reserved for evaluating metrics in the test phase. Within the hyperparameter tuning phase, this corresponding fraction of data is further randomly split, with $80\%$ assigned to training and $20\%$ to validation. The validation set allows us to assess metrics and compute the fitness function for each hyperparameter configuration. In datasets where there is originally some kind of split (e.g., train set and test set in separate files), all available data is merged and then shuffled to produce new splits at each run.
 
-\section{Results and discussion}
+\section{Results and discussion} \label{sec:rpr_results}
 
 Before presenting the main experimental results, we perform an additional comparison using the same methodology to address two concerns. Firstly, one might argue that the proposed penalty strategy does not differs from applying conventional regularization factors like L2. In this context, any observed advantages of the proposed method over the same model without the penalty would be attributed to the conventional effects of regularization, i.e. avoiding model overfitting and consequently improving fitness values. Therefore, we compare the proposed strategy not only with an MLP baseline but also with the same MLP under standard L2 regularization across all network layers, optimized using the ranges specified in Table~\ref{tab:hyperparameters_rpr}.
 
