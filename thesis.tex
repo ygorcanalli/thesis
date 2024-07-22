@@ -87,13 +87,17 @@
 
   \begin{abstract}
 
-  problema e importância do problema, proposta, metodologia experimental, resumo dos resultados, contribuições e legado no estado da arte.
+A ampla adoção de aprendizado de máquina em decisões de impacto social expandiu sistematicamente a aplicação de padrões discriminatórios já existentes. Assim, técnicas de aprendizado de máquina justas tornaram-se uma fronteira para pesquisadores e profissionais de IA. Abordar a equidade é complexo, não se pode depender apenas dos dados usados para treinar modelos ou das métricas que os avaliam, pois esses dados frequentemente são a principal fonte de viés, similar a dados ruidosos. Exploramos a convergência entre equidade e ruído no aprendizado de máquina, destacando semelhanças e diferenças. Apresentamos “Fair Transition Loss”, um novo método para classificação justa inspirado em técnicas de robustez contra ruído de rótulo. Funções de custo convencionais ignoram a distribuição dos dados sensíveis e seu impacto nas previsões. Nossa abordagem utiliza matrizes de transição para ajustar as previsões utilizando estes dados ignorados. Nossa avaliação empírica usando o teste de significância de ordem quase-estocástica indica que esse método supera muitas abordagens clássicas e de ponta na maioria dos conjuntos de dados de referência e objetivos de otimização. Além disso, a abordagem proposta se mostrou a única a manter resultados competitivos em todos os cenários.
+
+Além disso, apresentamos uma abordagem de regularização inovadora denominada “Redlining Penalty Regularization”, que penaliza proporcionalmente a dependência do modelo de preditores indiretos dos atributos sensíveis de acordo com suas correlações. Nossos resultados experimentais demonstram que a técnica proposta melhora os resultados tanto em redes neurais convencionais quanto naquelas treinadas usando o “Fair Transition Loss” em uma variedade de conjuntos de dados e objetivos de otimização para classificação justa.
 
   \end{abstract}
 
   \begin{foreignabstract}
 
-  In this work, we present ...
+The Machine learning widespread adoption has inadvertently led to the amplification of societal biases and discrimination, with many consequential decisions now influenced by data-driven systems. In this scenario, fair machine learning techniques has become a frontier for AI researchers and practitioners. Addressing fairness is intricate; one cannot solely rely on the data used to train models or the metrics that assess them, as this data is often the primary source of bias — akin to noisy data. This work delves into the convergence of these two research domains, highlighting the similarities and differences between fairness and noise in machine learning. We introduce the Fair Transition Loss, a novel method for fair classification inspired by label noise robustness techniques. Traditional loss functions tend to ignore distributions of sensitive features and their impact on outcomes. Our approach uses transition matrices to adjust predicted label probabilities based on this ignored data. The empirical evaluation using Almost Stochastic Order significance test indicates that this method outperforms many classical and state-of-art approaches in most of benchmarked datasets and optimization objectives to fair classification. Additionally, the proposed approach remains as the only to keep competitive results on all compared scenarios.
+
+Also, we present the Redlining Penalty Regularization, a novel regularization approach that proportionately penalizes model’s dependency on sensitive feature proxies according their correlations. Our experimental results demonstrates that this proposed technique improves both results on standard neural networks and those trained using Fair Transition Loss on a variety of datasets and optimization objectives to fair classification.
 
   \end{foreignabstract}
 
