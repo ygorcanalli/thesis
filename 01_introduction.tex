@@ -1,5 +1,9 @@
 \chapter{Introduction}
 
+Brisha Borden was running late to pick up her god-sister from school. She and her friend, both 18-year-old girls, took an unlocked kid’s bicycle and scooter and ride for a while. They were arrested and charged with theft. Meanwhile, Vernon Prater, a seasoned criminal with prior history of armed robbery and years in prison, was caught by theft tools. A computer program predicted their future criminal behavior: Borden, a black woman, was rated high risk; Prater, a white man, was rated low risk. However, the algorithm got it wrong. Borden remained crime-free, while Prater was again serving an eight-year prison term for a subsequent theft.
+
+This famous case revealed by a ProPublica's investigative reporting evidenced the biased behavior of Correctional Offender Management Profiling for Alternative Sanctions (COMPAS), a criminal risk assessment tool owned by Northpointe and used by Florida's criminal justice system~\citep{machine_bias}. Examples like that are not extraordinary, decision making systems are incurring in bias by reproducing prejudices and disparities from society all around the world. Although the machine learning bias can not be resolved only by computing science and statistics solutions, we delve into this issue in order to provide tools for decision makers, civil society and other stakeholders to tackle this humongous problem. 
+
 \section{Contextualization}
 
 The issue of fairness in machine learning has recently risen to prominence due to its implications in real-world decision-making systems~\citep{Mehrabi2019,Hutchinson2019}. Addressing biases and discrimination is a relevant frontier in decision-making systems, as equitable outcomes across various demographic groups is both an ethical imperative and often a legal requirement. Though fairness is a multifaceted concept, it has been deeply examined within the context of machine learning. The literature presents a variety of fairness definitions, drawing concepts from political philosophy and computational techniques~\citep{caton2023, Hutchinson2019}. Choosing an equitable machine learning model requires the selection of a fitting definition of fairness, tailored to the specific problem at hand. Many such definitions can be precisely articulated, allowing models to be evaluated based on their predictions.
@@ -13,7 +17,7 @@ In this context sounds intuitive the idea of just removing protected attributes 
 Although noise and unfairness in the context of classification are not identical phenomena, there are relevant similarities, especially in their effects on data. Both changes the appropriate or expected values of an instance's attributes or label. While noise corrupts the observable value of an attribute or class without affecting the true value, unfairness acts directly on the social reality that generates these values, corrupting both the observable and true values. Considering the succeeds approaches to produce label noise robustness through loss correction~\citep{Patrini2017}, which uses different levels of uncertainty according observed label, we raise the following hypothesis:
 
 \begin{hypothesis}\label{hyp:ftl}
-A loss correction approach that considers different levels of corruption according individual's sensitive attribute and available class would be effective on mitigating unfairness. 
+A loss correction approach that considers different levels of corruption according individual's sensitive attribute and available class reduces unfairness. 
 \end{hypothesis}
 
 Thus, the main objective of this study is to produce a loss correction tailored to reconsider the predicted outcomes of a binary classifier taking into account different levels of unfairness according individual's social group and available class, addressing Hypothesis~\ref{hyp:ftl}.
@@ -21,7 +25,7 @@ Thus, the main objective of this study is to produce a loss correction tailored 
 Another relevant topic tackled by this work is the Redlining Effect, which perversely penalizes individuals of socially marginalized groups, even on well-intentioned approaches to mitigate unfairness. Intuitively, reducing model's reliance on those sensitive feature's proxies would promote fairness. Thus, in order to achieve a Redlining Effect robustness, we raise the following hypothesis:
 
 \begin{hypothesis}\label{hyp:rpr}
-A regularization approach that penalizes model's dependency on sensitive attribute proxies would reduce the effects of redlining an thus promoting fairness. 
+A regularization approach that penalizes model's dependency on sensitive attribute proxies reduces the effects of redlining an thus promoting fairness. 
 \end{hypothesis}
 
 Therefore, to accomplish Hypothesis~\ref{hyp:rpr} this study pursue this secondary objective of developing a regularization approach capable of properly identifying and penalizing the proxies of sensitive feature. 
